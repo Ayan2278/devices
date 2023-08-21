@@ -1,18 +1,22 @@
 <?php
 
 include '_db_Connect.php';
+$sql22 = "SELECT DISTINCT `school` FROM `assets`;";
 $sql00 = "SELECT * FROM `assets`WHERE `Status`='Active'";
 $sql10 = "SELECT * FROM `assets`WHERE `Status`='Inactive'";
 $sql11 = "SELECT * FROM `assets`";
 
+$res22 = mysqli_query($conn, $sql22);
 $res00 = mysqli_query($conn, $sql00);
 $res10 = mysqli_query($conn, $sql10);
 $res11 = mysqli_query($conn, $sql11);
 
+$tot22 = mysqli_num_rows($res22);
 $tot00 = mysqli_num_rows($res00);
 $tot10 = mysqli_num_rows($res10);
 $tot11 = mysqli_num_rows($res11);
 
+$row22 = $res00->fetch_assoc();
 $row00 = $res00->fetch_assoc();
 $row10 = $res10->fetch_assoc();
 $row11 = $res11->fetch_assoc();
@@ -282,7 +286,18 @@ if ($total != 0)
 
 
         <div class="row">
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
+            <div class="card bg-c-blue order-card" style="color:black;">
+              <div class="card-block">
+                <h4 class="m-b-20">Total School</h4>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-school f-left my-3' style="font-size:40px;"></i><span><b>
+                    <?php echo $tot22; ?></b>
+                  </span></h1>
+              </div>
+            </div>
+        </div
+        <div class="row">
+          <div class="col-lg-3 col-6">
             <div class="card bg-c-blue order-card" style="color:black;">
               <div class="card-block">
                 <h4 class="m-b-20">Total Districts</h4>
@@ -293,7 +308,7 @@ if ($total != 0)
             </div>
           </div>
 
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
             <div class="card bg-c-green order-card" style="color:black;">
               <div class="card-block">
                 <h4 class="m-b-20">Inactive PC</h4>
@@ -304,7 +319,7 @@ if ($total != 0)
             </div>
           </div>
 
-          <div class="col-lg-4 col-12">
+          <div class="col-lg-3 col-12">
             <div class="card bg-c-yellow order-card" style="color:black;">
               <div class="card-block">
                 <h4 class="m-b-20">Total PC</h4>
@@ -369,7 +384,7 @@ if ($total != 0)
 
         </div>
         <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+    </div3><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
     <section class="content">

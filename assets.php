@@ -240,7 +240,7 @@ if (isset($_POST['school'])) {
                   if (isset($_POST['pc'])) {
                     $pc = $_POST['pc'];
                     $school = $_POST['school'];
-                    $query5 = "SELECT * FROM `devices` WHERE `pc`= '$pc' ;";
+                    $query5 = "SELECT * FROM `device` WHERE `pc`= '$pc' ;";
                     $result5 = mysqli_query($conn, $query5);
                     if ($result5) {
                       $total5 = mysqli_num_rows($result5);
