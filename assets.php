@@ -18,7 +18,7 @@ if (isset($_POST['pc'])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Device</title>
+  <title>Assets</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -142,7 +142,7 @@ if (isset($_POST['pc'])) {
                 </select>
               </div>
               <div class="form-group col-lg-2">
-                <label for="exampleInputPassword1">Device</label>
+                <label for="exampleInputPassword1">PC id</label>
                 <select class="form-control select2bs4" style="width: 100%" name='pc_id' >
                   <option selected="selected">Please Select</option>
                   <?php
