@@ -1,11 +1,11 @@
 <?php
 include '_db_Connect.php';
-$sql = "SELECT DISTINCT `pc` FROM `devices`;";
+$sql = "SELECT DISTINCT `school` FROM `assets`;";
 $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['pc'])) {
   $pc = $_POST['pc'];
-  $sql2 = "SELECT DISTINCT `pc_id` FROM `devices` WHERE `pc`='$pc';";
+  $sql2 = "SELECT DISTINCT `pc_id` FROM `device` WHERE `pc`='$pc';";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -123,7 +123,7 @@ if (isset($_POST['pc'])) {
           <form method="post" action="assets.php" role="form" id="myform">
             <div class="card-body row">
               <div class="form-group col-lg-2">
-                <label for="device">PC sr</label>
+                <label for="device">School</label>
                 <select class="form-control select2bs4" style="width: 100%" name="pc" onchange="change()">
                   <option value="">Please Select</option>
                   <?php
@@ -143,7 +143,7 @@ if (isset($_POST['pc'])) {
                 </select>
               </div>
               <div class="form-group col-lg-2">
-                <label for="exampleInputPassword1">PC id</label>
+                <label for="exampleInputPassword1">PC Id</label>
                 <select class="form-control select2bs4" style="width: 100%" name='pc_id' >
                   <option selected="selected">Please Select</option>
                   <?php
@@ -209,7 +209,7 @@ if (isset($_POST['pc'])) {
                     $count = 1;
                     $pc = $_POST['pc'];
                     $pcId = $_POST['pc_id'];
-                    $query5 = "SELECT * FROM `devices`;";
+                    $query5 = "SELECT * FROM `device`;";
                     $result5 = mysqli_query($conn, $query5);
                     $total5 = mysqli_num_rows($result5);
                       if ($result5) {
@@ -236,7 +236,7 @@ if (isset($_POST['pc'])) {
                   if (isset($_POST['pc_id'])) {
                     $pc = $_POST['pc'];
                     $pcId = $_POST['pc_id'];
-                    $query5 = "SELECT * FROM `devices` WHERE `pc`= '$pc' and `pc_id`='$pcId';";
+                    $query5 = "SELECT * FROM `device` WHERE `pc`= '$pc' and `pc_id`='$pcId';";
                     $result5 = mysqli_query($conn, $query5);
                     if ($result5) {
                       $total5 = mysqli_num_rows($result5);
