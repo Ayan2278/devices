@@ -123,7 +123,7 @@ if (isset($_POST['pc'])) {
           <form method="post" action="assets.php" role="form" id="myform">
             <div class="card-body row">
               <div class="form-group col-lg-2">
-                <label for="device">PC sr</label>
+                <label for="device">School</label>
                 <select class="form-control select2bs4" style="width: 100%" name="pc" onchange="change()">
                   <option value="">Please Select</option>
                   <?php
@@ -143,7 +143,7 @@ if (isset($_POST['pc'])) {
                 </select>
               </div>
               <div class="form-group col-lg-2">
-                <label for="exampleInputPassword1">PC id</label>
+                <label for="exampleInputPassword1">PC sr</label>
                 <select class="form-control select2bs4" style="width: 100%" name='pc_id' >
                   <option selected="selected">Please Select</option>
                   <?php
