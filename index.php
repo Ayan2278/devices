@@ -265,12 +265,12 @@ if ($total != 0)
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Dashboard</h1>
+              <h1 class="m-0 text-dark">Dashboard device</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item" style="color:purple;"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item" style="color:purple;"><a href="device.php">Device</a></li>
+                <li class="breadcrumb-item active"><a href="assets.php">assets</a></li>
               </ol>
             </div>
           </div>
