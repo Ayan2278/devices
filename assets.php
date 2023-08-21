@@ -1,11 +1,11 @@
 <?php
 include '_db_Connect.php';
-$sql = "SELECT DISTINCT `pc` FROM `devices`;";
+$sql = "SELECT DISTINCT `school` FROM `assets`;";
 $result = mysqli_query($conn, $sql);
 
-if (isset($_POST['pc'])) {
-  $pc = $_POST['pc'];
-  $sql2 = "SELECT DISTINCT `pc_id` FROM `devices` WHERE `pc`='$pc';";
+if (isset($_POST['school'])) {
+  $school = $_POST['school'];
+  $sql2 = "SELECT * FROM `assets` WHERE `school`='$school';";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -124,7 +124,7 @@ if (isset($_POST['pc'])) {
             <div class="card-body row">
               <div class="form-group col-lg-2">
                 <label for="device">School</label>
-                <select class="form-control select2bs4" style="width: 100%" name="pc" onchange="change()">
+                <select class="form-control select2bs4" style="width: 100%" name="school" onchange="change()">
                   <option value="">Please Select</option>
                   <?php
                   if ($result) {
@@ -132,10 +132,10 @@ if (isset($_POST['pc'])) {
                     if ($total != 0) {
                       while ($row = $result->fetch_assoc()) {
 
-                        echo "<option value='" . $row['pc'] . "'";
+                        echo "<option value='" . $row['school'] . "'";
 
-                        echo isset($_POST["pc"]) && $_POST["pc"] == $row['pc'] ? "selected " : "";
-                        echo ">" . $row['pc'] . "</option>";
+                        echo isset($_POST["school"]) && $_POST["school"] == $row['school'] ? "selected " : "";
+                        echo ">" . $row['school'] . "</option>";
                       }
                     }
                   }
@@ -144,7 +144,7 @@ if (isset($_POST['pc'])) {
               </div>
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC sr</label>
-                <select class="form-control select2bs4" style="width: 100%" name='pc_id' >
+                <select class="form-control select2bs4" style="width: 100%" name='pc' >
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result2) {
@@ -152,8 +152,8 @@ if (isset($_POST['pc'])) {
                     if ($total2 != 0) {
                       while ($row2 = $result2->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["pc_id"]) && $_POST["pc_id"] == $row2["pc_id"] ? "selected " : "";
-                        echo "value='" . $row2["pc_id"] . "'>" . $row2["pc_id"] . "</option>";
+                        echo isset($_POST["pc"]) && $_POST["pc"] == $row2["PC"] ? "selected " : "";
+                        echo "value='" . $row2["PC"] . "'>" . $row2["PC"] . "</option>";
 
                       }
                     }
