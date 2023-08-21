@@ -11,7 +11,7 @@ $res11 = mysqli_query($conn, $sql11);
 
 $tot00 = mysqli_num_rows($res00);
 $tot10 = mysqli_num_rows($res10);
-$tot11 = mysqli_num_rows($res11);
+// $tot11 = mysqli_num_rows($res11);
 
 $row00 = $res00->fetch_assoc();
 $row10 = $res10->fetch_assoc();
