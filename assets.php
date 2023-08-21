@@ -99,8 +99,9 @@ if (isset($_POST['pc'])) {
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Device</li>
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item active">Assets</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->

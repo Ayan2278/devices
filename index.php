@@ -269,8 +269,8 @@ if ($total != 0)
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item" style="color:purple;"><a href="device.php">Device</a></li>
-                <li class="breadcrumb-item active"><a href="assets.php">assets</a></li>
+                <li class="breadcrumb-item" style="color:purple;"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
               </ol>
             </div>
           </div>
