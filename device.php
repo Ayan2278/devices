@@ -215,7 +215,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
               <form action="#" method="post">
                 <div class="form-group col-lg-1 my-4 w-100">
-                  <button type="submit" name="Device" value="Device" class="btn  " style="margin-top:8px;width:100%; background:#5ba7ff; color:white;">Device</button>
+                  <button type="submit" name="Device" value="Device" class="btn  " style="margin-top:8px;width:100%; background:#5ba7ff; color:black;">Device</button>
                 </div>
               </form>
               

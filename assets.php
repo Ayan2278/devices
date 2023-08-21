@@ -167,7 +167,7 @@ if (isset($_POST['school'])) {
 
               <form action="#" method="get">
                 <div class="form-group col-lg-1 my-4 w-100">
-                  <button type="submit" name="Assets" value="Assets" class="btn " style="margin-top:8px; width:100%; background:#49ddc0; color:white;">Assets</button>
+                  <button type="submit" name="Assets" value="Assets" class="btn " style="margin-top:8px; width:100%; background:#49ddc0; color:black;">Assets</button>
                 </div>
               </form>
               
@@ -196,8 +196,8 @@ if (isset($_POST['school'])) {
                   echo '<thead>
                           <tr>
                             <th>SR</th>
-                            <th>School name</th>
                             <th>PC Sr</th>
+                            <th>School name</th>
                             <th>TFT</th>
                             <th>Webcam</th>
                             <th>Headphone</th>
@@ -207,27 +207,27 @@ if (isset($_POST['school'])) {
                 
                 
                   include '_db_Connect.php';
-                   if ($_POST['pc']=="" && isset($_POST["Assets"])) {
+                   if ($_POST['school']=="" && isset($_POST["Assets"])) {
                     $count = 1;
                     $pc = $_POST['pc'];
                     $school = $_POST['school'];
-                    $query5 = "SELECT * FROM `devices`;";
+                    $query5 = "SELECT * FROM `assets` ORDER BY `assets`.`PC` ASC";
                     $result5 = mysqli_query($conn, $query5);
                     $total5 = mysqli_num_rows($result5);
                       if ($result5) {
-
-                        $total5 = mysqli_num_rows($result5);
-                        
+                       $total5 = mysqli_num_rows($result5);
+                     
+                       
                         if ($total5 != 0) {
-                          while ($row = $result5->fetch_assoc()) {
+                          while ($row = $result5->fetch_assoc() ) {
                             echo '
                             <tr>
                               <td>' . $count . '</td>
-                              <td>' . $pc . '</td>
-                              <td>' . $school . '</td>
+                              <td>' . $row['PC'] . '</td>
+                              <td>' . $row['school'] . '</td>
                               <td>' . $row['TFT_id'] . '</td>
-                              <td>' . $row['Webcam_id'] . '</td>
                               <td>' . $row['Headphone_id'] . '</td>
+                              <td>' . $row['webcam_id'] . '</td>
                               </tr>
                           ';
                             $count += 1;
@@ -240,7 +240,7 @@ if (isset($_POST['school'])) {
                   if (isset($_POST['pc'])) {
                     $pc = $_POST['pc'];
                     $school = $_POST['school'];
-                    $query5 = "SELECT * FROM `device` WHERE `pc`= '$pc' ;";
+                    $query5 = "SELECT * FROM `assets` WHERE `pc`= '$pc' ;";
                     $result5 = mysqli_query($conn, $query5);
                     if ($result5) {
                       $total5 = mysqli_num_rows($result5);
@@ -257,9 +257,9 @@ if (isset($_POST['school'])) {
                             <tr>
                               <td>' . $count . '</td>
                               <td>' . $school . '</td>
-                              <td>' . $pc . '</td>
+                              <td>' . $PC . '</td>
                               <td>' . $row['TFT_id'] . '</td>
-                              <td>' . $row['Webcam_id'] . '</td>
+                              <td>' . $row['webcam_id'] . '</td>
                               <td>' . $row['Headphone_id'] . '</td>
                             </tr>
                           ';
