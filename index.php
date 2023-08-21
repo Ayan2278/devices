@@ -283,33 +283,33 @@ if ($total != 0)
 
         <div class="row">
           <div class="col-lg-4 col-6">
-            <div class="card bg-c-blue order-card">
+            <div class="card bg-c-blue order-card" style="color:black;">
               <div class="card-block">
                 <h4 class="m-b-20">Total Districts</h4>
-                <h1 class="text-right"><i class='bx bxs-city f-left my-3' style="font-size:40px;"></i><span>
-                    <?php echo $tot1; ?>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-city f-left my-3' style="font-size:40px;"></i><span><b>
+                    <?php echo $tot1; ?></b>
                   </span></h1>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-6">
-            <div class="card bg-c-green order-card">
+            <div class="card bg-c-green order-card" style="color:black;">
               <div class="card-block">
                 <h4 class="m-b-20">Inactive PC</h4>
-                <h1 class="text-right"><i class='bx bx-desktop f-left my-3' style="font-size:40px;"></i><span>
-                    <?php echo $tot10; ?>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3' style="font-size:40px;"></i><span><b>
+                    <?php echo $tot10; ?></b>
                   </span></h1>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-12">
-            <div class="card bg-c-yellow order-card">
+            <div class="card bg-c-yellow order-card" style="color:black;">
               <div class="card-block">
                 <h4 class="m-b-20">Total PC</h4>
-                <h1 class="text-right"><i class='bx bxs-devices f-left my-3' style="font-size:40px;"></i><span>
-                    <?php echo $tot11; ?>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-devices f-left my-3' style="font-size:40px;"></i><span><b>
+                    <?php echo $tot11; ?></b>
                   </span></h1>
               </div>
             </div>
