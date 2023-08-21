@@ -1,0 +1,65 @@
+[
+    {
+        "Device": "TFT",
+        "Start_time": "19:16:04",
+        "End_time": "24:16:24",
+        "Date": "15/06/2023",
+        "Duration": "59:00:14",
+        "status":"-"
+    },
+    {
+        "Device": "TFT",
+        "Start_time": "14:16:14",
+        "End_time": "15:16:54",
+        "Date": "16/06/2023",
+        "Duration": "59:00:22",
+        "status":"-"
+    },
+    {
+        "Device": "Webcam",
+        "Start_time": "24:40:04",
+        "End_time": "24:40:20",
+        "Date": "18/06/2023",
+        "Duration": "10:00:29",
+        "status":"-"
+    },
+    {
+        "Device": "TFT",
+        "Start_time": "14:42:24",
+        "End_time": "14:52:20",
+        "Date": "19/06/2023",
+        "Duration": "10:00:54",
+        "status":"-"
+    },
+    {
+        "Device": "TFT",
+        "Start_time": "13:42:14",
+        "End_time": "14:52:24",
+        "Date": "15/06/2023",
+        "Duration": "01:10:00"
+    },
+    {
+        "Device": "Webcam",
+        "Start_time": "16:20:00",
+        "End_time": "17:03:44",
+        "Date": "17/06/2023",
+        "Duration": "59:00:44",
+        "status":"-"
+    },
+    {
+        "Device": "TFT",
+        "Start_time": "16:03:04",
+        "End_time": "17:03:24",
+        "Date": "27/06/2023",
+        "Duration": "59:00:20",
+        "status":"-"
+    },
+    {
+        "Device": "Webcam",
+        "Start_time": "16:03:24",
+        "End_time": "17:03:04",
+        "Date": "27/06/2023",
+        "Duration": "59:00:14",
+        "status":"-"
+    }
+]

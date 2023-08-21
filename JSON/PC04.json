@@ -1,0 +1,50 @@
+[
+    {
+        "Device": "Headphone",
+        "Start_time": "14:16:02",
+        "End_time": "15:56:19",
+        "Date": "19/06/2023",
+        "Duration": "59:00:09",
+        "status":"-"
+    },
+    {
+        "Device": "Panel",
+        "Start_time": "14:16:59",
+        "End_time": "15:26:19",
+        "Date": "25/07/2023",
+        "Duration": "59:00:09",
+        "status":"-"
+    },
+    {
+        "Device": "Headphone",
+        "Start_time": "14:40:09",
+        "End_time": "15:30:09",
+        "Date": "15/08/2023",
+        "Duration": "50:00:09",
+        "status":"-"
+    },
+    {
+        "Device": "Panel",
+        "Start_time": "14:42:09",
+        "End_time": "14:52:09",
+        "Date": "15/07/2023",
+        "Duration": "10:09:24",
+        "status":"-"
+    },
+    {
+        "Device": "Panel",
+        "Start_time": "13:42:09",
+        "End_time": "13:52:09",
+        "Date": "13/07/2023",
+        "Duration": "10:09:00",
+        "status":"-"
+    },
+    {
+        "Device": "Headphone",
+        "Start_time": "16:03:59",
+        "End_time": "17:13:29",
+        "Date": "16/08/2023",
+        "Duration": "59:00:09",
+        "status":"-"
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+       
+        "Device": "Headphone",
+        "Date" : "2023-05-04",
+        "Active_Status" : "Inactive"
+    },
+    {
+       
+        "Device": "Panel",
+        "Date" : "2023-01-11",
+        "Active_Status" : "Active"
+    },
+    {
+       
+        "Device": "Headphone",
+        "Date" : "2023-07-29",
+        "Active_Status" : "Active"
+    },
+    {
+       
+        "Device": "TFT",
+        "Date" : "2023-07-29",
+        "Active_Status" : "Active"
+    }
+]

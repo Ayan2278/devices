@@ -1,0 +1,100 @@
+[
+    {
+        "Device": "TFT",
+        "Start_time": "14:16:55",
+        "End_time": "15:16:15",
+        "Date": "15/07/2023",
+        "Duration": "59:00:05",
+        "status":"-"
+    },
+    {
+        "Device": "Panel",
+        "Start_time": "14:16:45",
+        "End_time": "15:16:23",
+        "Date": "15/07/2023",
+        "Duration": "59:00:50",
+        "status":"-"
+    },
+    {
+        "Device": "TFT",
+        "Start_time": "14:40:35",
+        "End_time": "15:30:45",
+        "Date": "15/07/2023",
+        "Duration": "50:00:50",
+        "status":"-"
+    },
+    {
+        "Device": "Webcam",
+        "Start_time": "14:42:35",
+        "End_time": "14:52:51",
+        "Date": "15/07/2023",
+        "Duration": "10:55:22",
+        "status":"-"
+    },
+    {
+        "Device": "Webcam",
+        "Start_time": "13:42:52",
+        "End_time": "13:52:05",
+        "Date": "15/07/2023",
+        "Duration": "10:55:00",
+        "status":"-"
+    },
+    {
+        "Device": "TFT",
+        "Start_time": "16:03:04",
+        "End_time": "17:03:59",
+        "Date": "15/07/2023",
+        "Duration": "59:00:22",
+        "status":"-"
+    },
+    {
+       
+        "Device": "Panel",
+        "Start_time": "14:16:05",
+        "End_time": "15:16:25",
+        "Date": "15/08/2023",
+        "Duration": "59:00:55",
+        "status":"-"
+    },
+    {
+       
+        "Device": "Webcam",
+        "Start_time": "14:16:15",
+        "End_time": "15:16:45",
+        "Date": "15/08/2023",
+        "Duration": "59:00:55",
+        "status":"-"
+    },
+    {
+        "Device": "TFT",
+        "Start_time": "14:40:12",
+        "End_time": "15:30:24",
+        "Date": "15/08/2023",
+        "Duration": "50:00:00",
+        "status":"-"
+    },
+    {
+        "Device": "Panel",
+        "Start_time": "14:42:33",
+        "End_time": "14:52:22",
+        "Date": "15/08/2023",
+        "Duration": "10:09:00",
+        "status":"-"
+    },
+    {
+        "Device": "Panel",
+        "Start_time": "13:42:12",
+        "End_time": "13:52:23",
+        "Date": "15/08/2023",
+        "Duration": "10:09:23",
+        "status":"-"
+    },
+    {
+        "Device": "TFT",
+        "Start_time": "16:03:25",
+        "End_time": "17:03:25",
+        "Date": "15/08/2023",
+        "Duration": "59:00:59",
+        "status":"-"
+    }
+]

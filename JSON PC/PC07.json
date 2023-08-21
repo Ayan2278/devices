@@ -1,0 +1,15 @@
+[
+    {
+       
+        "Device": "Webcam",
+        "Date" : "2023-07-29",
+        "Active_Status" : "Active"
+    },
+   
+    {
+       
+        "Device": "TFT",
+        "Date" : "2023-07-01",
+        "Active_Status" : "Inactive"
+    }
+]

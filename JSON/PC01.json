@@ -1,0 +1,83 @@
+[
+    {
+        "Device": "Webcam",
+        "Start_time": "17:04:52",
+        "End_time": "18:04:52",
+        "Date": "03/08/2023",
+        "Duration": "01:00:00"
+       
+    },
+    {
+        "Device": "Headphone",
+        "Start_time": "14:16:00",
+        "End_time": "15:16:19",
+        "Date": "15/08/2023",
+        "Duration": "59:00:00"
+        
+    },
+    {
+       
+        "Device": "Webcam",
+        "Start_time": "14:40:23",
+        "End_time": "15:30:27",
+        "Date": "15/07/2023",
+        "Duration": "50:00:02",
+        "status":"-"
+    },
+    {
+        "Device": "Headphone",
+        "Start_time": "14:42:00",
+        "End_time": "14:52:00",
+        "Date": "15/04/2023",
+        "Duration": "10:00:02",
+        "status":"-"
+    },
+    {
+        "Device": "Webcam",
+        "Start_time": "13:42:00",
+        "End_time": "13:52:00",
+        "Date": "15/04/2023",
+        "Duration": "10:00:34",
+        "status":"-"
+    },
+    {
+        "Device": "Webcam",
+        "Start_time": "16:03:00",
+        "End_time": "17:03:00",
+        "Date": "20/07/2023",
+        "Duration": "59:00:23",
+        "status":"-"
+    },
+    {
+        "Device": "Headphone",
+        "Start_time": "16:03:00",
+        "End_time": "17:03:00",
+        "Date": "20/07/2023",
+        "Duration": "59:00:00",
+        "status":"-"
+    },
+    {
+        "Device": "Webcam",
+        "Start_time": "16:03:33",
+        "End_time": "17:03:20",
+        "Date": "15/04/2023",
+        "Duration": "59:00:00",
+        "status":"-"
+    },
+    {
+        "Device": "Headphone",
+        "Start_time": "16:03:11",
+        "End_time": "17:03:00",
+        "Date": "15/04/2023",
+        "Duration": "59:00:00",
+        "status":"-"
+    },
+    {
+        "Device": "Webcam",
+        "Start_time": "16:03:00",
+        "End_time": "17:03:00",
+        "Date": "15/04/2023",
+        "Duration": "59:00:00",
+        "status":"-"
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "Device": "Headphone",
+        "Date" : "2023-08-15",
+        "Active_Status" : "Active"
+    },
+    {
+       
+        "Device": "Webcam",
+        "Date" : "2023-08-02",
+        "Active_Status" : "Inactive"
+    }
+]

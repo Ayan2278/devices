@@ -1,0 +1,37 @@
+[
+    {
+        "Device": "Headphone",
+        "Start_time": "12:46:44",
+        "End_time": "16:46:39",
+        "Date": "16/08/2023",
+        "Duration": "59:00:34",
+        "status":"-"
+    },
+    {
+        "Device": "TFT",
+        "Start_time": "18:16:30",
+        "End_time": "18:26:14",
+        "Date": "18/08/2023",
+        "Duration": "10:10:34",
+        "status":"-"
+    },
+   
+    {
+        "Device": "Panel",
+        "Start_time": "19:16:24",
+        "End_time": "18:26:34",
+        "Date": "18/08/2023",
+        "Duration": "10:00:54",
+        "status":"-"
+    },
+   
+    {
+        "Device": "Webcam",
+        "Start_time": "19:16:34",
+        "End_time": "18:26:34",
+        "Date": "18/08/2023",
+        "Duration": "10:30:24",
+        "status":"-"
+    }
+   
+]
