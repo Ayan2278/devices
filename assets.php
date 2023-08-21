@@ -3,9 +3,9 @@ include '_db_Connect.php';
 $sql = "SELECT DISTINCT `school` FROM `assets`;";
 $result = mysqli_query($conn, $sql);
 
-if (isset($_POST['pc'])) {
-  $pc = $_POST['pc'];
-  $sql2 = "SELECT DISTINCT `pc_id` FROM `device` WHERE `pc`='$pc';";
+if (isset($_POST['school'])) {
+  $school = $_POST['school'];
+  $sql2 = "SELECT * FROM `assets` WHERE `school`='$school';";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -124,7 +124,7 @@ if (isset($_POST['pc'])) {
             <div class="card-body row">
               <div class="form-group col-lg-2">
                 <label for="device">School</label>
-                <select class="form-control select2bs4" style="width: 100%" name="pc" onchange="change()">
+                <select class="form-control select2bs4" style="width: 100%" name="school" onchange="change()">
                   <option value="">Please Select</option>
                   <?php
                   if ($result) {
@@ -132,10 +132,10 @@ if (isset($_POST['pc'])) {
                     if ($total != 0) {
                       while ($row = $result->fetch_assoc()) {
 
-                        echo "<option value='" . $row['pc'] . "'";
+                        echo "<option value='" . $row['school'] . "'";
 
-                        echo isset($_POST["pc"]) && $_POST["pc"] == $row['pc'] ? "selected " : "";
-                        echo ">" . $row['pc'] . "</option>";
+                        echo isset($_POST["school"]) && $_POST["school"] == $row['school'] ? "selected " : "";
+                        echo ">" . $row['school'] . "</option>";
                       }
                     }
                   }
@@ -144,7 +144,7 @@ if (isset($_POST['pc'])) {
               </div>
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC Id</label>
-                <select class="form-control select2bs4" style="width: 100%" name='pc_id' >
+                <select class="form-control select2bs4" style="width: 100%" name='pc' >
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result2) {
@@ -152,8 +152,8 @@ if (isset($_POST['pc'])) {
                     if ($total2 != 0) {
                       while ($row2 = $result2->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["pc_id"]) && $_POST["pc_id"] == $row2["pc_id"] ? "selected " : "";
-                        echo "value='" . $row2["pc_id"] . "'>" . $row2["pc_id"] . "</option>";
+                        echo isset($_POST["pc"]) && $_POST["pc"] == $row2["PC"] ? "selected " : "";
+                        echo "value='" . $row2["PC"] . "'>" . $row2["PC"] . "</option>";
 
                       }
                     }
@@ -196,9 +196,11 @@ if (isset($_POST['pc'])) {
                   echo '<thead>
                           <tr>
                             <th>SR</th>
-                            <th>PC serial no.</th>
-                            <th>PC ID</th>
-                            <th>Device</th>
+                            <th>School name</th>
+                            <th>PC Sr</th>
+                            <th>TFT</th>
+                            <th>Webcam</th>
+                            <th>Headphone</th>
                           </tr>
                         </thead>
                 <tbody>';
@@ -208,8 +210,8 @@ if (isset($_POST['pc'])) {
                    if ($_POST['pc']=="" && isset($_POST["Assets"])) {
                     $count = 1;
                     $pc = $_POST['pc'];
-                    $pcId = $_POST['pc_id'];
-                    $query5 = "SELECT * FROM `device`;";
+                    $school = $_POST['school'];
+                    $query5 = "SELECT * FROM `devices`;";
                     $result5 = mysqli_query($conn, $query5);
                     $total5 = mysqli_num_rows($result5);
                       if ($result5) {
@@ -221,9 +223,11 @@ if (isset($_POST['pc'])) {
                             echo '
                             <tr>
                               <td>' . $count . '</td>
-                              <td>' . $row['pc'] . '</td>
-                              <td>' . $row['pc_id'] . '</td>
-                              <td>' . $row['device'] . '</td>
+                              <td>' . $pc . '</td>
+                              <td>' . $school . '</td>
+                              <td>' . $row['TFT_id'] . '</td>
+                              <td>' . $row['Webcam_id'] . '</td>
+                              <td>' . $row['Headphone_id'] . '</td>
                               </tr>
                           ';
                             $count += 1;
@@ -233,15 +237,15 @@ if (isset($_POST['pc'])) {
                       }
                     
                   }
-                  if (isset($_POST['pc_id'])) {
+                  if (isset($_POST['pc'])) {
                     $pc = $_POST['pc'];
-                    $pcId = $_POST['pc_id'];
-                    $query5 = "SELECT * FROM `device` WHERE `pc`= '$pc' and `pc_id`='$pcId';";
+                    $school = $_POST['school'];
+                    $query5 = "SELECT * FROM `devices` WHERE `pc`= '$pc' ;";
                     $result5 = mysqli_query($conn, $query5);
                     if ($result5) {
                       $total5 = mysqli_num_rows($result5);
                     }
-                    if ($_POST['pc_id'] != "Please Select") {
+                    if ($_POST['pc'] != "Please Select") {
                      
                       if ($result5) {
 
@@ -252,10 +256,12 @@ if (isset($_POST['pc'])) {
                             echo '
                             <tr>
                               <td>' . $count . '</td>
-                              <td>' . $row['pc'] . '</td>
-                              <td>' . $row['pc_id'] . '</td>
-                              <td>' . $row['device'] . '</td>
-                              </tr>
+                              <td>' . $school . '</td>
+                              <td>' . $pc . '</td>
+                              <td>' . $row['TFT_id'] . '</td>
+                              <td>' . $row['Webcam_id'] . '</td>
+                              <td>' . $row['Headphone_id'] . '</td>
+                            </tr>
                           ';
                             $count += 1;
                           }
