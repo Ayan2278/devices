@@ -1,15 +1,29 @@
 <?php
 include '_db_Connect.php';
-$sql = "SELECT DISTINCT `school` FROM `assets`;";
+$sql = "SELECT DISTINCT `District` FROM `assets`;";
 $result = mysqli_query($conn, $sql);
 
-if (isset($_POST['school'])) {
-  $school = $_POST['school'];
-  $sql2 = "SELECT * FROM `assets` WHERE `school`='$school';";
+if (isset($_POST['DIST'])) {
+  $Dis = $_POST['DIST'];
+  $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis';";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
-
+if (isset($_POST['DIST']) && isset($_POST['Block'])) {
+  $Dis = $_POST['DIST'];
+  $Bl = $_POST['Block'];
+  $sql3 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis';";
+  $result3 = mysqli_query($conn, $sql3);
+  $total3 = mysqli_num_rows($result3);
+}
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+  $village = $_POST['Village'];
+  $Dis = $_POST['DIST'];
+  $Bl = $_POST['Block'];
+  $sql4 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis' AND `Village`='$village';";
+  $result4 = mysqli_query($conn, $sql4);
+  $total4 = mysqli_num_rows($result4);
+}
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +32,7 @@ if (isset($_POST['school'])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Assets</title>
+  <title>School</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -95,13 +109,13 @@ if (isset($_POST['school'])) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Assets</h1>
+              <h1 class="m-0 text-dark">School</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item">Dashboard</li>
-                <li class="breadcrumb-item active">Assets</li>
+                <li class="breadcrumb-item active">School</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -116,15 +130,15 @@ if (isset($_POST['school'])) {
       <section class="content">
         <div class="card ">
           <div class="card-header" style="border:0px;">
-            <h3 class="card-title">Assets report</h3>
+            <h3 class="card-title">School report</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="assets.php" role="form" id="myform">
+          <form method="post" action="school.php" role="form" id="myform">
             <div class="card-body row">
               <div class="form-group col-lg-2">
-                <label for="device">School</label>
-                <select class="form-control select2bs4" style="width: 100%" name="school" onchange="change()">
+                <label for="school">District</label>
+                <select class="form-control select2bs4" style="width: 100%" name="DIST" onchange="change()">
                   <option value="">Please Select</option>
                   <?php
                   if ($result) {
@@ -132,10 +146,10 @@ if (isset($_POST['school'])) {
                     if ($total != 0) {
                       while ($row = $result->fetch_assoc()) {
 
-                        echo "<option value='" . $row['school'] . "'";
+                        echo "<option value='" . $row['District'] . "'";
 
-                        echo isset($_POST["school"]) && $_POST["school"] == $row['school'] ? "selected " : "";
-                        echo ">" . $row['school'] . "</option>";
+                        echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['District'] ? "selected " : "";
+                        echo ">" . $row['District'] . "</option>";
                       }
                     }
                   }
@@ -143,8 +157,8 @@ if (isset($_POST['school'])) {
                 </select>
               </div>
               <div class="form-group col-lg-2">
-                <label for="exampleInputPassword1">PC Id</label>
-                <select class="form-control select2bs4" style="width: 100%" name='pc' >
+                <label for="exampleInputPassword1">Block</label>
+                <select class="form-control select2bs4" style="width: 100%" name='Block' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result2) {
@@ -152,8 +166,8 @@ if (isset($_POST['school'])) {
                     if ($total2 != 0) {
                       while ($row2 = $result2->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["pc"]) && $_POST["pc"] == $row2["PC"] ? "selected " : "";
-                        echo "value='" . $row2["PC"] . "'>" . $row2["PC"] . "</option>";
+                        echo isset($_POST["Block"]) && $_POST["Block"] == $row2["Block"] ? "selected " : "";
+                        echo "value='" . $row2["Block"] . "'>" . $row2["Block"] . "</option>";
 
                       }
                     }
@@ -161,13 +175,52 @@ if (isset($_POST['school'])) {
                   ?>
                 </select>
               </div>
+              <div class="form-group col-lg-2">
+                <label for="exampleInputPassword1">Village</label>
+                <select class="form-control select2bs4" style="width: 100%" name='Village' onchange="change()">
+                  <option selected="selected">Please Select</option>
+                  <?php
+                  if ($result3) {
+
+                    if ($total3 != 0) {
+                      while ($row3 = $result3->fetch_assoc()) {
+                        echo "<option ";
+                        echo isset($_POST["Village"]) && $_POST["Village"] == $row3["Village"] ? "selected " : "";
+                        echo "value='" . $row3["Village"] . "'>" . $row3["Village"] . "</option>";
+
+                      }
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group col-lg-2">
+                <label for="exampleInputPassword1">Select School </label>
+                <select class="form-control select2bs4" style="width: 100%" name='school'>
+                  <option selected="selected">Please Select</option>
+                  <?php
+                  if ($result3) {
+
+                    if ($total4 != 0) {
+                      while ($row4 = $result4->fetch_assoc()) {
+                        echo "<option ";
+                        echo isset($_POST["school"]) && $_POST["school"] == $row4["school"] ? "selected " : "";
+                        echo "value='" . $row4["school"] . "'>" . $row4["school"] . "</option>";
+
+                      }
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
+
               
               
 
 
               <form action="#" method="get">
                 <div class="form-group col-lg-1 my-4 w-100">
-                  <button type="submit" name="Assets" value="Assets" class="btn " style="margin-top:8px; width:100%; background:#49ddc0; color:black;">Assets</button>
+                  <button type="submit" name="Search" value="Search" class="btn " style="margin-top:8px; width:100%; background:#49ddc0; color:black;">Search</button>
                 </div>
               </form>
               
@@ -192,26 +245,26 @@ if (isset($_POST['school'])) {
                 // for add new employee in the repors
                
                 
-                 if(isset($_POST['Assets']) && $_POST['Assets'] == "Assets"){
+                 if(isset($_POST['Search']) && $_POST['Search'] == "Search"){
                   echo '<thead>
                           <tr>
                             <th>SR</th>
                             <th>School name</th>
-                            <th>PC Sr</th>
-                            <th>TFT</th>
-                            <th>Webcam</th>
-                            <th>Headphone</th>
+                            <th>District</th>
+                            <th>Block</th>
+                            <th>Village</th>
+                            <th>Pincode</th>
                           </tr>
                         </thead>
                 <tbody>';
                 
                 
                   include '_db_Connect.php';
-                   if ($_POST['school']=="" && isset($_POST["Assets"])) {
+                   if ($_POST['DIST']=="" && isset($_POST["Search"])) {
                     $count = 1;
-                    $pc = $_POST['pc'];
-                    $school = $_POST['school'];
-                    $query5 = "SELECT * FROM `assets` ORDER BY `assets`.`PC` ASC";
+                  
+                 
+                    $query5 = "SELECT * FROM `assets` ORDER BY `assets`.`school` ASC";
                     $result5 = mysqli_query($conn, $query5);
                     $total5 = mysqli_num_rows($result5);
                       if ($result5) {
@@ -224,10 +277,10 @@ if (isset($_POST['school'])) {
                             <tr>
                               <td>' . $count . '</td>
                               <td>' . $row['school'] . '</td>
-                              <td>' . $row['PC'] . '</td>
-                              <td>' . $row['TFT_id'] . '</td>
-                              <td>' . $row['Headphone_id'] . '</td>
-                              <td>' . $row['Webcam_id'] . '</td>
+                              <td>' . $row['District'] . '</td>
+                              <td>' . $row['Block'] . '</td>
+                              <td>' . $row['Village'] . '</td>
+                              <td>' . $row['Pincode'] . '</td>
                               </tr>
                           ';
                             $count += 1;
@@ -237,15 +290,15 @@ if (isset($_POST['school'])) {
                       }
                     
                   }
-                  if (isset($_POST['pc'])) {
-                    $pc = $_POST['pc'];
-                    $school = $_POST['school'];
-                    $query5 = "SELECT * FROM `assets` WHERE `pc`= '$pc' ;";
+                  if (isset($_POST['school'])) {
+                    $schl = $_POST['school'];
+                  
+                    $query5 = "SELECT * FROM `assets` WHERE `school` = '$schl' ;";
                     $result5 = mysqli_query($conn, $query5);
                     if ($result5) {
                       $total5 = mysqli_num_rows($result5);
                     }
-                    if ($_POST['pc'] != "Please Select") {
+                    if ($_POST['school'] != "Please Select") {
                      
                       if ($result5) {
 
@@ -255,12 +308,12 @@ if (isset($_POST['school'])) {
                           while ($row = $result5->fetch_assoc()) {
                             echo '
                             <tr>
-                              <td>' . $count . '</td>
-                              <td>' . $school . '</td>
-                              <td>' . $pc . '</td>
-                              <td>' . $row['TFT_id'] . '</td>
-                              <td>' . $row['Webcam_id'] . '</td>
-                              <td>' . $row['Headphone_id'] . '</td>
+                            <td>' . $count . '</td>
+                            <td>' . $row['school'] . '</td>
+                            <td>' . $row['District'] . '</td>
+                            <td>' . $row['Block'] . '</td>
+                            <td>' . $row['Village'] . '</td>
+                            <td>' . $row['Pincode'] . '</td>
                             </tr>
                           ';
                             $count += 1;
