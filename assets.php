@@ -227,7 +227,7 @@ if (isset($_POST['school'])) {
                               <td>' . $row['school'] . '</td>
                               <td>' . $row['TFT_id'] . '</td>
                               <td>' . $row['Headphone_id'] . '</td>
-                              <td>' . $row['webcam_id'] . '</td>
+                              <td>' . $row['Webcam_id'] . '</td>
                               </tr>
                           ';
                             $count += 1;

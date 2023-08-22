@@ -255,7 +255,7 @@ if ($total != 0)
   </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed ">
+<body class="hold-transition sidebar-mini layout-fixed">
   <?php
   include 'sidebar.php'
     ?>
@@ -287,7 +287,7 @@ if ($total != 0)
 
         <div class="row">
           <div class="col-lg-3 col-6">
-            <div class="card bg-c-blue order-card" style="color:black;">
+            <div class="card bg-c-pink  order-card" style="color:black;">
               <div class="card-block">
                 <h4 class="m-b-20">Total School</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-school f-left my-3' style="font-size:40px;"></i><span><b>
