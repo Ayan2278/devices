@@ -14,11 +14,9 @@ $res11 = mysqli_query($conn, $sql11);
 $tot22 = mysqli_num_rows($res22);
 $tot00 = mysqli_num_rows($res00);
 $tot10 = mysqli_num_rows($res10);
-<<<<<<< Updated upstream
 $tot11 = mysqli_num_rows($res11);
-=======
- $tot11 = mysqli_num_rows($res11);
->>>>>>> Stashed changes
+$tot11 = mysqli_num_rows($res11);
+
 
 $row22 = $res00->fetch_assoc();
 $row00 = $res00->fetch_assoc();
