@@ -349,7 +349,7 @@ if ($total != 0)
             <!-- Custom tabs (Charts with tabs)-->
 
 
-            <div class="card shadow" style="min-height: 450px;">
+            <div class="card shadow" style="min-height: 644px;">
               <div class="card-header" style="border:0px;">
 
                 <h3 class="card-title"><i class='bx bxs-bar-chart-alt-2 mx-1 '
@@ -455,7 +455,7 @@ if ($total != 0)
       }],
       chart: {
         type: 'bar',
-        height: 400,
+        height: 500,
         stacked: true,
         stackType: '100'
       },
