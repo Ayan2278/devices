@@ -253,7 +253,7 @@ if ($total != 0)
       padding: 10px;
     }
     .effect:hover{
-      transform: translateY(10px);
+      transform: translateY(8px);
     }
   </style>
 </head>
