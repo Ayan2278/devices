@@ -294,7 +294,7 @@ if ($total != 0)
               <div class="card-block">
                 <h4 class="m-b-20">Total School</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-school f-left my-3' style="font-size:40px;"></i><span><b>
-                    <?php echo $tot22; ?></b>
+                    <?php echo 000,$tot22; ?></b>
                   </span></h1>
               </div>
             </div>
@@ -304,7 +304,7 @@ if ($total != 0)
               <div class="card-block">
                 <h4 class="m-b-20">Total Districts</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-city f-left my-3' style="font-size:40px;"></i><span><b>
-                    <?php echo $tot1; ?></b>
+                    <?php echo 0,$tot1; ?></b>
                   </span></h1>
               </div>
             </div>
@@ -315,7 +315,7 @@ if ($total != 0)
               <div class="card-block">
                 <h4 class="m-b-20">Inactive PC</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3' style="font-size:40px;"></i><span><b>
-                    <?php echo $tot10; ?></b>
+                    <?php echo 0,$tot10; ?></b>
                   </span></h1>
               </div>
             </div>
@@ -326,7 +326,7 @@ if ($total != 0)
               <div class="card-block">
                 <h4 class="m-b-20">Total PC</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-devices f-left my-3' style="font-size:40px;"></i><span><b>
-                    <?php echo $tot11; ?></b>
+                    <?php echo 0,$tot11; ?></b>
                   </span></h1>
               </div>
             </div>
