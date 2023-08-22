@@ -242,7 +242,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
               <form action="application.php" method="post">
                 <div class="form-group col-lg-1 my-4 w-100">
-                  <button type="submit" name="App" value="App" class="btn  " style="margin-top:8px;width:100%; background:#5ba7ff; color:black;">Application</button>
+                  <button type="submit" name="Application" value="Application" class="btn  " style="margin-top:8px;width:100%; background:#5ba7ff; color:black;">Application</button>
                 </div>
               </form>
               
@@ -265,11 +265,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
 
                 // for add new employee in the repors
-                if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
+                if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
                   echo '<thead>
                           <tr>
                             <th>SR</th>
-                            <th>PC serial no.</th>
+                            <th>PC</th>
+                            <th>Application</th>
                             <th>Date</th>
                             <th>Start time</th>
                             <th>End time</th>
@@ -290,13 +291,13 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   
                   include '_db_Connect.php';
   
-                  if ($_POST['DIST']=="" && $_POST["Device"]=="Device") {
+                  if ($_POST['DIST']=="" && $_POST["Application"]=="Application") {
                     $c=1;
                     $pcCount=1;
                     $count = 1;
                     while($c<= $filecount)
                     {
-                      $file = "JSON/PC0". $c .".json";
+                      $file = "JSON PC/PC0". $c .".json";
                         $query4 = "SELECT * from `assets` where `PC`='PC0$c';";
                         $result4 = mysqli_query($conn, $query4);
                         $total4 = mysqli_num_rows($result4);
@@ -320,9 +321,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                             <tr>
                               <td>' . $count . '</td>
                               <td>PC0' . $c . '</td>
+                              <td>' . $row['Activity'] . '</td>
                               <td>' . $row['Date'] . '</td>
-                              <td>' . $row['Start_time'] . '</td>
-                              <td>' . $row['End_time'] . '</td>
+                              <td>' . $row['Start time'] . '</td>
+                              <td>' . $row['End time'] . '</td>
                               <td>' . $row['Duration'] . '</td>
                             </tr>
                           ';
@@ -340,7 +342,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
                   
                   if (isset($_POST['PC'])) {
-                    $file = "JSON/" . $_POST['PC'] . ".json";
+                    $file = "JSON PC/" . $_POST['PC'] . ".json";
                     $PC = $_POST['PC'];
                     if ($PC) {
                       $query4 = "SELECT * from `assets` where `PC`='$PC';";
@@ -368,9 +370,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                             <tr>
                               <td>' . $count . '</td>
                               <td>' . $PC . '</td>
+                              <td>' . $row['Activity'] . '</td>
                               <td>' . $row['Date'] . '</td>
-                              <td>' . $row['Start_time'] . '</td>
-                              <td>' . $row['End_time'] . '</td>
+                              <td>' . $row['Start time'] . '</td>
+                              <td>' . $row['End time'] . '</td>
                               <td>' . $row['Duration'] . '</td>
                             </tr>
                           ';
