@@ -292,8 +292,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   }
                   if (isset($_POST['school'])) {
                     $schl = $_POST['school'];
-                  
-                    $query5 = "SELECT * FROM `assets` WHERE `school` = '$schl' ;";
+                    $vill =$_POST['Village'];
+                    $query5 = "SELECT * FROM `assets` WHERE `school` = '$schl' AND `Village`='$vill';";
                     $result5 = mysqli_query($conn, $query5);
                     if ($result5) {
                       $total5 = mysqli_num_rows($result5);
