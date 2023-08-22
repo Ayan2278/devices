@@ -323,7 +323,7 @@ if ($total != 0)
             </div>
           </div>
 
-          <div class="col-lg-3 col-12">
+          <div class="col-lg-3 col-6">
             <div class="card bg-c-yellow effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total PC</h4>
