@@ -252,6 +252,9 @@ if ($total != 0)
       color: #fff;
       padding: 10px;
     }
+    .effect:hover{
+      transform: translateY(10px);
+    }
   </style>
 </head>
 
@@ -285,9 +288,9 @@ if ($total != 0)
       <section class="content">
 
 
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <div class="card bg-c-pink  order-card" style="color:black;">
+        <div class="row ">
+          <div class="col-lg-3 col-6 ">
+            <div class="card bg-c-pink effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total School</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-school f-left my-3' style="font-size:40px;"></i><span><b>
@@ -295,10 +298,9 @@ if ($total != 0)
                   </span></h1>
               </div>
             </div>
-        </div
-        <div class="row">
+        </div>
           <div class="col-lg-3 col-6">
-            <div class="card bg-c-blue order-card" style="color:black;">
+            <div class="card bg-c-blue effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total Districts</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-city f-left my-3' style="font-size:40px;"></i><span><b>
@@ -309,7 +311,7 @@ if ($total != 0)
           </div>
 
           <div class="col-lg-3 col-6">
-            <div class="card bg-c-green order-card" style="color:black;">
+            <div class="card bg-c-green effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Inactive PC</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3' style="font-size:40px;"></i><span><b>
@@ -320,7 +322,7 @@ if ($total != 0)
           </div>
 
           <div class="col-lg-3 col-12">
-            <div class="card bg-c-yellow order-card" style="color:black;">
+            <div class="card bg-c-yellow effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total PC</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-devices f-left my-3' style="font-size:40px;"></i><span><b>
@@ -347,17 +349,12 @@ if ($total != 0)
             <!-- Custom tabs (Charts with tabs)-->
 
 
-            <div class="card shadow" style="min-height: 642px;">
+            <div class="card shadow" style="min-height: 450px;">
               <div class="card-header" style="border:0px;">
 
                 <h3 class="card-title"><i class='bx bxs-bar-chart-alt-2 mx-1 '
                     style=" font-size:25px;"></i>Active/Inactive Status</h3>
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-
-                </div>
               </div>
               <div class="card-body">
                 <div id="chartA" style="min-height: 100%; height: 350px; max-height: 500px; max-width: 100%;"></div>
@@ -373,7 +370,7 @@ if ($total != 0)
 
 
 
-            <div class="container-fluid" style="height='500px';">
+            <div class="container-fluid" style="height='450px';">
 
 
               <?php include 'map.php'; ?>
@@ -458,7 +455,7 @@ if ($total != 0)
       }],
       chart: {
         type: 'bar',
-        height: 530,
+        height: 400,
         stacked: true,
         stackType: '100'
       },
