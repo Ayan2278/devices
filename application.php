@@ -24,6 +24,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
+  $village = $_POST['Village'];
+  $Dis = $_POST['DIST'];
+  $Bl = $_POST['Block'];
+  $sql4 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis' AND `Village`='$village';";
+  $result5 = mysqli_query($conn, $sql4);
+  $total4 = mysqli_num_rows($result5);
+}
 
 ?>
 <!DOCTYPE html>
@@ -113,7 +121,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item">Dashboard</li>
-                <li class="breadcrumb-item active">Device</li>
+                <li class="breadcrumb-item active">Application</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -132,7 +140,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
           </div>
           <!-- /.card-header -->
           <!-- form start -->
-          <form method="post" action="device.php" role="form" id="myform">
+          <form method="post" action="application.php" role="form" id="myform">
             <div class="card-body row">
               <div class="form-group col-lg-2">
                 <label for="device">District</label>
@@ -193,6 +201,25 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 </select>
               </div>
               <div class="form-group col-lg-2">
+                <label for="exampleInputPassword1">School name</label>
+                <select class="form-control select2bs4" style="width: 100%" name='school' onchange="change()">
+                  <option selected="selected">Please Select</option>
+                  <?php
+                  if ($result3) {
+
+                    if ($total4 != 0) {
+                      while ($row4 = $result4->fetch_assoc()) {
+                        echo "<option ";
+                        echo isset($_POST["school"]) && $_POST["school"] == $row4["school"] ? "selected " : "";
+                        echo "value='" . $row4["school"] . "'>" . $row4["school"] . "</option>";
+
+                      }
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC serial no.</label>
                 <select class="form-control select2bs4" style="width: 100%" name='PC'>
                   <option selected="selected">Please Select</option>
@@ -200,7 +227,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   if ($result3) {
 
                     if ($total4 != 0) {
-                      while ($row4 = $result4->fetch_assoc()) {
+                      while ($row4 = $result5->fetch_assoc()) {
                         echo "<option ";
                         echo isset($_POST["PC"]) && $_POST["PC"] == $row4["PC"] ? "selected " : "";
                         echo "value='" . $row4["PC"] . "'>" . $row4["PC"] . "</option>";
@@ -213,9 +240,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               </div>
 
 
-              <form action="device.php" method="post">
+              <form action="application.php" method="post">
                 <div class="form-group col-lg-1 my-4 w-100">
-                  <button type="submit" name="Device" value="Device" class="btn  " style="margin-top:8px;width:100%; background:#5ba7ff; color:black;">Device</button>
+                  <button type="submit" name="App" value="App" class="btn  " style="margin-top:8px;width:100%; background:#5ba7ff; color:black;">Application</button>
                 </div>
               </form>
               

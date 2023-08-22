@@ -56,16 +56,30 @@ $current_url = end($url_parts);
             
             
             <li class="nav-item has-treeview">
-              <a href="device.php" class="nav-link <?php if ($current_url == 'device.php') {
+              <a href="device.php" class="nav-link <?php if ($current_url == 'device.php' || $current_url == 'application.php' ) {
                         echo 'active';
                     } ?>"">
                 <i class="nav-icon fas fa-table"></i>
                 <p>
-                  Devices
+                  Timings
                   
                 </p>
+                <i class="fas fa-angle-left right"></i>
               </a>
-              
+              <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="device.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Device timing</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="application.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Application timing</p>
+                </a>
+              </li>
+                  </ul>
             </li>
 
 
