@@ -67,16 +67,24 @@ $current_url = end($url_parts);
                 <i class="fas fa-angle-left right"></i>
               </a>
               <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item ">
                 <a href="device.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Device timing</p>
+                  <i class="nav-icon far fa-circle  <?php if ($current_url == 'device.php' ) {
+                        echo ' text-purple';
+                    } ?>""></i>
+                  <p class="<?php if ($current_url == 'device.php' ) {
+                        echo ' text-purple';
+                    } ?>"">Device timing</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="application.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Application timing</p>
+                  <i class="nav-icon far fa-circle  <?php if ($current_url == 'application.php' ) {
+                        echo ' text-purple';
+                    } ?>""></i>
+                  <p class="<?php if ($current_url == 'application.php' ) {
+                        echo ' text-purple';
+                    } ?>"">Application timing</p>
                 </a>
               </li>
                   </ul>
