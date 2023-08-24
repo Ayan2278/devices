@@ -26,7 +26,7 @@ if (isset($_POST['school'])) {
 
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-  
+
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -52,6 +52,93 @@ if (isset($_POST['school'])) {
       font-weight: 200;
       font-size: 16px;
     }
+
+    .scrollbar {
+      height: 300px;
+      overflow-y: auto;
+    }
+
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: #ADB5BD;
+      border-radius: 5px;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+    }
+
+
+    ::-webkit-scrollbar-track {
+      background-color: #f5f5f5;
+      border-radius: 1px;
+    }
+
+    .card-title {
+      float: left;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 0;
+    }
+
+
+    .bg {
+      background: linear-gradient(to bottom, #2196F3, #0D47A1);
+      border: none;
+    }
+
+    .bg:hover {
+      transition: 0.3s;
+      background: linear-gradient(to top, #0088f5, #01378a);
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      table,
+      table * {
+        visibility: visible;
+
+      }
+
+      th {
+        font-weight: 200;
+        font-size: 14px;
+      }
+
+      td {
+
+        border-color: inherit;
+        border-style: solid;
+        border-width: 0;
+        font-size: 10px;
+      }
+
+      table {
+        position: absolute;
+        left: 0;
+        top: -350px;
+      }
+    }
+  </style>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 200;
+      font-size: 16px;
+    }
+
     ::-webkit-scrollbar {
       max-width: 7px;
     }
@@ -144,7 +231,7 @@ if (isset($_POST['school'])) {
               </div>
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC Id</label>
-                <select class="form-control select2bs4" style="width: 100%" name='pc' >
+                <select class="form-control select2bs4" style="width: 100%" name='pc'>
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result2) {
@@ -161,16 +248,17 @@ if (isset($_POST['school'])) {
                   ?>
                 </select>
               </div>
-              
-              
+
+
 
 
               <form action="#" method="get">
                 <div class="form-group col-lg-1 my-4 w-100">
-                  <button type="submit" name="Assets" value="Assets" class="btn " style="margin-top:8px; width:100%; background:#49ddc0; color:black;">Assets</button>
+                  <button type="submit" name="Assets" value="Assets" class="btn "
+                    style="margin-top:8px; width:100%; background:#6f42c1; color:white;">Assets</button>
                 </div>
               </form>
-              
+
             </div>
             <!-- /.card-body -->
 
@@ -179,21 +267,26 @@ if (isset($_POST['school'])) {
         <div class="card" style="height:590px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>
+            <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
+              <button type="submit" class="btn  w-100"  style="background-color:#ffc167;" onclick="printTable()">
+                <i class="fas fa-download"></i> Print PDF
+              </button>
+            </div>
           </div>
           <!-- /.card-header -->
 
           <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll;">
             <table id="example1" class="table table-bordered table-striped">
+
+              <?php
+
+
+
+              // for add new employee in the repors
               
-                <?php
 
-
-
-                // for add new employee in the repors
-               
-                
-                 if(isset($_POST['Assets']) && $_POST['Assets'] == "Assets"){
-                  echo '<thead>
+              if (isset($_POST['Assets']) && $_POST['Assets'] == "Assets") {
+                echo '<thead>
                           <tr>
                             <th>SR</th>
                             <th>School name</th>
@@ -204,23 +297,23 @@ if (isset($_POST['school'])) {
                           </tr>
                         </thead>
                 <tbody>';
-                
-                
-                  include '_db_Connect.php';
-                   if ($_POST['school']=="" && isset($_POST["Assets"])) {
-                    $count = 1;
-                    $pc = $_POST['pc'];
-                    $school = $_POST['school'];
-                    $query5 = "SELECT * FROM `assets` ORDER BY `assets`.`PC` ASC";
-                    $result5 = mysqli_query($conn, $query5);
+
+
+                include '_db_Connect.php';
+                if ($_POST['school'] == "" && isset($_POST["Assets"])) {
+                  $count = 1;
+                  $pc = $_POST['pc'];
+                  $school = $_POST['school'];
+                  $query5 = "SELECT * FROM `assets` ORDER BY `assets`.`PC` ASC";
+                  $result5 = mysqli_query($conn, $query5);
+                  $total5 = mysqli_num_rows($result5);
+                  if ($result5) {
                     $total5 = mysqli_num_rows($result5);
-                      if ($result5) {
-                       $total5 = mysqli_num_rows($result5);
-                     
-                       
-                        if ($total5 != 0) {
-                          while ($row = $result5->fetch_assoc() ) {
-                            echo '
+
+
+                    if ($total5 != 0) {
+                      while ($row = $result5->fetch_assoc()) {
+                        echo '
                             <tr>
                               <td>' . $count . '</td>
                               <td>' . $row['school'] . '</td>
@@ -230,30 +323,30 @@ if (isset($_POST['school'])) {
                               <td>' . $row['Webcam_id'] . '</td>
                               </tr>
                           ';
-                            $count += 1;
-                          }
-                        } else
-                          echo "<tr><td colspan='9'>No data found</td></tr>";
+                        $count += 1;
                       }
-                    
+                    } else
+                      echo "<tr><td colspan='9'>No data found</td></tr>";
                   }
-                  if (isset($_POST['pc'])) {
-                    $pc = $_POST['pc'];
-                    $school = $_POST['school'];
-                    $query5 = "SELECT * FROM `assets` WHERE `pc`= '$pc' ;";
-                    $result5 = mysqli_query($conn, $query5);
-                    if ($result5) {
-                      $total5 = mysqli_num_rows($result5);
-                    }
-                    if ($_POST['pc'] != "Please Select") {
-                     
-                      if ($result5) {
 
-                        $total5 = mysqli_num_rows($result5);
-                        $count = 1;
-                        if ($total5 != 0) {
-                          while ($row = $result5->fetch_assoc()) {
-                            echo '
+                }
+                if (isset($_POST['pc'])) {
+                  $pc = $_POST['pc'];
+                  $school = $_POST['school'];
+                  $query5 = "SELECT * FROM `assets` WHERE `pc`= '$pc' ;";
+                  $result5 = mysqli_query($conn, $query5);
+                  if ($result5) {
+                    $total5 = mysqli_num_rows($result5);
+                  }
+                  if ($_POST['pc'] != "Please Select") {
+
+                    if ($result5) {
+
+                      $total5 = mysqli_num_rows($result5);
+                      $count = 1;
+                      if ($total5 != 0) {
+                        while ($row = $result5->fetch_assoc()) {
+                          echo '
                             <tr>
                               <td>' . $count . '</td>
                               <td>' . $school . '</td>
@@ -263,16 +356,16 @@ if (isset($_POST['school'])) {
                               <td>' . $row['Headphone_id'] . '</td>
                             </tr>
                           ';
-                            $count += 1;
-                          }
-                        } else
-                          echo "<tr><td colspan='9'>No data found</td></tr>";
-                      }
+                          $count += 1;
+                        }
+                      } else
+                        echo "<tr><td colspan='9'>No data found</td></tr>";
                     }
                   }
                 }
+              }
 
-                ?>
+              ?>
 
               </tbody>
 
@@ -312,7 +405,11 @@ if (isset($_POST['school'])) {
       document.getElementById("myform").submit();
     }
   </script>
-
+  <script>
+    function printTable() {
+      window.print();
+    }
+  </script>
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -349,12 +446,12 @@ if (isset($_POST['school'])) {
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
   <script>
-        $('.select2').select2();
-        $('.select2bs4').select2({
-            theme: 'bootstrap4',
-            placeholder: 'Please Select'
-        });
-    </script>
+    $('.select2').select2();
+    $('.select2bs4').select2({
+      theme: 'bootstrap4',
+      placeholder: 'Please Select'
+    });
+  </script>
 </body>
 
 </html>
