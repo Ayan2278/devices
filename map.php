@@ -7,6 +7,7 @@ $sql3 = "SELECT `District` FROM `assets` WHERE `District`='Surat';";
 $sql4 = "SELECT `District` FROM `assets` WHERE `District`='Vadodara';";
 $sql5 = "SELECT `District` FROM `assets` WHERE `District`='Patan';";
 $sql6 = "SELECT `District` FROM `assets` WHERE `District`='Rajkot';";
+
 $res = mysqli_query($conn, $sql);
 $res2 = mysqli_query($conn, $sql2);
 $res3 = mysqli_query($conn, $sql3);

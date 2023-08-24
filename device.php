@@ -5,7 +5,7 @@ $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
-  $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis';";
+  $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis' ORDER BY `assets`.`Block` ASC ;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }

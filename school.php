@@ -5,14 +5,14 @@ $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
-  $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis';";
+  $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis' ORDER BY `assets`.`Block` ASC;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql3 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis';";
+  $sql3 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis'  ;";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
@@ -262,13 +262,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   include '_db_Connect.php';
                    if ($_POST['DIST']=="" && isset($_POST["Search"])) {
                     $count = 1;
-                  
-                 
                     $query5 = "SELECT * FROM `assets` ORDER BY `assets`.`school` ASC";
                     $result5 = mysqli_query($conn, $query5);
                     $total5 = mysqli_num_rows($result5);
-                      if ($result5) {
-                       $total5 = mysqli_num_rows($result5);
+                    if ($result5) {
+                    $total5 = mysqli_num_rows($result5);
                      
                        
                         if ($total5 != 0) {

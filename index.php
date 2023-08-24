@@ -1,7 +1,7 @@
 <?php
 
 include '_db_Connect.php';
-$sql22 = "SELECT DISTINCT `school` FROM `assets`;";
+$sql22 = "SELECT DISTINCT `school` FROM `assets`";
 $sql00 = "SELECT * FROM `assets`WHERE `Status`='Active'";
 $sql10 = "SELECT * FROM `assets`WHERE `Status`='Inactive'";
 $sql11 = "SELECT * FROM `assets`";
@@ -164,7 +164,7 @@ if ($total != 0)
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <style>
     body {
-      margin-top: 20px;
+      margin-top: 0px;
       background: #FAFAFA;
     }
 
@@ -295,8 +295,8 @@ if ($total != 0)
             <div class="card bg-c-pink effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total School</h4>
-                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-school f-left my-3' style="font-size:40px;"></i><span><b>
-                    <?php echo 000,$tot22; ?></b>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-school f-left my-3' style="font-size:40px;"></i><span>
+                <?php echo "<b>".sprintf('%02u', $tot22) . "</b>"; ?>
                   </span></h1>
               </div>
             </div>
@@ -305,8 +305,9 @@ if ($total != 0)
             <div class="card bg-c-blue effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total Districts</h4>
-                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-city f-left my-3' style="font-size:40px;"></i><span><b>
-                    <?php echo 0,$tot1; ?></b>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-city f-left my-3' style="font-size:40px;"></i><span>
+                   <?php echo "<b>".sprintf('%02u', $tot1) . "</b>"; ?>
+                  
                   </span></h1>
               </div>
             </div>
@@ -316,8 +317,8 @@ if ($total != 0)
             <div class="card bg-c-green effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Inactive PC</h4>
-                <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3' style="font-size:40px;"></i><span><b>
-                    <?php echo 0,$tot10; ?></b>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3' style="font-size:40px;"></i><span>
+                <?php echo "<b>".sprintf('%02u', $tot10) . "</b>"; ?>
                   </span></h1>
               </div>
             </div>
@@ -327,8 +328,8 @@ if ($total != 0)
             <div class="card bg-c-yellow effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total PC</h4>
-                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-devices f-left my-3' style="font-size:40px;"></i><span><b>
-                    <?php echo 0,$tot11; ?></b>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-devices f-left my-3' style="font-size:40px;"></i><span>
+                <?php echo "<b>".sprintf('%02u', $tot11) . "</b>"; ?>
                   </span></h1>
               </div>
             </div>

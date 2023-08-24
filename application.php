@@ -1,14 +1,19 @@
 <?php
+// includeing connection file
 include '_db_Connect.php';
+
+//select all districts
 $sql = "SELECT DISTINCT `District` FROM `assets`;";
 $result = mysqli_query($conn, $sql);
 
+// fetch block for select box
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
-  $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis';";
+  $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis' ORDER BY `assets`.`Block` ASC;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
+// fetch village according to district
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
@@ -16,6 +21,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
+// fetch school
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
@@ -24,14 +30,41 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
+
+// fetch pc serial number
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql4 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis' AND `Village`='$village';";
+  $school = $_POST['school'];
+  $sql4 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis' AND `Village`='$village' AND `school`='$school';";
   $result5 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result5);
 }
+
+// fetch activity from the json file 
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
+  $school = $_POST['school'];
+  $PC = $_POST['PC'];
+  $village = $_POST['Village'];
+  $Dis = $_POST['DIST'];
+  $Bl = $_POST['Block'];
+  
+  $sql4 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis' AND `Village`='$village'  ;";
+  $result5 = mysqli_query($conn, $sql4);
+  $total4 = mysqli_num_rows($result5);
+  
+  if (isset($_POST['PC'])) {
+
+    $cd=1;
+    $file = "JSON PC/PC0". $cd .".json";
+    $data = file_get_contents($file);
+    $data = json_decode($data, true);
+    $cd++;
+    
+}
+  }
+
 
 ?>
 <!DOCTYPE html>
@@ -238,11 +271,28 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   ?>
                 </select>
               </div>
+              <div class="form-group col-lg-2">
+                <label for="exampleInputPassword1">Activity</label>
+                <select class="form-control select2bs4" style="width: 100%" name='Activity'>
+                  <option selected="selected">Please Select</option>
+                  <?php
+                  if ($result3) {
 
+                    if ($total4 != 0) {
+                      foreach ($data as $row) {
+                        echo "<option ";
+                        echo isset($_POST["Activity"]) && $_POST["Activity"] == $row["Activity"] ? "selected " : "";
+                        echo "value='" . $row["Activity"] . "'>" . $row["Activity"] . "</option>";
 
-              <form action="application.php" method="post">
+                      }
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
+                <form action="application.php" method="POST">
                 <div class="form-group col-lg-1 my-4 w-100">
-                  <button type="submit" name="Application" value="Application" class="btn  " style="margin-top:8px;width:100%; background:#5ba7ff; color:black;">Application</button>
+                <button type="submit" name="Application" value="Application" class="btn" style="margin-top:8px;width:100%; background:#5ba7ff; color:black;">Application</button>
                 </div>
               </form>
               
@@ -261,10 +311,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
             <table id="example1" class="table table-bordered table-striped">
               
                 <?php
-
-
-
-                // for add new employee in the repors
+                // application for fetch data from the json file
                 if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
                   echo '<thead>
                           <tr>
@@ -278,38 +325,22 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                           </tr>
                         </thead>
                 <tbody>';
-                $directory = getcwd()."/JSON//";
-  
+                $directory = getcwd()."/JSON PC//";
                 $filecount = 0;
-                
                 $files2 = glob( $directory ."*" );
-                
-                if( $files2 ) {
+                 if( $files2 ) {
                     $filecount = count($files2);
-                }
-                
-  
-                  include '_db_Connect.php';
-  
-                  if ($_POST['DIST']=="" && $_POST["Application"]=="Application") {
+                    }
+
+                    include '_db_Connect.php';
+                    if ($_POST['DIST']=="" && $_POST["Application"]=="Application") {
                     $c=1;
                     $pcCount=1;
                     $count = 1;
                     while($c<= $filecount)
                     {
                       $file = "JSON PC/PC0". $c .".json";
-                        $query4 = "SELECT * from `assets` where `PC`='PC0$c';";
-                        $result4 = mysqli_query($conn, $query4);
-                        $total4 = mysqli_num_rows($result4);
-                        if ($total4 != 0) {
-                          # code...
-                          $row4 = $result4->fetch_assoc();
-                          $block = $row4['Block'];
-                          $village = $row4['Village'];
-                        }
-                        $query5 = "SELECT * FROM `assets` WHERE `PC`= 'PC0$c';";
-                        $result5 = mysqli_query($conn, $query5);
-                        $data = file_get_contents($file);
+                      $data = file_get_contents($file);
                       $data = json_decode($data, true);
                       if ($result5) {
   
@@ -337,40 +368,48 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     }
               }
 
-                 
-
-
-                  
-                  if (isset($_POST['PC'])) {
+                    
+              
+                    if (isset($_POST['PC'])) {
                     $file = "JSON PC/" . $_POST['PC'] . ".json";
-                    $PC = $_POST['PC'];
-                    if ($PC) {
-                      $query4 = "SELECT * from `assets` where `PC`='$PC';";
-                      $result4 = mysqli_query($conn, $query4);
-                      $total4 = mysqli_num_rows($result4);
-                      if ($total4 != 0) {
+                    $act = $_POST['Activity'];
+                    if ($act) {
+                      if (isset($_POST['Activity'])) {
+
+                        $cd=1;
+                         $file = "JSON PC/PC0". $cd .".json";
+                         $data = file_get_contents($file);
+                         $data = json_decode($data, true);
+                         $cd++;
+                       
+                   }
+                    //  $query4 = "SELECT * from `assets` where `PC`='$PC';";
+                   //   $result4 = mysqli_query($conn, $query4);
+                    //  $total4 = mysqli_num_rows($result4);
+                   //   if ($total4 != 0) {
                         # code...
-                        $row4 = $result4->fetch_assoc();
-                        $block = $row4['Block'];
-                        $village = $row4['Village'];
+                   //     $row4 = $result4->fetch_assoc();
+                    //    $block = $row4['Block'];
+                   //     $village = $row4['Village'];
                       }
                     }
+                    $PC=$_POST['PC'];
                     $query5 = "SELECT * FROM `assets` WHERE `PC`= '$PC';";
                     $result5 = mysqli_query($conn, $query5);
-                    if ($_POST['PC'] != "Please Select") {
+                    if ($_POST['Activity'] != "Please Select") {
                       $data = file_get_contents($file);
                       $data = json_decode($data, true);
                       if ($result5) {
-
                         $total5 = mysqli_num_rows($result5);
+                        //while($row1->fetch_assoc($total5  )){
                         $count = 1;
                         if ($data != 0) {
                           foreach ($data as $row) {
                             echo '
                             <tr>
                               <td>' . $count . '</td>
-                              <td>' . $PC . '</td>
-                              <td>' . $row['Activity'] . '</td>
+                              <td>' . $PC. '</td>
+                              <td>' . $act . '</td>
                               <td>' . $row['Date'] . '</td>
                               <td>' . $row['Start time'] . '</td>
                               <td>' . $row['End time'] . '</td>
@@ -384,13 +423,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                       }
                     }
                   }
-
-
-                }
-                
-                
-
-                ?>
+                 ?>
 
               </tbody>
 
