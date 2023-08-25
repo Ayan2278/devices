@@ -280,7 +280,7 @@ $result1 = mysqli_query($conn, $sql);
                                     <label for="device" style="float:left; margin-left:10px;">Webcam Id</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="Webcame_id" placeholder="Enter Webcam Id"
+                                        <input type="text" class="form-control focus" name="Webcam_id" placeholder="Enter Webcam Id"
                                             style="height:45px;" required>
                                     </div>
                                 </div>
@@ -288,7 +288,7 @@ $result1 = mysqli_query($conn, $sql);
                                     <label for="device" style="float:left; margin-left:10px;">Headphone Id</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="Headphone" placeholder="Enter Headphone Id"
+                                        <input type="text" class="form-control focus" name="Headphone_id" placeholder="Enter Headphone Id"
                                             style="height:45px;" required>
                                     </div>
                                 </div>
