@@ -228,6 +228,7 @@ $result1 = mysqli_query($conn, $sql);
 
             <!-- general form elements -->
             <section class="content">
+                <form action="" method="POST">
                 <center>
                     <div class="card col-lg-5 shadow">
                         <div class="card-header" style="border:0px;">
@@ -263,7 +264,7 @@ $result1 = mysqli_query($conn, $sql);
                                     <label for="device" style="float:left; margin-left:10px;">PC sr</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus"
+                                        <input type="text" class="form-control focus" name="pc_sr"
                                             placeholder="Enter PC Serial number" style="height:45px;" required>
                                     </div>
                                 </div>
@@ -271,7 +272,7 @@ $result1 = mysqli_query($conn, $sql);
                                     <label for="device" style="float:left; margin-left:10px;">TFT Id</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" placeholder="Enter TFT Id"
+                                        <input type="text" class="form-control focus" name="TFT_id"placeholder="Enter TFT Id"
                                             style="height:45px;" required>
                                     </div>
                                 </div>
@@ -279,7 +280,7 @@ $result1 = mysqli_query($conn, $sql);
                                     <label for="device" style="float:left; margin-left:10px;">Webcam Id</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" placeholder="Enter Webcam Id"
+                                        <input type="text" class="form-control focus" name="Webcame_id" placeholder="Enter Webcam Id"
                                             style="height:45px;" required>
                                     </div>
                                 </div>
@@ -287,7 +288,7 @@ $result1 = mysqli_query($conn, $sql);
                                     <label for="device" style="float:left; margin-left:10px;">Headphone Id</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" placeholder="Enter Headphone Id"
+                                        <input type="text" class="form-control focus" name="Headphone" placeholder="Enter Headphone Id"
                                             style="height:45px;" required>
                                     </div>
                                 </div>
@@ -299,6 +300,7 @@ $result1 = mysqli_query($conn, $sql);
                         </div>
                     </div>
                 </center>
+                                    </form>
             </section>
             <!-- /.card -->
             <!-- right col -->
