@@ -383,16 +383,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   $count = 1;
                   while ($c <= $filecount) {
                     $file = "JSON/PC0" . $c . ".json";
-                    $query4 = "SELECT * from `assets` where `PC`='PC0$c';";
+                    $query4 = "SELECT * from `asset` where `pc_sr`='PC0$c';";
                     $result4 = mysqli_query($conn, $query4);
                     $total4 = mysqli_num_rows($result4);
-                    if ($total4 != 0) {
-                      # code...
-                      $row4 = $result4->fetch_assoc();
-                      $block = $row4['Block'];
-                      $village = $row4['Village'];
-                    }
-                    $query5 = "SELECT * FROM `assets` WHERE `PC`= 'PC0$c';";
+                    
+                    $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
                     $result5 = mysqli_query($conn, $query5);
                     $data = file_get_contents($file);
                     $data = json_decode($data, true);
