@@ -248,7 +248,7 @@ $result1 = mysqli_query($conn, $sql);
                                             if ($total1 != 0) {
                                                 while ($row = $result1->fetch_assoc()) {
 
-                                                    echo "<option value='" . $row['school_name'] . "  class='Black'";
+                                                    echo "<option value='" . $row['school_name'] . "'  class='Black'";
 
                                                     echo isset($_POST["school_name"]) && $_POST["school_name"] == $row['school_name'] ? "selected " : "";
                                                     echo ">" . $row['school_name'] . "</option>";
