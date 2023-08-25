@@ -3,13 +3,13 @@
 include '_db_Connect.php';
 
 //select all districts
-$sql = "SELECT DISTINCT `District` FROM `assets`;";
+$sql = "SELECT DISTINCT `district` FROM `school`;";
 $result = mysqli_query($conn, $sql);
 
 // fetch block for select box
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
-  $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis' ORDER BY `assets`.`Block` ASC;";
+  $sql2 = "SELECT * FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -17,7 +17,7 @@ if (isset($_POST['DIST'])) {
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql3 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis';";
+  $sql3 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis';";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
@@ -26,21 +26,30 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql4 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis' AND `Village`='$village';";
+  $sql4 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
 
 // fetch pc serial number
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
+  $school = $_POST['school'];
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $school = $_POST['school'];
-  $sql4 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis' AND `Village`='$village' AND `school`='$school';";
-  $result5 = mysqli_query($conn, $sql4);
-  $total4 = mysqli_num_rows($result5);
+  $sql44= "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' AND `school_name`='$school'";
+  $result44 = mysqli_query($conn, $sql44);
+  $row = $result44->fetch_assoc();
+  $tot44= mysqli_num_rows($result44);
+  if($tot44 != 0)
+  {
+    $schl = $row['school_name'];
+    $sql4 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
+    $result4 = mysqli_query($conn, $sql4);
+    $total4 = mysqli_num_rows($result4);
+  }
 }
+
 
 // fetch activity from the json file 
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
@@ -50,7 +59,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
 
-  $sql4 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis' AND `Village`='$village'  ;";
+  $sql4 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village'  ;";
   $result5 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result5);
 
@@ -272,10 +281,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     if ($total != 0) {
                       while ($row = $result->fetch_assoc()) {
 
-                        echo "<option value='" . $row['District'] . "'";
+                        echo "<option value='" . $row['district'] . "'";
 
-                        echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['District'] ? "selected " : "";
-                        echo ">" . $row['District'] . "</option>";
+                        echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
+                        echo ">" . $row['district'] . "</option>";
                       }
                     }
                   }
@@ -292,8 +301,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     if ($total2 != 0) {
                       while ($row2 = $result2->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["Block"]) && $_POST["Block"] == $row2["Block"] ? "selected " : "";
-                        echo "value='" . $row2["Block"] . "'>" . $row2["Block"] . "</option>";
+                        echo isset($_POST["Block"]) && $_POST["Block"] == $row2["block"] ? "selected " : "";
+                        echo "value='" . $row2["block"] . "'>" . $row2["block"] . "</option>";
 
                       }
                     }
@@ -311,8 +320,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     if ($total3 != 0) {
                       while ($row3 = $result3->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["Village"]) && $_POST["Village"] == $row3["Village"] ? "selected " : "";
-                        echo "value='" . $row3["Village"] . "'>" . $row3["Village"] . "</option>";
+                        echo isset($_POST["Village"]) && $_POST["Village"] == $row3["village"] ? "selected " : "";
+                        echo "value='" . $row3["village"] . "'>" . $row3["village"] . "</option>";
 
                       }
                     }
@@ -330,8 +339,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     if ($total4 != 0) {
                       while ($row4 = $result4->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["school"]) && $_POST["school"] == $row4["school"] ? "selected " : "";
-                        echo "value='" . $row4["school"] . "'>" . $row4["school"] . "</option>";
+                        echo isset($_POST["school"]) && $_POST["school"] == $row4["school_name"] ? "selected " : "";
+                        echo "value='" . $row4["school_name"] . "'>" . $row4["school_name"] . "</option>";
 
                       }
                     }
@@ -344,13 +353,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 <select class="form-control select2bs4" style="width: 100%" name='PC' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
+                  // select pc serial number
                   if ($result3) {
 
                     if ($total4 != 0) {
-                      while ($row4 = $result5->fetch_assoc()) {
+                      while ($row4 = $result4->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["PC"]) && $_POST["PC"] == $row4["PC"] ? "selected " : "";
-                        echo "value='" . $row4["PC"] . "'>" . $row4["PC"] . "</option>";
+                        echo isset($_POST["PC"]) && $_POST["PC"] == $row4["pc_sr"] ? "selected " : "";
+                        echo "value='" . $row4["pc_sr"] . "'>" . $row4["pc_sr"] . "</option>";
 
                       }
                     }
@@ -488,7 +498,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   }
                 }
                 $PC = $_POST['PC'];
-                $query5 = "SELECT * FROM `assets` WHERE `PC`= '$PC';";
+                $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
                 $result5 = mysqli_query($conn, $query5);
                 if ($_POST['Activity'] != "Please Select") {
                   $data = file_get_contents($file);
