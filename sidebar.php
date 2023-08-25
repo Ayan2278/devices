@@ -85,6 +85,40 @@ $current_url = end($url_parts);
             </li>
           </ul>
         </li>
+        <li class="nav-item has-treeview">
+          <a href="addAssets.php" class="nav-link <?php if ($current_url == 'addAssets.php' || $current_url == 'addSchool.php') {
+            echo 'active';
+          } ?>">
+            <i class="nav-icon far fa-plus-square"></i>
+            <p>
+              Add
+
+            </p>
+            <i class="fas fa-angle-left right"></i>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item ">
+              <a href="addAssets.php" class="nav-link">
+                <i class="nav-icon far fa-circle  <?php if ($current_url == 'addAssets.php') {
+                  echo ' text-purple';
+                } ?>"></i>
+                <p class="<?php if ($current_url == 'addAssets.php') {
+                  echo ' text-purple';
+                } ?>">Add Assets</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="addSchool.php" class="nav-link">
+                <i class="nav-icon far fa-circle  <?php if ($current_url == 'addSchool.php') {
+                  echo ' text-purple';
+                } ?>"></i>
+                <p class="<?php if ($current_url == 'addSchool.php') {
+                  echo ' text-purple';
+                } ?>">Add School</p>
+              </a>
+            </li>
+          </ul>
+        </li>
 
 
         <li class="nav-item has-treeview">
