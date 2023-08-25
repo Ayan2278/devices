@@ -112,6 +112,7 @@ $current_url = end($url_parts);
 
         </li>
       </ul>
+      <button class="btn btn-danger">Logout</button>
     </nav>
     <!-- /.sidebar-menu -->
   </div>
