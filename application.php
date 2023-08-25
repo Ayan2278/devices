@@ -55,7 +55,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $total4 = mysqli_num_rows($result5);
 
   if (isset($_POST['PC']) && $_POST['PC'] != "Please Select") {
-
+      // fetch data from json file
     $cd = 1;
     $file = "JSON PC/" . $_POST['PC'] . ".json";
     $data = file_get_contents($file);

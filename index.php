@@ -1,28 +1,33 @@
 <?php
-
+// connection file
 include '_db_Connect.php';
+
+// select all school from assets table
 $sql22 = "SELECT DISTINCT `school` FROM `assets`";
 $sql00 = "SELECT * FROM `assets`WHERE `Status`='Active'";
 $sql10 = "SELECT * FROM `assets`WHERE `Status`='Inactive'";
 $sql11 = "SELECT * FROM `assets`";
 
+//execute the query
 $res22 = mysqli_query($conn, $sql22);
 $res00 = mysqli_query($conn, $sql00);
 $res10 = mysqli_query($conn, $sql10);
 $res11 = mysqli_query($conn, $sql11);
 
+//total number of rows
 $tot22 = mysqli_num_rows($res22);
 $tot00 = mysqli_num_rows($res00);
 $tot10 = mysqli_num_rows($res10);
 $tot11 = mysqli_num_rows($res11);
 $tot11 = mysqli_num_rows($res11);
 
-
+// fetch all data from the table
 $row22 = $res00->fetch_assoc();
 $row00 = $res00->fetch_assoc();
 $row10 = $res10->fetch_assoc();
 $row11 = $res11->fetch_assoc();
 
+//select all districts
 $sql11 = "SELECT DISTINCT `District` FROM `assets`;";
 $sql12 = "SELECT DISTINCT `Block` FROM `assets`;";
 $sql13 = "SELECT DISTINCT `Village` FROM `assets`;";

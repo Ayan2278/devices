@@ -1,14 +1,20 @@
 <?php
+// connetion file
 include '_db_Connect.php';
+
+// display all districts
 $sql = "SELECT DISTINCT `District` FROM `assets`;";
 $result = mysqli_query($conn, $sql);
 
+//select districts
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
   $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis' ORDER BY `assets`.`Block` ASC ;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
+
+// select district and block
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
@@ -16,6 +22,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
+
+// select district ,block and village
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
@@ -226,6 +234,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 <select class="form-control select2bs4" style="width: 100%" name="DIST" onchange="change()">
                   <option value="">Please Select</option>
                   <?php
+                  //select districts
                   if ($result) {
                     $total = mysqli_num_rows($result);
                     if ($total != 0) {
@@ -246,6 +255,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 <select class="form-control select2bs4" style="width: 100%" name='Block' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
+                  // select blocks
                   if ($result2) {
 
                     if ($total2 != 0) {
@@ -265,6 +275,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 <select class="form-control select2bs4" style="width: 100%" name='Village' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
+                  //select villages
                   if ($result3) {
 
                     if ($total3 != 0) {
@@ -284,6 +295,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 <select class="form-control select2bs4" style="width: 100%" name='PC'>
                   <option selected="selected">Please Select</option>
                   <?php
+                  // select pc serial number
                   if ($result3) {
 
                     if ($total4 != 0) {
@@ -330,7 +342,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
 
 
-              // for add new employee in the repors
+              // displaying all devices data in table
               if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
                 echo '<thead>
                           <tr>
@@ -343,6 +355,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                           </tr>
                         </thead>
                 <tbody>';
+                // count json file
                 $directory = getcwd() . "/JSON//";
 
                 $filecount = 0;
@@ -353,7 +366,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   $filecount = count($files2);
                 }
 
-
+                // connection file
                 include '_db_Connect.php';
 
                 if ($_POST['DIST'] == "" && $_POST["Device"] == "Device") {
@@ -400,10 +413,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     $pcCount++;
                   }
                 }
-
-
-
-
 
                 if (isset($_POST['PC'])) {
                   $file = "JSON/" . $_POST['PC'] . ".json";

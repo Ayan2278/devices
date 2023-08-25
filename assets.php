@@ -1,5 +1,8 @@
 <?php
+//include connection file
 include '_db_Connect.php';
+
+// total school
 $sql = "SELECT DISTINCT `school` FROM `assets`;";
 $result = mysqli_query($conn, $sql);
 
@@ -214,6 +217,7 @@ if (isset($_POST['school'])) {
                 <select class="form-control select2bs4" style="width: 100%" name="school" onchange="change()">
                   <option value="">Please Select</option>
                   <?php
+                  // total school
                   if ($result) {
                     $total = mysqli_num_rows($result);
                     if ($total != 0) {
@@ -234,6 +238,7 @@ if (isset($_POST['school'])) {
                 <select class="form-control select2bs4" style="width: 100%" name='pc'>
                   <option selected="selected">Please Select</option>
                   <?php
+                  // total pc ID
                   if ($result2) {
 
                     if ($total2 != 0) {
@@ -279,12 +284,8 @@ if (isset($_POST['school'])) {
             <table id="example1" class="table table-bordered table-striped">
 
               <?php
-
-
-
-              // for add new employee in the repors
               
-
+                  // displaying all data in table
               if (isset($_POST['Assets']) && $_POST['Assets'] == "Assets") {
                 echo '<thead>
                           <tr>
@@ -298,7 +299,7 @@ if (isset($_POST['school'])) {
                         </thead>
                 <tbody>';
 
-
+                // connection file
                 include '_db_Connect.php';
                 if ($_POST['school'] == "" && isset($_POST["Assets"])) {
                   $count = 1;
