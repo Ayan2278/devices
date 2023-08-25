@@ -1,18 +1,18 @@
 <?php
 include '_db_Connect.php';
-$sql = "SELECT DISTINCT `District` FROM `assets`;";
+$sql = "SELECT DISTINCT `district` FROM `school`;";
 $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
-  $sql2 = "SELECT * FROM `assets` WHERE `District`='$Dis' ORDER BY `assets`.`Block` ASC;";
+  $sql2 = "SELECT * FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql3 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis'  ;";
+  $sql3 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
@@ -20,7 +20,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql4 = "SELECT * FROM `assets` WHERE `Block`='$Bl' AND `District`='$Dis' AND `Village`='$village';";
+  $sql4 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
@@ -233,10 +233,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     if ($total != 0) {
                       while ($row = $result->fetch_assoc()) {
 
-                        echo "<option value='" . $row['District'] . "'";
+                        echo "<option value='" . $row['district'] . "'";
 
-                        echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['District'] ? "selected " : "";
-                        echo ">" . $row['District'] . "</option>";
+                        echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
+                        echo ">" . $row['district'] . "</option>";
                       }
                     }
                   }
@@ -253,8 +253,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     if ($total2 != 0) {
                       while ($row2 = $result2->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["Block"]) && $_POST["Block"] == $row2["Block"] ? "selected " : "";
-                        echo "value='" . $row2["Block"] . "'>" . $row2["Block"] . "</option>";
+                        echo isset($_POST["Block"]) && $_POST["Block"] == $row2["block"] ? "selected " : "";
+                        echo "value='" . $row2["block"] . "'>" . $row2["block"] . "</option>";
 
                       }
                     }
@@ -272,8 +272,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     if ($total3 != 0) {
                       while ($row3 = $result3->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["Village"]) && $_POST["Village"] == $row3["Village"] ? "selected " : "";
-                        echo "value='" . $row3["Village"] . "'>" . $row3["Village"] . "</option>";
+                        echo isset($_POST["Village"]) && $_POST["Village"] == $row3["village"] ? "selected " : "";
+                        echo "value='" . $row3["village"] . "'>" . $row3["village"] . "</option>";
 
                       }
                     }
@@ -291,8 +291,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     if ($total4 != 0) {
                       while ($row4 = $result4->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["school"]) && $_POST["school"] == $row4["school"] ? "selected " : "";
-                        echo "value='" . $row4["school"] . "'>" . $row4["school"] . "</option>";
+                        echo isset($_POST["school"]) && $_POST["school"] == $row4["school_name"] ? "selected " : "";
+                        echo "value='" . $row4["school_name"] . "'>" . $row4["school_name"] . "</option>";
 
                       }
                     }
@@ -355,7 +355,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 include '_db_Connect.php';
                 if ($_POST['DIST'] == "" && isset($_POST["Search"])) {
                   $count = 1;
-                  $query5 = "SELECT * FROM `assets` ORDER BY `assets`.`school` ASC";
+                  $query5 = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
                   $result5 = mysqli_query($conn, $query5);
                   $total5 = mysqli_num_rows($result5);
                   if ($result5) {
@@ -367,11 +367,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                         echo '
                             <tr>
                               <td>' . $count . '</td>
-                              <td>' . $row['school'] . '</td>
-                              <td>' . $row['District'] . '</td>
-                              <td>' . $row['Block'] . '</td>
-                              <td>' . $row['Village'] . '</td>
-                              <td>' . $row['Pincode'] . '</td>
+                              <td>' . $row['school_name'] . '</td>
+                              <td>' . $row['district'] . '</td>
+                              <td>' . $row['block'] . '</td>
+                              <td>' . $row['village'] . '</td>
+                              <td>' . $row['pincode'] . '</td>
                               </tr>
                           ';
                         $count += 1;
@@ -384,7 +384,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 if (isset($_POST['school'])) {
                   $schl = $_POST['school'];
                   $vill = $_POST['Village'];
-                  $query5 = "SELECT * FROM `assets` WHERE `school` = '$schl' AND `Village`='$vill';";
+                  $query5 = "SELECT * FROM `school` WHERE `school_name` = '$schl' AND `village`='$vill';";
                   $result5 = mysqli_query($conn, $query5);
                   if ($result5) {
                     $total5 = mysqli_num_rows($result5);
@@ -400,11 +400,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                           echo '
                             <tr>
                             <td>' . $count . '</td>
-                            <td>' . $row['school'] . '</td>
-                            <td>' . $row['District'] . '</td>
-                            <td>' . $row['Block'] . '</td>
-                            <td>' . $row['Village'] . '</td>
-                            <td>' . $row['Pincode'] . '</td>
+                            <td>' . $row['school_name'] . '</td>
+                            <td>' . $row['district'] . '</td>
+                            <td>' . $row['block'] . '</td>
+                            <td>' . $row['village'] . '</td>
+                            <td>' . $row['pincode'] . '</td>
                             </tr>
                           ';
                           $count += 1;

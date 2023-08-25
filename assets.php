@@ -3,12 +3,12 @@
 include '_db_Connect.php';
 
 // total school
-$sql = "SELECT DISTINCT `school` FROM `assets`;";
+$sql = "SELECT `school_name` FROM `school`;";
 $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['school'])) {
   $school = $_POST['school'];
-  $sql2 = "SELECT * FROM `assets` WHERE `school`='$school';";
+  $sql2 = "SELECT * FROM `asset` WHERE `school_name`='$school';";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -223,10 +223,10 @@ if (isset($_POST['school'])) {
                     if ($total != 0) {
                       while ($row = $result->fetch_assoc()) {
 
-                        echo "<option value='" . $row['school'] . "'";
+                        echo "<option value='" . $row['school_name'] . "'";
 
-                        echo isset($_POST["school"]) && $_POST["school"] == $row['school'] ? "selected " : "";
-                        echo ">" . $row['school'] . "</option>";
+                        echo isset($_POST["school"]) && $_POST["school"] == $row['school_name'] ? "selected " : "";
+                        echo ">" . $row['school_name'] . "</option>";
                       }
                     }
                   }
@@ -244,8 +244,8 @@ if (isset($_POST['school'])) {
                     if ($total2 != 0) {
                       while ($row2 = $result2->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["pc"]) && $_POST["pc"] == $row2["PC"] ? "selected " : "";
-                        echo "value='" . $row2["PC"] . "'>" . $row2["PC"] . "</option>";
+                        echo isset($_POST["pc"]) && $_POST["pc"] == $row2["pc_sr"] ? "selected " : "";
+                        echo "value='" . $row2["pc_sr"] . "'>" . $row2["pc_sr"] . "</option>";
 
                       }
                     }
@@ -305,7 +305,7 @@ if (isset($_POST['school'])) {
                   $count = 1;
                   $pc = $_POST['pc'];
                   $school = $_POST['school'];
-                  $query5 = "SELECT * FROM `assets` ORDER BY `assets`.`PC` ASC";
+                  $query5 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
                   $result5 = mysqli_query($conn, $query5);
                   $total5 = mysqli_num_rows($result5);
                   if ($result5) {
@@ -317,11 +317,11 @@ if (isset($_POST['school'])) {
                         echo '
                             <tr>
                               <td>' . $count . '</td>
-                              <td>' . $row['school'] . '</td>
-                              <td>' . $row['PC'] . '</td>
+                              <td>' . $row['school_name'] . '</td>
+                              <td>' . $row['pc_sr'] . '</td>
                               <td>' . $row['TFT_id'] . '</td>
-                              <td>' . $row['Headphone_id'] . '</td>
                               <td>' . $row['Webcam_id'] . '</td>
+                              <td>' . $row['Headphone_id'] . '</td>
                               </tr>
                           ';
                         $count += 1;
@@ -334,7 +334,7 @@ if (isset($_POST['school'])) {
                 if (isset($_POST['pc'])) {
                   $pc = $_POST['pc'];
                   $school = $_POST['school'];
-                  $query5 = "SELECT * FROM `assets` WHERE `pc`= '$pc' ;";
+                  $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$pc' ;";
                   $result5 = mysqli_query($conn, $query5);
                   if ($result5) {
                     $total5 = mysqli_num_rows($result5);
