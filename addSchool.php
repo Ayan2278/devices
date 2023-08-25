@@ -2,17 +2,29 @@
 //include connection file
 include '_db_Connect.php';
 
-// total school
-$sql = "SELECT DISTINCT `school` FROM `assets`;";
-$result = mysqli_query($conn, $sql);
+$conn=mysqli_connect("localhost", "root","","device");
+if (isset($_POST["submit"])) {
+  $school = $_POST["school_name"];
+  $district = $_POST["district"];
+  $block = $_POST["block"];
+  $village = $_POST["village"];
+  $pincode = $_POST["pincode"];
+ 
+ 
+  if ($conn->connect_error) {
+      die("Connection failed: "
+          . $conn->connect_error);
+  }
+  if ($conn) {
 
-if (isset($_POST['school'])) {
-  $school = $_POST['school'];
-  $sql2 = "SELECT * FROM `assets` WHERE `school`='$school';";
-  $result2 = mysqli_query($conn, $sql2);
-  $total2 = mysqli_num_rows($result2);
+      $query1 = "INSERT INTO `school`(`school_name`, `district`, `block`, `village`, `pincode`) VALUES ('$school','$district','$block','$village','$pincode')";
+      $result = mysqli_query($conn, $query1);
+  }
+  if($result){
+      $login=true;
+  }
+
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -21,7 +33,7 @@ if (isset($_POST['school'])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Assets</title>
+  <title>Add School</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -185,13 +197,13 @@ if (isset($_POST['school'])) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Assets</h1>
+              <h1 class="m-0 text-dark">Add School</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item">Dashboard</li>
-                <li class="breadcrumb-item active">Assets</li>
+                <li class="breadcrumb-item active">School</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -203,185 +215,38 @@ if (isset($_POST['school'])) {
 
 
       <!-- general form elements -->
-      <section class="content">
-        <div class="card ">
-          <div class="card-header" style="border:0px;">
-            <h3 class="card-title">Assets report</h3>
-          </div>
-          <!-- /.card-header -->
-          <!-- form start -->
-          <form method="post" action="assets.php" role="form" id="myform">
-            <div class="card-body row">
-              <div class="form-group col-lg-2">
-                <label for="device">School</label>
-                <select class="form-control select2bs4" style="width: 100%" name="school" onchange="change()">
-                  <option value="">Please Select</option>
-                  <?php
-                  // total school
-                  if ($result) {
-                    $total = mysqli_num_rows($result);
-                    if ($total != 0) {
-                      while ($row = $result->fetch_assoc()) {
-
-                        echo "<option value='" . $row['school'] . "'";
-
-                        echo isset($_POST["school"]) && $_POST["school"] == $row['school'] ? "selected " : "";
-                        echo ">" . $row['school'] . "</option>";
-                      }
-                    }
-                  }
-                  ?>
-                </select>
-              </div>
-              <div class="form-group col-lg-2">
-                <label for="exampleInputPassword1">PC Id</label>
-                <select class="form-control select2bs4" style="width: 100%" name='pc'>
-                  <option selected="selected">Please Select</option>
-                  <?php
-                  // total pc ID
-                  if ($result2) {
-
-                    if ($total2 != 0) {
-                      while ($row2 = $result2->fetch_assoc()) {
-                        echo "<option ";
-                        echo isset($_POST["pc"]) && $_POST["pc"] == $row2["PC"] ? "selected " : "";
-                        echo "value='" . $row2["PC"] . "'>" . $row2["PC"] . "</option>";
-
-                      }
-                    }
-                  }
-                  ?>
-                </select>
-              </div>
+    
+      <form action=""  method="POST">
+        <center>
+                        <div class="col-lg-12 col-12 my-2">
+                            <label for="exampleFormControlInput1" class="form-label">School Name</label>
+                                   <input type="text" name="school_name" placeholder="Enter School Name">
+                        </div>
+                        <div class="col-lg-12 col-12 my-2">
+                            <label for="exampleFormControlInput1" class="form-label">District</label>
+                                   <input type="text" name="district" placeholder="Enter District Name">
+                        </div>
+                        <div class="col-lg-12 col-12 my-2">
+                            <label for="exampleFormControlInput1" class="form-label">Block</label>
+                                   <input type="text" name="block" placeholder="Enter Block ">
+                        </div>
+                        <div class="col-lg-12 col-12 my-2">
+                            <label for="exampleFormControlInput1" class="form-label">Village</label>
+                                   <input type="text" name="village" placeholder="Enter Village Name">
+                        </div>
+                        <div class="col-lg-12 col-12 my-2">
+                            <label for="exampleFormControlInput1" class="form-label">Pincode</label>
+                                   <input type="text" name="pincode" placeholder="Enter Valid Pincode">
+                        </div>
+                        <div class="col-lg-12 col-12 ">
+                                        <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+                                    </div>
 
 
 
 
-              <form action="#" method="get">
-                <div class="form-group col-lg-1 my-4 w-100">
-                  <button type="submit" name="Assets" value="Assets" class="btn "
-                    style="margin-top:8px; width:100%; background:#6f42c1; color:white;">Assets</button>
-                </div>
-              </form>
-
-            </div>
-            <!-- /.card-body -->
-
-          </form>
-        </div>
-        <div class="card" style="height:590px;">
-          <div class="card-header" style="border:0px;">
-            <h3 class="card-title">Data</h3>
-            <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
-              <button type="submit" class="btn  w-100"  style="background-color:#ffc167;" onclick="printTable()">
-                <i class="fas fa-download"></i> Print PDF
-              </button>
-            </div>
-          </div>
-          <!-- /.card-header -->
-
-          <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll; padding:0;">
-            <table id="example1" class="table table-bordered table-striped table-head-fixed">
-
-              <?php
-              
-                  // displaying all data in table
-              if (isset($_POST['Assets']) && $_POST['Assets'] == "Assets") {
-                echo '<thead>
-                          <tr>
-                            <th>SR</th>
-                            <th>School name</th>
-                            <th>PC Sr</th>
-                            <th>TFT</th>
-                            <th>Webcam</th>
-                            <th>Headphone</th>
-                          </tr>
-                        </thead>
-                <tbody>';
-
-                // connection file
-                include '_db_Connect.php';
-                if ($_POST['school'] == "" && isset($_POST["Assets"])) {
-                  $count = 1;
-                  $pc = $_POST['pc'];
-                  $school = $_POST['school'];
-                  $query5 = "SELECT * FROM `assets` ORDER BY `assets`.`PC` ASC";
-                  $result5 = mysqli_query($conn, $query5);
-                  $total5 = mysqli_num_rows($result5);
-                  if ($result5) {
-                    $total5 = mysqli_num_rows($result5);
-
-
-                    if ($total5 != 0) {
-                      while ($row = $result5->fetch_assoc()) {
-                        echo '
-                            <tr>
-                              <td>' . $count . '</td>
-                              <td>' . $row['school'] . '</td>
-                              <td>' . $row['PC'] . '</td>
-                              <td>' . $row['TFT_id'] . '</td>
-                              <td>' . $row['Headphone_id'] . '</td>
-                              <td>' . $row['Webcam_id'] . '</td>
-                              </tr>
-                          ';
-                        $count += 1;
-                      }
-                    } else
-                      echo "<tr><td colspan='9'>No data found</td></tr>";
-                  }
-
-                }
-                if (isset($_POST['pc'])) {
-                  $pc = $_POST['pc'];
-                  $school = $_POST['school'];
-                  $query5 = "SELECT * FROM `assets` WHERE `pc`= '$pc' ;";
-                  $result5 = mysqli_query($conn, $query5);
-                  if ($result5) {
-                    $total5 = mysqli_num_rows($result5);
-                  }
-                  if ($_POST['pc'] != "Please Select") {
-
-                    if ($result5) {
-
-                      $total5 = mysqli_num_rows($result5);
-                      $count = 1;
-                      if ($total5 != 0) {
-                        while ($row = $result5->fetch_assoc()) {
-                          echo '
-                            <tr>
-                              <td>' . $count . '</td>
-                              <td>' . $school . '</td>
-                              <td>' . $pc . '</td>
-                              <td>' . $row['TFT_id'] . '</td>
-                              <td>' . $row['Webcam_id'] . '</td>
-                              <td>' . $row['Headphone_id'] . '</td>
-                            </tr>
-                          ';
-                          $count += 1;
-                        }
-                      } else
-                        echo "<tr><td colspan='9'>No data found</td></tr>";
-                    }
-                  }
-                }
-              }
-
-              ?>
-
-              </tbody>
-
-            </table>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-      </section>
-      <!-- /.card -->
-      <!-- right col -->
-    </div>
-    <!-- /.row (main row) -->
-  </div><!-- /.container-fluid -->
-  </section>
+  </center>
+  </form>
   <!-- /.content -->
 
   </div>
