@@ -146,7 +146,13 @@ $current_url = end($url_parts);
 
         </li>
       </ul>
-      <button class="btn btn-danger">Logout</button>
+      <center>
+                    <form action="logout.php" method="POST">
+
+                        <button type="submit" name="logout_btn" class="btn btn-danger">Log-Out</button>
+
+                    </form>
+                </center>
     </nav>
     <!-- /.sidebar-menu -->
   </div>
