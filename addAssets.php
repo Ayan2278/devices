@@ -3,16 +3,31 @@
 include '_db_Connect.php';
 
 // total school
-$sql = "SELECT DISTINCT `school` FROM `assets`;";
-$result = mysqli_query($conn, $sql);
+$conn=mysqli_connect("localhost", "root","","device");
+if (isset($_POST["submit"])) {
+  $school = $_POST["school_name"];
+  $pc = $_POST["pc_sr"];
+  $tft = $_POST["TFT_id"];
+  $webcam = $_POST["Webcam_id"];
+  $headphone = $_POST["Headphone_id"];
+ 
+ 
+  if ($conn->connect_error) {
+      die("Connection failed: "
+          . $conn->connect_error);
+  }
+  if ($conn) {
 
-if (isset($_POST['school'])) {
-    $school = $_POST['school'];
-    $sql2 = "SELECT * FROM `assets` WHERE `school`='$school';";
-    $result2 = mysqli_query($conn, $sql2);
-    $total2 = mysqli_num_rows($result2);
+      $query1 = "INSERT INTO `asset`(`school_name`, `pc_sr`, `TFT_id`, `Webcam_id`, `Headphone_id`) VALUES ('$school','$pc','$tft','$webcam','$headphone')";
+      $result = mysqli_query($conn, $query1);
+  }
+  if($result){
+      $login=true;
+  }
+
 }
-
+$sql = "SELECT DISTINCT `school_name` FROM `school`;";
+$result1 = mysqli_query($conn, $sql);
 
 ?>
 <!DOCTYPE html>
@@ -51,124 +66,124 @@ if (isset($_POST['school'])) {
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    .scrollbar {
+        height: 300px;
+        overflow-y: auto;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #ADB5BD;
+        border-radius: 5px;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+    }
+
+
+    ::-webkit-scrollbar-track {
+        background-color: #f5f5f5;
+        border-radius: 1px;
+    }
+
+    .card-title {
+        float: left;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0;
+    }
+
+
+    .bg {
+        background: linear-gradient(to bottom, #2196F3, #0D47A1);
+        border: none;
+    }
+
+    .bg:hover {
+        transition: 0.3s;
+        background: linear-gradient(to top, #0088f5, #01378a);
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        table,
+        table * {
+            visibility: visible;
+
+        }
+
+        th {
             font-weight: 200;
-            font-size: 16px;
+            font-size: 14px;
         }
 
-        .scrollbar {
-            height: 300px;
-            overflow-y: auto;
+        td {
+
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+            font-size: 10px;
         }
 
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-            background-color: #ADB5BD;
-            border-radius: 5px;
+        table {
+            position: absolute;
+            left: 0;
+            top: -350px;
         }
-
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
-        }
-
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
-        }
-
-
-        ::-webkit-scrollbar-track {
-            background-color: #f5f5f5;
-            border-radius: 1px;
-        }
-
-        .card-title {
-            float: left;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin: 0;
-        }
-
-
-        .bg {
-            background: linear-gradient(to bottom, #2196F3, #0D47A1);
-            border: none;
-        }
-
-        .bg:hover {
-            transition: 0.3s;
-            background: linear-gradient(to top, #0088f5, #01378a);
-        }
-
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-
-            table,
-            table * {
-                visibility: visible;
-
-            }
-
-            th {
-                font-weight: 200;
-                font-size: 14px;
-            }
-
-            td {
-
-                border-color: inherit;
-                border-style: solid;
-                border-width: 0;
-                font-size: 10px;
-            }
-
-            table {
-                position: absolute;
-                left: 0;
-                top: -350px;
-            }
-        }
+    }
     </style>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 200;
-            font-size: 16px;
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
 
-        ::-webkit-scrollbar {
-            max-width: 7px;
-        }
+    ::-webkit-scrollbar {
+        max-width: 7px;
+    }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #5c5c5c;
-            border-radius: 10px;
-        }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #5c5c5c;
+        border-radius: 10px;
+    }
 
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            border-radius: 10px;
-            background: #c7c7c7;
-        }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        border-radius: 10px;
+        background: #c7c7c7;
+    }
 
-        .focus:focus {
-            border: 1px solid #6f42c1;
-            color: #6f42c1;
-        }
+    .focus:focus {
+        border: 1px solid #6f42c1;
+        color: #6f42c1;
+    }
     </style>
 </head>
 
@@ -219,9 +234,26 @@ if (isset($_POST['school'])) {
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label for="device" style="float:left; margin-left:10px;">School</label>
-                                    <select class="form-control focus" style="margin-left:8px; width: 100%;height:45px;float:left;">
+                                    <select class="form-control focus" name="school_name"
+                                        style="margin-left:8px; width: 100%;height:45px;float:left;">
                                         <option value="">Please Select</option>
-                                        
+                                        <?php
+                                         // total school
+                                         if ($result1) {
+                                         $total1 = mysqli_num_rows($result1);
+                                         if ($total1 != 0) {
+                                            while ($row = $result1->fetch_assoc()) {
+
+                                            echo "<option value='" . $row['school_name'] . "'";
+
+                                            echo isset($_POST["school_name"]) && $_POST["school_name"] == $row['school_name'] ? "selected " : "";
+                                            echo ">" . $row['school_name'] . "</option>";
+                                                }
+                                                }
+                                            }
+                                        ?>
+
+
                                     </select>
                                 </div>
                                 <div class="form-group col-lg-6">
@@ -257,7 +289,7 @@ if (isset($_POST['school'])) {
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
-                                    <button class="btn " type="submit"
+                                    <button class="btn " type="submit" name="submit" value="submit"
                                         style="background:#6f42c1;color:white; width:98%; margin-top:30px;">Submit</button>
                                 </div>
                             </div>
@@ -291,14 +323,14 @@ if (isset($_POST['school'])) {
     </div>
     <!-- ./wrapper -->
     <script>
-        function change() {
-            document.getElementById("myform").submit();
-        }
+    function change() {
+        document.getElementById("myform").submit();
+    }
     </script>
     <script>
-        function printTable() {
-            window.print();
-        }
+    function printTable() {
+        window.print();
+    }
     </script>
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
@@ -308,7 +340,7 @@ if (isset($_POST['school'])) {
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -338,11 +370,11 @@ if (isset($_POST['school'])) {
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <script>
-        $('.select2').select2();
-        $('.select2bs4').select2({
-            theme: 'bootstrap4',
-            placeholder: 'Please Select'
-        });
+    $('.select2').select2();
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        placeholder: 'Please Select'
+    });
     </script>
 </body>
 
