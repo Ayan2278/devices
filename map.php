@@ -3,22 +3,15 @@
 include '_db_Connect.php';
 
 // select total number of district
-$sql = "SELECT `District` FROM `assets` WHERE `District`='Gandhinagar';";
-$sql2 = "SELECT `District` FROM `assets` WHERE `District`='Ahmedabad';";
-$sql3 = "SELECT `District` FROM `assets` WHERE `District`='Surat';";
-$sql4 = "SELECT `District` FROM `assets` WHERE `District`='Vadodara';";
-$sql5 = "SELECT `District` FROM `assets` WHERE `District`='Patan';";
-$sql6 = "SELECT `District` FROM `assets` WHERE `District`='Rajkot';";
+$sql = "SELECT `district` FROM `school` WHERE `district`='Gandhinagar';";
+$sql2 = "SELECT `district` FROM `school` WHERE `district`='Ahmedabad';";
+$sql3 = "SELECT `district` FROM `school` WHERE `district`='Surat';";
+$sql4 = "SELECT `district` FROM `school` WHERE `district`='Vadodara';";
+$sql5 = "SELECT `district` FROM `school` WHERE `district`='Patan';";
+$sql6 = "SELECT `district` FROM `school` WHERE `district`='Rajkot';";
 
 
-$query="SELECT `District`, COUNT(`assets`.`District`) AS totaldistrict FROM `assets`";
-$result = $conn->query($query);
-$districtDeviceCounts = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $districtDeviceCounts[$row["District"]] = $row["totaldistrict"];
-    }
-}
+
 
 //query execute
 $res = mysqli_query($conn, $sql);

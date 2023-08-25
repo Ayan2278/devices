@@ -3,10 +3,10 @@
 include '_db_Connect.php';
 
 // select all school from assets table
-$sql22 = "SELECT DISTINCT `school` FROM `assets`";
-$sql00 = "SELECT * FROM `assets`WHERE `Status`='Active'";
-$sql10 = "SELECT * FROM `assets`WHERE `Status`='Inactive'";
-$sql11 = "SELECT * FROM `assets`";
+$sql22 = "SELECT DISTINCT `school_name` FROM `school`";
+$sql00 = "SELECT * FROM `asset`WHERE `Status`='Active'";
+$sql10 = "SELECT * FROM `asset`WHERE `Status`='Inactive'";
+$sql11 = "SELECT * FROM `asset`";
 
 //execute the query
 $res22 = mysqli_query($conn, $sql22);
@@ -28,9 +28,9 @@ $row10 = $res10->fetch_assoc();
 $row11 = $res11->fetch_assoc();
 
 //select all districts
-$sql11 = "SELECT DISTINCT `District` FROM `assets`;";
-$sql12 = "SELECT DISTINCT `Block` FROM `assets`;";
-$sql13 = "SELECT DISTINCT `Village` FROM `assets`;";
+$sql11 = "SELECT DISTINCT `district` FROM `school`;";
+$sql12 = "SELECT DISTINCT `block` FROM `school`;";
+$sql13 = "SELECT DISTINCT `village` FROM `school`;";
 
 $res1 = mysqli_query($conn, $sql11);
 $res2 = mysqli_query($conn, $sql12);
@@ -50,7 +50,7 @@ $data = json_decode($data, true);
 
 $act = 0;
 $inact = 0;
-$query = "SELECT * FROM `assets` WHERE `District`='Ahmedabad' ";
+$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -65,7 +65,7 @@ if ($total != 0)
 
 $act0 = 0;
 $inact0 = 0;
-$query = "SELECT * FROM `assets` WHERE `District`='Gandhinagar' ";
+$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -78,7 +78,7 @@ if ($total != 0)
   }
 $act1 = 0;
 $inact1 = 0;
-$query = "SELECT * FROM `assets` WHERE `District`='Surat' ";
+$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -92,7 +92,7 @@ if ($total != 0)
 
 $act2 = 0;
 $inact2 = 0;
-$query = "SELECT * FROM `assets` WHERE `District`='Patan' ";
+$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -107,7 +107,7 @@ if ($total != 0)
 
 $act3 = 0;
 $inact3 = 0;
-$query = "SELECT * FROM `assets` WHERE `District`='Vadodara' ";
+$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -122,7 +122,7 @@ if ($total != 0)
 
 $act4 = 0;
 $inact4 = 0;
-$query = "SELECT * FROM `assets` WHERE `District`='Rajkot' ";
+$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01'  ";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
