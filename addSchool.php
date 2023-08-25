@@ -262,7 +262,7 @@ if (isset($_POST["submit"])) {
                                     <label for="device" style="float:left; margin-left:10px;">School</label>
                                     <div class="col-lg-12">
                                         <input type="text" class="form-control focus" name="school_name"
-                                            placeholder="Enter School name" style="height:45px;">
+                                            placeholder="Enter School name" style="height:45px;" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
@@ -270,7 +270,7 @@ if (isset($_POST["submit"])) {
 
                                     <div class="col-lg-12">
                                         <input type="text" class="form-control focus"  name="district"
-                                            placeholder="Enter District" style="height:45px;">
+                                            placeholder="Enter District" style="height:45px;" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-6">
@@ -278,7 +278,7 @@ if (isset($_POST["submit"])) {
 
                                     <div class="col-lg-12">
                                         <input type="text" class="form-control focus" placeholder="Enter block"  name="block"
-                                            style="height:45px;">
+                                            style="height:45px;" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-6">
@@ -286,7 +286,7 @@ if (isset($_POST["submit"])) {
 
                                     <div class="col-lg-12">
                                         <input type="text" class="form-control focus" placeholder="Enter Village" name="village"
-                                            style="height:45px;">
+                                            style="height:45px;" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
@@ -294,7 +294,7 @@ if (isset($_POST["submit"])) {
 
                                     <div class="col-lg-12">
                                         <input type="text" class="form-control focus" placeholder="Enter Pincode"  name="pincode"
-                                            style="height:45px;">
+                                            style="height:45px;" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
