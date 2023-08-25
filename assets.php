@@ -280,8 +280,8 @@ if (isset($_POST['school'])) {
           </div>
           <!-- /.card-header -->
 
-          <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll;">
-            <table id="example1" class="table table-bordered table-striped">
+          <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll; padding:0;">
+            <table id="example1" class="table table-bordered table-striped table-head-fixed">
 
               <?php
               
