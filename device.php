@@ -28,9 +28,17 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql4 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
-  $result4 = mysqli_query($conn, $sql4);
-  $total4 = mysqli_num_rows($result4);
+  $sql44= "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl'";
+  $result44 = mysqli_query($conn, $sql44);
+  $row = $result44->fetch_assoc();
+  $tot44= mysqli_num_rows($result44);
+  if($tot44 != 0)
+  {
+    $schl = $row['school_name'];
+    $sql4 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
+    $result4 = mysqli_query($conn, $sql4);
+    $total4 = mysqli_num_rows($result4);
+  }
 }
 
 ?>
@@ -418,23 +426,18 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   $file = "JSON/" . $_POST['PC'] . ".json";
                   $PC = $_POST['PC'];
                   if ($PC) {
-                    $query4 = "SELECT * from `assets` where `PC`='$PC';";
+                    $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
                     $result4 = mysqli_query($conn, $query4);
                     $total4 = mysqli_num_rows($result4);
-                    if ($total4 != 0) {
-                      # code...
-                      $row4 = $result4->fetch_assoc();
-                      $block = $row4['Block'];
-                      $village = $row4['Village'];
-                    }
+                    
                   }
-                  $query5 = "SELECT * FROM `assets` WHERE `PC`= '$PC';";
+                  $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
                   $result5 = mysqli_query($conn, $query5);
                   if ($_POST['PC'] != "Please Select") {
                     $data = file_get_contents($file);
                     $data = json_decode($data, true);
                     if ($result5) {
-
+                      
                       $total5 = mysqli_num_rows($result5);
                       $count = 1;
                       if ($data != 0) {
