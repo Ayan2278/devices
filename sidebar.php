@@ -4,8 +4,7 @@ $url_parts = explode("/", $_SERVER['REQUEST_URI']);
 $current_url = end($url_parts);
 ?>
 
-
-
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
@@ -19,8 +18,8 @@ $current_url = end($url_parts);
   </ul>
 
 
-
   <!-- Right navbar links -->
+
 
 </nav>
 <aside class="main-sidebar sidebar-light-purple elevation-4">
@@ -137,7 +136,7 @@ $current_url = end($url_parts);
           <a href="school.php" class="nav-link <?php if ($current_url == 'school.php') {
             echo 'active';
           } ?>">
-                <i class=" nav-icon fas fa-calendar-alt"></i>
+            <i class=" nav-icon fas fa-calendar-alt"></i>
             <p>
               Schools
 
@@ -146,22 +145,21 @@ $current_url = end($url_parts);
 
         </li>
       </ul>
-
-      <center>
-        <form action="logout.php" method="POST">
-
-          <button type="submit" name="logout_btn" class="btn btn-danger">Log-Out</button>
-
-        </form>
-      </center>
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="margin-bottom:0;">
-        <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+
+          <form action="logout.php" method="POST" style="float:right;">
+
+            <button type="submit" name="logout_btn" style="margin-left:170px;" class="btn "><i class='bx bx-log-out'
+                style="font-size:25px;color:#6f42c1;"></i></button>
+
+          </form>
+
         </div>
+
       </div>
+
+
     </nav>
     <!-- /.sidebar-menu -->
   </div>

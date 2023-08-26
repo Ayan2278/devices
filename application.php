@@ -37,16 +37,17 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql44= "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' AND `school_name`='$school'";
+  $sql44= "SELECT * from `asset` WHERE `school_name`='$school'";
   $result44 = mysqli_query($conn, $sql44);
   $row = $result44->fetch_assoc();
   $tot44= mysqli_num_rows($result44);
   if($tot44 != 0)
   {
+    
     $schl = $row['school_name'];
-    $sql4 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
-    $result4 = mysqli_query($conn, $sql4);
-    $total4 = mysqli_num_rows($result4);
+    $sql6 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
+    $result6 = mysqli_query($conn, $sql6);
+    $total6 = mysqli_num_rows($result6);
   }
 }
 
@@ -354,15 +355,13 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <option selected="selected">Please Select</option>
                   <?php
                   // select pc serial number
-                  if ($result3) {
+                  if ($result6) {
 
-                    if ($total4 != 0) {
-                      while ($row4 = $result4->fetch_assoc()) {
+                      while ($row6 = $result6->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["PC"]) && $_POST["PC"] == $row4["pc_sr"] ? "selected " : "";
-                        echo "value='" . $row4["pc_sr"] . "'>" . $row4["pc_sr"] . "</option>";
-
-                      }
+                        echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
+                        echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
+                    
                     }
                   }
                   ?>
