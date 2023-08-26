@@ -2,7 +2,7 @@
 // create database connection
 include '_db_Connect.php';
 
-$query="SELECT `asset`.`district`, COUNT(district) AS device_count FROM `asset`";
+$query="SELECT DISTINCT `district` from `asset`; ";
 $result1 = mysqli_query($conn, $query);
 $total=mysqli_num_rows($result1);
 
@@ -10,20 +10,23 @@ $total=mysqli_num_rows($result1);
 // $res = strtoupper($mystr);
 // print_r($res);
 // $string=strtoupper();
-$districtDeviceCounts = [];
-if ($result1->num_rows > 0) {
+if ($total != 0) {
     while ($row = $result1->fetch_assoc()) {
-         echo  $districtDeviceCounts[$row["district"]] = $row["device_count"];
-       
-                                        
-        // echo $districtDeviceCounts;
+      $pc = 0;
+      $sqlPC = "SELECT * from `asset` where `district`='".$rowIN["district"]."';";
+      $resultPC = mysqli_query($conn,$sqlINA);
+      $totPC= mysqli_num_rows($resultINA);
+      if ($totINA) {
+        while ($rowINA = $resultINA->fetch_assoc()) {
+          if ($rowINA['Status'] == '') {
+            # code...
+            $pc++;
+          }
+        }
+        echo $inactive,",";
+      }
     }
-}
-// else part for no result found 
-else {
-    echo "0 results";
-    
-}
+  }
 
 
 
