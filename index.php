@@ -50,7 +50,7 @@ $data = json_decode($data, true);
 
 $act = 0;
 $inact = 0;
-$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
+$query = "SELECT * FROM `asset` WHERE `school_name`='Nalanda School'";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -65,7 +65,7 @@ if ($total != 0)
 
 $act0 = 0;
 $inact0 = 0;
-$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
+$query = "SELECT * FROM `asset` WHERE `school_name`='Asia pacific school'";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -78,7 +78,7 @@ if ($total != 0)
   }
 $act1 = 0;
 $inact1 = 0;
-$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
+$query = "SELECT * FROM `asset` WHERE `school_name`='Diwan ballu school'";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -92,7 +92,7 @@ if ($total != 0)
 
 $act2 = 0;
 $inact2 = 0;
-$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
+$query = "SELECT * FROM `asset` WHERE `school_name`='Anand niketan school'";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -107,7 +107,7 @@ if ($total != 0)
 
 $act3 = 0;
 $inact3 = 0;
-$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01' ";
+$query = "SELECT * FROM `asset` WHERE `school_name`='Delhi public school'";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
@@ -122,7 +122,7 @@ if ($total != 0)
 
 $act4 = 0;
 $inact4 = 0;
-$query = "SELECT * FROM `asset` WHERE `pc_sr`='PC01'  ";
+$query = "SELECT * FROM `asset` WHERE `school_name`='Ankur School'";
 $result = mysqli_query($conn, $query);
 $total = mysqli_num_rows($result);
 if ($total != 0)
