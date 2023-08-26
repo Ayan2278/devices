@@ -8,7 +8,7 @@ $sqlDist = "SELECT DISTINCT `district` FROM `asset`";
 $sqlIN = "SELECT DISTINCT `district` FROM `asset`";
 $sqlDistt = "SELECT DISTINCT `district` FROM `asset`";
 $sql00 = "SELECT * FROM `asset`WHERE `Status`='Active'";
-$sql10 = "SELECT * FROM `asset`WHERE `Status`='Inactive'";
+$sql10 = "SELECT * FROM `asset`WHERE `Status`=''";
 $sql11 = "SELECT * FROM `asset`";
 
 //execute the query
@@ -509,7 +509,7 @@ if ($total != 0)
             $totINA= mysqli_num_rows($resultINA);
             if ($totINA) {
               while ($rowINA = $resultINA->fetch_assoc()) {
-                if ($rowINA['Status'] == 'Inactive') {
+                if ($rowINA['Status'] == '') {
                   # code...
                   $inactive++;
                 }
