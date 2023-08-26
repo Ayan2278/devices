@@ -1,12 +1,12 @@
 <?php
 // connection file
 include '_db_Connect.php';
-
+$qry = "SELECT DISTINCT `school_name` FROM `school`";
 // select all school from assets table
 $sql22 = "SELECT DISTINCT `school_name` FROM `school`";
-$sqlDist = "SELECT DISTINCT `district` FROM `asset`";
-$sqlIN = "SELECT DISTINCT `district` FROM `asset`";
-$sqlDistt = "SELECT DISTINCT `district` FROM `asset`";
+$sqlDist = $qry;
+$sqlIN = $qry;
+$sqlDistt = $qry;
 $sql00 = "SELECT * FROM `asset`WHERE `Status`='Active'";
 $sql10 = "SELECT * FROM `asset`WHERE `Status`=''";
 $sql11 = "SELECT * FROM `asset`";
