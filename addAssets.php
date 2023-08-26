@@ -6,11 +6,16 @@ include '_db_Connect.php';
 $conn = mysqli_connect("localhost", "root", "", "device");
 if (isset($_POST["submit"])) {
     $school = $_POST["school_name"];
+    $sqlS = "SELECT * FROM `school` WHERE `school_name`='$school';";
+    $resultS = mysqli_query($conn,$sqlS);
+    $rowS = $resultS->fetch_assoc();
+    $district=$rowS['district'];
+
+    
     $pc = $_POST["pc_sr"];
     $tft = $_POST["TFT_id"];
     $webcam = $_POST["Webcam_id"];
     $headphone = $_POST["Headphone_id"];
-
 
     if ($conn->connect_error) {
         die("Connection failed: "
@@ -18,7 +23,7 @@ if (isset($_POST["submit"])) {
     }
     if ($conn) {
 
-        $query1 = "INSERT INTO `asset`(`school_name`, `pc_sr`, `TFT_id`, `Webcam_id`, `Headphone_id`) VALUES ('$school','$pc','$tft','$webcam','$headphone')";
+        $query1 = "INSERT INTO `asset`(`school_name`,`district`, `pc_sr`, `TFT_id`, `Webcam_id`, `Headphone_id`) VALUES ('$school','$district','$pc','$tft','$webcam','$headphone')";
         $result = mysqli_query($conn, $query1);
     }
     if ($result) {
@@ -253,6 +258,7 @@ $result1 = mysqli_query($conn, $sql);
                                                     echo isset($_POST["school_name"]) && $_POST["school_name"] == $row['school_name'] ? "selected " : "";
                                                     echo ">" . $row['school_name'] . "</option>";
                                                 }
+                                               
                                             }
                                         }
                                         ?>

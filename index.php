@@ -4,18 +4,27 @@ include '_db_Connect.php';
 
 // select all school from assets table
 $sql22 = "SELECT DISTINCT `school_name` FROM `school`";
+$sqlDist = "SELECT DISTINCT `district` FROM `asset`";
+$sqlIN = "SELECT DISTINCT `district` FROM `asset`";
+$sqlDistt = "SELECT DISTINCT `district` FROM `asset`";
 $sql00 = "SELECT * FROM `asset`WHERE `Status`='Active'";
 $sql10 = "SELECT * FROM `asset`WHERE `Status`='Inactive'";
 $sql11 = "SELECT * FROM `asset`";
 
 //execute the query
 $res22 = mysqli_query($conn, $sql22);
+$resDist = mysqli_query($conn, $sqlDist);
+$resIN = mysqli_query($conn, $sqlIN);
+$resDistt = mysqli_query($conn, $sqlDistt);
 $res00 = mysqli_query($conn, $sql00);
 $res10 = mysqli_query($conn, $sql10);
 $res11 = mysqli_query($conn, $sql11);
 
 //total number of rows
 $tot22 = mysqli_num_rows($res22);
+$totDist = mysqli_num_rows($resDist);
+$totIN = mysqli_num_rows($resIN);
+$totDistt = mysqli_num_rows($resDistt);
 $tot00 = mysqli_num_rows($res00);
 $tot10 = mysqli_num_rows($res10);
 $tot11 = mysqli_num_rows($res11);
@@ -259,11 +268,13 @@ if ($total != 0)
       color: #fff;
       padding: 10px;
     }
-    .effect{
+
+    .effect {
 
       box-shadow: 1px 5px 10px #949494;
     }
-    .effect:hover{
+
+    .effect:hover {
       box-shadow: 0px 0px 0px #ffffff;
       transform: translateY(8px);
     }
@@ -290,6 +301,7 @@ if ($total != 0)
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item" style="color:purple;"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
+                
               </ol>
             </div>
           </div>
@@ -302,23 +314,25 @@ if ($total != 0)
 
         <div class="row ">
           <div class="col-lg-3 col-6 ">
-            
+
             <div class="card bg-c-pink effect order-card " style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total School</h4>
-                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-school f-left my-3' style="font-size:40px;"></i><span>
-                <?php echo "<b>".sprintf('%02u', $tot22) . "</b>"; ?>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-school f-left my-3'
+                    style="font-size:40px;"></i><span>
+                    <?php echo "<b>" . sprintf('%02u', $tot22) . "</b>"; ?>
                   </span></h1>
               </div>
             </div>
-        </div>
+          </div>
           <div class="col-lg-3 col-6">
             <div class="card bg-c-blue effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total Districts</h4>
-                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-city f-left my-3' style="font-size:40px;"></i><span>
-                   <?php echo "<b>".sprintf('%02u', $tot1) . "</b>"; ?>
-                  
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-city f-left my-3'
+                    style="font-size:40px;"></i><span>
+                    <?php echo "<b>" . sprintf('%02u', $tot1) . "</b>"; ?>
+
                   </span></h1>
               </div>
             </div>
@@ -328,8 +342,9 @@ if ($total != 0)
             <div class="card bg-c-green effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Inactive PC</h4>
-                <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3' style="font-size:40px;"></i><span>
-                <?php echo "<b>".sprintf('%02u', $tot10) . "</b>"; ?>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3'
+                    style="font-size:40px;"></i><span>
+                    <?php echo "<b>" . sprintf('%02u', $tot10) . "</b>"; ?>
                   </span></h1>
               </div>
             </div>
@@ -339,8 +354,9 @@ if ($total != 0)
             <div class="card bg-c-yellow effect order-card" style="color:black; height:135px;">
               <div class="card-block">
                 <h4 class="m-b-20">Total PC</h4>
-                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-devices f-left my-3' style="font-size:40px;"></i><span>
-                <?php echo "<b>".sprintf('%02u', $tot11) . "</b>"; ?>
+                <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-devices f-left my-3'
+                    style="font-size:40px;"></i><span>
+                    <?php echo "<b>" . sprintf('%02u', $tot11) . "</b>"; ?>
                   </span></h1>
               </div>
             </div>
@@ -395,28 +411,28 @@ if ($total != 0)
 
         </div>
         <!-- /.row (main row) -->
-    </div3><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-    <section class="content">
-      <!-- Chart -->
+        </div3><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+      <section class="content">
+        <!-- Chart -->
 
-    </section>
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="#">Ciencias</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.1-pre
+      </section>
     </div>
-  </footer>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2014-2019 <a href="#">Ciencias</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.0.1-pre
+      </div>
+    </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -460,12 +476,50 @@ if ($total != 0)
     var options = {
       series: [{
         name: 'Active',
-        data: [<?php echo $act, ",", $act0, ",", $act1, ",", $act2, ",", $act3, ",", $act4; ?>],
+        data: [<?php
+        if ($totDist != 0) {
+          while ($rowDist = $resDist->fetch_assoc()) {
+            $active = 0;
+            $sqlAct = "SELECT * from `asset` where `district`='".$rowDist["district"]."';";
+            $resultAct = mysqli_query($conn,$sqlAct);
+            $totAct= mysqli_num_rows($resultAct);
+            if ($totAct) {
+              while ($rowAct = $resultAct->fetch_assoc()) {
+                if ($rowAct['Status'] == 'Active') {
+                  # code...
+                  $active++;
+                }
+              }
+              echo $active,",";
+            }
+          }
+        }
+
+        ?>],
 
 
       }, {
         name: 'Inactive',
-        data: [<?php echo $inact, ",", $inact0, ",", $inact1, ",", $inact2, ",", $inact3, ",", $inact4; ?>]
+        data: [<?php
+        if ($totIN != 0) {
+          while ($rowIN = $resIN->fetch_assoc()) {
+            $inactive = 0;
+            $sqlINA = "SELECT * from `asset` where `district`='".$rowIN["district"]."';";
+            $resultINA = mysqli_query($conn,$sqlINA);
+            $totINA= mysqli_num_rows($resultINA);
+            if ($totINA) {
+              while ($rowINA = $resultINA->fetch_assoc()) {
+                if ($rowINA['Status'] == 'Inactive') {
+                  # code...
+                  $inactive++;
+                }
+              }
+              echo $inactive,",";
+            }
+          }
+        }
+
+        ?>]
       }],
       chart: {
         type: 'bar',
@@ -484,7 +538,12 @@ if ($total != 0)
         }
       }],
       xaxis: {
-        categories: ['Ahmedabad', 'Gandhinagar', 'Surat', 'Patan', 'Vadodara', 'Rajkot'
+        categories: [<?php if ($totDistt != 0) {
+          while ($rowDistt = $resDistt->fetch_assoc()) {
+            echo "'" . $rowDistt['district'] . "',";
+          }
+        }
+        ?>
         ],
       },
       fill: {
