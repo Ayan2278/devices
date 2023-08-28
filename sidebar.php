@@ -150,7 +150,7 @@ $current_url = end($url_parts);
 
           <form action="logout.php" method="POST" style="float:right;">
 
-            <button type="submit" name="logout_btn" style="margin-left:170px;" class="btn "><i class='bx bx-log-out'
+            <button type="submit" name="logout_btn" style="margin-left:170px;margin-top:570px;" class="btn "><i class=' bx bx-log-out'
                 style="font-size:25px;color:#6f42c1;"></i></button>
 
           </form>
