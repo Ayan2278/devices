@@ -28,12 +28,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql44= "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl'";
+  $sql44 = "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl'";
   $result44 = mysqli_query($conn, $sql44);
   $row = $result44->fetch_assoc();
-  $tot44= mysqli_num_rows($result44);
-  if($tot44 != 0)
-  {
+  $tot44 = mysqli_num_rows($result44);
+  if ($tot44 != 0) {
     $schl = $row['school_name'];
     $sql4 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
     $result4 = mysqli_query($conn, $sql4);
@@ -229,7 +228,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
       <!-- general form elements -->
       <section class="content">
-        <div class="card ">
+        <div class="card mx-2">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Device Timing</h3>
           </div>
@@ -279,6 +278,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 </select>
               </div>
               <div class="form-group col-lg-2">
+
                 <label for="exampleInputPassword1">Village</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Village' onchange="change()">
                   <option selected="selected">Please Select</option>
@@ -332,7 +332,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
           </form>
         </div>
-        <div class="card" style="height:590px;">
+        <div class="card mx-2" style="height:590px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>
             <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
@@ -386,7 +386,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     $query4 = "SELECT * from `asset` where `pc_sr`='PC0$c';";
                     $result4 = mysqli_query($conn, $query4);
                     $total4 = mysqli_num_rows($result4);
-                    
+
                     $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
                     $result5 = mysqli_query($conn, $query5);
                     $data = file_get_contents($file);
@@ -402,8 +402,19 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                               <td>' . $count . '</td>
                               <td>PC0' . $c . '</td>
                               <td>' . $row['Date'] . '</td>
-                              <td>' . $row['Start_time'] . '</td>
-                              <td>' . $row['End_time'] . '</td>
+                              <td>' . $row['Start_time'] . '</td><td>';
+                          date_default_timezone_set('Asia/Kolkata');
+                          $date = date('h:i:s');
+                          $datee = date("d/m/Y");
+                          $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                          if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+                            echo '<small class="badge badge-success">Running</small>';
+                          }
+                          else {
+                            echo $row['End_time'] . '</td>';
+                          }
+                          echo '
+                              
                               <td>' . $row['Duration'] . '</td>
                             </tr>
                           ';
@@ -424,7 +435,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
                     $result4 = mysqli_query($conn, $query4);
                     $total4 = mysqli_num_rows($result4);
-                    
+
                   }
                   $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
                   $result5 = mysqli_query($conn, $query5);
@@ -432,7 +443,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     $data = file_get_contents($file);
                     $data = json_decode($data, true);
                     if ($result5) {
-                      
+
                       $total5 = mysqli_num_rows($result5);
                       $count = 1;
                       if ($data != 0) {

@@ -38,7 +38,8 @@ $total0=mysqli_num_rows($result10);
                                     </h3>
                                 </div>
 <div class="card-body" style="border:0px;">
-                                    <svg viewBox="0 0 501 392.8" xmlns="http://www.w3.org/2000/svg" style="min-height: 557px; height: 557px; max-height: 650px; max-width: 100%;">
+                                    <center>
+                                    <svg viewBox="0 0 501 392.8" xmlns="http://www.w3.org/2000/svg" style="min-height: 520px; height: 450px; max-height: 650px; max-width: 100%;">
                                         <g fill="#9CBCDA" stroke="#646464" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" id="g-1" style="display:inline" transform="matrix(0.239675, 0, 0, 0.239675, -10.362949, -12.204528)">
                                             <polygon points="1947.6,1197.1 1947.9,1197.2 1947.6,1196.9 " id="polygon-1" />
                                             <!-- Gandhinagar -->
@@ -702,6 +703,7 @@ $total0=mysqli_num_rows($result10);
                                             </path>
                                         </g>
                                     </svg>
+                                    </center>
                                 </div>
                             </div>
                             

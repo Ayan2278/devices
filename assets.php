@@ -268,8 +268,8 @@ if (isset($_POST['school'])) {
             <!-- /.card-body -->
 
           </form>
-        </div>
-        <div class="card" style="height:590px;">
+                </div>
+        <div class="card " style="height:590px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>
             <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
