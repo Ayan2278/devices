@@ -32,7 +32,7 @@ $total0=mysqli_num_rows($result10);
 
 <div class="card  shadow">
                                 <div class="card-header " style="border:0px;" >
-                                    <h3 class="card-title">
+                                    <h3 class="card-title mx-2">
                                         <i class="fas fa-map mr-1" style=" font-size:22px;"></i>
                                         Desktop Count based on Districts
                                     </h3>
