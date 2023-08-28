@@ -265,7 +265,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
       <!-- general form elements -->
       <section class="content">
-        <div class="card ">
+      <div class="card mx-2">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Application Timing</h3>
           </div>
@@ -401,7 +401,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
           </form>
         </div>
-        <div class="card" style="height:520px;">
+        <div class="card mx-2" style="height:520px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>
             <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">

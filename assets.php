@@ -204,9 +204,9 @@ if (isset($_POST['school'])) {
 
       <!-- general form elements -->
       <section class="content">
-        <div class="card ">
+      <div class="card mx-2">
           <div class="card-header" style="border:0px;">
-            <h3 class="card-title">Assets report</h3>
+            <h3 class="card-title ">Assets report</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -269,7 +269,7 @@ if (isset($_POST['school'])) {
 
           </form>
                 </div>
-        <div class="card " style="height:590px;">
+        <div class="card mx-2 " style="height:590px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>
             <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
