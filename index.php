@@ -1,7 +1,7 @@
 <?php
 // connection file
 include '_db_Connect.php';
-$qry = "SELECT DISTINCT `school_name` FROM `school`";
+$qry = "SELECT * FROM `school`";
 // select all school from assets table
 $sql22 = "SELECT DISTINCT `school_name` FROM `school`";
 $sqlDist = $qry;
@@ -420,6 +420,7 @@ if ($total != 0)
       </section>
     </div>
     <!-- /.content-wrapper -->
+   
     <footer class="main-footer">
       <strong>Copyright &copy; 2014-2019 <a href="#">Ciencias</a>.</strong>
       All rights reserved.
