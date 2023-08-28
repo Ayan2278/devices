@@ -24,6 +24,19 @@ $current_url = end($url_parts);
 </nav>
 <aside class="main-sidebar sidebar-light-purple elevation-4">
   <!-- Brand Logo -->
+  <div class="user-panel mb-3 d-flex">
+        <div class="info">
+
+          <form action="logout.php" method="POST" style="float:right;">
+
+            <button type="submit" name="logout_btn" style="margin-left:170px;margin-top:4px;" class="btn "><i class=' bx bx-log-out'
+                style="font-size:25px;color:#6f42c1;"></i></button>
+
+          </form>
+
+        </div>
+
+      </div>
   <center><img src="Ciencias logo.png" style="width:80px;" alt="Logo" class="  my-4" style="opacity: .8"></center>
 
   <!-- Sidebar -->
@@ -145,19 +158,7 @@ $current_url = end($url_parts);
 
         </li>
       </ul>
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info">
-
-          <form action="logout.php" method="POST" style="float:right;">
-
-            <button type="submit" name="logout_btn" style="margin-left:170px;margin-top:570px;" class="btn "><i class=' bx bx-log-out'
-                style="font-size:25px;color:#6f42c1;"></i></button>
-
-          </form>
-
-        </div>
-
-      </div>
+      
 
 
     </nav>
