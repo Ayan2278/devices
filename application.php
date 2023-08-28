@@ -2,19 +2,6 @@
 // includeing connection file
 include '_db_Connect.php';
 
-function fileUpdatedRecently($file)
-{
-    if (file_exists($file)) {
-        $last_modified_time = filemtime($file);
-        $five_minutes_ago = time() - 2 * 60;
-        
-        if ($last_modified_time > $five_minutes_ago) {
-            return "Active";
-        }
-    }
-
-    return "Inactive";
-}
 
 //select all districts
 $sql = "SELECT DISTINCT `district` FROM `school`;";
@@ -472,7 +459,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                               <td>' . $row['Activity'] . '</td>
                               <td>' . $row['Date'] . '</td>
                               <td>' . $row['Start time'] . '</td><td>';
-                              
                           date_default_timezone_set('Asia/Kolkata');
                           $date = date('h:i:s');
                           $datee = date("d/m/Y");
@@ -535,39 +521,17 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     if ($data != 0) {
                       foreach ($data as $row) {
                         if ($_POST['Activity'] == $row['Activity']) {
-                          ?>
+                          echo '
                             <tr>
-                              <td><?php echo  $count;  ?></td>
-                              <td><?php echo  $act;?></td>
-                              <td><?php echo  $row['Date'];  ?></td>
-                              <td><?php echo $row['Start time'];  ?></td>
-                              <td><?php 
-                             if ($logs['status'] == "Running") {
-                              $timezone = new DateTimeZone('Asia/Kolkata');
-
-                              $current_run = new DateTime('now', $timezone);
-
-                              $current_run_formatted = $current_run->format('Y-m-d H:i:s');
-
-                              $end_run = new DateTime(implode("-", explode("/", $logs['End_time'])));
-                              $current_run = new DateTime($current_run_formatted);
-                              $interval_run = $current_run->diff($end_run);
-
-                              $int_string = $interval_run->format('%H:%i:%s');
-
-                              if (timeToSeconds($int_string) > 100) {
-                                  echo '<td class="text-center">' . explode(" ", $logs['End_time'])[1] . '</td>';
-                              } else {
-                                  echo "<td class='text-center'><span class='badge badge-success'>Running</span></td>";
-                              }
-                          } else {
-                              echo '<td class="text-center">' . explode(" ", $logs['End_time'])[1] . '</td>';
-                          }
-                              
-                              ?></td>
-                              <td><?php echo  $row['Duration'];  ?></td>
-                        </tr>
-                        <?php
+                              <td>' . $count . '</td>
+                              <td>' . $PC . '</td>
+                              <td>' . $act . '</td>
+                              <td>' . $row['Date'] . '</td>
+                              <td>' . $row['Start time'] . '</td>
+                              <td>' . $row['End time'] . '</td>
+                              <td>' . $row['Duration'] . '</td>
+                            </tr>
+                          ';
                           $count += 1;
                         }
                       }
