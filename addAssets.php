@@ -1,17 +1,18 @@
 <?php
 //include connection file
 include '_db_Connect.php';
+$alert = false;
 
 // total school
 $conn = mysqli_connect("localhost", "root", "", "device");
 if (isset($_POST["submit"])) {
     $school = $_POST["school_name"];
     $sqlS = "SELECT * FROM `school` WHERE `school_name`='$school';";
-    $resultS = mysqli_query($conn,$sqlS);
+    $resultS = mysqli_query($conn, $sqlS);
     $rowS = $resultS->fetch_assoc();
-    $district=$rowS['district'];
+    $district = $rowS['district'];
 
-    
+
     $pc = $_POST["pc_sr"];
     $tft = $_POST["TFT_id"];
     $webcam = $_POST["Webcam_id"];
@@ -25,6 +26,9 @@ if (isset($_POST["submit"])) {
 
         $query1 = "INSERT INTO `asset`(`school_name`,`district`, `pc_sr`, `TFT_id`, `Webcam_id`, `Headphone_id`) VALUES ('$school','$district','$pc','$tft','$webcam','$headphone')";
         $result = mysqli_query($conn, $query1);
+        if ($result) {
+            $alert = true;
+        }
     }
     if ($result) {
         $login = true;
@@ -39,6 +43,14 @@ $result1 = mysqli_query($conn, $sql);
 <html>
 
 <head>
+    <!-- Ionicons -->
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+    <!-- Theme style -->
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -189,8 +201,9 @@ $result1 = mysqli_query($conn, $sql);
             border: 1px solid #6f42c1;
             color: #6f42c1;
         }
-        .Black{
-            color:black;
+
+        .Black {
+            color: black;
         }
     </style>
 </head>
@@ -234,82 +247,85 @@ $result1 = mysqli_query($conn, $sql);
             <!-- general form elements -->
             <section class="content">
                 <form action="" method="POST">
-                <center>
-                    <div class="card col-lg-5 shadow">
-                        <div class="card-header" style="border:0px;">
-                            <h4 style="float:left; margin-top:10px;">Add Asset</h4>
-                        </div>
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="form-group col-lg-6">
-                                    <label for="device" style="float:left; margin-left:10px;">School</label>
-                                    <select class="form-control focus" name="school_name"
-                                        style="margin-left:8px; width: 100%;height:45px;float:left;">
-                                        <option value="" class="Black">Please Select</option>
-                                        <?php
-                                        // total school
-                                        if ($result1) {
-                                            $total1 = mysqli_num_rows($result1);
-                                            if ($total1 != 0) {
-                                                while ($row = $result1->fetch_assoc()) {
+                    <center>
+                        <div class="card col-lg-5 shadow">
+                            <div class="card-header" style="border:0px;">
+                                <h4 style="float:left; margin-top:10px;">Add Asset</h4>
+                            </div>
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label for="device" style="float:left; margin-left:10px;">School</label>
+                                        <select class="form-control focus" name="school_name"
+                                            style="margin-left:8px; width: 100%;height:45px;float:left;">
+                                            <option value="" class="Black">Please Select</option>
+                                            <?php
+                                            // total school
+                                            if ($result1) {
+                                                $total1 = mysqli_num_rows($result1);
+                                                if ($total1 != 0) {
+                                                    while ($row = $result1->fetch_assoc()) {
 
-                                                    echo "<option value='" . $row['school_name'] . "'  class='Black'";
+                                                        echo "<option value='" . $row['school_name'] . "'  class='Black'";
 
-                                                    echo isset($_POST["school_name"]) && $_POST["school_name"] == $row['school_name'] ? "selected " : "";
-                                                    echo ">" . $row['school_name'] . "</option>";
+                                                        echo isset($_POST["school_name"]) && $_POST["school_name"] == $row['school_name'] ? "selected " : "";
+                                                        echo ">" . $row['school_name'] . "</option>";
+                                                    }
+
                                                 }
-                                               
                                             }
-                                        }
-                                        ?>
+                                            ?>
 
 
-                                    </select>
-                                </div>
-                                <div class="form-group col-lg-6">
-                                    <label for="device" style="float:left; margin-left:10px;">PC sr</label>
-
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="pc_sr"
-                                            placeholder="Enter PC Serial number" style="height:45px;" required>
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="form-group col-lg-12">
-                                    <label for="device" style="float:left; margin-left:10px;">TFT Id</label>
+                                    <div class="form-group col-lg-6">
+                                        <label for="device" style="float:left; margin-left:10px;">PC sr</label>
 
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="TFT_id"placeholder="Enter TFT Id"
-                                            style="height:45px;" required>
+                                        <div class="col-lg-12">
+                                            <input type="text" class="form-control focus" name="pc_sr"
+                                                placeholder="Enter PC Serial number" style="height:45px;" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group col-lg-12">
-                                    <label for="device" style="float:left; margin-left:10px;">Webcam Id</label>
+                                    <div class="form-group col-lg-12">
+                                        <label for="device" style="float:left; margin-left:10px;">TFT Id</label>
 
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="Webcam_id" placeholder="Enter Webcam Id"
-                                            style="height:45px;" required>
+                                        <div class="col-lg-12">
+                                            <input type="text" class="form-control focus" name="TFT_id"
+                                                placeholder="Enter TFT Id" style="height:45px;" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group col-lg-12">
-                                    <label for="device" style="float:left; margin-left:10px;">Headphone Id</label>
+                                    <div class="form-group col-lg-12">
+                                        <label for="device" style="float:left; margin-left:10px;">Webcam Id</label>
 
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="Headphone_id" placeholder="Enter Headphone Id"
-                                            style="height:45px;" required>
+                                        <div class="col-lg-12">
+                                            <input type="text" class="form-control focus" name="Webcam_id"
+                                                placeholder="Enter Webcam Id" style="height:45px;" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group col-lg-12">
-                                    <button class="btn " type="submit" name="submit"
-                                        style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
+                                    <div class="form-group col-lg-12">
+                                        <label for="device" style="float:left; margin-left:10px;">Headphone Id</label>
+
+                                        <div class="col-lg-12">
+                                            <input type="text" class="form-control focus" name="Headphone_id"
+                                                placeholder="Enter Headphone Id" style="height:45px;" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <button class="btn swalDefaultSuccess" type="submit" name="submit"
+                                            style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
+                                    </div>
+                                    <button class='btn clicBkutton swalDefaultSuccess'></button>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </center>
-                                    </form>
+                    </center>
+                </form>
             </section>
             <!-- /.card -->
             <!-- right col -->
+
         </div>
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
@@ -386,6 +402,36 @@ $result1 = mysqli_query($conn, $sql);
             theme: 'bootstrap4',
             placeholder: 'Please Select'
         });
+    </script>
+    <!-- Bootstrap 4 -->
+    <!-- SweetAlert2 -->
+    <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="plugins/toastr/toastr.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script type="text/javascript">
+        $(function () {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            $('.swalDefaultSuccess').click(function alert() {
+                Toast.fire({
+                    type: 'success',
+                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                })
+            });
+
+
+
+        });
+        
+
     </script>
 </body>
 
