@@ -162,7 +162,7 @@ $current_url = end($url_parts);
           <a href="live_status.php" class="nav-link <?php if ($current_url == 'live_status.php') {
             echo 'active';
           } ?>">
-            <i class="nav-icon fas fa-th"></i>
+            <i class="nav-icon fas fa-toggle-on"></i>
             <p>
               Live Status
         
