@@ -436,7 +436,7 @@ $result1 = mysqli_query($conn, $sql);
             $('.swalDefaultSuccess').click(function alert() {
                 Toast.fire({
                     type: 'success',
-                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+                    title: 'Data inserted Successfully.'
                 })
             });
 

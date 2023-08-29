@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 //include connection file
 include '_db_Connect.php';
 
@@ -22,6 +24,16 @@ if (isset($_POST["submit"])) {
     }
     if ($result) {
         $login = true;
+        $_SESSION['Status']="data inserted successfully";
+        $_SESSION['Status_code']="success";
+        header('location:addSchool.php');
+
+    }
+    else{
+        $_SESSION['Status']=" data not inserted";
+        $_SESSION['Status_code']="error";
+        header('location:addSchool.php');
+
     }
 
 }
@@ -31,6 +43,15 @@ if (isset($_POST["submit"])) {
 <html>
 
 <head>
+         <!-- Ionicons -->
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+    <!-- Theme style -->
+    <!-- Google Font: Source Sans Pro -->
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Add School</title>
@@ -62,124 +83,124 @@ if (isset($_POST["submit"])) {
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    .scrollbar {
+        height: 300px;
+        overflow-y: auto;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #ADB5BD;
+        border-radius: 5px;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+    }
+
+
+    ::-webkit-scrollbar-track {
+        background-color: #f5f5f5;
+        border-radius: 1px;
+    }
+
+    .card-title {
+        float: left;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0;
+    }
+
+
+    .bg {
+        background: linear-gradient(to bottom, #2196F3, #0D47A1);
+        border: none;
+    }
+
+    .bg:hover {
+        transition: 0.3s;
+        background: linear-gradient(to top, #0088f5, #01378a);
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        table,
+        table * {
+            visibility: visible;
+
+        }
+
+        th {
             font-weight: 200;
-            font-size: 16px;
+            font-size: 14px;
         }
 
-        .scrollbar {
-            height: 300px;
-            overflow-y: auto;
+        td {
+
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+            font-size: 10px;
         }
 
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-            background-color: #ADB5BD;
-            border-radius: 5px;
+        table {
+            position: absolute;
+            left: 0;
+            top: -350px;
         }
-
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
-        }
-
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
-        }
-
-
-        ::-webkit-scrollbar-track {
-            background-color: #f5f5f5;
-            border-radius: 1px;
-        }
-
-        .card-title {
-            float: left;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin: 0;
-        }
-
-
-        .bg {
-            background: linear-gradient(to bottom, #2196F3, #0D47A1);
-            border: none;
-        }
-
-        .bg:hover {
-            transition: 0.3s;
-            background: linear-gradient(to top, #0088f5, #01378a);
-        }
-
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-
-            table,
-            table * {
-                visibility: visible;
-
-            }
-
-            th {
-                font-weight: 200;
-                font-size: 14px;
-            }
-
-            td {
-
-                border-color: inherit;
-                border-style: solid;
-                border-width: 0;
-                font-size: 10px;
-            }
-
-            table {
-                position: absolute;
-                left: 0;
-                top: -350px;
-            }
-        }
+    }
     </style>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 200;
-            font-size: 16px;
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
 
-        ::-webkit-scrollbar {
-            max-width: 7px;
-        }
+    ::-webkit-scrollbar {
+        max-width: 7px;
+    }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #5c5c5c;
-            border-radius: 10px;
-        }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #5c5c5c;
+        border-radius: 10px;
+    }
 
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            border-radius: 10px;
-            background: #c7c7c7;
-        }
-        
-        .focus:focus {
-            border: 1px solid #6f42c1;
-            color: #6f42c1;
-        }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        border-radius: 10px;
+        background: #c7c7c7;
+    }
+
+    .focus:focus {
+        border: 1px solid #6f42c1;
+        color: #6f42c1;
+    }
     </style>
 </head>
 
@@ -269,7 +290,7 @@ if (isset($_POST["submit"])) {
                                     <label for="device" style="float:left; margin-left:10px;">District</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus"  name="district"
+                                        <input type="text" class="form-control focus" name="district"
                                             placeholder="Enter District" style="height:45px;" required>
                                     </div>
                                 </div>
@@ -277,29 +298,29 @@ if (isset($_POST["submit"])) {
                                     <label for="device" style="float:left; margin-left:10px;">Block</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" placeholder="Enter block"  name="block"
-                                            style="height:45px;" required>
+                                        <input type="text" class="form-control focus" placeholder="Enter block"
+                                            name="block" style="height:45px;" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="device" style="float:left; margin-left:10px;">Village</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" placeholder="Enter Village" name="village"
-                                            style="height:45px;" required>
+                                        <input type="text" class="form-control focus" placeholder="Enter Village"
+                                            name="village" style="height:45px;" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label for="device" style="float:left; margin-left:10px;">Pincode</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" placeholder="Enter Pincode"  name="pincode"
-                                            style="height:45px;" required>
+                                        <input type="text" class="form-control focus" placeholder="Enter Pincode"
+                                            name="pincode" style="height:45px;" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <button class="btn " type="submit" name="submit"
-                                        style="background:#6f42c1;color:white; width:98%; margin-top:30px;">Submit</button>
+                                        style="background:#6f42c1;color:white; width:98%; margin-top:30px; onclick="clicked()">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -307,7 +328,7 @@ if (isset($_POST["submit"])) {
                 </center>
             </form>
             <!-- /.content -->
-
+            <button class="btn swalDefaultSuccess" id='alert' type="submit" name="submit"></button>
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
@@ -326,22 +347,40 @@ if (isset($_POST["submit"])) {
     </div>
     <!-- ./wrapper -->
     <script>
-        function change() {
-            document.getElementById("myform").submit();
-        }
+    function change() {
+        document.getElementById("myform").submit();
+    }
     </script>
     <script>
-        function printTable() {
-            window.print();
-        }
+    function printTable() {
+        window.print();
+    }
     </script>
+
+   <script src="alert/sweetalert.min.js"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <!-- <?php
+    if(isset($_SESSION['Status']) &&  $_SESSION['Status'] !=''){
+            ?>
+            <script>
+            swal({
+                    title: "<?php echo $_SESSION['Status'];?> ",
+                    // text: "You clicked the button!",
+                    icon: "<?php echo $_SESSION['Status_code'];?>",
+                    button: "Okk!",
+                });
+            </script>
+            <?php
+        unset($_SESSION['Status']);
+        }
+    ?> -->
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -371,11 +410,34 @@ if (isset($_POST["submit"])) {
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <script>
-        $('.select2').select2();
-        $('.select2bs4').select2({
-            theme: 'bootstrap4',
-            placeholder: 'Please Select'
+    $('.select2').select2();
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        placeholder: 'Please Select'
+    });
+    </script>
+
+     <script type="text/javascript">
+        $(function () {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            $('.swalDefaultSuccess').click(function alert() {
+                Toast.fire({
+                    type: 'success',
+                    title: 'Data inserted Successfully.'
+                })
+            });
+
+
+
         });
+
+
     </script>
 </body>
 
