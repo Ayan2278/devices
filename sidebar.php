@@ -23,15 +23,16 @@ $current_url = end($url_parts);
 
 </nav>
 <aside class="main-sidebar sidebar-light-purple elevation-4">
+<script src="https://kit.fontawesome.com/1c4021e600.js" crossorigin="anonymous"></script>
   <!-- Brand Logo -->
   <div class="user-panel mb-3 d-flex">
-    <div class="info" style="background: black;">
+    <div class="info">
 
       <form action="logout.php" method="POST">
 
-        <button type="submit" name="logout_btn" style="margin-left:170px;margin-top:4px;" class="btn "><i
-            class=' bx bx-log-out' style="font-size:25px;color:#6f42c1;"></i></button>
-
+        
+        <button type="submit" name="logout_btn" style="margin-left:180px;margin-top:4px;color:black;" class="btn ">
+      <i class="fa-solid fa-right-from-bracket" style="color: #030408;font-size:25px;color:#6f42c1;"></i></button>
       </form>
 
     </div>
@@ -155,12 +156,24 @@ $current_url = end($url_parts);
 
             </p>
           </a>
-
+          
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="live_status.php" class="nav-link <?php if ($current_url == 'live_status.php') {
+            echo 'active';
+          } ?>">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Live Status
+        
+            </p>
+          </a>
+        
         </li>
       </ul>
-
-
-
+      
+      
+      
     </nav>
     <!-- /.sidebar-menu -->
   </div>
