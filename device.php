@@ -187,6 +187,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
       border-radius: 10px;
       background: #c7c7c7;
     }
+    .focus:focus{
+      border: 1px solid purple;
+    }
   </style>
 </head>
 
@@ -228,7 +231,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
       <!-- general form elements -->
       <section class="content">
-        <div class="card mx-2">
+        <div class="card mx-2 shadow">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Device Timing</h3>
           </div>
@@ -259,7 +262,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               </div>
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">Block</label>
-                <select class="form-control select2bs4" style="width: 100%" name='Block' onchange="change()">
+                <select class="form-control select2bs4 focus" style="width: 100%" name='Block' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
                   // select blocks
@@ -332,7 +335,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
           </form>
         </div>
-        <div class="card mx-2" style="height:590px;">
+        <div class="card mx-2 shadow" style="height:590px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>
             <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
