@@ -1,4 +1,5 @@
 <?php
+session_start();
 //include connection file
 include '_db_Connect.php';
 $alert = false;
@@ -11,8 +12,6 @@ if (isset($_POST["submit"])) {
     $resultS = mysqli_query($conn, $sqlS);
     $rowS = $resultS->fetch_assoc();
     $district = $rowS['district'];
-
-
     $pc = $_POST["pc_sr"];
     $tft = $_POST["TFT_id"];
     $webcam = $_POST["Webcam_id"];
@@ -28,6 +27,14 @@ if (isset($_POST["submit"])) {
         $result = mysqli_query($conn, $query1);
         if ($result) {
             $alert = true;
+            $_SESSION['status']="Data Inserted Successfully";
+            $_SESSION['status_code']="success";
+            header('location: addAssets.php');
+        }
+        else{
+            $_SESSION['status']="Data Not inserted";
+            $_SESSION['status_code']="success";
+            header('location: addAssets.php');
         }
     }
     if ($result) {
@@ -83,128 +90,128 @@ $result1 = mysqli_query($conn, $sql);
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    .scrollbar {
+        height: 300px;
+        overflow-y: auto;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #ADB5BD;
+        border-radius: 5px;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+    }
+
+
+    ::-webkit-scrollbar-track {
+        background-color: #f5f5f5;
+        border-radius: 1px;
+    }
+
+    .card-title {
+        float: left;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0;
+    }
+
+
+    .bg {
+        background: linear-gradient(to bottom, #2196F3, #0D47A1);
+        border: none;
+    }
+
+    .bg:hover {
+        transition: 0.3s;
+        background: linear-gradient(to top, #0088f5, #01378a);
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        table,
+        table * {
+            visibility: visible;
+
+        }
+
+        th {
             font-weight: 200;
-            font-size: 16px;
+            font-size: 14px;
         }
 
-        .scrollbar {
-            height: 300px;
-            overflow-y: auto;
+        td {
+
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+            font-size: 10px;
         }
 
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-            background-color: #ADB5BD;
-            border-radius: 5px;
+        table {
+            position: absolute;
+            left: 0;
+            top: -350px;
         }
-
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
-        }
-
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
-        }
-
-
-        ::-webkit-scrollbar-track {
-            background-color: #f5f5f5;
-            border-radius: 1px;
-        }
-
-        .card-title {
-            float: left;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin: 0;
-        }
-
-
-        .bg {
-            background: linear-gradient(to bottom, #2196F3, #0D47A1);
-            border: none;
-        }
-
-        .bg:hover {
-            transition: 0.3s;
-            background: linear-gradient(to top, #0088f5, #01378a);
-        }
-
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-
-            table,
-            table * {
-                visibility: visible;
-
-            }
-
-            th {
-                font-weight: 200;
-                font-size: 14px;
-            }
-
-            td {
-
-                border-color: inherit;
-                border-style: solid;
-                border-width: 0;
-                font-size: 10px;
-            }
-
-            table {
-                position: absolute;
-                left: 0;
-                top: -350px;
-            }
-        }
+    }
     </style>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 200;
-            font-size: 16px;
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
 
-        ::-webkit-scrollbar {
-            max-width: 7px;
-        }
+    ::-webkit-scrollbar {
+        max-width: 7px;
+    }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #5c5c5c;
-            border-radius: 10px;
-        }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #5c5c5c;
+        border-radius: 10px;
+    }
 
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            border-radius: 10px;
-            background: #c7c7c7;
-        }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        border-radius: 10px;
+        background: #c7c7c7;
+    }
 
-        .focus:focus {
-            border: 1px solid #6f42c1;
-            color: #6f42c1;
-        }
+    .focus:focus {
+        border: 1px solid #6f42c1;
+        color: #6f42c1;
+    }
 
-        .Black {
-            color: black;
-        }
+    .Black {
+        color: black;
+    }
     </style>
 </head>
 
@@ -242,8 +249,8 @@ $result1 = mysqli_query($conn, $sql);
             <!-- /.content-header -->
 
             <!-- Main content -->
-
-
+            <!-- <script></script> -->
+            
             <!-- general form elements -->
             <section class="content">
                 <form action="" method="POST">
@@ -350,24 +357,43 @@ $result1 = mysqli_query($conn, $sql);
     </div>
     <!-- ./wrapper -->
     <script>
-        function change() {
-            document.getElementById("myform").submit();
-        }
+    function change() {
+        document.getElementById("myform").submit();
+    }
     </script>
     <script>
-        function printTable() {
-            window.print();
-        }
+    function printTable() {
+        window.print();
+    }
     </script>
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<?php 
+            if(isset($_SESSION['status']) && $_SESSION['status'] !='')
+            {
+                ?>
+            <script>
+            swal({
+                title: "<?php echo $_SESSION['status'];?>",
+               // text: "You clicked the button!",
+                icon: "<?php echo $_SESSION['status_code'];?>",
+                button: "okk",
+            });
+            </script>
+            <?php
 
+            unset($_SESSION['status']);
+        }
+        ?>
+
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <!-- sweet alert  -->
+    <script src="alert/Alert.js"></script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -395,13 +421,14 @@ $result1 = mysqli_query($conn, $sql);
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
+
     <script src="dist/js/demo.js"></script>
     <script>
-        $('.select2').select2();
-        $('.select2bs4').select2({
-            theme: 'bootstrap4',
-            placeholder: 'Please Select'
-        });
+    $('.select2').select2();
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        placeholder: 'Please Select'
+    });
     </script>
     <!-- Bootstrap 4 -->
     <!-- SweetAlert2 -->
@@ -412,26 +439,24 @@ $result1 = mysqli_query($conn, $sql);
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script type="text/javascript">
-        $(function () {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-
-            $('.swalDefaultSuccess').click(function alert() {
-                Toast.fire({
-                    type: 'success',
-                    title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-                })
-            });
-
-
-
+    $(function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
         });
-        
 
+        $('.swalDefaultSuccess').click(function alert() {
+            Toast.fire({
+                type: 'success',
+                title: 'Data inserted successfully.'
+            })
+        });
+
+
+
+    });
     </script>
 </body>
 
