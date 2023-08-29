@@ -1,9 +1,9 @@
 <?php
 
-session_start();
+
 //include connection file
 include '_db_Connect.php';
-
+$alert = false;
 $conn = mysqli_connect("localhost", "root", "", "device");
 if (isset($_POST["submit"])) {
     $school = $_POST["school_name"];
@@ -24,17 +24,7 @@ if (isset($_POST["submit"])) {
     }
     if ($result) {
         $login = true;
-        $_SESSION['Status']="data inserted successfully";
-        $_SESSION['Status_code']="success";
-        header('location:addSchool.php');
-
-    }
-    else{
-        $_SESSION['Status']=" data not inserted";
-        $_SESSION['Status_code']="error";
-        header('location:addSchool.php');
-
-    }
+      }
 
 }
 
@@ -50,8 +40,8 @@ if (isset($_POST["submit"])) {
     <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
     <!-- Theme style -->
     <!-- Google Font: Source Sans Pro -->
-
-
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Add School</title>
@@ -320,7 +310,7 @@ if (isset($_POST["submit"])) {
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <button class="btn " type="submit" name="submit"
-                                        style="background:#6f42c1;color:white; width:98%; margin-top:30px; onclick="clicked()">Submit</button>
+                                        style="background:#6f42c1;color:white; width:98%; margin-top:30px;" onclick="clicked()">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -356,32 +346,29 @@ if (isset($_POST["submit"])) {
         window.print();
     }
     </script>
-
-   <script src="alert/sweetalert.min.js"></script>
-    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-    <!-- <?php
-    if(isset($_SESSION['Status']) &&  $_SESSION['Status'] !=''){
-            ?>
-            <script>
-            swal({
-                    title: "<?php echo $_SESSION['Status'];?> ",
-                    // text: "You clicked the button!",
-                    icon: "<?php echo $_SESSION['Status_code'];?>",
-                    button: "Okk!",
-                });
-            </script>
-            <?php
-        unset($_SESSION['Status']);
-        }
-    ?> -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
+    <?php 
+    if ($result) {
+        echo "
+          <script>
+                    function clicked()
+                    {
+                        document.getElementById('alert').click();
+                        console.log('hello');
+                    }
+                    setTimeout(clicked, 1000);
+                </script>";
+    }
+    ?>
+    <!-- <script>
     $.widget.bridge('uibutton', $.ui.button)
-    </script>
+    </script> -->
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="plugins/select2/js/select2.full.min.js"></script>
@@ -416,7 +403,14 @@ if (isset($_POST["submit"])) {
         placeholder: 'Please Select'
     });
     </script>
-
+ <!-- Bootstrap 4 -->
+    <!-- SweetAlert2 -->
+    <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="plugins/toastr/toastr.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
      <script type="text/javascript">
         $(function () {
             const Toast = Swal.mixin({
