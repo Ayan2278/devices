@@ -362,7 +362,7 @@ if (isset($_POST["submit"])) {
                         document.getElementById('alert').click();
                         console.log('hello');
                     }
-                    setTimeout(clicked, 1000);
+                    setTimeout(clicked, 100);
                 </script>";
     }
     ?>

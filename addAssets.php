@@ -376,7 +376,7 @@ $result1 = mysqli_query($conn, $sql);
                         document.getElementById('alert').click();
                         console.log('hello');
                     }
-                    setTimeout(clicked, 1000);
+                    setTimeout(clicked, 100);
                 ";
     }
     ?>
