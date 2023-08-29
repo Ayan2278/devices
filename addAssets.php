@@ -314,7 +314,7 @@ $result1 = mysqli_query($conn, $sql);
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <button class="btn " type="submit" name="submit"
-                                            style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;" >Submit</button>
+                                            style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;" onclick="clicked()">Submit</button>
                                     </div>
 
 
