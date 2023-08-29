@@ -372,6 +372,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 <label for="exampleInputPassword1">Activity</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Activity'>
                   <option selected="selected">Please Select</option>
+                  <option value="All">All</option>
                   <?php
                   if ($result3) {
 
@@ -526,6 +527,21 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                               <td>' . $count . '</td>
                               <td>' . $PC . '</td>
                               <td>' . $act . '</td>
+                              <td>' . $row['Date'] . '</td>
+                              <td>' . $row['Start time'] . '</td>
+                              <td>' . $row['End time'] . '</td>
+                              <td>' . $row['Duration'] . '</td>
+                            </tr>
+                          ';
+                          $count += 1;
+                        }
+                        elseif($_POST['Activity'] == 'All')
+                        {
+                          echo '
+                            <tr>
+                              <td>' . $count . '</td>
+                              <td>' . $PC . '</td>
+                              <td>' . $row['Activity'] . '</td>
                               <td>' . $row['Date'] . '</td>
                               <td>' . $row['Start time'] . '</td>
                               <td>' . $row['End time'] . '</td>
