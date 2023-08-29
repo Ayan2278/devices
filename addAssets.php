@@ -209,9 +209,9 @@ $result1 = mysqli_query($conn, $sql);
     </style>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed ">
+<body class="hold-transition sidebar-mini layout-fixed side">
     <?php
-    include 'sidebar.php'
+    include 'sidebar.php';
         ?>
     <div class="wrapper">
 
@@ -367,19 +367,20 @@ $result1 = mysqli_query($conn, $sql);
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script>
     <?php 
     if ($result) {
         echo "
-          <script>
                     function clicked()
                     {
                         document.getElementById('alert').click();
                         console.log('hello');
                     }
                     setTimeout(clicked, 1000);
-                </script>";
+                ";
     }
     ?>
+    </script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
     <!-- Bootstrap 4 -->
