@@ -156,7 +156,7 @@ if (isset($_POST['School'])) {
       table {
         position: absolute;
         left: 0;
-        top: -520px;
+        top: -320px;
       }
     }
   </style>
