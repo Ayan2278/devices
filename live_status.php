@@ -26,15 +26,15 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
-if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) ) {
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql44 = "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl'";
+  $sql44 = "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' ";
   $result44 = mysqli_query($conn, $sql44);
   $row = $result44->fetch_assoc();
   $tot44 = mysqli_num_rows($result44);
-  if ($tot44 != 0) {
+  if ($tot44 != 0 && isset($_POST['school'])) {
     $schl = $row['school_name'];
     $sql5 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
     $result5 = mysqli_query($conn, $sql5);
