@@ -2,17 +2,60 @@
 // connetion file
 include '_db_Connect.php';
 
-// display all districts
-$sql0 = "SELECT DISTINCT `school_name` FROM `asset`";
-$result0 = mysqli_query($conn, $sql0);
+$sql = "SELECT DISTINCT `district` FROM `school`;";
+$result = mysqli_query($conn, $sql);
 
-//select districts
-if (isset($_POST['School'])) {
-  $school = $_POST['School'];
-  $sql2 = "SELECT * FROM `asset` WHERE `school_name`='$school';";
+if (isset($_POST['DIST'])) {
+  $Dis = $_POST['DIST'];
+  $sql2 = "SELECT * FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
+if (isset($_POST['DIST']) && isset($_POST['Block'])) {
+  $Dis = $_POST['DIST'];
+  $Bl = $_POST['Block'];
+  $sql3 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
+  $result3 = mysqli_query($conn, $sql3);
+  $total3 = mysqli_num_rows($result3);
+}
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+  $village = $_POST['Village'];
+  $Dis = $_POST['DIST'];
+  $Bl = $_POST['Block'];
+  $sql4 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
+  $result4 = mysqli_query($conn, $sql4);
+  $total4 = mysqli_num_rows($result4);
+}
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+  $village = $_POST['Village'];
+  $Dis = $_POST['DIST'];
+  $Bl = $_POST['Block'];
+  $sql44 = "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl'";
+  $result44 = mysqli_query($conn, $sql44);
+  $row = $result44->fetch_assoc();
+  $tot44 = mysqli_num_rows($result44);
+  if ($tot44 != 0) {
+    $schl = $row['school_name'];
+    $sql5 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
+    $result5 = mysqli_query($conn, $sql5);
+    $total5 = mysqli_num_rows($result5);
+  }
+}
+
+
+
+
+// display all districts
+// $sql0 = "SELECT DISTINCT `school_name` FROM `asset`";
+// $result0 = mysqli_query($conn, $sql0);
+
+// //select districts
+// if (isset($_POST['School'])) {
+//   $school = $_POST['School'];
+//   $sql2 = "SELECT * FROM `asset` WHERE `school_name`='$school';";
+//   $result2 = mysqli_query($conn, $sql2);
+//   $total2 = mysqli_num_rows($result2);
+// }
 
 
 // // select district and block
@@ -239,24 +282,79 @@ if (isset($_POST['School'])) {
           <!-- /.card-header -->
           <!-- form start -->
           <form method="post" action="live_status.php" role="form" id="myform">
+         
             <div class="card-body row">
-              
               <div class="form-group col-lg-2">
+                <label for="school">District</label>
+                <select class="form-control select2bs4" style="width: 100%" name="DIST" onchange="change()">
+                  <option value="Please Select">Please Select</option>
+                  <?php
+                  if ($result) {
+                    $total = mysqli_num_rows($result);
+                    if ($total != 0) {
+                      while ($row = $result->fetch_assoc()) {
 
-                <label for="exampleInputPassword1">School</label>
-                <select class="form-control select2bs4" style="width: 100%" name='School' onchange="change()">
+                        echo "<option value='" . $row['district'] . "'";
+
+                        echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
+                        echo ">" . $row['district'] . "</option>";
+                      }
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group col-lg-2">
+                <label for="exampleInputPassword1">Block</label>
+                <select class="form-control select2bs4" style="width: 100%" name='Block' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
-                  // total school
-                  if ($result0) {
-                    $total0 = mysqli_num_rows($result0);
-                    if ($total0 != 0) {
-                      while ($row = $result0->fetch_assoc()) {
+                  if ($result2) {
 
-                        echo "<option value='" . $row['school_name'] . "'";
+                    if ($total2 != 0) {
+                      while ($row2 = $result2->fetch_assoc()) {
+                        echo "<option ";
+                        echo isset($_POST["Block"]) && $_POST["Block"] == $row2["block"] ? "selected " : "";
+                        echo "value='" . $row2["block"] . "'>" . $row2["block"] . "</option>";
 
-                        echo isset($_POST["School"]) && $_POST["School"] == $row['school_name'] ? "selected " : "";
-                        echo ">" . $row['school_name'] . "</option>";
+                      }
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group col-lg-2">
+                <label for="exampleInputPassword1">Village</label>
+                <select class="form-control select2bs4" style="width: 100%" name='Village' onchange="change()">
+                  <option selected="selected">Please Select</option>
+                  <?php
+                  if ($result3) {
+
+                    if ($total3 != 0) {
+                      while ($row3 = $result3->fetch_assoc()) {
+                        echo "<option ";
+                        echo isset($_POST["Village"]) && $_POST["Village"] == $row3["village"] ? "selected " : "";
+                        echo "value='" . $row3["village"] . "'>" . $row3["village"] . "</option>";
+
+                      }
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group col-lg-2">
+                <label for="exampleInputPassword1">Select School </label>
+                <select class="form-control select2bs4" style="width: 100%" name='school'>
+                  <option selected="selected">Please Select</option>
+                  <?php
+                  if ($result3) {
+
+                    if ($total4 != 0) {
+                      while ($row4 = $result4->fetch_assoc()) {
+                        echo "<option ";
+                        echo isset($_POST["school"]) && $_POST["school"] == $row4["school_name"] ? "selected " : "";
+                        echo "value='" . $row4["school_name"] . "'>" . $row4["school_name"] . "</option>";
+
                       }
                     }
                   }
@@ -265,27 +363,26 @@ if (isset($_POST['School'])) {
               </div>
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC serial no.</label>
-                <select class="form-control select2bs4" style="width: 100%" name='PC'>
+                <select class="form-control select2bs4" style="width: 100%" name='PC' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
-                  // total pc ID
-                  if ($result2) {
-
-                    if ($total2 != 0) {
-                      while ($row2 = $result2->fetch_assoc()) {
+                  // select pc serial number
+                  if ($result5) {
+                    
+                      if($total5 !=0){
+                      while ($row6 = $result5->fetch_assoc()) {
                         echo "<option ";
-                        echo isset($_POST["PC"]) && $_POST["PC"] == $row2["pc_sr"] ? "selected " : "";
-                        echo "value='" . $row2["pc_sr"] . "'>" . $row2["pc_sr"] . "</option>";
-
-                      }
+                        echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
+                        echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
+                    
                     }
                   }
+                }
                   ?>
                 </select>
               </div>
 
-
-              <form action="device.php" method="post">
+              <form action="live_status.php" method="post">
                 <div class="form-group col-lg-1 my-4 w-100">
                   <button type="submit" name="Status" value="Status" class="btn  "
                     style="margin-top:8px;width:100%;  background:#6f42c1; color:white;">Status</button>
@@ -329,21 +426,27 @@ if (isset($_POST['School'])) {
                
                 
                   $PC=$_POST['PC'];
-                  $school = $_POST['School'];
+                  $school = $_POST['school'];
                   $count = 1;
-                  if($_POST['PC']== "Please Select" && $_POST['School']=="Please Select") {
+                  if( $_POST['DIST'] =="Please Select") {
                   $query1 = "SELECT  * FROM `asset` ";
+                 
+               
                   }
-                  elseif($_POST['PC']== "Please Select" && $_POST['School']!="Please Select") {
+                  elseif($_POST['PC']== "Please Select" && $_POST['school']!="Please Select") {
                     $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
+                    
                   }
-                  elseif ($_POST['PC'] != "Please Select" && $_POST['School']!="Please Select") {
+                  elseif( $_POST['DIST'] !="Please Select" && $_POST['Block'] !="Please Select" && $_POST['Village'] !="Please Select" && $_POST['school']!="Please Select" && $_POST['PC']!= "Please Select") {
                     $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC'";
+                    
                   }
+                if(isset($query1)){
                   $result1 = mysqli_query($conn, $query1);
                   $total1 = mysqli_num_rows($result1);
 
-                  if ($result1) {
+                }
+                  if (isset($result1) && $result1) {
                     while ($row = $result1->fetch_assoc()) {
                     echo '
                     <tr>
