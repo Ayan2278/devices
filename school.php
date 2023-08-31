@@ -350,71 +350,98 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                           </tr>
                         </thead>
                 <tbody>';
-
-
                 include '_db_Connect.php';
+                $count = 1;
+                $schl = $_POST['school'];
+                $vill = $_POST['Village'];
                 if ($_POST['DIST'] == "" && isset($_POST["Search"])) {
-                  $count = 1;
-                  $query5 = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
-                  $result5 = mysqli_query($conn, $query5);
-                  $total5 = mysqli_num_rows($result5);
-                  if ($result5) {
-                    $total5 = mysqli_num_rows($result5);
-
-
-                    if ($total5 != 0) {
-                      while ($row = $result5->fetch_assoc()) {
-                        echo '
-                            <tr>
-                              <td>' . $count . '</td>
-                              <td>' . $row['school_name'] . '</td>
-                              <td>' . $row['district'] . '</td>
-                              <td>' . $row['block'] . '</td>
-                              <td>' . $row['village'] . '</td>
-                              <td>' . $row['pincode'] . '</td>
-                              </tr>
-                          ';
-                        $count += 1;
-                      }
-                    } else
-                      echo "<tr><td colspan='9'>No data found</td></tr>";
-                  }
-
+                  $query5 = "SELECT * FROM `school` ORDER BY  `school`.`school_name` ASC";
                 }
-                if (isset($_POST['school'])) {
-                  $schl = $_POST['school'];
-                  $vill = $_POST['Village'];
+                elseif(isset($_POST['school'])) {
                   $query5 = "SELECT * FROM `school` WHERE `school_name` = '$schl' AND `village`='$vill';";
-                  $result5 = mysqli_query($conn, $query5);
-                  if ($result5) {
-                    $total5 = mysqli_num_rows($result5);
-                  }
-                  if ($_POST['school'] != "Please Select") {
-
-                    if ($result5) {
-
-                      $total5 = mysqli_num_rows($result5);
-                      $count = 1;
-                      if ($total5 != 0) {
-                        while ($row = $result5->fetch_assoc()) {
-                          echo '
-                            <tr>
-                            <td>' . $count . '</td>
-                            <td>' . $row['school_name'] . '</td>
-                            <td>' . $row['district'] . '</td>
-                            <td>' . $row['block'] . '</td>
-                            <td>' . $row['village'] . '</td>
-                            <td>' . $row['pincode'] . '</td>
-                            </tr>
-                          ';
-                          $count += 1;
-                        }
-                      } else
-                        echo "<tr><td colspan='9'>No data found</td></tr>";
+                }
+                $result5 = mysqli_query($conn, $query5);
+                $total5 = mysqli_num_rows($result5);
+                if ($result5) {
+                  if ($total5 != 0) {
+                    while ($row = $result5->fetch_assoc()) {
+                      echo '
+                        <tr>
+                        <td>' . $count . '</td>
+                        <td>' . $row['school_name'] . '</td>
+                        <td>' . $row['district'] . '</td>
+                        <td>' . $row['block'] . '</td>
+                        <td>' . $row['village'] . '</td>
+                        <td>' . $row['pincode'] . '</td>
+                        </tr>
+                      ';
+                      $count += 1;
                     }
                   }
                 }
               }
+              //   if ($_POST['DIST'] == "" && isset($_POST["Search"])) {
+              //     $count = 1;
+              //     $query5 = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
+              //     $result5 = mysqli_query($conn, $query5);
+              //     $total5 = mysqli_num_rows($result5);
+              //     if ($result5) {
+              //       $total5 = mysqli_num_rows($result5);
+
+
+              //       if ($total5 != 0) {
+              //         while ($row = $result5->fetch_assoc()) {
+              //           echo '
+              //               <tr>
+              //                 <td>' . $count . '</td>
+              //                 <td>' . $row['school_name'] . '</td>
+              //                 <td>' . $row['district'] . '</td>
+              //                 <td>' . $row['block'] . '</td>
+              //                 <td>' . $row['village'] . '</td>
+              //                 <td>' . $row['pincode'] . '</td>
+              //                 </tr>
+              //             ';
+              //           $count += 1;
+              //         }
+              //       } else
+              //         echo "<tr><td colspan='9'>No data found</td></tr>";
+              //     }
+
+              //   }
+              //   if (isset($_POST['school'])) {
+              //     $schl = $_POST['school'];
+              //     $vill = $_POST['Village'];
+              //     $query5 = "SELECT * FROM `school` WHERE `school_name` = '$schl' AND `village`='$vill';";
+              //     $result5 = mysqli_query($conn, $query5);
+              //     if ($result5) {
+              //       $total5 = mysqli_num_rows($result5);
+              //     }
+              //     if ($_POST['school'] != "Please Select") {
+
+              //       if ($result5) {
+
+              //         $total5 = mysqli_num_rows($result5);
+              //         $count = 1;
+              //         if ($total5 != 0) {
+              //           while ($row = $result5->fetch_assoc()) {
+              //             echo '
+              //               <tr>
+              //               <td>' . $count . '</td>
+              //               <td>' . $row['school_name'] . '</td>
+              //               <td>' . $row['district'] . '</td>
+              //               <td>' . $row['block'] . '</td>
+              //               <td>' . $row['village'] . '</td>
+              //               <td>' . $row['pincode'] . '</td>
+              //               </tr>
+              //             ';
+              //             $count += 1;
+              //           }
+              //         } else
+              //           echo "<tr><td colspan='9'>No data found</td></tr>";
+              //       }
+              //     }
+              //   }
+              // }
 
               ?>
 

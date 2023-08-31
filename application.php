@@ -437,7 +437,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 if ($files2) {
                   $filecount = count($files2);
                 }
-
                 include '_db_Connect.php';
                 if ($_POST['DIST'] == "" && $_POST["Application"] == "Application") {
                   $c = 1;
@@ -448,10 +447,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     $data = file_get_contents($file);
                     $data = json_decode($data, true);
                     if ($result5) {
-
-                      $total5 = mysqli_num_rows($result5);
-
-                      if ($data != 0) {
+                        $total5 = mysqli_num_rows($result5);
+                        if ($data != 0) {
                         foreach ($data as $row) {
                           echo '
                             <tr>
@@ -499,14 +496,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                       $cd++;
 
                     }
-                    //  $query4 = "SELECT * from `assets` where `PC`='$PC';";
-                    //   $result4 = mysqli_query($conn, $query4);
-                    //  $total4 = mysqli_num_rows($result4);
-                    //   if ($total4 != 0) {
-                    # code...
-                    //     $row4 = $result4->fetch_assoc();
-                    //    $block = $row4['Block'];
-                    //     $village = $row4['Village'];
+                   
                   }
                 }
                 $PC = $_POST['PC'];
