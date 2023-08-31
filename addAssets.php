@@ -7,10 +7,12 @@ $alert = false;
 $conn = mysqli_connect("localhost", "root", "", "device");
 if (isset($_POST["submit"])) {
     $school = $_POST["school_name"];
-    $sqlS = "SELECT * FROM `school` WHERE `school_name`='$school';";
-    $resultS = mysqli_query($conn, $sqlS);
-    $rowS = $resultS->fetch_assoc();
-    $district = $rowS['district'];
+    $sqlS0 = "SELECT * FROM `school` WHERE `school_name`='$school';";
+    $resultS0 = mysqli_query($conn, $sqlS0);
+    $rowS0 = $resultS0->fetch_assoc();
+    $district = $rowS0['district'];
+    $block = $rowS0['block'];
+    $village = $rowS0['village'];
 
 
     $pc = $_POST["pc_sr"];
@@ -23,9 +25,8 @@ if (isset($_POST["submit"])) {
             . $conn->connect_error);
     }
     if ($conn) {
-
-        $query1 = "INSERT INTO `asset`(`school_name`,`district`, `pc_sr`, `TFT_id`, `Webcam_id`, `Headphone_id`) VALUES ('$school','$district','$pc','$tft','$webcam','$headphone')";
-        $result = mysqli_query($conn, $query1);
+        $query1 = "INSERT INTO `asset`(`school_name`, `district`, `block`, `village`, `pc_sr`, `TFT_id`, `Webcam_id`, `Headphone_id`) VALUES ('$school','$district','$block','$village','$pc','$tft','$webcam','$headphone')";
+            $result = mysqli_query($conn, $query1);
         
     }
     if ($result) {
