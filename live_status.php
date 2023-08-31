@@ -326,8 +326,9 @@ if (isset($_POST['School'])) {
                             </tr>
                         </thead>
                 <tbody>';
+               
                 
-                if (isset($_POST["PC"])) {
+                if($_POST['PC']== "Please Select" && $_POST['School']=="Please Select") {
                   $school = $_POST['School'];
                   $count = 1;
                   $query1 = "SELECT  * FROM `asset` ";
@@ -337,6 +338,7 @@ if (isset($_POST['School'])) {
                   if ($result1) {
                     while ($row = $result1->fetch_assoc()) {
                     echo '
+                    <tr>
                     <td>' . $count . '</td>
                     <td>' . $row['school_name'] . '</td>
                     <td>' . $row['pc_sr'] . '</td>';
@@ -355,17 +357,23 @@ if (isset($_POST['School'])) {
                   echo "<tr><td colspan='9'>No data found</td></tr>";
               }
 
-                if($_POST['School'] == "" && isset($_POST["Status"])){
-                  $count=0;
-                  $school = $_POST['School'];
+               
+                  if ($_POST['PC'] != "Please Select" && $_POST['School']!="Please Select") {
                   $PC = $_POST['PC'];
-                  $status = $_POST['Status'];
-                  $query1 = "SELECT  * FROM `asset` ";
-                  $result1 = mysqli_query($conn, $query1);
-                  $total1 = mysqli_num_rows($result1);
+                  $school = $_POST['School'];
+                  $query0 = "SELECT * FROM `asset` WHERE `school_name`= '$school'";
+                  $result0 = mysqli_query($conn, $query0);
+                  if ($result0) {
+                    $total0 = mysqli_num_rows($result0);
+                  }
+                  if ($_POST['PC'] != "Please Select") {
 
-                  if ($result1) {
-                    while ($row = $result1->fetch_assoc()) {
+                    if ($result0) {
+
+                      $total0 = mysqli_num_rows($result0);
+                      $count = 1;
+                      if ($total0 != 0) {
+                        while ($row = $result0->fetch_assoc()) {
                     echo '
                     <td>' . $count . '</td>
                     <td>' . $row['school_name'] . '</td>
@@ -386,7 +394,8 @@ if (isset($_POST['School'])) {
               }
 
                 }
-              
+              }
+            }
               ?>
 
               </tbody>
