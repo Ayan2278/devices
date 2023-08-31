@@ -137,7 +137,68 @@ $result1 = mysqli_query($conn, $sql);
             transition: 0.3s;
             background: linear-gradient(to top, #0088f5, #01378a);
         }
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
 
+            /* display: none; */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .popupp {
+            width: 400px;
+            background: #fff;
+            border-radius: 0.4rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .popupp img {
+            width: 100px;
+            margin-top: -50px;
+            border-radius;
+            0.4rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .popupp h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+            color: red;
+        }
+
+        .popupp button {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6f42c1;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            visibility: hidden;
+            display: none;
+        }
         @media print {
             body * {
                 visibility: hidden;
@@ -248,6 +309,19 @@ $result1 = mysqli_query($conn, $sql);
             <!-- general form elements -->
             <section class="content">
                 <form action="" method="POST">
+                <?php
+                if (isset($result) && $result) {
+                    echo '<div class="popup-container" id="popupp">
+                    <div class="popupp">
+                        <h2 style="color: #6f42c1;">Successfully Inserted</h2>
+                        <p style="color: #6f42c1;">Your data is inserted successfully.</p>
+                        <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+                    </div>
+                </div>';
+                }
+                
+                
+                ?>
                     <center>
                         <div class="card col-lg-5 shadow">
                             <div class="card-header" style="border:0px;">
@@ -357,6 +431,17 @@ $result1 = mysqli_query($conn, $sql);
         }
     </script>
     <script>
+       
+      
+       function closePopup() {
+           var popup = document.getElementById('popupp');
+           popup.style.display = 'none';
+
+       }
+      
+   </script>
+   <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script>
         function printTable() {
             window.print();
         }
@@ -367,20 +452,7 @@ $result1 = mysqli_query($conn, $sql);
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script>
-    <?php 
-    if ($result) {
-        echo "
-                    function clicked()
-                    {
-                        document.getElementById('alert').click();
-                        console.log('hello');
-                    }
-                    setTimeout(clicked, 100);
-                ";
-    }
-    ?>
-    </script>
+    
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
     <!-- Bootstrap 4 -->
@@ -425,28 +497,7 @@ $result1 = mysqli_query($conn, $sql);
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script type="text/javascript">
-        $(function () {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-
-            $('.swalDefaultSuccess').click(function alert() {
-                Toast.fire({
-                    type: 'success',
-                    title: 'Data inserted Successfully.'
-                })
-            });
-
-
-
-        });
-
-
-    </script>
+    
 </body>
 
 </html>

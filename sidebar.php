@@ -25,19 +25,17 @@ $current_url = end($url_parts);
 <aside class="main-sidebar sidebar-light-purple elevation-4">
 <script src="https://kit.fontawesome.com/1c4021e600.js" crossorigin="anonymous"></script>
   <!-- Brand Logo -->
-  <div class="user-panel mb-3 d-flex">
     <div class="info">
 
       <form action="logout.php" method="POST">
 
         
-        <button type="submit" name="logout_btn" style="margin-left:180px;margin-top:4px;color:black;" class="btn ">
+        <button type="submit" name="logout_btn" style="margin-left:195px;margin-top:7px;color:black;" class="btn ">
       <i class="fa-solid fa-right-from-bracket" style="color: #030408;font-size:25px;color:#6f42c1;"></i></button>
       </form>
 
     </div>
 
-  </div>
   <center><img src="Ciencias logo.png" style="width:80px;" alt="Logo" class="  my-4" style="opacity: .8"></center>
 
   <!-- Sidebar -->
@@ -72,8 +70,8 @@ $current_url = end($url_parts);
             <p>
               Timings
 
+              <i class="fas fa-angle-left right"></i>
             </p>
-            <i class="fas fa-angle-left right"></i>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item ">
@@ -98,7 +96,7 @@ $current_url = end($url_parts);
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview">
+        <li class="nav-item ">
           <a href="addAssets.php" class="nav-link <?php if ($current_url == 'addAssets.php' || $current_url == 'addSchool.php') {
             echo 'active';
           } ?>">
@@ -106,8 +104,8 @@ $current_url = end($url_parts);
             <p>
               Add
 
+              <i class="fas fa-angle-left right"></i>
             </p>
-            <i class="fas fa-angle-left right"></i>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item ">
@@ -133,12 +131,12 @@ $current_url = end($url_parts);
           </ul>
         </li>
 
-
+        
         <li class="nav-item has-treeview">
           <a href="assets.php" class="nav-link <?php if ($current_url == 'assets.php') {
             echo 'active';
           } ?>">
-            <i class="nav-icon fas fa-edit"></i>
+            <i class="nav-icon fas fa-cubes"></i>
             <p>
               Assets
 
