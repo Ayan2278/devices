@@ -5,52 +5,50 @@ include '_db_Connect.php';
 //select all districts
 $sql = "SELECT DISTINCT `district` FROM `school`;";
 $result = mysqli_query($conn, $sql);
+$Dis = $_POST['DIST'];
+$Bl = $_POST['Block'];
+$village = $_POST['Village'];
+$school = $_POST['school'];
+if (isset($_POST['DIST'])) {
+  $sql = "SELECT * FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
+}
+if (isset($_POST['DIST']) && isset($_POST['Block'])) {
+  $sql = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis';";
+}
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+  $sql = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
+}
+ 
 
-// $Dis = $_POST['DIST'];
-// $Bl = $_POST['Block'];
-// $village = $_POST['Village'];
-// $school = $_POST['school'];
-// if (isset($_POST['DIST'])) {
-//   $sql = "SELECT * FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
-// }
-// if (isset($_POST['DIST']) && isset($_POST['Block'])) {
-//   $sql = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis';";
-// }
-// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
-//   $sql = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
-// }
-//   $result = mysqli_query($conn, $sql);
-//   $total = mysqli_num_rows($result);
-
-// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
-//   $sql44= "SELECT * from `asset` WHERE `school_name`='$school'";
-//   $result44 = mysqli_query($conn, $sql44);
-//   $row = $result44->fetch_assoc();
-//   $tot44= mysqli_num_rows($result44);
-//   if($tot44 != 0)
-//   {
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
+  $sql44= "SELECT * from `asset` WHERE `school_name`='$school'";
+  $result44 = mysqli_query($conn, $sql44);
+  $row = $result44->fetch_assoc();
+  $tot44= mysqli_num_rows($result44);
+  if($tot44 != 0)
+  {
     
-//     $schl = $row['school_name'];
-//     $sql6 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
-//     $result6 = mysqli_query($conn, $sql6);
-//     $total6 = mysqli_num_rows($result6);
-//   }
-// }
-// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
-//   $sql4 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village'  ;";
-//   $result5 = mysqli_query($conn, $sql4);
-//   $total4 = mysqli_num_rows($result5);
+    $schl = $row['school_name'];
+    $sql6 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
+    $result6 = mysqli_query($conn, $sql6);
+    $total6 = mysqli_num_rows($result6);
+  }
+}
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
+  $sql4 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village'  ;";
+  $result5 = mysqli_query($conn, $sql4);
+  $total4 = mysqli_num_rows($result5);
 
-//   if (isset($_POST['PC']) && $_POST['PC'] != "Please Select") {
-//       // fetch data from json file
-//     $cd = 1;
-//     $file = "JSON PC/" . $_POST['PC'] . ".json";
-//     $data = file_get_contents($file);
-//     $data = json_decode($data, true);
-//     $cd++;
+  if (isset($_POST['PC']) && $_POST['PC'] != "Please Select") {
+      // fetch data from json file
+    $cd = 1;
+    $file = "JSON PC/" . $_POST['PC'] . ".json";
+    $data = file_get_contents($file);
+    $data = json_decode($data, true);
+    $cd++;
 
-//   }
-// }
+  }
+}
 
 
 
@@ -329,11 +327,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <option value="">Please Select</option>
                   <?php
                   if ($result) {
+                    
                     $total = mysqli_num_rows($result);
                     if ($total != 0) {
                       while ($row = $result->fetch_assoc()) {
 
-                        echo "<option value='" . $row['district'] . "'";
+                        echo "<option value='" . $row['district'] . "' ";
 
                         echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
                         echo ">" . $row['district'] . "</option>";
