@@ -361,7 +361,7 @@ if (isset($_POST['School'])) {
                   if ($_POST['PC'] != "Please Select" && $_POST['School']!="Please Select") {
                   $PC = $_POST['PC'];
                   $school = $_POST['School'];
-                  $query0 = "SELECT * FROM `asset` WHERE `school_name`= '$school'";
+                  $query0 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC'";
                   $result0 = mysqli_query($conn, $query0);
                   if ($result0) {
                     $total0 = mysqli_num_rows($result0);
