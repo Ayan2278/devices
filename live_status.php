@@ -417,6 +417,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 echo '<thead>
                           <tr>
                             <th>SR</th>
+                            <th>District</th>
+                            <th>Block</th>
+                            <th>Village</th>
                             <th>School name</th>
                             <th>PC sr</th>
                             <th>Status</th>
@@ -451,6 +454,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     echo '
                     <tr>
                     <td>' . $count . '</td>
+                    <td>' . $row['district'] . '</td>
+                    <td>' . $row['block'] . '</td>
+                    <td>' . $row['village'] . '</td>
                     <td>' . $row['school_name'] . '</td>
                     <td>' . $row['pc_sr'] . '</td>';
                     echo  "<td>";
