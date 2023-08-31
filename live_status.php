@@ -34,7 +34,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $result44 = mysqli_query($conn, $sql44);
   $row = $result44->fetch_assoc();
   $tot44 = mysqli_num_rows($result44);
-  if ($tot44 != 0 && isset($_POST['school'])) {
+  if ($tot44 != 0 && $_POST['school'] != 'Please Select') {
     $schl = $row['school_name'];
     $sql5 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
     $result5 = mysqli_query($conn, $sql5);
@@ -344,7 +344,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               </div>
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">Select School </label>
-                <select class="form-control select2bs4" style="width: 100%" name='school'>
+                <select class="form-control select2bs4" style="width: 100%" name='school' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result3) {
@@ -363,7 +363,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               </div>
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC serial no.</label>
-                <select class="form-control select2bs4" style="width: 100%" name='PC' onchange="change()">
+                <select class="form-control select2bs4" style="width: 100%" name='PC'>
                   <option selected="selected">Please Select</option>
                   <?php
                   // select pc serial number
