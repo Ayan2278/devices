@@ -328,10 +328,18 @@ if (isset($_POST['School'])) {
                 <tbody>';
                
                 
-                if($_POST['PC']== "Please Select" && $_POST['School']=="Please Select") {
+                  $PC=$_POST['PC'];
                   $school = $_POST['School'];
                   $count = 1;
+                  if($_POST['PC']== "Please Select" && $_POST['School']=="Please Select") {
                   $query1 = "SELECT  * FROM `asset` ";
+                  }
+                  elseif($_POST['PC']== "Please Select" && $_POST['School']!="Please Select") {
+                    $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
+                  }
+                  elseif ($_POST['PC'] != "Please Select" && $_POST['School']!="Please Select") {
+                    $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC'";
+                  }
                   $result1 = mysqli_query($conn, $query1);
                   $total1 = mysqli_num_rows($result1);
 
@@ -355,75 +363,10 @@ if (isset($_POST['School'])) {
                   }
                 } else
                   echo "<tr><td colspan='9'>No data found</td></tr>";
-              }
+              
 
-              elseif($_POST['PC']== "Please Select" && $_POST['School']!="Please Select") {
-                $school = $_POST['School'];
-                $count = 1;
-                $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
-                $result1 = mysqli_query($conn, $query1);
-                $total1 = mysqli_num_rows($result1);
-
-                if ($result1) {
-                  while ($row = $result1->fetch_assoc()) {
-                  echo '
-                  <tr>
-                  <td>' . $count . '</td>
-                  <td>' . $row['school_name'] . '</td>
-                  <td>' . $row['pc_sr'] . '</td>';
-                  echo  "<td>";
-                  if ($row["Status"] == "Active") {
-                      echo "<span class='badge badge-success'>Active</span>";
-                  } else {
-                      echo "<span class='badge badge-danger'>Inactive</span>";
-                  }
-                  echo "</td>";
-                  echo "</tr>";
-                  
-                  $count += 1;
-                }
-              } else
-                echo "<tr><td colspan='9'>No data found</td></tr>";
-            }
-
-               
-                  if ($_POST['PC'] != "Please Select" && $_POST['School']!="Please Select") {
-                  $PC = $_POST['PC'];
-                  $school = $_POST['School'];
-                  $query0 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC'";
-                  $result0 = mysqli_query($conn, $query0);
-                  if ($result0) {
-                    $total0 = mysqli_num_rows($result0);
-                  }
-                  if ($_POST['PC'] != "Please Select") {
-
-                    if ($result0) {
-
-                      $total0 = mysqli_num_rows($result0);
-                      $count = 1;
-                      if ($total0 != 0) {
-                        while ($row = $result0->fetch_assoc()) {
-                    echo '
-                    <td>' . $count . '</td>
-                    <td>' . $row['school_name'] . '</td>
-                    <td>' . $row['pc_sr'] . '</td>';
-                    echo  "<td>";
-                    if ($row["Status"] == "Active") {
-                        echo "<span class='badge badge-success'>Active</span>";
-                    } else {
-                        echo "<span class='badge badge-danger'>Inactive</span>";
-                    }
-                    echo "</td>";
-                    echo "</tr>";
-                    
-                    $count += 1;
-                  }
-                } else
-                  echo "<tr><td colspan='9'>No data found</td></tr>";
-              }
-
-                }
-              }
+              
+           
             }
               ?>
 
