@@ -60,7 +60,31 @@ $current_url = end($url_parts);
           </a>
         </li>
 
+        <li class="nav-item has-treeview">
+          <a href="live_status.php" class="nav-link <?php if ($current_url == 'live_status.php') {
+            echo 'active';
+          } ?>">
+            <i class="nav-icon fas fa-toggle-on"></i>
+            <p>
+              Live Status
+        
+            </p>
+          </a>
+        
+        </li>
 
+        <li class="nav-item has-treeview">
+          <a href="assets.php" class="nav-link <?php if ($current_url == 'assets.php') {
+            echo 'active';
+          } ?>">
+            <i class="nav-icon fas fa-cubes"></i>
+            <p>
+              Assets
+
+            </p>
+          </a>
+
+        </li>
 
         <li class="nav-item has-treeview">
           <a href="device.php" class="nav-link <?php if ($current_url == 'device.php' || $current_url == 'application.php') {
@@ -132,18 +156,7 @@ $current_url = end($url_parts);
         </li>
 
         
-        <li class="nav-item has-treeview">
-          <a href="assets.php" class="nav-link <?php if ($current_url == 'assets.php') {
-            echo 'active';
-          } ?>">
-            <i class="nav-icon fas fa-cubes"></i>
-            <p>
-              Assets
-
-            </p>
-          </a>
-
-        </li>
+        
         <li class="nav-item has-treeview">
           <a href="school.php" class="nav-link <?php if ($current_url == 'school.php') {
             echo 'active';
@@ -156,18 +169,7 @@ $current_url = end($url_parts);
           </a>
           
         </li>
-        <li class="nav-item has-treeview">
-          <a href="live_status.php" class="nav-link <?php if ($current_url == 'live_status.php') {
-            echo 'active';
-          } ?>">
-            <i class="nav-icon fas fa-toggle-on"></i>
-            <p>
-              Live Status
         
-            </p>
-          </a>
-        
-        </li>
       </ul>
       
       
