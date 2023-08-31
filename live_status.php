@@ -3,7 +3,7 @@
 include '_db_Connect.php';
 
 // display all districts
-$sql0 = "SELECT `school_name` FROM `asset`";
+$sql0 = "SELECT DISTINCT `school_name` FROM `asset`";
 $result0 = mysqli_query($conn, $sql0);
 
 //select districts
