@@ -26,7 +26,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
-if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) ) {
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
@@ -231,8 +231,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
       border-radius: 10px;
       background: #c7c7c7;
     }
-
-    .focus:focus {
+    .focus:focus{
       border: 1px solid purple;
     }
   </style>
@@ -283,7 +282,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
           <!-- /.card-header -->
           <!-- form start -->
           <form method="post" action="live_status.php" role="form" id="myform">
-
+         
             <div class="card-body row">
               <div class="form-group col-lg-2">
                 <label for="school">District</label>
@@ -369,16 +368,16 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   <?php
                   // select pc serial number
                   if ($result5) {
-
-                    if ($total5 != 0) {
+                    
+                      if($total5 !=0){
                       while ($row6 = $result5->fetch_assoc()) {
                         echo "<option ";
                         echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
                         echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
-
-                      }
+                    
                     }
                   }
+                }
                   ?>
                 </select>
               </div>
@@ -413,57 +412,46 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
 
 
-
               // displaying all devices data in table
-              echo '<thead>
-                        <tr>
-                          <th>SR</th>
-                          <th>District</th>
-                          <th>Block</th>
-                          <th>Village</th>
-                          <th>School name</th>
-                          <th>PC sr</th>
-                          <th>Status</th>
-                          </tr>
-                      </thead>
-              <tbody>';
               if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
-
-                $PC = $_POST['PC'];
-                $school = $_POST['school'];
-                $count = 1;
-                if ($_POST['DIST'] == "Please Select") {
+                echo '<thead>
+                          <tr>
+                            <th>SR</th>
+                            <th>District</th>
+                            <th>Block</th>
+                            <th>Village</th>
+                            <th>School name</th>
+                            <th>PC sr</th>
+                            <th>Status</th>
+                            </tr>
+                        </thead>
+                <tbody>';
+               
+                
+                  $PC=$_POST['PC'];
+                  $school = $_POST['school'];
+                  $count = 1;
+                  if( $_POST['DIST'] =="Please Select") {
                   $query1 = "SELECT  * FROM `asset` ";
-
-
-                } elseif ($_POST['PC'] == "Please Select" && $_POST['school'] != "Please Select") {
-                  $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
-
-                } elseif ($_POST['DIST'] != "Please Select" && $_POST['Block'] != "Please Select" && $_POST['Village'] != "Please Select" && $_POST['school'] != "Please Select" && $_POST['PC'] != "Please Select") {
-                  $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC'";
-
-                }
-                if (isset($query1)) {
+                 
+               
+                  }
+                  elseif($_POST['PC']== "Please Select" && $_POST['school']!="Please Select") {
+                    $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
+                    
+                  }
+                  elseif( $_POST['DIST'] !="Please Select" && $_POST['Block'] !="Please Select" && $_POST['Village'] !="Please Select" && $_POST['school']!="Please Select" && $_POST['PC']!= "Please Select") {
+                    $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC'";
+                    
+                  }
+                if(isset($query1)){
                   $result1 = mysqli_query($conn, $query1);
                   $total1 = mysqli_num_rows($result1);
 
                 }
-                if (isset($result1) && $result1) {
-                  $c = 1;
-                  $pcCount = 1;
-                  $directory = getcwd() . "/JSON PC//";
-                  $filecount = 0;
-                  $files2 = glob($directory . "*");
-                  if ($files2) {
-                    $filecount = count($files2);
-                  }
-                  while ($c <= $filecount) {
+                  if (isset($result1) && $result1) {
                     while ($row = $result1->fetch_assoc()) {
-                      $file = "JSON PC/PC0" . $c . ".json";
-                      $data = file_get_contents($file);
-                      $data = json_decode($data, true);
-
-                      echo '
+                    echo '
                     <tr>
                     <td>' . $count . '</td>
                     <td>' . $row['district'] . '</td>
@@ -471,35 +459,24 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     <td>' . $row['village'] . '</td>
                     <td>' . $row['school_name'] . '</td>
                     <td>' . $row['pc_sr'] . '</td>';
-                      echo "<td>";
-                      date_default_timezone_set('Asia/Kolkata');
-                      $date = date('h:i:s');
-                      $datee = date("d/m/Y");
-                      $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                      foreach ($data as $rw) {
-                        if ($newDate < $rw['End time'] && $datee == $rw['Date']) {
-                          echo '<small class="badge badge-success">Active</small>';
-                          break;
-                        } else {
-                          echo '<small class="badge badge-danger">Inactive</small>';
-                        }
-                      }
-
-                      echo "</td>";
-                      echo "</tr>";
-
-                      $c++;
-
+                    echo  "<td>";
+                    if ($row["Status"] == "Active") {
+                        echo "<span class='badge badge-success'>Active</span>";
+                    } else {
+                        echo "<span class='badge badge-danger'>Inactive</span>";
                     }
+                    echo "</td>";
+                    echo "</tr>";
+                    
                     $count += 1;
                   }
                 } else
                   echo "<tr><td colspan='9'>No data found</td></tr>";
+              
 
-
-
-
-              }
+              
+           
+            }
               ?>
 
               </tbody>
