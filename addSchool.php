@@ -27,7 +27,8 @@ if (isset($_POST["submit"])) {
     }
 
 }
-
+$sql = "SELECT DISTINCT `name` FROM `district`;";
+$result1 = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -325,11 +326,30 @@ if (isset($_POST["submit"])) {
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
+                                   
                                     <label for="device" style="float:left; margin-left:10px;">District</label>
+                                    <div class="col-lg-12"> 
+                                    <select class="form-control focus" name="district" style="height:45px;"required>
+                                            <option value="" class="Black">Please Select</option>
+                                            <?php
+                                            // total school
+                                            if ($result1) {
+                                                $total1 = mysqli_num_rows($result1);
+                                                if ($total1 != 0) {
+                                                    while ($row = $result1->fetch_assoc()) {
 
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="district"
-                                            placeholder="Enter District" style="height:45px;" required>
+                                                        echo "<option value='" . $row['name'] . "'  class='Black'";
+
+                                                        echo isset($_POST["district"]) && $_POST["district"] == $row['name'] ? "selected " : "";
+                                                        echo ">" . $row['name'] . "</option>";
+                                                    }
+
+                                                }
+                                            }
+                                            ?>
+
+
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-6">

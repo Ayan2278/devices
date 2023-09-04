@@ -7,14 +7,14 @@ $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
-  $sql2 = "SELECT * FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
+  $sql2 = "SELECT  DISTINCT `block` FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql3 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
+  $sql3 = "SELECT  DISTINCT `village` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
@@ -22,7 +22,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql4 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
+  $sql4 = "SELECT DISTINCT `school_name` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
@@ -376,9 +376,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll; padding:0;">
                         <table id="example1" class="table table-bordered table-striped table-head-fixed">
 
-                            <?php
-
-                            echo '<thead>
+                  <?php
+                          echo '<thead>
                                     <tr>
                                     <th>SR</th>
                                     <th>District</th>
@@ -388,11 +387,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     <th>PC sr</th>
                                     <th>Status</th>
                                     </tr>
-                                  </thead>
+                                </thead>
                         <tbody>';
 
-// displaying all devices data in table
-if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
+                  // displaying all devices data in table
+                  if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
                 
                   $PC=$_POST['PC'];
                   $school = $_POST['school'];
