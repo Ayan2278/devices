@@ -354,18 +354,18 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
 
               // displaying all devices data in table
+              echo '<thead>
+                        <tr>
+                          <th>SR</th>
+                          <th>PC serial no.</th>
+                          <th>Date</th>
+                          <th>Start time</th>
+                          <th>End time</th>
+                          <th>Duration</th>
+                        </tr>
+                      </thead>
+              <tbody>';
               if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
-                echo '<thead>
-                          <tr>
-                            <th>SR</th>
-                            <th>PC serial no.</th>
-                            <th>Date</th>
-                            <th>Start time</th>
-                            <th>End time</th>
-                            <th>Duration</th>
-                          </tr>
-                        </thead>
-                <tbody>';
                 // count json file
                 $directory = getcwd() . "/JSON//";
 

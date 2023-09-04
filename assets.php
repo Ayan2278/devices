@@ -286,18 +286,18 @@ if (isset($_POST['school'])) {
               <?php
               
                   // displaying all data in table
+                  echo '<thead>
+                            <tr>
+                              <th>SR</th>
+                              <th>School name</th>
+                              <th>PC Sr</th>
+                              <th>TFT</th>
+                              <th>Webcam</th>
+                              <th>Headphone</th>
+                            </tr>
+                          </thead>
+                  <tbody>';
               if (isset($_POST['Assets']) && $_POST['Assets'] == "Assets") {
-                echo '<thead>
-                          <tr>
-                            <th>SR</th>
-                            <th>School name</th>
-                            <th>PC Sr</th>
-                            <th>TFT</th>
-                            <th>Webcam</th>
-                            <th>Headphone</th>
-                          </tr>
-                        </thead>
-                <tbody>';
 
                 // connection file
                 include '_db_Connect.php';

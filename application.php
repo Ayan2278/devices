@@ -418,19 +418,19 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
               <?php
               // application for fetch data from the json file
+              echo '<thead style="top:0;">
+                        <tr>
+                          <th>SR</th>
+                          <th>PC</th>
+                          <th>Application</th>
+                          <th>Date</th>
+                          <th>Start time</th>
+                          <th>End time</th>
+                          <th>Duration</th>
+                        </tr>
+                      </thead>
+              <tbody>';
               if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
-                echo '<thead style="top:0;">
-                          <tr>
-                            <th>SR</th>
-                            <th>PC</th>
-                            <th>Application</th>
-                            <th>Date</th>
-                            <th>Start time</th>
-                            <th>End time</th>
-                            <th>Duration</th>
-                          </tr>
-                        </thead>
-                <tbody>';
                 $directory = getcwd() . "/JSON PC//";
                 $filecount = 0;
                 $files2 = glob($directory . "*");

@@ -412,21 +412,21 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
 
 
-              // displaying all devices data in table
+
+// displaying all devices data in table
+              echo '<thead>
+                        <tr>
+                          <th>SR</th>
+                          <th>District</th>
+                          <th>Block</th>
+                          <th>Village</th>
+                          <th>School name</th>
+                          <th>PC sr</th>
+                          <th>Status</th>
+                          </tr>
+                      </thead>
+              <tbody>';
               if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
-                echo '<thead>
-                          <tr>
-                            <th>SR</th>
-                            <th>District</th>
-                            <th>Block</th>
-                            <th>Village</th>
-                            <th>School name</th>
-                            <th>PC sr</th>
-                            <th>Status</th>
-                            </tr>
-                        </thead>
-                <tbody>';
-               
                 
                   $PC=$_POST['PC'];
                   $school = $_POST['school'];

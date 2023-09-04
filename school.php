@@ -338,18 +338,18 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               // for add new employee in the repors
               
 
+              echo '<thead>
+                        <tr>
+                          <th>SR</th>
+                          <th>School name</th>
+                          <th>District</th>
+                          <th>Block</th>
+                          <th>Village</th>
+                          <th>Pincode</th>
+                        </tr>
+                      </thead>
+              <tbody>';
               if (isset($_POST['Search']) && $_POST['Search'] == "Search") {
-                echo '<thead>
-                          <tr>
-                            <th>SR</th>
-                            <th>School name</th>
-                            <th>District</th>
-                            <th>Block</th>
-                            <th>Village</th>
-                            <th>Pincode</th>
-                          </tr>
-                        </thead>
-                <tbody>';
                 include '_db_Connect.php';
                 $count = 1;
                 $schl = $_POST['school'];
