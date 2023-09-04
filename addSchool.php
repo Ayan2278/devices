@@ -27,7 +27,7 @@ if (isset($_POST["submit"])) {
     }
 
 }
-$sql = "SELECT DISTINCT `name` FROM `district`;";
+$sql = "SELECT * FROM `district` ORDER BY `district`.`name` ASC";
 $result1 = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
@@ -127,7 +127,9 @@ $result1 = mysqli_query($conn, $sql);
             transition: 0.3s;
             background: linear-gradient(to top, #0088f5, #01378a);
         }
-
+        .Black {
+            color: black;
+        }
         @media print {
             body * {
                 visibility: hidden;
