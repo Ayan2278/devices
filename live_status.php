@@ -483,7 +483,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                       echo '<small class="badge badge-success">Active</small>';
                       break;
                     }
-                    else {
+                  }
+                  $file = "JSON PC/PC0" . $c . ".json";
+                    $data = file_get_contents($file);
+                    $data = json_decode($data, true);
+                  foreach($data as $rw){
+                    if($newDate > $rw['End time'] && $datee != $rw['Date']) {
                       echo '<small class="badge badge-danger">Inactive</small>';
                       break;
                     }
