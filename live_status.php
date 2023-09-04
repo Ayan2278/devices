@@ -450,7 +450,20 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
                 }
                   if (isset($result1) && $result1) {
-                    while ($row = $result1->fetch_assoc()) {
+                    $c = 1;
+                  $pcCount = 1;
+                  $directory = getcwd() . "/JSON PC//";
+                $filecount = 0;
+                $files2 = glob($directory . "*");
+                if ($files2) {
+                  $filecount = count($files2);
+                }
+                while ($c <= $filecount) {
+                while ($row = $result1->fetch_assoc()) {
+                    $file = "JSON PC/PC0" . $c . ".json";
+                    $data = file_get_contents($file);
+                    $data = json_decode($data, true);
+                    
                     echo '
                     <tr>
                     <td>' . $count . '</td>
@@ -460,14 +473,28 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     <td>' . $row['school_name'] . '</td>
                     <td>' . $row['pc_sr'] . '</td>';
                     echo  "<td>";
-                    if ($row["Status"] == "Active") {
-                        echo "<span class='badge badge-success'>Active</span>";
-                    } else {
-                        echo "<span class='badge badge-danger'>Inactive</span>";
+                    date_default_timezone_set('Asia/Kolkata');
+                    $date = date('h:i:s');
+                    $datee = date("d/m/Y");
+                    $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                    foreach($data as $rw)
+                    {
+                    if ($newDate < $rw['End time'] && $datee == $rw['Date']) {
+                      echo '<small class="badge badge-success">Active</small>';
+                      break;
                     }
+                    else {
+                      echo '<small class="badge badge-danger">Inactive</small>';
+                      break;
+                    }
+                    }
+
                     echo "</td>";
                     echo "</tr>";
+                  
+                  $c++;    
                     
+                    }
                     $count += 1;
                   }
                 } else
