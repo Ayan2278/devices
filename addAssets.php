@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) {
 
 }
 
-$sql = "SELECT DISTINCT `school_name` FROM `school`;";
+$sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
 $result1 = mysqli_query($conn, $sql);
 
 ?>
