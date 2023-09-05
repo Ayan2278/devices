@@ -3,11 +3,13 @@
 include '_db_Connect.php';
 $alert = false;
 
-// total school
+// connection file
 $conn = mysqli_connect("localhost", "root", "", "device");
 if (isset($_POST["submit"])) {
     $school = $_POST["school_name"];
     $sqlS0 = "SELECT * FROM `school` WHERE `school_name`='$school';";
+
+    // direct print in database table district , block and village 
     $resultS0 = mysqli_query($conn, $sqlS0);
     $rowS0 = $resultS0->fetch_assoc();
     $district = $rowS0['district'];
@@ -19,11 +21,13 @@ if (isset($_POST["submit"])) {
     $tft = $_POST["TFT_id"];
     $webcam = $_POST["Webcam_id"];
     $headphone = $_POST["Headphone_id"];
-
+    
+    // check connection
     if ($conn->connect_error) {
         die("Connection failed: "
             . $conn->connect_error);
     }
+    // if connection is true then excute the query
     if ($conn) {
         $query1 = "INSERT INTO `asset`(`school_name`, `district`, `block`, `village`, `pc_sr`, `TFT_id`, `Webcam_id`, `Headphone_id`) VALUES ('$school','$district','$block','$village','$pc','$tft','$webcam','$headphone')";
             $result = mysqli_query($conn, $query1);
@@ -35,6 +39,7 @@ if (isset($_POST["submit"])) {
 
 }
 
+// automectically print school name
 $sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
 $result1 = mysqli_query($conn, $sql);
 
@@ -311,6 +316,7 @@ $result1 = mysqli_query($conn, $sql);
             <section class="content">
                 <form action="" method="POST">
                 <?php
+                // alert messages pop-up
                 if (isset($result) && $result) {
                     echo '<div class="popup-container" id="popupp">
                     <div class="popupp">
@@ -336,7 +342,8 @@ $result1 = mysqli_query($conn, $sql);
                                             style="margin-left:8px; width: 100%;height:45px;float:left;">
                                             <option value="" class="Black">Please Select</option>
                                             <?php
-                                            // total school
+                                            
+                                            // options for School Name
                                             if ($result1) {
                                                 $total1 = mysqli_num_rows($result1);
                                                 if ($total1 != 0) {

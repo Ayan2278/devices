@@ -65,7 +65,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $total4 = mysqli_num_rows($result5);
 
   if (isset($_POST['PC']) && $_POST['PC'] != "Please Select") {
-      // fetch data from json file
+    // fetch data from json file
     $cd = 1;
     $file = "JSON PC/" . $_POST['PC'] . ".json";
     $data = file_get_contents($file);
@@ -278,7 +278,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <option value="">Please Select</option>
                   <?php
                   if ($result) {
-                    
+                    // options for district
                     $total = mysqli_num_rows($result);
                     if ($total != 0) {
                       while ($row = $result->fetch_assoc()) {
@@ -299,7 +299,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result2) {
-
+                    // options for Block
                     if ($total2 != 0) {
                       while ($row2 = $result2->fetch_assoc()) {
                         echo "<option ";
@@ -318,7 +318,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result3) {
-
+                      // options for Village
                     if ($total3 != 0) {
                       while ($row3 = $result3->fetch_assoc()) {
                         echo "<option ";
@@ -337,7 +337,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result3) {
-
+                      // options for school Name
                     if ($total4 != 0) {
                       while ($row4 = $result4->fetch_assoc()) {
                         echo "<option ";
@@ -376,7 +376,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <?php
                   if ($result3) {
 
-
+                     // options for Activity Name
                     foreach ($data as $row) {
                       $arr[] = $row['Activity'];
                       echo "<option ";
@@ -417,7 +417,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
             <table id="example1" class="table table-bordered table-striped table-head-fixed">
 
               <?php
-              // application for fetch data from the json file
+
+              // displying all data in table
               echo '<thead style="top:0;">
                         <tr>
                           <th>SR</th>
@@ -430,18 +431,26 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                         </tr>
                       </thead>
               <tbody>';
+
               if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
+                //count all Json files
                 $directory = getcwd() . "/JSON PC//";
                 $filecount = 0;
                 $files2 = glob($directory . "*");
                 if ($files2) {
                   $filecount = count($files2);
                 }
+
+                // include connection file
                 include '_db_Connect.php';
+                
+                // displaying all data from database and Json file
                 if ($_POST['DIST'] == "" && $_POST["Application"] == "Application") {
                   $c = 1;
                   $pcCount = 1;
                   $count = 1;
+
+                  // include Json file
                   while ($c <= $filecount) {
                     $file = "JSON PC/PC0" . $c . ".json";
                     $data = file_get_contents($file);
@@ -483,7 +492,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 }
 
 
-
+                // displaying filter value in table
                 if (isset($_POST['PC']) && $_POST['PC'] != "Please Select") {
                   $file = "JSON PC/" . $_POST['PC'] . ".json";
                   $act = $_POST['Activity'];
@@ -500,6 +509,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   }
                 }
                 $PC = $_POST['PC'];
+                // query for fetching data 
                 $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
                 $result5 = mysqli_query($conn, $query5);
                 if ($_POST['Activity'] != "Please Select") {
@@ -525,6 +535,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                           ';
                           $count += 1;
                         }
+
+                        
                         elseif($_POST['Activity'] == 'All')
                         {
                           echo '

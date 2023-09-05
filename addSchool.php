@@ -12,13 +12,14 @@ if (isset($_POST["submit"])) {
     $village = $_POST["village"];
     $pincode = $_POST["pincode"];
 
-
+    // check connection and Die 
     if ($conn->connect_error) {
         die("Connection failed: "
             . $conn->connect_error);
     }
     if ($conn) {
-
+        
+        // Query for inserting value in database
         $query1 = "INSERT INTO `school`(`school_name`, `district`, `block`, `village`, `pincode`) VALUES ('$school','$district','$block','$village','$pincode')";
         $result = mysqli_query($conn, $query1);
     }
@@ -27,6 +28,7 @@ if (isset($_POST["submit"])) {
     }
 
 }
+// automectically print District Name
 $sql = "SELECT * FROM `district` ORDER BY `district`.`name` ASC";
 $result1 = mysqli_query($conn, $sql);
 ?>
@@ -299,6 +301,7 @@ $result1 = mysqli_query($conn, $sql);
 
             <form action="" method="POST">
                 <?php
+                // alert messages pop-up
                 if (isset($result) && $result) {
                     echo '<div class="popup-container" id="popupp">
                     <div class="popupp">
@@ -334,7 +337,7 @@ $result1 = mysqli_query($conn, $sql);
                                     <select class="form-control focus" name="district" style="height:45px;"required>
                                             <option value="" class="Black">Please Select</option>
                                             <?php
-                                            // total school
+                                           // options for School Name
                                             if ($result1) {
                                                 $total1 = mysqli_num_rows($result1);
                                                 if ($total1 != 0) {
