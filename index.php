@@ -1,4 +1,7 @@
 <?php
+
+include 'authentication.php';
+
 // connection file
 include '_db_Connect.php';
 $qry = 'SELECT DISTINCT `school_name`,`district` FROM `asset`;';
