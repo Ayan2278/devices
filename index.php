@@ -1,52 +1,36 @@
 <?php
-
+// include authenticatine file 
 include 'authentication.php';
 
 // connection file
 include '_db_Connect.php';
+// query for Active Status or Inactive Status
 $qry = 'SELECT DISTINCT `school_name`,`district` FROM `asset`;';
-$sql22 = "SELECT DISTINCT `school_name` FROM `school`";
-$sqlIN = $qry;
+
 $sqlDist = $qry;
-$sqlDistt = $qry;
-$sqlDisttt = $qry;
-$sql10 = "SELECT * FROM `asset`";
-$sql11 = "SELECT * FROM `asset`";
-
-//execute the query
-$res22 = mysqli_query($conn, $sql22);
 $resDist = mysqli_query($conn, $sqlDist);
-$resIN = mysqli_query($conn, $sqlIN);
-$resDistt = mysqli_query($conn, $sqlDistt);
-$resDisttt = mysqli_query($conn, $sqlDisttt);
-$res10 = mysqli_query($conn, $sql10);
-$res11 = mysqli_query($conn, $sql11);
-
-//total number of rows
-$tot22 = mysqli_num_rows($res22);
 $totDist = mysqli_num_rows($resDist);
-$totIN = mysqli_num_rows($resIN);
+
+$sqlDistt = $qry;
+$resDistt = mysqli_query($conn, $sqlDistt);
 $totDistt = mysqli_num_rows($resDistt);
+
+
+$sql22 = "SELECT DISTINCT `school_name` FROM `school`";
+$res22 = mysqli_query($conn, $sql22);
+$tot22 = mysqli_num_rows($res22);
+
+$sqlDisttt = $qry;
+$resDisttt = mysqli_query($conn, $sqlDisttt);
 $totDisttt = mysqli_num_rows($resDisttt);
-$tot10 = mysqli_num_rows($res10);
+
+$sql11 = "SELECT * FROM `asset`";
+$res11 = mysqli_query($conn, $sql11);
 $tot11 = mysqli_num_rows($res11);
 
-//select all districts
 $sql11 = "SELECT DISTINCT `district` FROM `school`;";
-$sql12 = "SELECT DISTINCT `block` FROM `school`;";
-$sql13 = "SELECT DISTINCT `village` FROM `school`;";
-
 $res1 = mysqli_query($conn, $sql11);
-$res2 = mysqli_query($conn, $sql12);
-$res3 = mysqli_query($conn, $sql13);
-
 $tot1 = mysqli_num_rows($res1);
-$tot2 = mysqli_num_rows($res2);
-$tot3 = mysqli_num_rows($res3);
-
-$row11 = $res1->fetch_assoc();
-$row12 = $res2->fetch_assoc();
-$row13 = $res3->fetch_assoc();
 
 $data = file_get_contents("JSON PC\PC01.json");
 $data = json_decode($data, true);
