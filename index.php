@@ -7,8 +7,8 @@ $sql22 = "SELECT DISTINCT `school_name` FROM `school`";
 $sqlIN = $qry;
 $sqlDist = $qry;
 $sqlDistt = $qry;
-$sql00 = "SELECT * FROM `asset`WHERE `Status`='Active'";
-$sql10 = "SELECT * FROM `asset`WHERE `Status`=''";
+// $sql00 = "SELECT * FROM `asset`";
+$sql10 = "SELECT * FROM `asset`";
 $sql11 = "SELECT * FROM `asset`";
 
 
@@ -17,7 +17,7 @@ $res22 = mysqli_query($conn, $sql22);
 $resDist = mysqli_query($conn, $sqlDist);
 $resIN = mysqli_query($conn, $sqlIN);
 $resDistt = mysqli_query($conn, $sqlDistt);
-$res00 = mysqli_query($conn, $sql00);
+// $res00 = mysqli_query($conn, $sql00);
 $res10 = mysqli_query($conn, $sql10);
 $res11 = mysqli_query($conn, $sql11);
 
@@ -26,7 +26,7 @@ $tot22 = mysqli_num_rows($res22);
 $totDist = mysqli_num_rows($resDist);
 $totIN = mysqli_num_rows($resIN);
 $totDistt = mysqli_num_rows($resDistt);
-$tot00 = mysqli_num_rows($res00);
+// $tot00 = mysqli_num_rows($res00);
 $tot10 = mysqli_num_rows($res10);
 $tot11 = mysqli_num_rows($res11);
 $tot11 = mysqli_num_rows($res11);
@@ -143,7 +143,23 @@ if ($total != 0)
       $inact4++;
     }
   }
-
+  function status($pcNo)
+  {
+      $file = "JSON PC/" . $pcNo . ".json";
+      $data = file_get_contents($file);
+      // echo $data(1);
+      $data = json_decode($data, true);
+      date_default_timezone_set('Asia/Kolkata');
+      $date = date('h:i:s');
+      $datee = date("d/m/Y");
+      $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+  
+      foreach ($data as $row) {
+          if ($newDate < $row['End time'] && $datee == $row['Date']) {
+              return 'Active';
+          }
+      }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -345,7 +361,11 @@ if ($total != 0)
                 <h4 class="m-b-20">Inactive PC</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3'
                     style="font-size:40px;"></i><span>
-                    <?php echo "<b>" . sprintf('%02u', $tot10) . "</b>"; ?>
+                    <?php if (status($row['pc_sr']) == 'Active') {
+                                            echo '<small class="badge badge-success">Active</small>';
+                                        } else {
+                                            echo '<small class="badge badge-danger">Inactive</small>';
+                                        } ?>
                   </span></h1>
               </div>
             </div>
