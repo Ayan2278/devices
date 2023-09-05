@@ -56,10 +56,7 @@ function status($pcNo)
 
     foreach ($data as $row) {
         if ($newDate < $row['End time'] && $datee == $row['Date']) {
-           return 'Active';
-        } else {
-            // echo '<small class="badge badge-danger">Inactive</small>';
-            return 'Inactive';
+            return 'Active';
         }
     }
 }
@@ -447,12 +444,9 @@ function status($pcNo)
                                             <td>' . $row['pc_sr'] . '</td>';
                                         echo "<td>";
 
-                                        if (status($row['pc_sr']) == 'Active')
-                                        {
+                                        if (status($row['pc_sr']) == 'Active') {
                                             echo '<small class="badge badge-success">Active</small>';
-                                        }
-                                        elseif(status($row['pc_sr']) == 'Inactive')
-                                        {
+                                        } else {
                                             echo '<small class="badge badge-danger">Inactive</small>';
                                         }
                                         echo "</td>";
