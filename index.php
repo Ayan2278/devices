@@ -7,106 +7,37 @@ include '_db_Connect.php';
 // query for Active Status or Inactive Status
 $qry = 'SELECT DISTINCT `school_name`,`district` FROM `asset`;';
 
+// Total Inactive Status
 $sqlDist = $qry;
 $resDist = mysqli_query($conn, $sqlDist);
 $totDist = mysqli_num_rows($resDist);
 
+// Total Active Status  
 $sqlDistt = $qry;
 $resDistt = mysqli_query($conn, $sqlDistt);
 $totDistt = mysqli_num_rows($resDistt);
 
-
+// query for Toatl Number of School
 $sql22 = "SELECT DISTINCT `school_name` FROM `school`";
 $res22 = mysqli_query($conn, $sql22);
 $tot22 = mysqli_num_rows($res22);
 
+// Total Number of District in Active or Inactive Status
 $sqlDisttt = $qry;
 $resDisttt = mysqli_query($conn, $sqlDisttt);
 $totDisttt = mysqli_num_rows($resDisttt);
 
+// Query for Total Number of PC 
 $sql11 = "SELECT * FROM `asset`";
 $res11 = mysqli_query($conn, $sql11);
 $tot11 = mysqli_num_rows($res11);
 
+// Query For Tatol Number of District
 $sql11 = "SELECT DISTINCT `district` FROM `school`;";
 $res1 = mysqli_query($conn, $sql11);
 $tot1 = mysqli_num_rows($res1);
 
-$data = file_get_contents("JSON PC\PC01.json");
-$data = json_decode($data, true);
-$act = 0;
-$inact = 0;
-$query = "SELECT * FROM `asset` WHERE `school_name`='Nalanda School'";
-$result = mysqli_query($conn, $query);
-$total = mysqli_num_rows($result);
-if ($total != 0)
-  while ($row2 = $result->fetch_assoc()) {
-    if ($row2["Status"] == "Active") {
-      $act++;
-    } else {
-      $inact++;
-    }
-  }
-
-
-$act0 = 0;
-$inact0 = 0;
-$query = "SELECT * FROM `asset` WHERE `school_name`='Asia pacific school'";
-$result = mysqli_query($conn, $query);
-$total = mysqli_num_rows($result);
-if ($total != 0)
-  while ($row2 = $result->fetch_assoc()) {
-    if ($row2["Status"] == "Active") {
-      $act0++;
-    } else {
-      $inact0++;
-    }
-  }
-$act1 = 0;
-$inact1 = 0;
-$query = "SELECT * FROM `asset` WHERE `school_name`='Diwan ballu school'";
-$result = mysqli_query($conn, $query);
-$total = mysqli_num_rows($result);
-if ($total != 0)
-  while ($row2 = $result->fetch_assoc()) {
-    if ($row2["Status"] == "Active") {
-      $act1++;
-    } else {
-      $inact1++;
-    }
-  }
-
-$act2 = 0;
-$inact2 = 0;
-$query = "SELECT * FROM `asset` WHERE `school_name`='Anand niketan school'";
-$result = mysqli_query($conn, $query);
-$total = mysqli_num_rows($result);
-if ($total != 0)
-  while ($row2 = $result->fetch_assoc()) {
-    if ($row2["Status"] == "Active") {
-      $act2++;
-    } else {
-      $inact2++;
-    }
-  }
-
-
-$act3 = 0;
-$inact3 = 0;
-$query = "SELECT * FROM `asset` WHERE `school_name`='Delhi public school'";
-$result = mysqli_query($conn, $query);
-$total = mysqli_num_rows($result);
-if ($total != 0)
-  while ($row2 = $result->fetch_assoc()) {
-    if ($row2["Status"] == "Active") {
-      $act3++;
-    } else {
-      $inact3++;
-    }
-  }
-
-
-
+// Function For Active Status And Inactive Status
 function status($pcNo)
 {
   $file = "JSON PC/" . $pcNo . ".json";
@@ -301,7 +232,9 @@ function status($pcNo)
                 <h4 class="m-b-20">Total School</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-school f-left my-3'
                     style="font-size:40px;"></i><span>
-                    <?php echo "<b>" . sprintf('%02u', $tot22) . "</b>"; ?>
+                    <?php
+                    // Total School 
+                    echo "<b>" . sprintf('%02u', $tot22) . "</b>"; ?>
                   </span></h1>
               </div>
             </div>
@@ -312,7 +245,9 @@ function status($pcNo)
                 <h4 class="m-b-20">Total Districts</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-city f-left my-3'
                     style="font-size:40px;"></i><span>
-                    <?php echo "<b>" . sprintf('%02u', $tot1) . "</b>"; ?>
+                    <?php
+                    // ToTal District
+                    echo "<b>" . sprintf('%02u', $tot1) . "</b>"; ?>
 
                   </span></h1>
               </div>
@@ -326,7 +261,7 @@ function status($pcNo)
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3'
                     style="font-size:40px;"></i><span>
                     <?php $countt = 0;
-
+                    // Toatl Inactive Status
                     $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
                     $result1 = mysqli_query($conn, $query1);
                     $total1 = mysqli_num_rows($result1);
@@ -350,21 +285,15 @@ function status($pcNo)
                 <h4 class="m-b-20">Total PC</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bxs-devices f-left my-3'
                     style="font-size:40px;"></i><span>
-                    <?php echo "<b>" . sprintf('%02u', $tot11) . "</b>"; ?>
+                    <?php 
+                    // Total PC
+                    echo "<b>" . sprintf('%02u', $tot11) . "</b>"; ?>
                   </span></h1>
               </div>
             </div>
           </div>
 
-          <!-- <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-pink order-card">
-                <div class="card-block">
-                    <h6 class="m-b-20">Orders Received</h6>
-                    <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>486</span></h2>
-                    <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
-                </div>
-            </div>
-        </div> -->
+         
         </div>
         <div class="row">
 
