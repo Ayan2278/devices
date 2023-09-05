@@ -2,22 +2,18 @@
 // connection file
 include '_db_Connect.php';
 $qry = 'SELECT DISTINCT `school_name`,`district` FROM `asset`;';
-// select all school from assets table
 $sql22 = "SELECT DISTINCT `school_name` FROM `school`";
 $sqlIN = $qry;
 $sqlDist = $qry;
 $sqlDistt = $qry;
-// $sql00 = "SELECT * FROM `asset`";
 $sql10 = "SELECT * FROM `asset`";
 $sql11 = "SELECT * FROM `asset`";
-
 
 //execute the query
 $res22 = mysqli_query($conn, $sql22);
 $resDist = mysqli_query($conn, $sqlDist);
 $resIN = mysqli_query($conn, $sqlIN);
 $resDistt = mysqli_query($conn, $sqlDistt);
-// $res00 = mysqli_query($conn, $sql00);
 $res10 = mysqli_query($conn, $sql10);
 $res11 = mysqli_query($conn, $sql11);
 
@@ -26,16 +22,8 @@ $tot22 = mysqli_num_rows($res22);
 $totDist = mysqli_num_rows($resDist);
 $totIN = mysqli_num_rows($resIN);
 $totDistt = mysqli_num_rows($resDistt);
-// $tot00 = mysqli_num_rows($res00);
 $tot10 = mysqli_num_rows($res10);
 $tot11 = mysqli_num_rows($res11);
-$tot11 = mysqli_num_rows($res11);
-
-// fetch all data from the table
-$row22 = $res00->fetch_assoc();
-$row00 = $res00->fetch_assoc();
-$row10 = $res10->fetch_assoc();
-$row11 = $res11->fetch_assoc();
 
 //select all districts
 $sql11 = "SELECT DISTINCT `district` FROM `school`;";
@@ -56,8 +44,6 @@ $row13 = $res3->fetch_assoc();
 
 $data = file_get_contents("JSON PC\PC01.json");
 $data = json_decode($data, true);
-
-
 $act = 0;
 $inact = 0;
 $query = "SELECT * FROM `asset` WHERE `school_name`='Nalanda School'";
@@ -361,11 +347,11 @@ if ($total != 0)
                 <h4 class="m-b-20">Inactive PC</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3'
                     style="font-size:40px;"></i><span>
-                    <?php if (status($row['pc_sr']) == 'Active') {
+                    <!-- <?php if (status($row['pc_sr']) == 'Active') {
                                             echo '<small class="badge badge-success">Active</small>';
                                         } else {
                                             echo '<small class="badge badge-danger">Inactive</small>';
-                                        } ?>
+                                        } ?> -->
                   </span></h1>
               </div>
             </div>
