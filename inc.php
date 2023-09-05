@@ -6,7 +6,7 @@ $sql22 = "SELECT DISTINCT `school_name` FROM `school`";
 $sqlIN = $qry;
 $sqlDist = $qry;
 $sqlDistt = $qry;
-$sql10 = "SELECT * FROM `asset`";
+ $sql10 = "SELECT * FROM `asset`";
 $sql11 = "SELECT * FROM `asset`";
 
 //execute the query
@@ -116,24 +116,36 @@ if ($total != 0)
   }
 
 
-
-function status($pcNo)
-{
-  $file = "JSON PC/" . $pcNo . ".json";
-  $data = file_get_contents($file);
-  // echo $data(1);
-  $data = json_decode($data, true);
-  date_default_timezone_set('Asia/Kolkata');
-  $date = date('h:i:s');
-  $datee = date("d/m/Y");
-  $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-
-  foreach ($data as $row) {
-    if ($newDate < $row['End time'] && $datee == $row['Date']) {
-      return 'Active';
+$act4 = 0;
+$inact4 = 0;
+$query = "SELECT * FROM `asset` WHERE `school_name`='Ankur School'";
+$result = mysqli_query($conn, $query);
+$total = mysqli_num_rows($result);
+if ($total != 0)
+  while ($row2 = $result->fetch_assoc()) {
+    if ($row2["Status"] == "Active") {
+      $act4++;
+    } else {
+      $inact4++;
     }
   }
-}
+  function status($pcNo)
+  {
+      $file = "JSON PC/" . $pcNo . ".json";
+      $data = file_get_contents($file);
+      // echo $data(1);
+      $data = json_decode($data, true);
+      date_default_timezone_set('Asia/Kolkata');
+      $date = date('h:i:s');
+      $datee = date("d/m/Y");
+      $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+  
+      foreach ($data as $row) {
+          if ($newDate < $row['End time'] && $datee == $row['Date']) {
+              return 'Active';
+          }
+      }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -292,7 +304,7 @@ function status($pcNo)
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item" style="color:purple;"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
-
+                
               </ol>
             </div>
           </div>
@@ -335,20 +347,11 @@ function status($pcNo)
                 <h4 class="m-b-20">Inactive PC</h4>
                 <h1 class="text-right" style="font-size:50px;"><i class='bx bx-desktop f-left my-3'
                     style="font-size:40px;"></i><span>
-                    <?php $countt = 0;
-
-                    $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
-                    $result1 = mysqli_query($conn, $query1);
-                    $total1 = mysqli_num_rows($result1);
-                    if (isset($result1) && $result1) {
-                      while ($row = $result1->fetch_assoc()) {
-                        if (status($row['pc_sr']) != 'Active') {
-                          $countt++;
-                        }
-                      }
-                      echo '<b>' . sprintf('%02u', $countt) . '</b>';
-                    }
-                    ?>
+                    <!-- <?php if (status($row['pc_sr']) == 'Active') {
+                                            echo '<small class="badge badge-success">Active</small>';
+                                        } else {
+                                            echo '<small class="badge badge-danger">Inactive</small>';
+                                        } ?> -->
                   </span></h1>
               </div>
             </div>
@@ -395,27 +398,7 @@ function status($pcNo)
               </div>
 
             </div>
-            <?php
             
-            
-            if ($totDist != 0) {
-              while ($rowDist = $resDist->fetch_assoc()) {
-                $inactive = 0;
-                $sqlINA = "SELECT * from `asset` where `district`='" . $rowDist["district"] . "';";
-                $resultINA = mysqli_query($conn, $sqlINA);
-                $totINA = mysqli_num_rows($resultINA);
-                if ($totINA != 0) {
-                  while ($rowINA = $resultINA->fetch_assoc()) {
-                    if (status($rowINA['pc_sr']) != 'Active') {
-                      # code...
-                      $inactive++;
-                    }
-                  }
-                  echo $inactive, ",";
-                }
-              }
-            }
-            ?>
           </section>
           <!-- Chart 2 -->
           <section class="col-lg-6 ">
@@ -433,7 +416,7 @@ function status($pcNo)
             </div>
 
           </section>
-
+          
         </div>
         <!-- /.row (main row) -->
         </div3><!-- /.container-fluid -->
@@ -445,7 +428,7 @@ function status($pcNo)
       </section>
     </div>
     <!-- /.content-wrapper -->
-
+   
     <footer class="main-footer">
       <strong>Copyright &copy; 2014-2019 <a href="#">Ciencias</a>.</strong>
       All rights reserved.
@@ -503,33 +486,47 @@ function status($pcNo)
       series: [{
         name: 'Active',
         data: [<?php
-        // if ($totDist != 0) {
-        //   while ($rowDist = $resDist->fetch_assoc()) {
-        //     $active = 0;
-        //     $sqlAct = "SELECT * from `asset` where `district`='" . $rowDist["district"] . "';";
-        //     $resultAct = mysqli_query($conn, $sqlAct);
-        //     $totAct = mysqli_num_rows($resultAct);
-        //     if ($totAct) {
-        //       while ($rowAct = $resultAct->fetch_assoc()) {
-        //         if ($rowAct['Status'] == 'Active') {
-        //           # code...
-        //           $active++;
-        //         }
-        //       }
-        //       echo $active, ",";
-        //     }
-        //   }
-        // }
-        
+        if ($totDist != 0) {
+          while ($rowDist = $resDist->fetch_assoc()) {
+            $active = 0;
+            $sqlAct = "SELECT * from `asset` where `district`='".$rowDist["district"]."';";
+            $resultAct = mysqli_query($conn,$sqlAct);
+            $totAct= mysqli_num_rows($resultAct);
+            if ($totAct) {
+              while ($rowAct = $resultAct->fetch_assoc()) {
+                if ($rowAct['Status'] == 'Active') {
+                  # code...
+                  $active++;
+                }
+              }
+              echo $active,",";
+            }
+          }
+        }
+
         ?>],
 
 
       }, {
         name: 'Inactive',
         data: [<?php
-
-
-
+        if ($totIN != 0) {
+          while ($rowIN = $resIN->fetch_assoc()) {
+            $inactive = 0;
+            $sqlINA = "SELECT * from `asset` where `district`='".$rowIN["district"]."';";
+            $resultINA = mysqli_query($conn,$sqlINA);
+            $totINA= mysqli_num_rows($resultINA);
+            if ($totINA) {
+              while ($rowINA = $resultINA->fetch_assoc()) {
+                if ($rowINA['Status'] == '') {
+                  # code...
+                  $inactive++;
+                }
+              }
+              echo $inactive,",";
+            }
+          }
+        }
 
         ?>]
       }],

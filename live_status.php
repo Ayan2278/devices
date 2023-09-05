@@ -256,7 +256,7 @@ function status($pcNo)
             <section class="content">
                 <div class="card mx-2 shadow">
                     <div class="card-header" style="border:0px;">
-                        <h3 class="card-title">Device Timing</h3>
+                        <h3 class="card-title">Device Status</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
