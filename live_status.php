@@ -6,44 +6,63 @@ $sql = "SELECT DISTINCT `district` FROM `school`;";
 $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['DIST'])) {
-  $Dis = $_POST['DIST'];
-  $sql2 = "SELECT  DISTINCT `block` FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
-  $result2 = mysqli_query($conn, $sql2);
-  $total2 = mysqli_num_rows($result2);
+    $Dis = $_POST['DIST'];
+    $sql2 = "SELECT  DISTINCT `block` FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
+    $result2 = mysqli_query($conn, $sql2);
+    $total2 = mysqli_num_rows($result2);
 }
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
-  $Dis = $_POST['DIST'];
-  $Bl = $_POST['Block'];
-  $sql3 = "SELECT  DISTINCT `village` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
-  $result3 = mysqli_query($conn, $sql3);
-  $total3 = mysqli_num_rows($result3);
+    $Dis = $_POST['DIST'];
+    $Bl = $_POST['Block'];
+    $sql3 = "SELECT  DISTINCT `village` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
+    $result3 = mysqli_query($conn, $sql3);
+    $total3 = mysqli_num_rows($result3);
 }
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
-  $village = $_POST['Village'];
-  $Dis = $_POST['DIST'];
-  $Bl = $_POST['Block'];
-  $sql4 = "SELECT DISTINCT `school_name` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
-  $result4 = mysqli_query($conn, $sql4);
-  $total4 = mysqli_num_rows($result4);
+    $village = $_POST['Village'];
+    $Dis = $_POST['DIST'];
+    $Bl = $_POST['Block'];
+    $sql4 = "SELECT DISTINCT `school_name` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
+    $result4 = mysqli_query($conn, $sql4);
+    $total4 = mysqli_num_rows($result4);
 }
-if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) ) {
-  $village = $_POST['Village'];
-  $Dis = $_POST['DIST'];
-  $Bl = $_POST['Block'];
-  $sql44 = "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' ";
-  $result44 = mysqli_query($conn, $sql44);
-  $row = $result44->fetch_assoc();
-  $tot44 = mysqli_num_rows($result44);
-  if ($tot44 != 0 && $_POST['school'] != 'Please Select') {
-    $schl = $row['school_name'];
-    $sql5 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
-    $result5 = mysqli_query($conn, $sql5);
-    $total5 = mysqli_num_rows($result5);
-  }
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+    $village = $_POST['Village'];
+    $Dis = $_POST['DIST'];
+    $Bl = $_POST['Block'];
+    $sql44 = "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' ";
+    $result44 = mysqli_query($conn, $sql44);
+    $row = $result44->fetch_assoc();
+    $tot44 = mysqli_num_rows($result44);
+    if ($tot44 != 0 && $_POST['school'] != 'Please Select') {
+        $schl = $row['school_name'];
+        $sql5 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
+        $result5 = mysqli_query($conn, $sql5);
+        $total5 = mysqli_num_rows($result5);
+    }
 }
 
 
+function status($pcNo)
+{
+    $file = "JSON PC/" . $pcNo . ".json";
+    $data = file_get_contents($file);
+    // echo $data(1);
+    $data = json_decode($data, true);
+    date_default_timezone_set('Asia/Kolkata');
+    $date = date('h:i:s');
+    $datee = date("d/m/Y");
+    $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
 
+    foreach ($data as $row) {
+        if ($newDate < $row['End time'] && $datee == $row['Date']) {
+           return 'Active';
+        } else {
+            // echo '<small class="badge badge-danger">Inactive</small>';
+            return 'Inactive';
+        }
+    }
+}
 
 
 ?>
@@ -80,130 +99,130 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 200;
-        font-size: 16px;
-    }
-
-    .scrollbar {
-        height: 300px;
-        overflow-y: auto;
-    }
-
-
-    ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-        background-color: #ADB5BD;
-        border-radius: 5px;
-    }
-
-
-    ::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
-    }
-
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
-    }
-
-
-    ::-webkit-scrollbar-track {
-        background-color: #f5f5f5;
-        border-radius: 1px;
-    }
-
-    .card-title {
-        float: left;
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin: 0;
-    }
-
-
-    .bg {
-        background: linear-gradient(to bottom, #2196F3, #0D47A1);
-        border: none;
-    }
-
-    .bg:hover {
-        transition: 0.3s;
-        background: linear-gradient(to top, #0088f5, #01378a);
-    }
-
-    @media print {
-        body * {
-            visibility: hidden;
-        }
-
-        table,
-        table * {
-            visibility: visible;
-
-        }
-
-        th {
+        body {
+            font-family: 'Poppins', sans-serif;
             font-weight: 200;
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        td {
-
-            border-color: inherit;
-            border-style: solid;
-            border-width: 0;
-            font-size: 10px;
+        .scrollbar {
+            height: 300px;
+            overflow-y: auto;
         }
 
-        table {
-            position: absolute;
-            left: 0;
-            top: -320px;
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background-color: #ADB5BD;
+            border-radius: 5px;
         }
-    }
+
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+        }
+
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+        }
+
+
+        ::-webkit-scrollbar-track {
+            background-color: #f5f5f5;
+            border-radius: 1px;
+        }
+
+        .card-title {
+            float: left;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 0;
+        }
+
+
+        .bg {
+            background: linear-gradient(to bottom, #2196F3, #0D47A1);
+            border: none;
+        }
+
+        .bg:hover {
+            transition: 0.3s;
+            background: linear-gradient(to top, #0088f5, #01378a);
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            table,
+            table * {
+                visibility: visible;
+
+            }
+
+            th {
+                font-weight: 200;
+                font-size: 14px;
+            }
+
+            td {
+
+                border-color: inherit;
+                border-style: solid;
+                border-width: 0;
+                font-size: 10px;
+            }
+
+            table {
+                position: absolute;
+                left: 0;
+                top: -320px;
+            }
+        }
     </style>
     <style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 200;
-        font-size: 16px;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 200;
+            font-size: 16px;
+        }
 
-    ::-webkit-scrollbar {
-        max-width: 7px;
-    }
+        ::-webkit-scrollbar {
+            max-width: 7px;
+        }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-    }
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
 
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #5c5c5c;
-        border-radius: 10px;
-    }
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #5c5c5c;
+            border-radius: 10px;
+        }
 
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        border-radius: 10px;
-        background: #c7c7c7;
-    }
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            border-radius: 10px;
+            background: #c7c7c7;
+        }
 
-    .focus:focus {
-        border: 1px solid purple;
-    }
+        .focus:focus {
+            border: 1px solid purple;
+        }
     </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed ">
     <?php
-  include 'sidebar.php'
-    ?>
+    include 'sidebar.php'
+        ?>
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -253,19 +272,19 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     onchange="change()">
                                     <option value="Please Select">Please Select</option>
                                     <?php
-                  if ($result) {
-                    $total = mysqli_num_rows($result);
-                    if ($total != 0) {
-                      while ($row = $result->fetch_assoc()) {
+                                    if ($result) {
+                                        $total = mysqli_num_rows($result);
+                                        if ($total != 0) {
+                                            while ($row = $result->fetch_assoc()) {
 
-                        echo "<option value='" . $row['district'] . "'";
+                                                echo "<option value='" . $row['district'] . "'";
 
-                        echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
-                        echo ">" . $row['district'] . "</option>";
-                      }
-                    }
-                  }
-                  ?>
+                                                echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
+                                                echo ">" . $row['district'] . "</option>";
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
@@ -274,18 +293,18 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     onchange="change()">
                                     <option selected="selected">Please Select</option>
                                     <?php
-                  if ($result2) {
+                                    if ($result2) {
 
-                    if ($total2 != 0) {
-                      while ($row2 = $result2->fetch_assoc()) {
-                        echo "<option ";
-                        echo isset($_POST["Block"]) && $_POST["Block"] == $row2["block"] ? "selected " : "";
-                        echo "value='" . $row2["block"] . "'>" . $row2["block"] . "</option>";
+                                        if ($total2 != 0) {
+                                            while ($row2 = $result2->fetch_assoc()) {
+                                                echo "<option ";
+                                                echo isset($_POST["Block"]) && $_POST["Block"] == $row2["block"] ? "selected " : "";
+                                                echo "value='" . $row2["block"] . "'>" . $row2["block"] . "</option>";
 
-                      }
-                    }
-                  }
-                  ?>
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
@@ -294,18 +313,18 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     onchange="change()">
                                     <option selected="selected">Please Select</option>
                                     <?php
-                  if ($result3) {
+                                    if ($result3) {
 
-                    if ($total3 != 0) {
-                      while ($row3 = $result3->fetch_assoc()) {
-                        echo "<option ";
-                        echo isset($_POST["Village"]) && $_POST["Village"] == $row3["village"] ? "selected " : "";
-                        echo "value='" . $row3["village"] . "'>" . $row3["village"] . "</option>";
+                                        if ($total3 != 0) {
+                                            while ($row3 = $result3->fetch_assoc()) {
+                                                echo "<option ";
+                                                echo isset($_POST["Village"]) && $_POST["Village"] == $row3["village"] ? "selected " : "";
+                                                echo "value='" . $row3["village"] . "'>" . $row3["village"] . "</option>";
 
-                      }
-                    }
-                  }
-                  ?>
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
@@ -314,18 +333,18 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     onchange="change()">
                                     <option selected="selected">Please Select</option>
                                     <?php
-                  if ($result3) {
+                                    if ($result3) {
 
-                    if ($total4 != 0) {
-                      while ($row4 = $result4->fetch_assoc()) {
-                        echo "<option ";
-                        echo isset($_POST["school"]) && $_POST["school"] == $row4["school_name"] ? "selected " : "";
-                        echo "value='" . $row4["school_name"] . "'>" . $row4["school_name"] . "</option>";
+                                        if ($total4 != 0) {
+                                            while ($row4 = $result4->fetch_assoc()) {
+                                                echo "<option ";
+                                                echo isset($_POST["school"]) && $_POST["school"] == $row4["school_name"] ? "selected " : "";
+                                                echo "value='" . $row4["school_name"] . "'>" . $row4["school_name"] . "</option>";
 
-                      }
-                    }
-                  }
-                  ?>
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
@@ -333,19 +352,19 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 <select class="form-control select2bs4" style="width: 100%" name='PC'>
                                     <option selected="selected">Please Select</option>
                                     <?php
-                  // select pc serial number
-                  if ($result5) {
-                    
-                      if($total5 !=0){
-                      while ($row6 = $result5->fetch_assoc()) {
-                        echo "<option ";
-                        echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
-                        echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
-                    
-                    }
-                  }
-                }
-                  ?>
+                                    // select pc serial number
+                                    if ($result5) {
+
+                                        if ($total5 != 0) {
+                                            while ($row6 = $result5->fetch_assoc()) {
+                                                echo "<option ";
+                                                echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
+                                                echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
+
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div>
 
@@ -376,8 +395,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll; padding:0;">
                         <table id="example1" class="table table-bordered table-striped table-head-fixed">
 
-                  <?php
-                          echo '<thead>
+                            <?php
+                            echo '<thead>
                                     <tr>
                                     <th>SR</th>
                                     <th>District</th>
@@ -390,59 +409,66 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 </thead>
                         <tbody>';
 
-                  // displaying all devices data in table
-                  if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
-                
-                  $PC=$_POST['PC'];
-                  $school = $_POST['school'];
-                  $count = 1;
-                  if( $_POST['DIST'] =="Please Select") {
-                  $query1 = "SELECT  * FROM `asset` ";
-                 
-               
-                  }
-                  elseif($_POST['PC']== "Please Select" && $_POST['school']!="Please Select") {
-                    $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
-                    
-                  }
-                  elseif( $_POST['DIST'] !="Please Select" && $_POST['Block'] !="Please Select" && $_POST['Village'] !="Please Select" && $_POST['school']!="Please Select" && $_POST['PC']!= "Please Select") {
-                    $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC'";
-                    
-                  }
-                if(isset($query1)){
-                  $result1 = mysqli_query($conn, $query1);
-                  $total1 = mysqli_num_rows($result1);
+                            // displaying all devices data in table
+                            if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
 
-                }
-                  if (isset($result1) && $result1) {
-                    while ($row = $result1->fetch_assoc()) {
-                    echo '
-                    <tr>
-                    <td>' . $count . '</td>
-                    <td>' . $row['district'] . '</td>
-                    <td>' . $row['block'] . '</td>
-                    <td>' . $row['village'] . '</td>
-                    <td>' . $row['school_name'] . '</td>
-                    <td>' . $row['pc_sr'] . '</td>';
-                    echo  "<td>";
-                    if ($row["Status"] == "Active") {
-                        echo "<span class='badge badge-success'>Active</span>";
-                    } else {
-                        echo "<span class='badge badge-danger'>Inactive</span>";
-                    }
-                    echo "</td>";
-                    echo "</tr>";
-                    
-                    $count += 1;
-                  }
-                } else
-                  echo "<tr><td colspan='9'>No data found</td></tr>";
-              
+                                $PC = $_POST['PC'];
+                                $school = $_POST['school'];
+                                $count = 1;
+                                $c = 1;
+                                $pcCount = 1;
+                                $count = 1;
+                                if ($_POST['DIST'] == "Please Select") {
+                                    $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
 
-              
-           
-            }
-              ?>
+
+                                } elseif ($_POST['PC'] == "Please Select" && $_POST['school'] != "Please Select") {
+                                    $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
+
+                                } elseif ($_POST['DIST'] != "Please Select" && $_POST['Block'] != "Please Select" && $_POST['Village'] != "Please Select" && $_POST['school'] != "Please Select" && $_POST['PC'] != "Please Select") {
+                                    $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
+
+                                }
+                                if (isset($query1)) {
+                                    $result1 = mysqli_query($conn, $query1);
+                                    $total1 = mysqli_num_rows($result1);
+
+                                }
+                                if (isset($result1) && $result1) {
+                                    while ($row = $result1->fetch_assoc()) {
+
+                                        echo '
+                                            <tr>
+                                            <td>' . $count . '</td>
+                                            <td>' . $row['district'] . '</td>
+                                            <td>' . $row['block'] . '</td>
+                                            <td>' . $row['village'] . '</td>
+                                            <td>' . $row['school_name'] . '</td>
+                                            <td>' . $row['pc_sr'] . '</td>';
+                                        echo "<td>";
+
+                                        if (status($row['pc_sr']) == 'Active')
+                                        {
+                                            echo '<small class="badge badge-success">Active</small>';
+                                        }
+                                        elseif(status($row['pc_sr']) == 'Inactive')
+                                        {
+                                            echo '<small class="badge badge-danger">Inactive</small>';
+                                        }
+                                        echo "</td>";
+                                        echo "</tr>";
+
+                                        $count += 1;
+                                        $c++;
+                                    }
+                                } else
+                                    echo "<tr><td colspan='9'>No data found</td></tr>";
+
+
+
+
+                            }
+                            ?>
 
                             </tbody>
 
@@ -478,14 +504,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     </div>
     <!-- ./wrapper -->
     <script>
-    function change() {
-        document.getElementById("myform").submit();
-    }
+        function change() {
+            document.getElementById("myform").submit();
+        }
     </script>
     <script>
-    function printTable() {
-        window.print();
-    }
+        function printTable() {
+            window.print();
+        }
     </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
@@ -493,7 +519,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-    $.widget.bridge('uibutton', $.ui.button)
+        $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -523,11 +549,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     <script src="dist/js/demo.js"></script>
     <script src="plugins/select2/js/select2.full.min.js"></script>
     <script>
-    $('.select2').select2();
-    $('.select2bs4').select2({
-        theme: 'bootstrap4',
-        placeholder: 'Please Select'
-    });
+        $('.select2').select2();
+        $('.select2bs4').select2({
+            theme: 'bootstrap4',
+            placeholder: 'Please Select'
+        });
     </script>
 
 </body>
