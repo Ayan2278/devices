@@ -6,7 +6,7 @@ $sql22 = "SELECT DISTINCT `school_name` FROM `school`";
 $sqlIN = $qry;
 $sqlDist = $qry;
 $sqlDistt = $qry;
-$sql10 = "SELECT * FROM `asset`";
+ $sql10 = "SELECT * FROM `asset`";
 $sql11 = "SELECT * FROM `asset`";
 
 //execute the query
