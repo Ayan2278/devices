@@ -403,7 +403,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
           </form>
         </div>
         <div class="card mx-2" style="height:520px;">
-          <div class="card-header" style="border:0px;">
+          <div class="card-header" style="border:1px solid white;">
             <h3 class="card-title">Data</h3>
             <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
               <button type="submit" class="btn w-100" style="background-color:#ffc167;" onclick="printTable()">
@@ -419,7 +419,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               <?php
 
               // displying all data in table
-              echo '<thead style="top:0;">
+              echo '<thead>
                         <tr>
                           <th>SR</th>
                           <th>PC</th>
