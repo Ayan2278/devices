@@ -1,14 +1,21 @@
 <?php
+// include authenticatine file 
+include 'authentication.php';
+
+// connection file
 include '_db_Connect.php';
+// Query for Select District
 $sql = "SELECT DISTINCT `district` FROM `school`;";
 $result = mysqli_query($conn, $sql);
 
+// Query for Select Block
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
   $sql2 = "SELECT DISTINCT `block` FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
+// Query for Select Village
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
@@ -16,6 +23,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
+// Query for Select School
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
@@ -228,6 +236,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 <select class="form-control select2bs4" style="width: 100%" name="DIST" onchange="change()">
                   <option value="">Please Select</option>
                   <?php
+                  // Option for Select District
                   if ($result) {
                     $total = mysqli_num_rows($result);
                     if ($total != 0) {
@@ -248,6 +257,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 <select class="form-control select2bs4" style="width: 100%" name='Block' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
+                     // Option for Select block
                   if ($result2) {
 
                     if ($total2 != 0) {
@@ -267,6 +277,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 <select class="form-control select2bs4" style="width: 100%" name='Village' onchange="change()">
                   <option selected="selected">Please Select</option>
                   <?php
+                   // Option for Select Village
                   if ($result3) {
 
                     if ($total3 != 0) {
@@ -286,6 +297,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 <select class="form-control select2bs4" style="width: 100%" name='school'>
                   <option selected="selected">Please Select</option>
                   <?php
+                    // Option for Select school
                   if ($result3) {
 
                     if ($total4 != 0) {

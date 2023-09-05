@@ -1,5 +1,6 @@
 <?php
-
+// include authenticatine file 
+include 'authentication.php';
 
 //include connection file
 include '_db_Connect.php';
