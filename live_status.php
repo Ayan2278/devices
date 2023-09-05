@@ -1,5 +1,5 @@
 <?php
-// include authenticatine file 
+// include authentication file 
 include 'authentication.php';
 
 // connetion file
