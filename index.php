@@ -11,6 +11,7 @@ $sql00 = "SELECT * FROM `asset`WHERE `Status`='Active'";
 $sql10 = "SELECT * FROM `asset`WHERE `Status`=''";
 $sql11 = "SELECT * FROM `asset`";
 
+
 //execute the query
 $res22 = mysqli_query($conn, $sql22);
 $resDist = mysqli_query($conn, $sqlDist);
