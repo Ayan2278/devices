@@ -6,6 +6,7 @@ $sql22 = "SELECT DISTINCT `school_name` FROM `school`";
 $sqlIN = $qry;
 $sqlDist = $qry;
 $sqlDistt = $qry;
+$sqlDisttt = $qry;
 $sql10 = "SELECT * FROM `asset`";
 $sql11 = "SELECT * FROM `asset`";
 
@@ -14,6 +15,7 @@ $res22 = mysqli_query($conn, $sql22);
 $resDist = mysqli_query($conn, $sqlDist);
 $resIN = mysqli_query($conn, $sqlIN);
 $resDistt = mysqli_query($conn, $sqlDistt);
+$resDisttt = mysqli_query($conn, $sqlDisttt);
 $res10 = mysqli_query($conn, $sql10);
 $res11 = mysqli_query($conn, $sql11);
 
@@ -22,6 +24,7 @@ $tot22 = mysqli_num_rows($res22);
 $totDist = mysqli_num_rows($resDist);
 $totIN = mysqli_num_rows($resIN);
 $totDistt = mysqli_num_rows($resDistt);
+$totDisttt = mysqli_num_rows($resDisttt);
 $tot10 = mysqli_num_rows($res10);
 $tot11 = mysqli_num_rows($res11);
 
@@ -395,27 +398,7 @@ function status($pcNo)
               </div>
 
             </div>
-            <?php
             
-            
-            if ($totDist != 0) {
-              while ($rowDist = $resDist->fetch_assoc()) {
-                $inactive = 0;
-                $sqlINA = "SELECT * from `asset` where `district`='" . $rowDist["district"] . "';";
-                $resultINA = mysqli_query($conn, $sqlINA);
-                $totINA = mysqli_num_rows($resultINA);
-                if ($totINA != 0) {
-                  while ($rowINA = $resultINA->fetch_assoc()) {
-                    if (status($rowINA['pc_sr']) != 'Active') {
-                      # code...
-                      $inactive++;
-                    }
-                  }
-                  echo $inactive, ",";
-                }
-              }
-            }
-            ?>
           </section>
           <!-- Chart 2 -->
           <section class="col-lg-6 ">
@@ -431,7 +414,7 @@ function status($pcNo)
               <?php include 'map.php'; ?>
 
             </div>
-
+            
           </section>
 
         </div>
@@ -503,35 +486,52 @@ function status($pcNo)
       series: [{
         name: 'Active',
         data: [<?php
-        // if ($totDist != 0) {
-        //   while ($rowDist = $resDist->fetch_assoc()) {
-        //     $active = 0;
-        //     $sqlAct = "SELECT * from `asset` where `district`='" . $rowDist["district"] . "';";
-        //     $resultAct = mysqli_query($conn, $sqlAct);
-        //     $totAct = mysqli_num_rows($resultAct);
-        //     if ($totAct) {
-        //       while ($rowAct = $resultAct->fetch_assoc()) {
-        //         if ($rowAct['Status'] == 'Active') {
-        //           # code...
-        //           $active++;
-        //         }
-        //       }
-        //       echo $active, ",";
-        //     }
-        //   }
-        // }
+        if ($totDist != 0) {
+          while ($rowDistt = $resDistt->fetch_assoc()) {
+            $active = 0;
+            $sqlA = "SELECT * from `asset` where `district`='" . $rowDistt["district"] . "';";
+            $resultA = mysqli_query($conn, $sqlA);
+            $totA = mysqli_num_rows($resultA);
+            if ($totA != 0) {
+              while ($rowA = $resultA->fetch_assoc()) {
+                if (status($rowA['pc_sr']) != '') {
+                  # code...
+                  $active++;
+                }
+              }
+              echo $active, ",";
+            }
+          }
+        }
         
         ?>],
 
 
       }, {
         name: 'Inactive',
-        data: [<?php
+        data: [
 
-
-
-
-        ?>]
+<?php
+            
+            
+            if ($totDist != 0) {
+              while ($rowDist = $resDist->fetch_assoc()) {
+                $inactive = 0;
+                $sqlINA = "SELECT * from `asset` where `district`='" . $rowDist["district"] . "';";
+                $resultINA = mysqli_query($conn, $sqlINA);
+                $totINA = mysqli_num_rows($resultINA);
+                if ($totINA != 0) {
+                  while ($rowINA = $resultINA->fetch_assoc()) {
+                    if (status($rowINA['pc_sr']) != 'Active') {
+                      # code...
+                      $inactive++;
+                    }
+                  }
+                  echo $inactive, ",";
+                }
+              }
+            }
+            ?>]
       }],
       chart: {
         type: 'bar',
@@ -550,9 +550,10 @@ function status($pcNo)
         }
       }],
       xaxis: {
-        categories: [<?php if ($totDistt != 0) {
-          while ($rowDistt = $resDistt->fetch_assoc()) {
-            echo "'" . $rowDistt['district'] . "',";
+        categories: [
+          <?php if ($totDisttt != 0) {
+          while ($rowDisttt = $resDisttt->fetch_assoc()) {
+            echo "'" . $rowDisttt['district'] . "',";
           }
         }
         ?>
