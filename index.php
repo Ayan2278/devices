@@ -51,7 +51,7 @@ function status($pcNo)
 
   foreach ($data as $row) {
     if ($newDate < $row['End time'] && $datee == $row['Date']) {
-      return 'Active';
+       return 'Active';
     }
   }
 }
