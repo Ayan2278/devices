@@ -31,7 +31,7 @@ $current_url = end($url_parts);
 
         
         <button type="submit" name="logout_btn" style="margin-left:195px;margin-top:7px;color:black;" class="btn ">
-      <i class="fa-solid fa-right-from-bracket" style="color: #030408;font-size:25px;color:black;"></i></button>
+      <i class="fa-solid fa-right-from-bracket" style="font-size:25px;color:black;"></i></button>
       </form>
 
     </div>
