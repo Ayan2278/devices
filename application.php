@@ -509,7 +509,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     }
                    
                   }
-                }
+                
                 $PC = $_POST['PC'];
                 // query for fetching data 
                 $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
@@ -560,6 +560,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   }
                 }
               }
+            }
               ?>
 
               </tbody>

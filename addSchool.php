@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
     }
 
 }
-// automectically print District Name
+// print District Name 
 $sql = "SELECT * FROM `district` ORDER BY `district`.`name` ASC";
 $result1 = mysqli_query($conn, $sql);
 ?>
