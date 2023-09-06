@@ -312,7 +312,7 @@ if (isset($_POST['school'])) {
                   $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
                 }
                 elseif(isset($_POST['pc'])){
-                  $query = "SELECT * FROM `asset` WHERE `pc_sr`= '$pc' ;";
+                  $query = "SELECT * FROM `asset` WHERE `pc_sr`= '$pc' AND `school_name`='$school' ;";
                 }
                 $result = mysqli_query($conn, $query);
                 $total = mysqli_num_rows($result);
@@ -348,74 +348,7 @@ if (isset($_POST['school'])) {
                     echo "<tr><td colspan='9'>No data found</td></tr>";
                 }
               }
-
-
-              //   if ($_POST['school'] == "" && isset($_POST["Assets"])) {
-              //     $count = 1;
-              //     $pc = $_POST['pc'];
-              //     $school = $_POST['school'];
-              //     $query5 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
-              //     $result5 = mysqli_query($conn, $query5);
-              //     $total5 = mysqli_num_rows($result5);
-              //     if ($result5) {
-              //       $total5 = mysqli_num_rows($result5);
-
-
-              //       if ($total5 != 0) {
-              //         while ($row = $result5->fetch_assoc()) {
-              //           echo '
-              //               <tr>
-              //                 <td>' . $count . '</td>
-              //                 <td>' . $row['school_name'] . '</td>
-              //                 <td>' . $row['pc_sr'] . '</td>
-              //                 <td>' . $row['TFT_id'] . '</td>
-              //                 <td>' . $row['Webcam_id'] . '</td>
-              //                 <td>' . $row['Headphone_id'] . '</td>
-              //                 </tr>
-              //             ';
-              //           $count += 1;
-              //         }
-              //       } else
-              //         echo "<tr><td colspan='9'>No data found</td></tr>";
-              //     }
-
-              //   }
-              //   if (isset($_POST['pc'])) {
-              //     $pc = $_POST['pc'];
-              //     $school = $_POST['school'];
-              //     $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$pc' ;";
-              //     $result5 = mysqli_query($conn, $query5);
-              //     if ($result5) {
-              //       $total5 = mysqli_num_rows($result5);
-              //     }
-              //     if ($_POST['pc'] != "Please Select") {
-
-              //       if ($result5) {
-
-              //         $total5 = mysqli_num_rows($result5);
-              //         $count = 1;
-              //         if ($total5 != 0) {
-              //           while ($row = $result5->fetch_assoc()) {
-              //             echo '
-              //               <tr>
-              //                 <td>' . $count . '</td>
-              //                 <td>' . $school . '</td>
-              //                 <td>' . $pc . '</td>
-              //                 <td>' . $row['TFT_id'] . '</td>
-              //                 <td>' . $row['Webcam_id'] . '</td>
-              //                 <td>' . $row['Headphone_id'] . '</td>
-              //               </tr>
-              //             ';
-              //             $count += 1;
-              //           }
-              //         } else
-              //           echo "<tr><td colspan='9'>No data found</td></tr>";
-              //       }
-              //     }
-              //   }
-              // }
-
-              ?>
+            ?>
 
               </tbody>
 
