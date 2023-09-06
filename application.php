@@ -73,6 +73,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     $file = "JSON PC/" . $_POST['PC'] . ".json";
     $data = file_get_contents($file);
     $data = json_decode($data, true);
+    $data = array_unique($data, true);
     $cd++;
 
   }
@@ -392,6 +393,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   ?>
                 </select>
               </div>
+              <?php
+              // options for Activity Name
+                    foreach ($data as $row) {
+                      $arr[] = $row['Activity'];
+                      echo "$data"
+
+                    }
+                    ?>
               <form action="application.php" method="POST">
                 <div class="form-group col-lg-1 my-4 w-100">
                   <button type="submit" name="Application" value="Application" class="btn"
