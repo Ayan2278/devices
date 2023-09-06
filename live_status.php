@@ -53,7 +53,7 @@ function status($pcNo)
     // echo $data(1);
     $data = json_decode($data, true);
     date_default_timezone_set('Asia/Kolkata');
-    $date = date('h:i:s');
+    $date = date('H:i:s');
     $datee = date("d/m/Y");
     $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
 
