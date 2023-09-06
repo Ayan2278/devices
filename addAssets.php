@@ -339,10 +339,12 @@ $result1 = mysqli_query($conn, $sql);
                             </div>
                             <div class="card-body ">
                                 <div class="row">
+                                    
                                     <div class="form-group col-lg-6">
-                                        <label for="device" style="float:left; margin-left:10px;">School</label>
-                                        <select class="form-control focus" name="school_name"
-                                            style="margin-left:8px; width: 100%;height:45px;float:left;">
+                                   
+                                    <label for="device" style="float:left; margin-left:10px;">School</label>
+                                    <div class="col-lg-12"> 
+                                    <select class="form-control focus" name="school_name" style="height:45px;" required>
                                             <option value="" class="Black">Please Select</option>
                                             <?php
                                             
@@ -365,6 +367,7 @@ $result1 = mysqli_query($conn, $sql);
 
                                         </select>
                                     </div>
+                                </div>
                                     <div class="form-group col-lg-6">
                                         <label for="device" style="float:left; margin-left:10px;">PC sr</label>
 

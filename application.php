@@ -374,8 +374,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">Activity</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Activity'>
-                  <option selected="selected">Please Select</option>
-                  <option value="All">All</option>
+                  <option selected value="All">All</option>
                   <?php
                   if ($result3) {
 

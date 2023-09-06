@@ -341,7 +341,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
         <div class="card mx-2 shadow" style="height:590px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>
-            <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
+            <div class="col-lg-1 col-md-5 col-sm-6  " style="float:right;">
               <button type="submit" class="btn  w-100" style="background-color:#ffc167;" onclick="printTable()">
                 <i class="fas fa-download"></i> Print PDF
               </button>
