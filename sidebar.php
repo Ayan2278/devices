@@ -100,9 +100,10 @@ $current_url = end($url_parts);
           <ul class="nav nav-treeview">
             <li class="nav-item ">
               <a href="device.php" class="nav-link">
-                <i class="nav-icon far fa-circle  <?php if ($current_url == 'device.php') {
-                  echo ' text-purple';
-                } ?>"></i>
+                <i class="nav-icon  fa-circle  <?php if ($current_url == 'device.php') {
+                  echo ' fas text-purple';
+                } else{
+                  echo " far";} ?>"></i>
                 <p class="<?php if ($current_url == 'device.php') {
                   echo ' text-purple';
                 } ?>">Device timing</p>
@@ -111,8 +112,9 @@ $current_url = end($url_parts);
             <li class="nav-item">
               <a href="application.php" class="nav-link">
                 <i class="nav-icon far fa-circle  <?php if ($current_url == 'application.php') {
-                  echo ' text-purple';
-                } ?>"></i>
+                  echo ' fas text-purple';
+                } else{
+                  echo " far";} ?>"></i>
                 <p class="<?php if ($current_url == 'application.php') {
                   echo ' text-purple';
                 } ?>">Application timing</p>
@@ -135,8 +137,9 @@ $current_url = end($url_parts);
             <li class="nav-item ">
               <a href="addAssets.php" class="nav-link">
                 <i class="nav-icon far fa-circle  <?php if ($current_url == 'addAssets.php') {
-                  echo ' text-purple';
-                } ?>"></i>
+                  echo ' fas text-purple';
+                } else{
+                  echo " far";} ?>"></i>
                 <p class="<?php if ($current_url == 'addAssets.php') {
                   echo ' text-purple';
                 } ?>">Add Assets</p>
@@ -145,8 +148,9 @@ $current_url = end($url_parts);
             <li class="nav-item">
               <a href="addSchool.php" class="nav-link">
                 <i class="nav-icon far fa-circle  <?php if ($current_url == 'addSchool.php') {
-                  echo ' text-purple';
-                } ?>"></i>
+                  echo ' fas text-purple';
+                } else{
+                  echo " far";} ?>"></i>
                 <p class="<?php if ($current_url == 'addSchool.php') {
                   echo ' text-purple';
                 } ?>">Add School</p>
