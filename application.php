@@ -73,6 +73,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     $file = "JSON PC/" . $_POST['PC'] . ".json";
     $data = file_get_contents($file);
     $data = json_decode($data, true);
+    $data = array_unique($data, true);
     $cd++;
 
   }
