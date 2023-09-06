@@ -396,13 +396,10 @@ $result1 = mysqli_query($conn, $sql);
             <button class="btn swalDefaultSuccess" id='alert' type="submit" name="submit"></button>
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2019 <a href="#">Ciencias</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.0.1-pre
-            </div>
-        </footer>
+        <?php
+             //include footer file
+            include  'footer.php';
+            ?>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
