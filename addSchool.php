@@ -287,7 +287,7 @@ $result1 = mysqli_query($conn, $sql);
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                 <li class="breadcrumb-item">Dashboard</li>
-                                <li class="breadcrumb-item active">School</li>
+                                <li class="breadcrumb-item active"> Add School</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
