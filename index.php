@@ -40,9 +40,9 @@ $tot1 = mysqli_num_rows($res1);
 // Function For Active Status And Inactive Status
 function status($pcNo)
 {
+  // add Json file
   $file = "JSON PC/" . $pcNo . ".json";
   $data = file_get_contents($file);
-  // echo $data(1);
   $data = json_decode($data, true);
   date_default_timezone_set('Asia/Kolkata');
   $date = date('h:i:s');
