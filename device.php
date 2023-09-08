@@ -55,27 +55,36 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-  <!-- summernote -->
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -339,7 +348,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
           </form>
         </div>
-        <div class="card mx-2 shadow" style="height:590px;">
+        <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
           <!-- <div class="col-lg-1 col-md-5 col-sm-6  " style="float:right;">
             <button type="submit" class="btn  w-100" style="background-color:#ffc167;" onclick="printTable()">
               <i class="fas fa-download"></i> Print PDF
@@ -349,190 +361,195 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
           <div class="card-body">
               <h4 class="card-title">Data</h4>
-                <table id="example2" class=" table-striped table-bordered table-hover" style="top:0; width:100%;">
+              <table id="example2" class="  table-striped table-bordered table-hover" style="top:0; width:100%;">
 
               <?php
 
 
 
-              // displaying all devices data in table
-              echo '<thead style="height:50px;">
-              <tr style="text-align:center;height:20px; font-size:15px;">
-                          <th>SR</th>
-                          <th>PC serial no.</th>
-                          <th>Date</th>
-                          <th>Start time</th>
-                          <th>End time</th>
-                          <th>Duration</th>
-                        </tr>
-                      </thead>
-              <tbody>';
-              if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
-                // count json file
-                $directory = getcwd() . "/JSON//";
+// displaying all devices data in table
+echo '<thead style="height:50px;">
+<tr style="text-align:center;height:20px; font-size:15px;">
+            <th>SR</th>
+            <th>PC serial no.</th>
+            <th>Date</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+<tbody>';
+if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
+  // count json file
+  $directory = getcwd() . "/JSON//";
 
-                $filecount = 0;
+  $filecount = 0;
 
-                $files2 = glob($directory . "*");
+  $files2 = glob($directory . "*");
 
-                if ($files2) {
-                  $filecount = count($files2);
-                }
+  if ($files2) {
+    $filecount = count($files2);
+  }
 
-                // connection file
-                include '_db_Connect.php';
+  // connection file
+  include '_db_Connect.php';
 
-                if ($_POST['DIST'] == "All") {
+  if ($_POST['DIST'] == "All") {
+  
+    $c = 1;
+    $pcCount = 1;
+    $count = 1;
+    while ($c <= $filecount) {
+      $file = "JSON/PC0" . $c . ".json";
+      $query4 = "SELECT * from `asset` where `pc_sr`='PC0$c';";
+      $result4 = mysqli_query($conn, $query4);
+      $total4 = mysqli_num_rows($result4);
+
+      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
+      $result5 = mysqli_query($conn, $query5);
+      $data = file_get_contents($file);
+      $data = json_decode($data, true);
+      if ($result5) {
+
+        $total5 = mysqli_num_rows($result5);
+
+        if ($data != 0) {
+          foreach ($data as $row) {
+            echo '
+            <tr  style="text-align:center; height:41px; font-size:15px;">
+                <td>' . $count . '</td>
+                <td>PC0' . $c . '</td>
+                <td>' . $row['Date'] . '</td>
+                <td>' . $row['Start_time'] . '</td><td>';
+            date_default_timezone_set('Asia/Kolkata');
+            $date = date('h:i:s');
+            $datee = date("d/m/Y");
+            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+            if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+              echo '<small class="badge badge-success">Running</small>';
+            }
+            else {
+              echo $row['End_time'] . '</td>';
+            }
+            echo '
                 
-                  $c = 1;
-                  $pcCount = 1;
-                  $count = 1;
-                  while ($c <= $filecount) {
-                    $file = "JSON/PC0" . $c . ".json";
-                    $query4 = "SELECT * from `asset` where `pc_sr`='PC0$c';";
-                    $result4 = mysqli_query($conn, $query4);
-                    $total4 = mysqli_num_rows($result4);
+                <td>' . $row['Duration'] . '</td>
+              </tr>
+            ';
+            $count += 1;
+          }
+        } else
+          echo "<tr><td colspan='9'>No data found</td></tr>";
+      }
+      $c++;
+      $pcCount++;
+    }
+  }
 
-                    $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
-                    $result5 = mysqli_query($conn, $query5);
-                    $data = file_get_contents($file);
-                    $data = json_decode($data, true);
-                    if ($result5) {
 
-                      $total5 = mysqli_num_rows($result5);
+  if ($_POST['DIST'] != "All" && $_POST['Block']=="All") {
+  
+    $c = 1;
+    $pcCount = 1;
+    $count = 1;
+    while ($c <= $filecount) {
+      $file = "JSON/PC0" . $c . ".json";
+      $query4 = "SELECT * from `asset` where `district`='$Dis';";
+      $result4 = mysqli_query($conn, $query4);
+      $total4 = mysqli_num_rows($result4);
 
-                      if ($data != 0) {
-                        foreach ($data as $row) {
-                          echo '
-                          <tr  style="text-align:center; height:41px; font-size:15px;">
-                              <td>' . $count . '</td>
-                              <td>PC0' . $c . '</td>
-                              <td>' . $row['Date'] . '</td>
-                              <td>' . $row['Start_time'] . '</td><td>';
-                          date_default_timezone_set('Asia/Kolkata');
-                          $date = date('h:i:s');
-                          $datee = date("d/m/Y");
-                          $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                          if ($newDate < $row['End_time'] && $datee == $row['Date']) {
-                            echo '<small class="badge badge-success">Running</small>';
-                          }
-                          else {
-                            echo $row['End_time'] . '</td>';
-                          }
-                          echo '
-                              
-                              <td>' . $row['Duration'] . '</td>
-                            </tr>
-                          ';
-                          $count += 1;
-                        }
-                      } else
-                        echo "<tr><td colspan='9'>No data found</td></tr>";
-                    }
-                    $c++;
-                    $pcCount++;
-                  }
-                }
-              
-             
-                if ($_POST['DIST'] != "All" && $_POST['Block']=="All") {
+      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis';";
+      $result5 = mysqli_query($conn, $query5);
+      $data = file_get_contents($file);
+      $data = json_decode($data, true);
+      if ($result5) {
+
+        $total5 = mysqli_num_rows($result5);
+
+        if ($data != 0) {
+          foreach ($data as $row) {
+            echo '
+              <tr>
+                <td>' . $count . '</td>
+                <td>PC0' . $c . '</td>
+                <td>' . $row['Date'] . '</td>
+                <td>' . $row['Start_time'] . '</td><td>';
+            date_default_timezone_set('Asia/Kolkata');
+            $date = date('h:i:s');
+            $datee = date("d/m/Y");
+            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+            if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+              echo '<small class="badge badge-success">Running</small>';
+            }
+            else {
+              echo $row['End_time'] . '</td>';
+            }
+            echo '
                 
-                  $c = 1;
-                  $pcCount = 1;
-                  $count = 1;
-                  while ($c <= $filecount) {
-                    $file = "JSON/PC0" . $c . ".json";
-                    $query4 = "SELECT * from `asset` where `district`='$Dis';";
-                    $result4 = mysqli_query($conn, $query4);
-                    $total4 = mysqli_num_rows($result4);
+                <td>' . $row['Duration'] . '</td>
+              </tr>
+            ';
+            $count += 1;
+          }
+        } else
+          echo "<tr><td colspan='9'>No data found</td></tr>";
+      }
+      $c++;
+      $pcCount++;
+    }
+  }
 
-                    $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis';";
-                    $result5 = mysqli_query($conn, $query5);
-                    $data = file_get_contents($file);
-                    $data = json_decode($data, true);
-                    if ($result5) {
 
-                      $total5 = mysqli_num_rows($result5);
 
-                      if ($data != 0) {
-                        foreach ($data as $row) {
-                          echo '
-                            <tr>
-                              <td>' . $count . '</td>
-                              <td>PC0' . $c . '</td>
-                              <td>' . $row['Date'] . '</td>
-                              <td>' . $row['Start_time'] . '</td><td>';
-                          date_default_timezone_set('Asia/Kolkata');
-                          $date = date('h:i:s');
-                          $datee = date("d/m/Y");
-                          $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                          if ($newDate < $row['End_time'] && $datee == $row['Date']) {
-                            echo '<small class="badge badge-success">Running</small>';
-                          }
-                          else {
-                            echo $row['End_time'] . '</td>';
-                          }
-                          echo '
-                              
-                              <td>' . $row['Duration'] . '</td>
-                            </tr>
-                          ';
-                          $count += 1;
-                        }
-                      } else
-                        echo "<tr><td colspan='9'>No data found</td></tr>";
-                    }
-                    $c++;
-                    $pcCount++;
-                  }
-                }
+  if (isset($_POST['PC'])) {
+    $file = "JSON/" . $_POST['PC'] . ".json";
+    $PC = $_POST['PC'];
+    if ($PC) {
+      $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
+      $result4 = mysqli_query($conn, $query4);
+      $total4 = mysqli_num_rows($result4);
+
+    }
+    $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
+    $result5 = mysqli_query($conn, $query5);
+    if ($_POST['PC'] != "All") {
+      $data = file_get_contents($file);
+      $data = json_decode($data, true);
+      if ($result5) {
+
+        $total5 = mysqli_num_rows($result5);
+        $count = 1;
+        if ($data != 0) {
+          foreach ($data as $row) {
+            echo '
+              <tr>
+                <td>' . $count . '</td>
+                <td>' . $PC . '</td>
+                <td>' . $row['Date'] . '</td>
+                <td>' . $row['Start_time'] . '</td>
+                <td>' . $row['End_time'] . '</td>
+                <td>' . $row['Duration'] . '</td>
+              </tr>
+            ';
+            $count += 1;
+          }
+        }else
+          echo "<tr><td colspan='9'>No data found</td></tr>";
+      }
+    }
+  }
+
+
+}
+
+
+
+?>
+
+              </tbody>
+
+           
               
-             
-
-                if (isset($_POST['PC'])) {
-                  $file = "JSON/" . $_POST['PC'] . ".json";
-                  $PC = $_POST['PC'];
-                  if ($PC) {
-                    $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
-                    $result4 = mysqli_query($conn, $query4);
-                    $total4 = mysqli_num_rows($result4);
-
-                  }
-                  $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
-                  $result5 = mysqli_query($conn, $query5);
-                  if ($_POST['PC'] != "All") {
-                    $data = file_get_contents($file);
-                    $data = json_decode($data, true);
-                    if ($result5) {
-
-                      $total5 = mysqli_num_rows($result5);
-                      $count = 1;
-                      if ($data != 0) {
-                        foreach ($data as $row) {
-                          echo '
-                            <tr>
-                              <td>' . $count . '</td>
-                              <td>' . $PC . '</td>
-                              <td>' . $row['Date'] . '</td>
-                              <td>' . $row['Start_time'] . '</td>
-                              <td>' . $row['End_time'] . '</td>
-                              <td>' . $row['Duration'] . '</td>
-                            </tr>
-                          ';
-                          $count += 1;
-                        }
-                      }else
-                        echo "<tr><td colspan='9'>No data found</td></tr>";
-                    }
-                  }
-                }
-
-
-              }
-
-
-
-              ?>
 
               </tbody>
 
@@ -540,6 +557,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
           </div>
           <!-- /.card-body -->
         </div>
+          </div>
         <!-- /.card -->
       </section>
       
@@ -566,73 +584,77 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   </div>
   <!-- ./wrapper -->
   <script>
-    function change() {
-      document.getElementById("myform").submit();
-    }
-  </script>
-  <script>
-    function printTable() {
-      window.print();
-    }
-  </script>
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
-  <!-- Sparkline -->
-  <script src="plugins/sparklines/sparkline.js"></script>
-  <!-- JQVMap -->
-  <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-  <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-  <!-- daterangepicker -->
-  <script src="plugins/moment/moment.min.js"></script>
-  <script src="plugins/daterangepicker/daterangepicker.js"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-  <!-- Summernote -->
-  <script src="plugins/summernote/summernote-bs4.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
-  <script src="plugins/select2/js/select2.full.min.js"></script>
-  <script>
-    $('.select2').select2();
-    $('.select2bs4').select2({
-      theme: 'bootstrap4',
-      placeholder: 'Please Select'
-    });
-  </script>
-  <script src="dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <!-- page script -->
-  <script>
-    $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "ordering": false,
-        "info": true,
-        "autoWidth": false,
-      });
-    });
-  </script>
+        function change() {
+            document.getElementById("myform").submit();
+        }
+    </script>
+    <script>
+        function printTable() {
+            window.print();
+        }
+    </script>
+   
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
+    <script src="plugins/datatables/jquery.dataTables.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <script src="plugins/select2/js/select2.full.min.js"></script>
+    <script>
+        $('.select2').select2();
+        $('.select2bs4').select2({
+            theme: 'bootstrap4',
+            placeholder: 'Please Select'
+        });
+    </script>
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": false,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
 
 </body>
 
