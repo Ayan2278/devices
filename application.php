@@ -417,12 +417,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example2" class="table table-striped table-bordered table-hover" style="top:0;">
+                <table id="example2" class=" table-striped table-bordered table-hover" style="top:0; width:100%;">
                   <?php
 
                   // displying all data in table
                   echo '<thead style="height:50px;">
-          <tr style="height:10px; font-size:14px;">
+          <tr class:"p-2" style="height:20px; font-size:15px;">
             <th>SR</th>
             <th>PC</th>
             <th>Application</th>
@@ -462,8 +462,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                           if ($data != 0) {
                             foreach ($data as $row) {
                               echo '
-              <tr style="height:10px; font-size:14px;">
-                <td>' . $count . '</td>
+              <tr  style=" height:40px; font-size:14px;">
+                <td style="margin:10px;">' . $count . '</td>
                 <td>PC0' . $c . '</td>
                 <td>' . $row['Activity'] . '</td>
                 <td>' . $row['Date'] . '</td>
