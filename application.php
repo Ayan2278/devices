@@ -40,13 +40,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql44= "SELECT * from `asset` WHERE `school_name`='$school'";
+  $sql44 = "SELECT * from `asset` WHERE `school_name`='$school'";
   $result44 = mysqli_query($conn, $sql44);
   $row = $result44->fetch_assoc();
-  $tot44= mysqli_num_rows($result44);
-  if($tot44 != 0)
-  {
-    
+  $tot44 = mysqli_num_rows($result44);
+  if ($tot44 != 0) {
+
     $schl = $row['school_name'];
     $sql6 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
     $result6 = mysqli_query($conn, $sql6);
@@ -90,7 +89,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   <title>Device</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Font Awesome -->
+
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
@@ -109,6 +108,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   <!-- Daterange picker -->
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -247,7 +247,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
       <div class="content-header">
 
         <div class="container-fluid">
-          <div class="row mb-2">
+          <div class="row ">
             <div class="col-sm-6">
               <h1 class="m-0 text-dark">Application</h1>
             </div><!-- /.col -->
@@ -268,7 +268,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
       <!-- general form elements -->
       <section class="content">
-      <div class="card mx-2">
+        <div class="card mx-2" style="top:0;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Application Timing</h3>
           </div>
@@ -322,7 +322,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result3) {
-                      // options for Village
+                    // options for Village
                     if ($total3 != 0) {
                       while ($row3 = $result3->fetch_assoc()) {
                         echo "<option ";
@@ -341,7 +341,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <option selected="selected">Please Select</option>
                   <?php
                   if ($result3) {
-                      // options for school Name
+                    // options for school Name
                     if ($total4 != 0) {
                       while ($row4 = $result4->fetch_assoc()) {
                         echo "<option ";
@@ -362,24 +362,24 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   // select pc serial number
                   if ($result6) {
 
-                      while ($row6 = $result6->fetch_assoc()) {
-                        echo "<option ";
-                        echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
-                        echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
-                    
+                    while ($row6 = $result6->fetch_assoc()) {
+                      echo "<option ";
+                      echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
+                      echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
+
                     }
                   }
                   ?>
                 </select>
               </div>
-              <div class="form-group col-lg-2">
+              <div class="form-group col-lg-1">
                 <label for="exampleInputPassword1">Activity</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Activity'>
                   <option value="All">All</option>
                   <?php
                   if ($result3) {
 
-                     // options for Activity Name
+                    // options for Activity Name
                     foreach ($data as $row) {
                       $arr[] = $row['Activity'];
                       echo "<option ";
@@ -394,7 +394,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 </select>
               </div>
               <form action="application.php" method="POST">
-                <div class="form-group col-lg-1 my-4 w-100">
+                <div class="form-group col-lg-1 w-100 my-4">
                   <button type="submit" name="Application" value="Application" class="btn"
                     style="margin-top:8px;width:100%; background:#6f42c1; color:white;">Application</button>
                 </div>
@@ -405,186 +405,188 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
           </form>
         </div>
-        <div class="card mx-2" style="height:520px;">
-          <div class="card-header" style="border:1px solid white;">
-            <h3 class="card-title">Data</h3>
-            <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
-              <button type="submit" class="btn w-100" style="background-color:#ffc167;" onclick="printTable()">
-                <i class="fas fa-download"></i> Print PDF
-              </button>
-            </div>
-          </div>
-          <!-- /.card-header -->
+        
 
-          <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll; padding:0;">
-            <table id="example1" class="table table-bordered table-striped table-head-fixed">
+      </section>
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Data</h4>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-striped table-bordered table-hover" style="top:0;">
+                  <?php
 
-              <?php
+                  // displying all data in table
+                  echo '<thead style="height:50px;">
+          <tr style="height:10px; font-size:14px;">
+            <th>SR</th>
+            <th>PC</th>
+            <th>Application</th>
+            <th>Date</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+<tbody>';
 
-              // displying all data in table
-              echo '<thead>
-                        <tr>
-                          <th>SR</th>
-                          <th>PC</th>
-                          <th>Application</th>
-                          <th>Date</th>
-                          <th>Start time</th>
-                          <th>End time</th>
-                          <th>Duration</th>
-                        </tr>
-                      </thead>
-              <tbody>';
+                  if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
+                    //count all Json files
+                    $directory = getcwd() . "/JSON PC//";
+                    $filecount = 0;
+                    $files2 = glob($directory . "*");
+                    if ($files2) {
+                      $filecount = count($files2);
+                    }
 
-              if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
-                //count all Json files
-                $directory = getcwd() . "/JSON PC//";
-                $filecount = 0;
-                $files2 = glob($directory . "*");
-                if ($files2) {
-                  $filecount = count($files2);
-                }
+                    // include connection file
+                    include '_db_Connect.php';
 
-                // include connection file
-                include '_db_Connect.php';
+                    // displaying all data from database and Json file
+                    if ($_POST['DIST'] == "" && $_POST["Application"] == "Application") {
+                      $c = 1;
+                      $pcCount = 1;
+                      $count = 1;
+
+                      // include Json file
+                      while ($c <= $filecount) {
+                        $file = "JSON PC/PC0" . $c . ".json";
+                        $data = file_get_contents($file);
+                        $data = json_decode($data, true);
+                        if ($result5) {
+                          $total5 = mysqli_num_rows($result5);
+                          if ($data != 0) {
+                            foreach ($data as $row) {
+                              echo '
+              <tr style="height:10px; font-size:14px;">
+                <td>' . $count . '</td>
+                <td>PC0' . $c . '</td>
+                <td>' . $row['Activity'] . '</td>
+                <td>' . $row['Date'] . '</td>
+                <td>' . $row['Start time'] . '</td><td>';
+                              date_default_timezone_set('Asia/Kolkata');
+                              $date = date('h:i:s');
+                              $datee = date("d/m/Y");
+                              $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                              if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                                echo '<small class="badge badge-success">Running</small>';
+                              } else {
+                                echo $row['End time'] . '</td>';
+                              }
+                              echo '
                 
-                // displaying all data from database and Json file
-                if ($_POST['DIST'] == "" && $_POST["Application"] == "Application") {
-                  $c = 1;
-                  $pcCount = 1;
-                  $count = 1;
-
-                  // include Json file
-                  while ($c <= $filecount) {
-                    $file = "JSON PC/PC0" . $c . ".json";
-                    $data = file_get_contents($file);
-                    $data = json_decode($data, true);
-                    if ($result5) {
-                        $total5 = mysqli_num_rows($result5);
-                        if ($data != 0) {
-                        foreach ($data as $row) {
-                          echo '
-                            <tr>
-                              <td>' . $count . '</td>
-                              <td>PC0' . $c . '</td>
-                              <td>' . $row['Activity'] . '</td>
-                              <td>' . $row['Date'] . '</td>
-                              <td>' . $row['Start time'] . '</td><td>';
-                          date_default_timezone_set('Asia/Kolkata');
-                          $date = date('h:i:s');
-                          $datee = date("d/m/Y");
-                          $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                          if ($newDate < $row['End time'] && $datee == $row['Date']) {
-                            echo '<small class="badge badge-success">Running</small>';
-                          }
-                          else {
-                            echo $row['End time'] . '</td>';
-                          }
-                          echo '
-                              
-                              <td>' . $row['Duration'] . '</td>
-                            </tr>
-                          ';
-                          $count += 1;
+                <td>' . $row['Duration'] . '</td>
+              </tr>
+            ';
+                              $count += 1;
+                            }
+                          } else
+                            echo "<tr><td colspan='9'>No data found</td></tr>";
                         }
-                      } else
-                        echo "<tr><td colspan='9'>No data found</td></tr>";
+                        $c++;
+                        $pcCount++;
+                      }
                     }
-                    $c++;
-                    $pcCount++;
-                  }
-                }
 
 
-                // displaying filter value in table
-                if (isset($_POST['PC']) && $_POST['PC'] != "Please Select") {
-                  $file = "JSON PC/" . $_POST['PC'] . ".json";
-                  $act = $_POST['Activity'];
-                  if ($act) {
-                    if (isset($_POST['Activity'])) {
+                    // displaying filter value in table
+                    if (isset($_POST['PC']) && $_POST['PC'] != "Please Select") {
+                      $file = "JSON PC/" . $_POST['PC'] . ".json";
+                      $act = $_POST['Activity'];
+                      if ($act) {
+                        if (isset($_POST['Activity'])) {
 
-                      $cd = 1;
-                      $data = file_get_contents($file);
-                      $data = json_decode($data, true);
-                      $cd++;
+                          $cd = 1;
+                          $data = file_get_contents($file);
+                          $data = json_decode($data, true);
+                          $cd++;
 
-                    }
-                   
-                  }
-                
-                $PC = $_POST['PC'];
-                // query for fetching data 
-                $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
-                $result5 = mysqli_query($conn, $query5);
-                if ($_POST['Activity'] != "Please Select") {
-                  $data = file_get_contents($file);
-                  $data = json_decode($data, true);
-                  if ($result5) {
-                    $total5 = mysqli_num_rows($result5);
-                    //while($row1->fetch_assoc($total5  )){
-                    $count = 1;
-                    if ($data != 0) {
-                      foreach ($data as $row) {
-                        if ($_POST['Activity'] == $row['Activity']) {
-                          echo '
-                            <tr>
-                              <td>' . $count . '</td>
-                              <td>' . $PC . '</td>
-                              <td>' . $act . '</td>
-                              <td>' . $row['Date'] . '</td>
-                              <td>' . $row['Start time'] . '</td>
-                              <td>' . $row['End time'] . '</td>
-                              <td>' . $row['Duration'] . '</td>
-                            </tr>
-                          ';
-                          $count += 1;
                         }
 
-                        
-                        elseif($_POST['Activity'] == 'All')
-                        {
-                          echo '
-                            <tr>
-                              <td>' . $count . '</td>
-                              <td>' . $PC . '</td>
-                              <td>' . $row['Activity'] . '</td>
-                              <td>' . $row['Date'] . '</td>
-                              <td>' . $row['Start time'] . '</td>
-                              <td>' . $row['End time'] . '</td>
-                              <td>' . $row['Duration'] . '</td>
-                            </tr>
-                          ';
-                          $count += 1;
+                      }
+
+                      $PC = $_POST['PC'];
+                      // query for fetching data 
+                      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
+                      $result5 = mysqli_query($conn, $query5);
+                      if ($_POST['Activity'] != "Please Select") {
+                        $data = file_get_contents($file);
+                        $data = json_decode($data, true);
+                        if ($result5) {
+                          $total5 = mysqli_num_rows($result5);
+                          //while($row1->fetch_assoc($total5  )){
+                          $count = 1;
+                          if ($data != 0) {
+                            foreach ($data as $row) {
+                              if ($_POST['Activity'] == $row['Activity']) {
+                                echo '
+              <tr>
+                <td>' . $count . '</td>
+                <td>' . $PC . '</td>
+                <td>' . $act . '</td>
+                <td>' . $row['Date'] . '</td>
+                <td>' . $row['Start time'] . '</td>
+                <td>' . $row['End time'] . '</td>
+                <td>' . $row['Duration'] . '</td>
+              </tr>
+            ';
+                                $count += 1;
+                              } elseif ($_POST['Activity'] == 'All') {
+                                echo '
+              <tr>
+                <td>' . $count . '</td>
+                <td>' . $PC . '</td>
+                <td>' . $row['Activity'] . '</td>
+                <td>' . $row['Date'] . '</td>
+                <td>' . $row['Start time'] . '</td>
+                <td>' . $row['End time'] . '</td>
+                <td>' . $row['Duration'] . '</td>
+              </tr>
+            ';
+                                $count += 1;
+                              }
+                            }
+                          } else
+                            echo "<tr><td colspan='9'>No data found</td></tr>";
                         }
                       }
-                    } else
-                      echo "<tr><td colspan='9'>No data found</td></tr>";
+                    }
                   }
-                }
-              }
-            }
-              ?>
+                  ?>
 
-              </tbody>
+                  </tbody>
 
-            </table>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+
+            <!-- /.card -->
           </div>
-          <!-- /.card-body -->
+          <!-- /.col -->
         </div>
-        <!-- /.card -->
+        <!-- /.row -->
       </section>
       <!-- /.card -->
       <!-- right col -->
     </div>
     <!-- /.row (main row) -->
   </div><!-- /.container-fluid -->
+
   </section>
   <!-- /.content -->
 
   </div>
   <!-- /.content-wrapper -->
   <?php
-   //include footer file
-  include  'footer.php';
+  //include footer file
+  include 'footer.php';
   ?>
 
   <!-- /.control-sidebar -->
@@ -600,8 +602,24 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
       window.print();
     }
   </script>
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
+
+  <script src="plugins/datatables/jquery.dataTables.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -640,6 +658,25 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     $('.select2bs4').select2({
       theme: 'bootstrap4',
       placeholder: 'Please Select'
+    });
+  </script>
+  <!-- Bootstrap 4 -->
+  <!-- DataTables -->
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <!-- page script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+      });
     });
   </script>
 
