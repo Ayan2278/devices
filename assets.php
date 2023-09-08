@@ -27,6 +27,9 @@ if (isset($_POST['school'])) {
   <title>Assets</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
@@ -48,6 +51,7 @@ if (isset($_POST['school'])) {
   <!-- Daterange picker -->
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -272,25 +276,30 @@ if (isset($_POST['school'])) {
 
           </form>
                 </div>
-        <div class="card mx-2 shadow" style="height:590px;">
+        <!-- <div class="card mx-2 shadow" style="height:590px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>
             <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
               <button type="submit" class="btn  w-100"  style="background-color:#ffc167;" onclick="printTable()">
                 <i class="fas fa-download"></i> Print PDF
               </button>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div> -->
           <!-- /.card-header -->
+          </section>
+                    <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+             
+                <!-- /.card-header -->
+                <div class="card-body">
+                <h4 class="card-title">Data</h4>
+                <table id="example2" class=" table-striped table-bordered table-hover" style="top:0; width:100%;">
 
-          <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll; padding:0;">
-            <table id="example1" class="table table-bordered table-striped table-head-fixed">
-
-              <?php
-              
-                  // displaying all data in table
-                  echo '<thead>
-                            <tr>
+                            <?php
+                            echo '<thead style="height:50px;">
+                            <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
                               <th>SR</th>
                               <th>School name</th>
                               <th>PC Sr</th>
@@ -322,8 +331,9 @@ if (isset($_POST['school'])) {
                   // fetcging all records
                   while ($row = $result->fetch_assoc()) {
                     echo '
-                        <tr>
-                          <td>' . $count . '</td>
+                        <tr  style=" height:40px; font-size:14px;text-align:center;">
+                      <td style="margin:10px;">' . $count . '</td>
+                       
                           <td>' . $row['school_name'] . '</td>
                           <td>' . $row['pc_sr'] . '</td>
                           <td>' . $row['TFT_id'] . '</td>
@@ -334,24 +344,7 @@ if (isset($_POST['school'])) {
                       $count += 1;
                      }
                      
-                     // if($total != 0) {
-                       //   while ($row = $result->fetch_assoc()) {
-                         //     echo '
-                         //       <tr>
-                         //         <td>' . $count . '</td>
-                         //         <td>' . $school . '</td>
-                         //         <td>' . $pc . '</td>
-                         //         <td>' . $row['TFT_id'] . '</td>
-                         //         <td>' . $row['Webcam_id'] . '</td>
-                         //         <td>' . $row['Headphone_id'] . '</td>
-                         //       </tr>
-                         //     ';
-                         //     $count += 1;
-                         //   }
-                         // } 
-                         //else
-                         // // else for no result found
-                         //   echo "<tr><td colspan='9'>No data found</td></tr>";
+                  
                 }
               }
             ?>
@@ -396,6 +389,7 @@ if (isset($_POST['school'])) {
       window.print();
     }
   </script>
+  
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
