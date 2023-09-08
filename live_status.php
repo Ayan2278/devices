@@ -81,8 +81,8 @@ function status($pcNo)
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -105,9 +105,9 @@ function status($pcNo)
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
-   <!-- Google Font: Source Sans Pro -->
-   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -251,7 +251,7 @@ function status($pcNo)
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Device</h1>
+                            <h1 class="m-0 text-dark">Live Status</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -407,20 +407,23 @@ function status($pcNo)
                             </button>
                         </div>
                     </div> -->
-                    <!-- /.card-header -->
-                                </section>
-                    <section class="content">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-             
                 <!-- /.card-header -->
-                <div class="card-body">
-                <h4 class="card-title">Data</h4>
-                <table id="example2" class=" table-striped table-bordered table-hover" style="top:0; width:100%;">
+            </section>
+            <section class="content">
+                <div class="row" style="margin:1px;">
+                    <div class="col-12">
+                        <div class="card shadow">
+                            <div class="card-header" style="border: 0px; ">
+                                <h4 class="card-title">Data</h4>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body" style="top:0;">
 
-                            <?php
-                            echo '<thead style="height:50px;">
+                                <table id="example2" class=" table-striped table-bordered table-hover"
+                                    style="top:0; width:100%;">
+
+                                    <?php
+                                    echo '<thead style="height:50px;">
                             <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
                                    
                                     <th>SR</th>
@@ -434,73 +437,73 @@ function status($pcNo)
                                 </thead>
                         <tbody>';
 
-                            // displaying all devices data in table
-                            if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
+                                    // displaying all devices data in table
+                                    if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
 
-                                $PC = $_POST['PC'];
-                                $school = $_POST['school'];
-                                $count = 1;
-                                $c = 1;
-                                $pcCount = 1;
-                                $count = 1;
-                                // If District is Please Select then display all records 
-                                if ($_POST['DIST'] == "Please Select") {
-                                    $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
+                                        $PC = $_POST['PC'];
+                                        $school = $_POST['school'];
+                                        $count = 1;
+                                        $c = 1;
+                                        $pcCount = 1;
+                                        $count = 1;
+                                        // If District is Please Select then display all records 
+                                        if ($_POST['DIST'] == "Please Select") {
+                                            $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
 
-                                // else if for diplaying School Name According to the Villages     
-                                } elseif ($_POST['PC'] == "Please Select" && $_POST['school'] != "Please Select") {
-                                    $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
-                                
-                                // else if for Selected Query According to the filter value
-                                } elseif ($_POST['DIST'] != "Please Select" && $_POST['Block'] != "Please Select" && $_POST['Village'] != "Please Select" && $_POST['school'] != "Please Select" && $_POST['PC'] != "Please Select") {
-                                    $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
+                                            // else if for diplaying School Name According to the Villages     
+                                        } elseif ($_POST['PC'] == "Please Select" && $_POST['school'] != "Please Select") {
+                                            $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
 
-                                }
-                                //Set the connection for result
-                                if (isset($query1)) {
-                                    $result1 = mysqli_query($conn, $query1);
-                                    $total1 = mysqli_num_rows($result1);
+                                            // else if for Selected Query According to the filter value
+                                        } elseif ($_POST['DIST'] != "Please Select" && $_POST['Block'] != "Please Select" && $_POST['Village'] != "Please Select" && $_POST['school'] != "Please Select" && $_POST['PC'] != "Please Select") {
+                                            $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
 
-                                }
-                                // Fetching the data 
-                                if (isset($result1) && $result1) {
-                                    while ($row = $result1->fetch_assoc()) {
+                                        }
+                                        //Set the connection for result
+                                        if (isset($query1)) {
+                                            $result1 = mysqli_query($conn, $query1);
+                                            $total1 = mysqli_num_rows($result1);
 
-                                        echo '
+                                        }
+                                        // Fetching the data 
+                                        if (isset($result1) && $result1) {
+                                            while ($row = $result1->fetch_assoc()) {
+
+                                                echo '
                                         <tr  style=" height:40px; font-size:14px;text-align:center;">
-                                        <td style="margin:10px;">' . $count . '</td>
+                                            <td>' . $count . '</td>
                                             <td>' . $row['district'] . '</td>
                                             <td>' . $row['block'] . '</td>
                                             <td>' . $row['village'] . '</td>
                                             <td>' . $row['school_name'] . '</td>
                                             <td>' . $row['pc_sr'] . '</td>';
-                                        echo "<td>";
+                                                echo "<td>";
 
-                                        // if for Status is Active
-                                        if (status($row['pc_sr']) == 'Active') {
-                                            echo '<small class="badge badge-success">Active</small>';
-                                            // Else for Status is Inactive
-                                        } else {
-                                            echo '<small class="badge badge-danger">Inactive</small>';
-                                        }
-                                        echo "</td>";
-                                        echo "</tr>";
+                                                // if for Status is Active
+                                                if (status($row['pc_sr']) == 'Active') {
+                                                    echo '<small class="badge badge-success">Active</small>';
+                                                    // Else for Status is Inactive
+                                                } else {
+                                                    echo '<small class="badge badge-danger">Inactive</small>';
+                                                }
+                                                echo "</td>";
+                                                echo "</tr>";
 
-                                        $count += 1;
-                                        $c++;
+                                                $count += 1;
+                                                $c++;
+                                            }
+                                        } else
+                                            echo "<tr><td colspan='9'>No data found</td></tr>";
                                     }
-                                } else
-                                    echo "<tr><td colspan='9'>No data found</td></tr>";
-                                }
-                            ?>
+                                    ?>
 
-                            </tbody>
+                                    </tbody>
 
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
             </section>
             <!-- /.card -->
             <!-- right col -->
@@ -513,8 +516,8 @@ function status($pcNo)
     </div>
     <!-- /.content-wrapper -->
     <?php
-     //include footer file
-    include  'footer.php';
+    //include footer file
+    include 'footer.php';
     ?>
 
     <!-- Control Sidebar -->
@@ -535,23 +538,23 @@ function status($pcNo)
         }
     </script>
     <script>
-    $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "ordering": false,
-        "info": true,
-        "autoWidth": false,
-      });
-    });
-  </script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": false,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
 
     <script src="plugins/datatables/jquery.dataTables.js"></script>
-  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -592,22 +595,22 @@ function status($pcNo)
             placeholder: 'Please Select'
         });
     </script>
-     <script src="dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <!-- page script -->
-  <script>
-    $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "ordering": false,
-        "info": true,
-        "autoWidth": false,
-      });
-    });
-  </script>
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": false,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
 
 </body>
 

@@ -542,6 +542,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
         </div>
         <!-- /.card -->
       </section>
+      
       <!-- /.card -->
       <!-- right col -->
     </div>
