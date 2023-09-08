@@ -473,7 +473,7 @@ function status($pcNo)
         ],
       },
       fill: {
-        colors: ['#5ba7ff', '#49ddc0', '#000000']
+        colors: ['#5ba7ff', '#3498DB', '#000000']
       },
       legend: {
         position: 'right',

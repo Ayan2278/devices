@@ -80,6 +80,9 @@ function status($pcNo)
     <title>Device</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -100,6 +103,11 @@ function status($pcNo)
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+   <!-- Google Font: Source Sans Pro -->
+   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -389,7 +397,7 @@ function status($pcNo)
 
                     </form>
                 </div>
-                <div class="card mx-2 shadow" style="height:590px;">
+                <!-- <div class="card mx-2 shadow" style="height:590px;">
                     <div class="card-header" style="border:0px;">
                         <h3 class="card-title">Data</h3>
                         <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
@@ -398,15 +406,23 @@ function status($pcNo)
                                 <i class="fas fa-download"></i> Print PDF
                             </button>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /.card-header -->
-
-                    <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll; padding:0;">
-                        <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                                </section>
+                    <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+             
+                <!-- /.card-header -->
+                <div class="card-body">
+                <h4 class="card-title">Data</h4>
+                <table id="example2" class=" table-striped table-bordered table-hover" style="top:0; width:100%;">
 
                             <?php
-                            echo '<thead>
-                                    <tr>
+                            echo '<thead style="height:50px;">
+                            <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
+                                   
                                     <th>SR</th>
                                     <th>District</th>
                                     <th>Block</th>
@@ -451,8 +467,8 @@ function status($pcNo)
                                     while ($row = $result1->fetch_assoc()) {
 
                                         echo '
-                                            <tr>
-                                            <td>' . $count . '</td>
+                                        <tr  style=" height:40px; font-size:14px;text-align:center;">
+                                        <td style="margin:10px;">' . $count . '</td>
                                             <td>' . $row['district'] . '</td>
                                             <td>' . $row['block'] . '</td>
                                             <td>' . $row['village'] . '</td>
@@ -518,8 +534,24 @@ function status($pcNo)
             window.print();
         }
     </script>
+    <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": false,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
+
+    <script src="plugins/datatables/jquery.dataTables.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -560,6 +592,22 @@ function status($pcNo)
             placeholder: 'Please Select'
         });
     </script>
+     <script src="dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <!-- page script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": false,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
 
 </body>
 
