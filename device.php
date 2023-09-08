@@ -340,26 +340,24 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
           </form>
         </div>
         <div class="card mx-2 shadow" style="height:590px;">
-          <div class="card-header" style="border:0px;">
-            <h3 class="card-title">Data</h3>
-            <div class="col-lg-1 col-md-5 col-sm-6  " style="float:right;">
-              <button type="submit" class="btn  w-100" style="background-color:#ffc167;" onclick="printTable()">
-                <i class="fas fa-download"></i> Print PDF
-              </button>
-            </div>
-          </div>
+          <!-- <div class="col-lg-1 col-md-5 col-sm-6  " style="float:right;">
+            <button type="submit" class="btn  w-100" style="background-color:#ffc167;" onclick="printTable()">
+              <i class="fas fa-download"></i> Print PDF
+            </button>
+          </div> -->
           <!-- /.card-header -->
 
-          <div class="card-body" style="overflow:hidden; overflow-x:scroll;overflow-y:scroll; padding:0;">
-            <table id="example1" class="table table-bordered table-striped table-head-fixed">
+          <div class="card-body">
+              <h4 class="card-title">Data</h4>
+                <table id="example2" class=" table-striped table-bordered table-hover" style="top:0; width:100%;">
 
               <?php
 
 
 
               // displaying all devices data in table
-              echo '<thead>
-                        <tr>
+              echo '<thead style="height:50px;">
+              <tr style="text-align:center;height:20px; font-size:15px;">
                           <th>SR</th>
                           <th>PC serial no.</th>
                           <th>Date</th>
@@ -406,7 +404,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                       if ($data != 0) {
                         foreach ($data as $row) {
                           echo '
-                            <tr>
+                          <tr  style="text-align:center; height:41px; font-size:15px;">
                               <td>' . $count . '</td>
                               <td>PC0' . $c . '</td>
                               <td>' . $row['Date'] . '</td>
@@ -616,6 +614,22 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     $('.select2bs4').select2({
       theme: 'bootstrap4',
       placeholder: 'Please Select'
+    });
+  </script>
+  <script src="dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <!-- page script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": false,
+        "info": true,
+        "autoWidth": false,
+      });
     });
   </script>
 

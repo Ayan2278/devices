@@ -422,7 +422,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
                   // displying all data in table
                   echo '<thead style="height:50px;">
-          <tr class:"p-2" style="height:20px; font-size:15px;">
+          <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
             <th>SR</th>
             <th>PC</th>
             <th>Application</th>
@@ -462,7 +462,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                           if ($data != 0) {
                             foreach ($data as $row) {
                               echo '
-              <tr  style=" height:40px; font-size:14px;">
+              <tr  style=" height:40px; font-size:14px;text-align:center;">
                 <td style="margin:10px;">' . $count . '</td>
                 <td>PC0' . $c . '</td>
                 <td>' . $row['Activity'] . '</td>
@@ -524,7 +524,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                             foreach ($data as $row) {
                               if ($_POST['Activity'] == $row['Activity']) {
                                 echo '
-              <tr>
+              <tr style=" height:40px; font-size:14px;text-align:center;">
                 <td>' . $count . '</td>
                 <td>' . $PC . '</td>
                 <td>' . $act . '</td>
@@ -537,7 +537,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 $count += 1;
                               } elseif ($_POST['Activity'] == 'All') {
                                 echo '
-              <tr>
+              <tr style=" height:40px; font-size:14px;text-align:center;">
                 <td>' . $count . '</td>
                 <td>' . $PC . '</td>
                 <td>' . $row['Activity'] . '</td>
