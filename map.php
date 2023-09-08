@@ -16,12 +16,9 @@ else {
 }
 
 
-
-$query0 = "SELECT DISTINCT `district` from `asset`; ";
-$result10 = mysqli_query($conn, $query0);
-function districts($name)
+function statuss($pc)
 {
-    $file = "JSON PC/" . $name . ".json";
+    $file = "JSON PC/" . $pc . ".json";
     $data = file_get_contents($file);
     $data = json_decode($data, true);
     date_default_timezone_set('Asia/Kolkata');
@@ -34,6 +31,11 @@ function districts($name)
             return 'Active';
         }
     }
+}
+$query0 = "SELECT DISTINCT `district` from `asset`; ";
+$result10 = mysqli_query($conn, $query0);
+function districts($name)
+{
   include '_db_Connect.php';
   $query0 = "SELECT DISTINCT `district` from `asset`; ";
   $result10 = mysqli_query($conn, $query0);
@@ -86,7 +88,7 @@ function districts($name)
                                                     <?php echo "Gandhinagar\nTotal Desktops: ";
                                                     districts("Gandhinagar");
 
-                                                    if (districts($row['status']) == 'Active') {
+                                                    if (statuss($row['status']) == 'Active') {
                                                      echo 'Active';
                                                      // Else for Status is Inactive
                                                  } else {

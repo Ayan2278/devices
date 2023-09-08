@@ -412,11 +412,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
+             
+                <!-- /.card-header -->
+                <div class="card-body">
                 <h4 class="card-title">Data</h4>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
                 <table id="example2" class=" table-striped table-bordered table-hover" style="top:0; width:100%;">
                   <?php
 
@@ -608,8 +607,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,
-        "searching": false,
-        "ordering": true,
+        "searching": true,
+        "ordering": false,
         "info": true,
         "autoWidth": false,
       });
@@ -672,8 +671,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,
-        "searching": false,
-        "ordering": true,
+        "searching": true,
+        "ordering": false,
         "info": true,
         "autoWidth": false,
       });
