@@ -18,8 +18,7 @@ if (isset($_POST["submit"])) {
     $district = $rowS0['district'];
     $block = $rowS0['block'];
     $village = $rowS0['village'];
-
-
+    
     $pc = $_POST["pc_sr"];
     $tft = $_POST["TFT_id"];
     $webcam = $_POST["Webcam_id"];
@@ -281,6 +280,7 @@ $result1 = mysqli_query($conn, $sql);
 
 <body class="hold-transition sidebar-mini layout-fixed side">
     <?php
+    // include sidebar file
     include 'sidebar.php';
         ?>
     <div class="wrapper">

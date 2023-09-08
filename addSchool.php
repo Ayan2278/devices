@@ -264,6 +264,7 @@ $result1 = mysqli_query($conn, $sql);
 
 <body class="hold-transition sidebar-mini layout-fixed ">
     <?php
+    // include sidebar file
     include 'sidebar.php'
         ?>
     <div class="wrapper">

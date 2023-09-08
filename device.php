@@ -245,7 +245,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               <div class="form-group col-lg-2">
                 <label for="device">District</label>
                 <select class="form-control select2bs4" style="width: 100%" name="DIST" onchange="change()">
-                  <option value="">Please Select</option>
+                  <option value="All">All</option>
                   <?php
                   //select districts
                   if ($result) {
@@ -266,7 +266,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">Block</label>
                 <select class="form-control select2bs4 focus" style="width: 100%" name='Block' onchange="change()">
-                  <option selected="selected">Please Select</option>
+                  <option Value="All">All</option>
                   <?php
                   // select blocks
                   if ($result2) {
@@ -287,7 +287,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
                 <label for="exampleInputPassword1">Village</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Village' onchange="change()">
-                  <option selected="selected">Please Select</option>
+                  <option Value="All">All</option>
                   <?php
                   //select villages
                   if ($result3) {
@@ -307,7 +307,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC serial no.</label>
                 <select class="form-control select2bs4" style="width: 100%" name='PC'>
-                  <option selected="selected">Please Select</option>
+                
+                  <option value="All">All</option>
                   <?php
                   // select pc serial number
                   if ($result3) {
@@ -383,7 +384,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 // connection file
                 include '_db_Connect.php';
 
-                if ($_POST['DIST'] == "" && $_POST["Device"] == "Device") {
+                if ($_POST['DIST'] == "All") {
+                
                   $c = 1;
                   $pcCount = 1;
                   $count = 1;
@@ -433,6 +435,61 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     $pcCount++;
                   }
                 }
+              
+             
+                if ($_POST['DIST'] != "All" && $_POST['Block']=="All") {
+                
+                  $c = 1;
+                  $pcCount = 1;
+                  $count = 1;
+                  while ($c <= $filecount) {
+                    $file = "JSON/PC0" . $c . ".json";
+                    $query4 = "SELECT * from `asset` where `district`='$Dis';";
+                    $result4 = mysqli_query($conn, $query4);
+                    $total4 = mysqli_num_rows($result4);
+
+                    $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis';";
+                    $result5 = mysqli_query($conn, $query5);
+                    $data = file_get_contents($file);
+                    $data = json_decode($data, true);
+                    if ($result5) {
+
+                      $total5 = mysqli_num_rows($result5);
+
+                      if ($data != 0) {
+                        foreach ($data as $row) {
+                          echo '
+                            <tr>
+                              <td>' . $count . '</td>
+                              <td>PC0' . $c . '</td>
+                              <td>' . $row['Date'] . '</td>
+                              <td>' . $row['Start_time'] . '</td><td>';
+                          date_default_timezone_set('Asia/Kolkata');
+                          $date = date('h:i:s');
+                          $datee = date("d/m/Y");
+                          $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                          if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+                            echo '<small class="badge badge-success">Running</small>';
+                          }
+                          else {
+                            echo $row['End_time'] . '</td>';
+                          }
+                          echo '
+                              
+                              <td>' . $row['Duration'] . '</td>
+                            </tr>
+                          ';
+                          $count += 1;
+                        }
+                      } else
+                        echo "<tr><td colspan='9'>No data found</td></tr>";
+                    }
+                    $c++;
+                    $pcCount++;
+                  }
+                }
+              
+             
 
                 if (isset($_POST['PC'])) {
                   $file = "JSON/" . $_POST['PC'] . ".json";
@@ -445,7 +502,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   }
                   $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
                   $result5 = mysqli_query($conn, $query5);
-                  if ($_POST['PC'] != "Please Select") {
+                  if ($_POST['PC'] != "All") {
                     $data = file_get_contents($file);
                     $data = json_decode($data, true);
                     if ($result5) {
@@ -466,7 +523,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                           ';
                           $count += 1;
                         }
-                      } else
+                      }else
                         echo "<tr><td colspan='9'>No data found</td></tr>";
                     }
                   }

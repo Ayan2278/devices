@@ -187,6 +187,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
 <body class="hold-transition sidebar-mini layout-fixed ">
   <?php
+  // Include Sidebar File
   include 'sidebar.php'
     ?>
   <div class="wrapper">
@@ -344,13 +345,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
             <table id="example1" class="table table-bordered table-striped table-head-fixed">
 
               <?php
-
-
-
-              // for add new employee in the repors
-              
-
-              echo '<thead>
+                echo '<thead>
                         <tr>
                           <th>SR</th>
                           <th>School name</th>
@@ -366,6 +361,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 $count = 1;
                 $schl = $_POST['school'];
                 $vill = $_POST['Village'];
+
+                //displaying all Record from Database
                 if ($_POST['DIST'] == "" && isset($_POST["Search"])) {
                   $query5 = "SELECT * FROM `school` ORDER BY  `school`.`school_name` ASC";
                 }
@@ -376,6 +373,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 $total5 = mysqli_num_rows($result5);
                 if ($result5) {
                   if ($total5 != 0) {
+                    // Fetching All recods
                     while ($row = $result5->fetch_assoc()) {
                       echo '
                         <tr>
@@ -389,7 +387,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                       ';
                       $count += 1;
                     }
-                  }
+                  }else
+                    echo "<tr><td colspan='9'>No data found</td></tr>";
                 }
               }
              

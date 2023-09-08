@@ -308,15 +308,18 @@ if (isset($_POST['school'])) {
                 $pc = $_POST['pc'];
                 $school = $_POST['school'];
                 $count = 1;
+                //display all records from the database
                 if ($_POST['school'] == "" && isset($_POST["Assets"])) {
                   $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
                 }
+                // display records according to the pc serial number
                 elseif(isset($_POST['pc'])){
                   $query = "SELECT * FROM `asset` WHERE `pc_sr`= '$pc' AND `school_name`='$school' ;";
                 }
                 $result = mysqli_query($conn, $query);
                 $total = mysqli_num_rows($result);
                 if ($total != 0) {
+                  // fetcging all records
                   while ($row = $result->fetch_assoc()) {
                     echo '
                         <tr>
@@ -329,23 +332,26 @@ if (isset($_POST['school'])) {
                           </tr>
                       ';
                       $count += 1;
-                  }
-                  if($total != 0) {
-                    while ($row = $result->fetch_assoc()) {
-                      echo '
-                        <tr>
-                          <td>' . $count . '</td>
-                          <td>' . $school . '</td>
-                          <td>' . $pc . '</td>
-                          <td>' . $row['TFT_id'] . '</td>
-                          <td>' . $row['Webcam_id'] . '</td>
-                          <td>' . $row['Headphone_id'] . '</td>
-                        </tr>
-                      ';
-                      $count += 1;
-                    }
-                  } else
-                    echo "<tr><td colspan='9'>No data found</td></tr>";
+                     }
+                     
+                     // if($total != 0) {
+                       //   while ($row = $result->fetch_assoc()) {
+                         //     echo '
+                         //       <tr>
+                         //         <td>' . $count . '</td>
+                         //         <td>' . $school . '</td>
+                         //         <td>' . $pc . '</td>
+                         //         <td>' . $row['TFT_id'] . '</td>
+                         //         <td>' . $row['Webcam_id'] . '</td>
+                         //         <td>' . $row['Headphone_id'] . '</td>
+                         //       </tr>
+                         //     ';
+                         //     $count += 1;
+                         //   }
+                         // } 
+                         //else
+                         // // else for no result found
+                         //   echo "<tr><td colspan='9'>No data found</td></tr>";
                 }
               }
             ?>

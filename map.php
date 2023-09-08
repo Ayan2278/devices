@@ -15,10 +15,25 @@ else {
   echo "0 results";
 }
 
+
+
 $query0 = "SELECT DISTINCT `district` from `asset`; ";
 $result10 = mysqli_query($conn, $query0);
 function districts($name)
 {
+    $file = "JSON PC/" . $name . ".json";
+    $data = file_get_contents($file);
+    $data = json_decode($data, true);
+    date_default_timezone_set('Asia/Kolkata');
+    $date = date('H:i:s');
+    $datee = date("d/m/Y");
+    $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+
+    foreach ($data as $row) {
+        if ($newDate < $row['End time'] && $datee == $row['Date']) {
+            return 'Active';
+        }
+    }
   include '_db_Connect.php';
   $query0 = "SELECT DISTINCT `district` from `asset`; ";
   $result10 = mysqli_query($conn, $query0);
@@ -69,8 +84,14 @@ function districts($name)
                                                 <title id="bx-title-1">
                                                     <!-- fetch total number of Desktops in gandhinagar -->
                                                     <?php echo "Gandhinagar\nTotal Desktops: ";
-
                                                     districts("Gandhinagar");
+
+                                                    if (districts($row['status']) == 'Active') {
+                                                     echo 'Active';
+                                                     // Else for Status is Inactive
+                                                 } else {
+                                                     echo 'Inactive';
+                                                 }
                                                     ?>
                                                 </title>
                                             </polygon>

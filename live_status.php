@@ -5,15 +5,18 @@ include 'authentication.php';
 // connetion file
 include '_db_Connect.php';
 
+// query for Select All districts
 $sql = "SELECT DISTINCT `district` FROM `school`;";
 $result = mysqli_query($conn, $sql);
 
+//Select all blocks For filter Data
 if (isset($_POST['DIST'])) {
     $Dis = $_POST['DIST'];
     $sql2 = "SELECT  DISTINCT `block` FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
     $result2 = mysqli_query($conn, $sql2);
     $total2 = mysqli_num_rows($result2);
 }
+// Select all Villages 
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
     $Dis = $_POST['DIST'];
     $Bl = $_POST['Block'];
@@ -21,6 +24,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block'])) {
     $result3 = mysqli_query($conn, $sql3);
     $total3 = mysqli_num_rows($result3);
 }
+// Select all School-Name 
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
     $village = $_POST['Village'];
     $Dis = $_POST['DIST'];
@@ -29,6 +33,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     $result4 = mysqli_query($conn, $sql4);
     $total4 = mysqli_num_rows($result4);
 }
+// Select All PC Serial Number
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
     $village = $_POST['Village'];
     $Dis = $_POST['DIST'];
@@ -46,11 +51,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 }
 
 
+// Use function for Live Status of   Devices
 function status($pcNo)
 {
     $file = "JSON PC/" . $pcNo . ".json";
     $data = file_get_contents($file);
-    // echo $data(1);
     $data = json_decode($data, true);
     date_default_timezone_set('Asia/Kolkata');
     $date = date('H:i:s');
@@ -272,6 +277,7 @@ function status($pcNo)
                                     onchange="change()">
                                     <option value="Please Select">Please Select</option>
                                     <?php
+                                    // Option Value For Select All Districts
                                     if ($result) {
                                         $total = mysqli_num_rows($result);
                                         if ($total != 0) {
@@ -293,6 +299,7 @@ function status($pcNo)
                                     onchange="change()">
                                     <option selected="selected">Please Select</option>
                                     <?php
+                                    // Option Value for Select All Blocks
                                     if ($result2) {
 
                                         if ($total2 != 0) {
@@ -313,6 +320,7 @@ function status($pcNo)
                                     onchange="change()">
                                     <option selected="selected">Please Select</option>
                                     <?php
+                                    // Options for Select all Villages
                                     if ($result3) {
 
                                         if ($total3 != 0) {
@@ -333,6 +341,7 @@ function status($pcNo)
                                     onchange="change()">
                                     <option selected="selected">Please Select</option>
                                     <?php
+                                    // Options for Select all School-Names
                                     if ($result3) {
 
                                         if ($total4 != 0) {
@@ -418,22 +427,26 @@ function status($pcNo)
                                 $c = 1;
                                 $pcCount = 1;
                                 $count = 1;
+                                // If District is Please Select then display all records 
                                 if ($_POST['DIST'] == "Please Select") {
                                     $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
 
-
+                                // else if for diplaying School Name According to the Villages     
                                 } elseif ($_POST['PC'] == "Please Select" && $_POST['school'] != "Please Select") {
                                     $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
-
+                                
+                                // else if for Selected Query According to the filter value
                                 } elseif ($_POST['DIST'] != "Please Select" && $_POST['Block'] != "Please Select" && $_POST['Village'] != "Please Select" && $_POST['school'] != "Please Select" && $_POST['PC'] != "Please Select") {
                                     $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
 
                                 }
+                                //Set the connection for result
                                 if (isset($query1)) {
                                     $result1 = mysqli_query($conn, $query1);
                                     $total1 = mysqli_num_rows($result1);
 
                                 }
+                                // Fetching the data 
                                 if (isset($result1) && $result1) {
                                     while ($row = $result1->fetch_assoc()) {
 
@@ -447,8 +460,10 @@ function status($pcNo)
                                             <td>' . $row['pc_sr'] . '</td>';
                                         echo "<td>";
 
+                                        // if for Status is Active
                                         if (status($row['pc_sr']) == 'Active') {
                                             echo '<small class="badge badge-success">Active</small>';
+                                            // Else for Status is Inactive
                                         } else {
                                             echo '<small class="badge badge-danger">Inactive</small>';
                                         }
@@ -460,11 +475,7 @@ function status($pcNo)
                                     }
                                 } else
                                     echo "<tr><td colspan='9'>No data found</td></tr>";
-
-
-
-
-                            }
+                                }
                             ?>
 
                             </tbody>
