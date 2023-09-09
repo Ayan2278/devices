@@ -260,7 +260,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">Block</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Block' onchange="change()">
-                  <option selected="selected">Please Select</option>
+                <option value="All">All</option>
                   <?php
                      // Option for Select block
                   if ($result2) {
@@ -280,7 +280,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">Village</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Village' onchange="change()">
-                  <option selected="selected">Please Select</option>
+                <option value="All">All</option>
                   <?php
                    // Option for Select Village
                   if ($result3) {
@@ -300,7 +300,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">Select School </label>
                 <select class="form-control select2bs4" style="width: 100%" name='school'>
-                  <option selected="selected">Please Select</option>
+                <option value="All">All</option>
                   <?php
                     // Option for Select school
                   if ($result3) {
@@ -376,14 +376,29 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                 //displaying all Record from Database
                 if (isset($_POST["Search"])) {
                   $schl = $_POST['school'];
-                  $vill = $_POST['Village'];
+                  $village = $_POST['Village'];
+                  $Dis = $_POST['DIST'];
+                  $Bl = $_POST['Block'];
                   if ($_POST['DIST'] == "All") {
                   $query5 = "SELECT * FROM `school` ORDER BY  `school`.`school_name` ASC";
                 }
-              }
-                elseif(isset($_POST['school'])) {
-                  $query5 = "SELECT * FROM `school` WHERE `school_name` = '$schl' AND `village`='$vill';";
+                elseif($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
+                  $query5 = "SELECT * FROM `school`  WHERE `district` = '$Dis'";
                 }
+               
+                elseif($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] == "All") {
+                  $query5 = "SELECT * FROM `school`  WHERE `district` = '$Dis' AND `block` = '$Bl'";
+                }
+               
+                elseif($_POST['DIST'] != "All"  && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] == "All") {
+                  $query5 = "SELECT * FROM `school`  WHERE `village` = '$village' AND `district` = '$Dis' AND `block` = '$Bl'";
+                }
+               
+              
+                elseif(isset($_POST['school'])) {
+                  $query5 = "SELECT * FROM `school` WHERE `school_name` = '$schl' AND `village`='$village';";
+                }
+              }
                 $result5 = mysqli_query($conn, $query5);
                 $total5 = mysqli_num_rows($result5);
                 if ($result5) {

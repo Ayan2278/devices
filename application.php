@@ -279,7 +279,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               <div class="form-group col-lg-2">
                 <label for="device">District</label>
                 <select class="form-control select2bs4" style="width: 100%" name="DIST" onchange="change()">
-                  <option value="">Please Select</option>
+                <option value="All">All</option>
                   <?php
                   if ($result) {
                     // options for district
@@ -300,7 +300,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">Block</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Block' onchange="change()">
-                  <option selected="selected">Please Select</option>
+                <option value="All">All</option>
                   <?php
                   if ($result2) {
                     // options for Block
@@ -319,7 +319,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">Village</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Village' onchange="change()">
-                  <option selected="selected">Please Select</option>
+                <option value="All">All</option>
                   <?php
                   if ($result3) {
                     // options for Village
@@ -338,7 +338,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">School name</label>
                 <select class="form-control select2bs4" style="width: 100%" name='school' onchange="change()">
-                  <option selected="selected">Please Select</option>
+                <option value="All">All</option>
                   <?php
                   if ($result3) {
                     // options for school Name
@@ -357,7 +357,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC serial no.</label>
                 <select class="form-control select2bs4" style="width: 100%" name='PC' onchange="change()">
-                  <option selected="selected">Please Select</option>
+                <option value="All">All</option>
                   <?php
                   // select pc serial number
                   if ($result6) {
@@ -375,7 +375,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               <div class="form-group col-lg-1">
                 <label for="exampleInputPassword1">Activity</label>
                 <select class="form-control select2bs4" style="width: 100%" name='Activity'>
-                  <option value="All">All</option>
+                <option value="All">All</option>
                   <?php
                   if ($result3) {
 

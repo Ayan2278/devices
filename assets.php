@@ -224,7 +224,7 @@ if (isset($_POST['school'])) {
               <div class="form-group col-lg-2">
                 <label for="device">School</label>
                 <select class="form-control select2bs4" style="width: 100%" name="school" onchange="change()">
-                  <option value="">Please Select</option>
+                <option value="All">All</option>
                   <?php
                   // total school
                   if ($result) {
@@ -245,7 +245,7 @@ if (isset($_POST['school'])) {
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC Id</label>
                 <select class="form-control select2bs4" style="width: 100%" name='pc'>
-                  <option selected="selected">Please Select</option>
+                   <option value="All">All</option>
                   <?php
                   // total pc ID
                   if ($result2) {
@@ -325,12 +325,18 @@ if (isset($_POST['school'])) {
                 if (isset($_POST["Assets"])) {
                   $pc = $_POST['pc'];
                   $school = $_POST['school'];
+                  if ($_POST['school'] == "All") {
                   $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
                 }
-                // display records according to the pc serial number
-                elseif(isset($_POST['pc'])){
-                  $query = "SELECT * FROM `asset` WHERE `pc_sr`= '$pc' AND `school_name`='$school' ;";
+                elseif($_POST['school'] != "All" && $_POST['pc'] == "All") {
+                  $query = "SELECT * FROM `asset` WHERE `school_name`='$school'";
                 }
+                
+                // display records according to the pc serial number
+                elseif($_POST['school'] != "All" && $_POST['pc'] != "All"){
+                  $query = "SELECT * FROM `asset` WHERE `pc_sr`='$pc' AND `school_name`='$school' ;";
+                }
+              }
                 $result = mysqli_query($conn, $query);
                 $total = mysqli_num_rows($result);
                 if ($total != 0) {
@@ -350,8 +356,8 @@ if (isset($_POST['school'])) {
                       $count += 1;
                      }
                      
+                    }
                   
-                }
               
             ?>
 
