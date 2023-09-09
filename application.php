@@ -66,7 +66,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $result5 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result5);
 
-  if (isset($_POST['PC']) && $_POST['PC'] != "Please Select") {
+  if (isset($_POST['PC']) && $_POST['PC'] != "All") {
     // fetch data from json file
     $cd = 1;
     $file = "JSON PC/" . $_POST['PC'] . ".json";
@@ -493,7 +493,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
 
                     // displaying filter value in table
-                    if (isset($_POST['PC']) && $_POST['PC'] != "Please Select") {
+                    if (isset($_POST['PC']) && $_POST['PC'] != "All") {
                       $file = "JSON PC/" . $_POST['PC'] . ".json";
                       $act = $_POST['Activity'];
                       if ($act) {
@@ -512,7 +512,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                       // query for fetching data 
                       $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
                       $result5 = mysqli_query($conn, $query5);
-                      if ($_POST['Activity'] != "Please Select") {
+                      if ($_POST['Activity'] != "All") {
                         $data = file_get_contents($file);
                         $data = json_decode($data, true);
                         if ($result5) {
