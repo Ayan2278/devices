@@ -469,7 +469,7 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
         if ($data != 0) {
           foreach ($data as $row) {
             echo '
-              <tr>
+              <tr style=" height:40px; font-size:14px;text-align:center;">
                 <td>' . $count . '</td>
                 <td>PC0' . $c . '</td>
                 <td>' . $row['Date'] . '</td>
@@ -522,7 +522,7 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
         if ($data != 0) {
           foreach ($data as $row) {
             echo '
-              <tr>
+              <tr  style=" height:40px; font-size:14px;text-align:center;">
                 <td>' . $count . '</td>
                 <td>' . $PC . '</td>
                 <td>' . $row['Date'] . '</td>
