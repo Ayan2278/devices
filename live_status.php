@@ -283,7 +283,7 @@ function status($pcNo)
                                 <label for="school">District</label>
                                 <select class="form-control select2bs4" style="width: 100%" name="DIST"
                                     onchange="change()">
-                                    <option value="Please Select">Please Select</option>
+                                    <option value="All">All</option>
                                     <?php
                                     // Option Value For Select All Districts
                                     if ($result) {
@@ -305,7 +305,7 @@ function status($pcNo)
                                 <label for="exampleInputPassword1">Block</label>
                                 <select class="form-control select2bs4" style="width: 100%" name='Block'
                                     onchange="change()">
-                                    <option selected="selected">Please Select</option>
+                                    <option value="All">All</option>
                                     <?php
                                     // Option Value for Select All Blocks
                                     if ($result2) {
@@ -326,7 +326,7 @@ function status($pcNo)
                                 <label for="exampleInputPassword1">Village</label>
                                 <select class="form-control select2bs4" style="width: 100%" name='Village'
                                     onchange="change()">
-                                    <option selected="selected">Please Select</option>
+                                    <option value="All">All</option>
                                     <?php
                                     // Options for Select all Villages
                                     if ($result3) {
@@ -347,7 +347,7 @@ function status($pcNo)
                                 <label for="exampleInputPassword1">Select School </label>
                                 <select class="form-control select2bs4" style="width: 100%" name='school'
                                     onchange="change()">
-                                    <option selected="selected">Please Select</option>
+                                    <option value="All">All</option>
                                     <?php
                                     // Options for Select all School-Names
                                     if ($result3) {
@@ -367,7 +367,7 @@ function status($pcNo)
                             <div class="form-group col-lg-2">
                                 <label for="exampleInputPassword1">PC serial no.</label>
                                 <select class="form-control select2bs4" style="width: 100%" name='PC'>
-                                    <option selected="selected">Please Select</option>
+                                <option value="All">All</option>
                                     <?php
                                     // select pc serial number
                                     if ($result5) {
@@ -453,14 +453,35 @@ function status($pcNo)
 
                                             $PC = $_POST['PC'];
                                             $school = $_POST['school'];
-                                            if ($_POST['DIST'] == "Please Select") {
+                                            $Dis = $_POST['DIST'];
+                                            $Bl = $_POST['Block'];
+                                            $village = $_POST['Village'];
+                                            if ($_POST['DIST'] == "All") {
                                                 $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
                                                 
                                             }
-                                            elseif ($_POST['PC'] == "Please Select" && $_POST['school'] != "Please Select") {
+                                            
+                                            elseif ($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
+                                                $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis' ";
+                                               
+                                            } 
+                                            elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] == "All") {
+                                                $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis' AND `block`='$Bl'";
+                                               
+                                            } 
+                                            elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] == "All") {
+                                                $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis' AND `block`='$Bl' AND `school_name`= '$school'";
+                                               
+                                            } 
+                                            elseif ($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
+                                                $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis' ";
+                                               
+                                            } 
+                                            elseif ($_POST['PC'] == "All" && $_POST['school'] != "All") {
                                                 $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
-                                                // else if for Selected Query According to the filter value
-                                            } elseif ($_POST['DIST'] != "Please Select" && $_POST['Block'] != "Please Select" && $_POST['Village'] != "Please Select" && $_POST['school'] != "Please Select" && $_POST['PC'] != "Please Select") {
+                                               
+                                            }
+                                            elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] != "All" && $_POST['PC'] != "All") {
                                                 $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
                                             } 
                                         }

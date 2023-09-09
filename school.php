@@ -239,7 +239,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
               <div class="form-group col-lg-2">
                 <label for="school">District</label>
                 <select class="form-control select2bs4" style="width: 100%" name="DIST" onchange="change()">
-                  <option value="">Please Select</option>
+                  <option value="All">All</option>
                   <?php
                   // Option for Select District
                   if ($result) {
@@ -368,16 +368,19 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                         </tr>
                       </thead>
               <tbody>';
-              if (isset($_POST['Search']) && $_POST['Search'] == "Search") {
+            
+            
                 include '_db_Connect.php';
                 $count = 1;
-                $schl = $_POST['school'];
-                $vill = $_POST['Village'];
-
+                $query5 = "SELECT * FROM `school` ORDER BY  `school`.`school_name` ASC";
                 //displaying all Record from Database
-                if ($_POST['DIST'] == "" && isset($_POST["Search"])) {
+                if (isset($_POST["Search"])) {
+                  $schl = $_POST['school'];
+                  $vill = $_POST['Village'];
+                  if ($_POST['DIST'] == "All") {
                   $query5 = "SELECT * FROM `school` ORDER BY  `school`.`school_name` ASC";
                 }
+              }
                 elseif(isset($_POST['school'])) {
                   $query5 = "SELECT * FROM `school` WHERE `school_name` = '$schl' AND `village`='$vill';";
                 }
@@ -402,8 +405,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   }else
                     echo "<tr><td colspan='9'>No data found</td></tr>";
                 }
-              }
-             
+              
+            
               ?>
 
               </tbody>

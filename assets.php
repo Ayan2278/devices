@@ -314,16 +314,17 @@ if (isset($_POST['school'])) {
                             </tr>
                           </thead>
                   <tbody>';
-              if (isset($_POST['Assets']) && $_POST['Assets'] == "Assets") {
+              // if (isset($_POST['Assets']) && $_POST['Assets'] == "Assets") {
 
                 // connection file
                 include '_db_Connect.php';
 
-                $pc = $_POST['pc'];
-                $school = $_POST['school'];
                 $count = 1;
+                $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
                 //display all records from the database
-                if ($_POST['school'] == "" && isset($_POST["Assets"])) {
+                if (isset($_POST["Assets"])) {
+                  $pc = $_POST['pc'];
+                  $school = $_POST['school'];
                   $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
                 }
                 // display records according to the pc serial number
@@ -351,7 +352,7 @@ if (isset($_POST['school'])) {
                      
                   
                 }
-              }
+              
             ?>
 
               </tbody>
