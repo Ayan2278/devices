@@ -446,10 +446,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     include '_db_Connect.php';
 
                     // displaying all data from database and Json file
+                    $c = 1;
+                    $pcCount = 1;
+                    $count = 1;
                     if ($_POST['DIST'] == "All" && $_POST["Application"] == "Application") {
-                      $c = 1;
-                      $pcCount = 1;
-                      $count = 1;
 
                       // include Json file
                       while ($c <= $filecount) {
