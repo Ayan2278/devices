@@ -387,7 +387,7 @@ function status($pcNo)
 
                             <form action="live_status.php" method="post">
                                 <div class="form-group col-lg-1 my-4 w-100">
-                                    <button type="submit" name="Status" value="Status" class="btn  "
+                                    <button type="submit" name="Status" value="Status" class="btn  " 
                                         style="margin-top:8px;width:100%;  background:#6f42c1; color:white;">Status</button>
                                 </div>
                             </form>
@@ -438,26 +438,31 @@ function status($pcNo)
                         <tbody>';
 
                                     // displaying all devices data in table
-                                    if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
 
-                                        $PC = $_POST['PC'];
-                                        $school = $_POST['school'];
+
                                         $count = 1;
                                         $c = 1;
                                         $pcCount = 1;
                                         $count = 1;
                                         // If District is Please Select then display all records 
-                                        if ($_POST['DIST'] == "Please Select") {
-                                            $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
+                                    
+                                        $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
 
-                                            // else if for diplaying School Name According to the Villages     
-                                        } elseif ($_POST['PC'] == "Please Select" && $_POST['school'] != "Please Select") {
-                                            $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
+                                        // else if for diplaying School Name According to the Villages     
+                                        if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
 
-                                            // else if for Selected Query According to the filter value
-                                        } elseif ($_POST['DIST'] != "Please Select" && $_POST['Block'] != "Please Select" && $_POST['Village'] != "Please Select" && $_POST['school'] != "Please Select" && $_POST['PC'] != "Please Select") {
-                                            $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
-
+                                            $PC = $_POST['PC'];
+                                            $school = $_POST['school'];
+                                            if ($_POST['DIST'] == "Please Select") {
+                                                $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
+                                                
+                                            }
+                                            elseif ($_POST['PC'] == "Please Select" && $_POST['school'] != "Please Select") {
+                                                $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
+                                                // else if for Selected Query According to the filter value
+                                            } elseif ($_POST['DIST'] != "Please Select" && $_POST['Block'] != "Please Select" && $_POST['Village'] != "Please Select" && $_POST['school'] != "Please Select" && $_POST['PC'] != "Please Select") {
+                                                $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
+                                            } 
                                         }
                                         //Set the connection for result
                                         if (isset($query1)) {
@@ -494,7 +499,7 @@ function status($pcNo)
                                             }
                                         } else
                                             echo "<tr><td colspan='9'>No data found</td></tr>";
-                                    }
+                                    
                                     ?>
 
                                     </tbody>
@@ -537,6 +542,7 @@ function status($pcNo)
             window.print();
         }
     </script>
+
     <script>
         $(function () {
             $("#example1").DataTable();
