@@ -460,7 +460,6 @@ function status($pcNo)
                                                 $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
                                                 
                                             }
-                                            
                                             elseif ($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
                                                 $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis' ";
                                                
