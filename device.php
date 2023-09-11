@@ -6,13 +6,13 @@ include 'authentication.php';
 include '_db_Connect.php';
 
 // display all districts
-$sql = "SELECT DISTINCT `district` FROM `school`;";
+$sql = "SELECT DISTINCT `district` FROM `asset`;";
 $result = mysqli_query($conn, $sql);
 
 //select districts
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
-  $sql2 = "SELECT DISTINCT `block` FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC ;";
+  $sql2 = "SELECT DISTINCT `block` FROM `asset` WHERE `district`='$Dis' ORDER BY `asset`.`block` ASC ;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -21,7 +21,7 @@ if (isset($_POST['DIST'])) {
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql3 = "SELECT  DISTINCT `village` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis';";
+  $sql3 = "SELECT  DISTINCT `village` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis';";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
@@ -31,7 +31,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql44 = "SELECT  DISTINCT `school_name` from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl'";
+  $sql44 = "SELECT  DISTINCT `school_name` from `asset` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl'";
   $result44 = mysqli_query($conn, $sql44);
   $row = $result44->fetch_assoc();
   $tot44 = mysqli_num_rows($result44);
@@ -444,9 +444,25 @@ $directory = getcwd() . "/JSON//";
 if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
   // count json file
   
-  if ($_POST['DIST'] != "All" && $_POST['Block']=="All" && $_POST['Device'] == "Device"){
-    $district = $_POST['DIST'];
-    $query5 = "SELECT * FROM `asset` WHERE `district`= '$district'";
+  if($_POST['DIST'] != "All" && $_POST['Block']=="All" ){
+    $Dis = $_POST['DIST'];
+    $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis'";
+  }
+    elseif($_POST['DIST'] != "All" && $_POST['Block']!="All"&& $_POST['Village']=="All"){
+      $Dis = $_POST['DIST'];
+      $Bl = $_POST['Block'];
+      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl'";
+    }
+   elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All"  && $_POST['PC']=="All"){
+    
+      $village = $_POST['Village'];
+      $Dis = $_POST['DIST'];
+      $Bl = $_POST['Block'];
+     
+      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' ";
+    }
+    if(isset($query5)){
+      $result5 = mysqli_query($conn, $query5);
     $result5 = mysqli_query($conn, $query5);
     $tot5 = mysqli_num_rows($result5);
     if ($tot5 != 0) {
@@ -529,7 +545,6 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
       }
     }
   }
-
 
 }
 

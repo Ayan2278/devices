@@ -6,7 +6,7 @@ include 'authentication.php';
 include '_db_Connect.php';
 
 // total school
-$sql = "SELECT  DISTINCT `school_name` FROM `school`;";
+$sql = "SELECT  DISTINCT `school_name` FROM `asset`;";
 $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['school'])) {
