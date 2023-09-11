@@ -48,13 +48,13 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Device</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Device</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     <!-- Font Awesome -->
@@ -85,177 +85,179 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <style>
+    <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 200;
-      font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
     }
 
     .scrollbar {
-      height: 300px;
-      overflow-y: auto;
+        height: 300px;
+        overflow-y: auto;
     }
 
 
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-      background-color: #ADB5BD;
-      border-radius: 5px;
+        width: 8px;
+        height: 8px;
+        background-color: #ADB5BD;
+        border-radius: 5px;
     }
 
 
     ::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+        border-radius: 5px;
+        background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
     }
 
 
     ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+        background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
     }
 
 
     ::-webkit-scrollbar-track {
-      background-color: #f5f5f5;
-      border-radius: 1px;
+        background-color: #f5f5f5;
+        border-radius: 1px;
     }
 
     .card-title {
-      float: left;
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin: 0;
+        float: left;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0;
     }
 
 
     .bg {
-      background: linear-gradient(to bottom, #2196F3, #0D47A1);
-      border: none;
+        background: linear-gradient(to bottom, #2196F3, #0D47A1);
+        border: none;
     }
 
     .bg:hover {
-      transition: 0.3s;
-      background: linear-gradient(to top, #0088f5, #01378a);
+        transition: 0.3s;
+        background: linear-gradient(to top, #0088f5, #01378a);
     }
 
     @media print {
-      body * {
-        visibility: hidden;
-      }
+        body * {
+            visibility: hidden;
+        }
 
-      table,
-      table * {
-        visibility: visible;
+        table,
+        table * {
+            visibility: visible;
 
-      }
+        }
 
-      th {
-        font-weight: 200;
-        font-size: 14px;
-      }
+        th {
+            font-weight: 200;
+            font-size: 14px;
+        }
 
-      td {
+        td {
 
-        border-color: inherit;
-        border-style: solid;
-        border-width: 0;
-        font-size: 10px;
-      }
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+            font-size: 10px;
+        }
 
-      table {
-        position: absolute;
-        left: 0;
-        top: -520px;
-      }
+        table {
+            position: absolute;
+            left: 0;
+            top: -520px;
+        }
     }
-  </style>
-  <style>
+    </style>
+    <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 200;
-      font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
     }
 
     ::-webkit-scrollbar {
-      max-width: 7px;
+        max-width: 7px;
     }
 
     /* Track */
     ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
+        background: #f1f1f1;
+        border-radius: 10px;
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-      background: #5c5c5c;
-      border-radius: 10px;
+        background: #5c5c5c;
+        border-radius: 10px;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-      border-radius: 10px;
-      background: #c7c7c7;
+        border-radius: 10px;
+        background: #c7c7c7;
     }
-    .focus:focus{
-      border: 1px solid purple;
+
+    .focus:focus {
+        border: 1px solid purple;
     }
-  </style>
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed ">
-  <?php
+    <?php
   include 'sidebar.php'
     ?>
-  <div class="wrapper">
+    <div class="wrapper">
 
-    <!-- Navbar -->
+        <!-- Navbar -->
 
-    <!-- /.navbar -->
+        <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
+        <!-- Main Sidebar Container -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
 
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Device</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item">Dashboard</li>
-                <li class="breadcrumb-item active">Device</li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Device</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item">Dashboard</li>
+                                <li class="breadcrumb-item active">Device</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
 
-      <!-- Main content -->
+            <!-- Main content -->
 
 
-      <!-- general form elements -->
-      <section class="content">
-        <div class="card mx-2 shadow">
-          <div class="card-header" style="border:0px;">
-            <h3 class="card-title">Device Timing</h3>
-          </div>
-          <!-- /.card-header -->
-          <!-- form start -->
-          <form method="post" action="device.php" role="form" id="myform">
-            <div class="card-body row">
-              <div class="form-group col-lg-2">
-                <label for="device">District</label>
-                <select class="form-control select2bs4" style="width: 100%" name="DIST" onchange="change()">
-                  <option value="All">All</option>
-                  <?php
+            <!-- general form elements -->
+            <section class="content">
+                <div class="card mx-2 shadow">
+                    <div class="card-header" style="border:0px;">
+                        <h3 class="card-title">Device Timing</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="post" action="device.php" role="form" id="myform">
+                        <div class="card-body row">
+                            <div class="form-group col-lg-2">
+                                <label for="device">District</label>
+                                <select class="form-control select2bs4" style="width: 100%" name="DIST"
+                                    onchange="change()">
+                                    <option value="All">All</option>
+                                    <?php
                   //select districts
                   if ($result) {
                     $total = mysqli_num_rows($result);
@@ -270,14 +272,15 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     }
                   }
                   ?>
-                  
-                </select>
-              </div>
-              <div class="form-group col-lg-2">
-                <label for="exampleInputPassword1">Block</label>
-                <select class="form-control select2bs4 focus" style="width: 100%" name='Block' onchange="change()">
-                  <option Value="All">All</option>
-                  <?php
+
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="exampleInputPassword1">Block</label>
+                                <select class="form-control select2bs4 focus" style="width: 100%" name='Block'
+                                    onchange="change()">
+                                    <option Value="All">All</option>
+                                    <?php
                   // select blocks
                   if ($result2) {
 
@@ -291,14 +294,15 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     }
                   }
                   ?>
-                </select>
-              </div>
-              <div class="form-group col-lg-2">
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
 
-                <label for="exampleInputPassword1">Village</label>
-                <select class="form-control select2bs4" style="width: 100%" name='Village' onchange="change()">
-                  <option Value="All">All</option>
-                  <?php
+                                <label for="exampleInputPassword1">Village</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='Village'
+                                    onchange="change()">
+                                    <option Value="All">All</option>
+                                    <?php
                   //select villages
                   if ($result3) {
 
@@ -312,14 +316,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     }
                   }
                   ?>
-                </select>
-              </div>
-              <div class="form-group col-lg-2">
-                <label for="exampleInputPassword1">PC serial no.</label>
-                <select class="form-control select2bs4" style="width: 100%" name='PC'>
-                
-                  <option value="All">All</option>
-                  <?php
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="exampleInputPassword1">PC serial no.</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='PC'>
+
+                                    <option value="All">All</option>
+                                    <?php
                   // select pc serial number
                   if ($result3) {
 
@@ -333,38 +337,39 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     }
                   }
                   ?>
-                </select>
-              </div>
+                                </select>
+                            </div>
 
 
-              <form action="device.php" method="post">
-                <div class="form-group col-lg-1 my-4 w-100">
-                  <button type="submit" name="Device" value="Device" class="btn  "
-                    style="margin-top:8px;width:100%;  background:#6f42c1; color:white;">Device</button>
+                            <form action="device.php" method="post">
+                                <div class="form-group col-lg-1 my-4 w-100">
+                                    <button type="submit" name="Device" value="Device" class="btn  "
+                                        style="margin-top:8px;width:100%;  background:#6f42c1; color:white;">Device</button>
+                                </div>
+                            </form>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                    </form>
                 </div>
-              </form>
-
-            </div>
-            <!-- /.card-body -->
-
-          </form>
-        </div>
-        <section class="content">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-          <!-- <div class="col-lg-1 col-md-5 col-sm-6  " style="float:right;">
+                <section class="content">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <!-- <div class="col-lg-1 col-md-5 col-sm-6  " style="float:right;">
             <button type="submit" class="btn  w-100" style="background-color:#ffc167;" onclick="printTable()">
               <i class="fas fa-download"></i> Print PDF
             </button>
           </div> -->
-          <!-- /.card-header -->
+                                <!-- /.card-header -->
 
-          <div class="card-body">
-              <h4 class="card-title">Data</h4>
-              <table id="example2" class="  table-striped table-bordered table-hover" style="top:0; width:100%;">
+                                <div class="card-body">
+                                    <h4 class="card-title">Data</h4>
+                                    <table id="example2" class="  table-striped table-bordered table-hover"
+                                        style="top:0; width:100%;">
 
-              <?php
+                                        <?php
 
 
 
@@ -380,44 +385,36 @@ echo '<thead style="height:50px;">
           </tr>
         </thead>
 <tbody>';
+// connection file
+include '_db_Connect.php';
+
+$c = 1;
+$pcCount = 1;
+$count = 1;
+$query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
+
 if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
   // count json file
   $directory = getcwd() . "/JSON//";
-
   $filecount = 0;
-
   $files2 = glob($directory . "*");
-
   if ($files2) {
     $filecount = count($files2);
   }
-
-  // connection file
-  include '_db_Connect.php';
-
-  if ($_POST['DIST'] == "All") {
-  
-    $c = 1;
-    $pcCount = 1;
-    $count = 1;
-    while ($c <= $filecount) {
-      $file = "JSON/PC0" . $c . ".json";
-      $query4 = "SELECT * from `asset` where `pc_sr`='PC0$c';";
-      $result4 = mysqli_query($conn, $query4);
-      $total4 = mysqli_num_rows($result4);
-
-      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
+  while ($c <= $filecount) {
+    $file = "JSON/PC0" . $c . ".json";
+    $data = file_get_contents($file);
+    $data = json_decode($data, true);
+    
+      if ($_POST['DIST'] == "All" && $_POST['Device'] == "Device"){
+      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c'";
       $result5 = mysqli_query($conn, $query5);
-      $data = file_get_contents($file);
-      $data = json_decode($data, true);
       if ($result5) {
-
         $total5 = mysqli_num_rows($result5);
-
         if ($data != 0) {
           foreach ($data as $row) {
             echo '
-            <tr  style="text-align:center; height:41px; font-size:15px;">
+            <tr style="text-align:center; height:41px; font-size:15px;">
                 <td>' . $count . '</td>
                 <td>PC0' . $c . '</td>
                 <td>' . $row['Date'] . '</td>
@@ -446,8 +443,6 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
       $pcCount++;
     }
   }
-
-
   if ($_POST['DIST'] != "All" && $_POST['Block']=="All") {
   
     $c = 1;
@@ -543,58 +538,51 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
 
 }
 
-
-
 ?>
 
-              </tbody>
+                                        </tbody>
 
-           
-              
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                </section>
 
-              </tbody>
-
-            </table>
-          </div>
-          <!-- /.card-body -->
+                <!-- /.card -->
+                <!-- right col -->
         </div>
-          </div>
-        <!-- /.card -->
-      </section>
-      
-      <!-- /.card -->
-      <!-- right col -->
-    </div>
-    <!-- /.row (main row) -->
-  </div><!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 
-  </div>
-  <!-- /.content-wrapper -->
-  <?php
+    </div>
+    <!-- /.content-wrapper -->
+    <?php
    //include footer file
     include  'footer.php';
     ?>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-  </div>
-  <!-- ./wrapper -->
-  <script>
-        function change() {
-            document.getElementById("myform").submit();
-        }
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <script>
+    function change() {
+        document.getElementById("myform").submit();
+    }
     </script>
     <script>
-        function printTable() {
-            window.print();
-        }
+    function printTable() {
+        window.print();
+    }
     </script>
-   
+
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
 
@@ -604,7 +592,7 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -634,27 +622,27 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
     <script src="dist/js/demo.js"></script>
     <script src="plugins/select2/js/select2.full.min.js"></script>
     <script>
-        $('.select2').select2();
-        $('.select2bs4').select2({
-            theme: 'bootstrap4',
-            placeholder: 'Please Select'
-        });
+    $('.select2').select2();
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        placeholder: 'Please Select'
+    });
     </script>
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!-- page script -->
     <script>
-        $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-            });
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
         });
+    });
     </script>
 
 </body>
