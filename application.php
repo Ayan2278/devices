@@ -427,55 +427,43 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
                   // displying all data in table
                   echo '<thead style="height:50px;">
-          <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
-            <th>SR</th>
-            <th>PC</th>
-            <th>Application</th>
-            <th>Date</th>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Duration</th>
-          </tr>
-        </thead>
-<tbody>';
+                          <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
+                            <th>SR</th>
+                            <th>PC</th>
+                            <th>Application</th>
+                            <th>Date</th>
+                            <th>Start time</th>
+                            <th>End time</th>
+                            <th>Duration</th>
+                          </tr>
+                        </thead>
+                <tbody>';
 
-//count all Json files
-$directory = getcwd() . "/JSON PC//";
-$filecount = 0;
-$files2 = glob($directory . "*");
-if ($files2) {
-  $filecount = count($files2);
-}
+                        //count all Json files
+                        $directory = getcwd() . "/JSON PC//";
+                        $filecount = 0;
+                        $files2 = glob($directory . "*");
+                        if ($files2) {
+                          $filecount = count($files2);
+                        }
 
-// include connection file
-include '_db_Connect.php';
-$c = 1;
-$pcCount = 1;
-$count = 1;
+                        // include connection file
+                        include '_db_Connect.php';
+                        $c = 1;
+                        $pcCount = 1;
+                        $count = 1;
 
 
-if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
-                    // displaying all data from database and Json file
-                 
+                      // displaying all data from database and Json file
+                    if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
                     
-                    // include Json file
+                      // include Json file
                     if ($_POST['DIST'] == "All") {
                     while ($c <= $filecount) {
                       $file = "JSON PC/PC0" . $c . ".json";
                       $data = file_get_contents($file);
                       $data = json_decode($data, true);
-                        // $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
-                      // }
-                      //   elseif($_POST['DIST']=="All" && $_POST['Block']=="All"){
-                      //     $query5="SELECT * FROM `asset` Where `district`='$dist'";
-                      //   }
-                      //   elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']=="All"){
-                      //     $query5="SELECT * FROM `asset` Where `block`='$Bl'";
-
-                      //   }
-                      //   elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['PC']=="All"){
-                      //     $query5="SELECT * FROM `asset` Where `village`='$village'";
-                      //   }
+                       
                         if ($result5) {
                           $total5 = mysqli_num_rows($result5);
                           if ($data != 0) {
@@ -511,7 +499,56 @@ if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
                         $pcCount++;
                       }
                     }
+                elseif($_POST['DIST']!="All" && $_POST['Block']=="All" && $_POST['Application']=="Application"){
+                  $$Dis = $_POST['DIST'];
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis'";
+                  $result5 = mysqli_query($conn, $query5);
+                  $tot5 = mysqli_num_rows($result5);
+                  if ($tot5 != 0) {
+                    while($row5 = $result5->fetch_assoc()){
+                      $pcsr = $row5['pc_sr'];
+                      $file = "JSON PC/" . $pcsr . ".json";
+                      $data = file_get_contents($file);
+                      $data = json_decode($data, true);
+                      if ($data != 0) {
+                        foreach ($data as $row) {
+                          echo '
 
+                            <tr  style=" height:40px; font-size:14px;text-align:center;">
+                              <td style="margin:10px;">' . $count . '</td>
+                              <td>' . $pcsr . '</td>
+                              <td>' . $row['Activity'] . '</td>
+                              <td>' . $row['Date'] . '</td>
+                              <td>' . $row['Start time'] . '</td><td>';
+                              date_default_timezone_set('Asia/Kolkata');
+                              $date = date('h:i:s');
+                              $datee = date("d/m/Y");
+                              $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                              if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                                echo '<small class="badge badge-success">Running</small>';
+                              }else {
+                                echo $row['End time'] . '</td>';
+                              }
+                              echo '
+                
+                              <td>' . $row['Duration'] . '</td>
+                          </tr>
+                          ';
+                              $count += 1;
+                            }
+                          } else
+                            echo "<tr><td colspan='9'>No data found</td></tr>";
+                        }
+                        }
+                      
+              $count += 1;
+                    $pcsr++;
+                    
+                  
+                    
+                    }   
+
+                
 
                     // displaying filter value in table
                     if (isset($_POST['PC']) && $_POST['PC'] != "All") {
@@ -575,6 +612,7 @@ if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
                       }
                     }
 }
+                    
                   ?>
 
                                     </tbody>

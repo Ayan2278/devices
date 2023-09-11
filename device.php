@@ -444,7 +444,7 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
     }
       
   }
-  else if ($_POST['DIST'] != "All" && $_POST['Block']=="All" && $_POST['Device'] == "Device"){
+  elseif ($_POST['DIST'] != "All" && $_POST['Block']=="All" && $_POST['Device'] == "Device"){
     $district = $_POST['DIST'];
     $query5 = "SELECT * FROM `asset` WHERE `district`= '$district'";
     $result5 = mysqli_query($conn, $query5);
