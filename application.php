@@ -445,7 +445,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 $c = 1;
                 $pcCount = 1;
                 $count = 1;
-                $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= ''PC0$c';";
+                $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
                 
                 
                 //count all Json files
@@ -526,7 +526,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 }
                 if(isset($query5)){
                   $result5 = mysqli_query($conn, $query5);
-                  $tot5 = mysqli_num_rows($result5);
+                  if ($result5) {
+                    $tot5 = mysqli_num_rows($result5);
+                  }
                   if ($tot5 != 0) {
                     while($row5 = $result5->fetch_assoc()){
                       $pcsr = $row5['pc_sr'];
