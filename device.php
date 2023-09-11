@@ -392,16 +392,13 @@ $c = 1;
 $pcCount = 1;
 $count = 1;
 $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
-
-if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
-  // count json file
-  $directory = getcwd() . "/JSON//";
+$directory = getcwd() . "/JSON//";
   $filecount = 0;
   $files2 = glob($directory . "*");
   if ($files2) {
     $filecount = count($files2);
   }
-  if ($_POST['DIST'] == "All" && $_POST['Device'] == "Device"){
+  if (!isset($_POST['DIST']) || isset($_POST['Device']) && $_POST['Device'] == "Device" && $_POST['DIST']=='All'){
   while ($c <= $filecount) {
     $file = "JSON/PC0" . $c . ".json";
     $data = file_get_contents($file);
@@ -444,7 +441,10 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
     }
       
   }
-  elseif ($_POST['DIST'] != "All" && $_POST['Block']=="All" && $_POST['Device'] == "Device"){
+if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
+  // count json file
+  
+  if ($_POST['DIST'] != "All" && $_POST['Block']=="All" && $_POST['Device'] == "Device"){
     $district = $_POST['DIST'];
     $query5 = "SELECT * FROM `asset` WHERE `district`= '$district'";
     $result5 = mysqli_query($conn, $query5);
