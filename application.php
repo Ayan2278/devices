@@ -461,12 +461,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                           if ($data != 0) {
                             foreach ($data as $row) {
                               echo '
-              <tr  style=" height:40px; font-size:14px;text-align:center;">
-                <td style="margin:10px;">' . $count . '</td>
-                <td>PC0' . $c . '</td>
-                <td>' . $row['Activity'] . '</td>
-                <td>' . $row['Date'] . '</td>
-                <td>' . $row['Start time'] . '</td><td>';
+                                <tr  style=" height:40px; font-size:14px;text-align:center;">
+                                  <td style="margin:10px;">' . $count . '</td>
+                                  <td>PC0' . $c . '</td>
+                                  <td>' . $row['Activity'] . '</td>
+                                  <td>' . $row['Date'] . '</td>
+                                  <td>' . $row['Start time'] . '</td><td>';
                               date_default_timezone_set('Asia/Kolkata');
                               $date = date('h:i:s');
                               $datee = date("d/m/Y");
