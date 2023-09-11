@@ -570,59 +570,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     $pcsr++;
                     
                   
-                    
-              //       }   
-              //   elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']=="All" && $_POST['Application']=="Application"){
-              //     $$Dis = $_POST['DIST'];
-              //     $Bl = $_POST['Block'];
-              //     $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl'";
-              //     $result5 = mysqli_query($conn, $query5);
-              //     $tot5 = mysqli_num_rows($result5);
-              //     if ($tot5 != 0) {
-              //       while($row5 = $result5->fetch_assoc()){
-              //         $pcsr = $row5['pc_sr'];
-              //         $file = "JSON PC/" . $pcsr . ".json";
-              //         $data = file_get_contents($file);
-              //         $data = json_decode($data, true);
-              //         if ($data != 0) {
-              //           foreach ($data as $row) {
-              //             echo '
-
-              //               <tr  style=" height:40px; font-size:14px;text-align:center;">
-              //                 <td style="margin:10px;">' . $count . '</td>
-              //                 <td>' . $pcsr . '</td>
-              //                 <td>' . $row['Activity'] . '</td>
-              //                 <td>' . $row['Date'] . '</td>
-              //                 <td>' . $row['Start time'] . '</td><td>';
-              //                 date_default_timezone_set('Asia/Kolkata');
-              //                 $date = date('h:i:s');
-              //                 $datee = date("d/m/Y");
-              //                 $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-              //                 if ($newDate < $row['End time'] && $datee == $row['Date']) {
-              //                   echo '<small class="badge badge-success">Running</small>';
-              //                 }else {
-              //                   echo $row['End time'] . '</td>';
-              //                 }
-              //                 echo '
-                
-              //                 <td>' . $row['Duration'] . '</td>
-              //             </tr>
-              //             ';
-              //                 $count += 1;
-              //               }
-              //             } else
-              //               echo "<tr><td colspan='9'>No data found</td></tr>";
-              //           }
-              //           }
-                      
-              // $count += 1;
-              //       $pcsr++;
-                    
-                  
-                    
-              //       }   
-
-                
 
                     // displaying filter value in table
                     if (isset($_POST['PC']) && $_POST['PC'] != "All") {

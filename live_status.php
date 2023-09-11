@@ -6,13 +6,13 @@ include 'authentication.php';
 include '_db_Connect.php';
 
 // query for Select All districts
-$sql = "SELECT DISTINCT `district` FROM `school`;";
+$sql = "SELECT DISTINCT `district` FROM `asset`;";
 $result = mysqli_query($conn, $sql);
 
 //Select all blocks For filter Data
 if (isset($_POST['DIST'])) {
     $Dis = $_POST['DIST'];
-    $sql2 = "SELECT  DISTINCT `block` FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
+    $sql2 = "SELECT  DISTINCT `block` FROM `asset` WHERE `district`='$Dis' ORDER BY `asset`.`block` ASC;";
     $result2 = mysqli_query($conn, $sql2);
     $total2 = mysqli_num_rows($result2);
 }
@@ -20,7 +20,7 @@ if (isset($_POST['DIST'])) {
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
     $Dis = $_POST['DIST'];
     $Bl = $_POST['Block'];
-    $sql3 = "SELECT  DISTINCT `village` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
+    $sql3 = "SELECT  DISTINCT `village` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
     $result3 = mysqli_query($conn, $sql3);
     $total3 = mysqli_num_rows($result3);
 }
@@ -30,7 +30,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     $village = $_POST['Village'];
     $Dis = $_POST['DIST'];
     $Bl = $_POST['Block'];
-    $sql4 = "SELECT DISTINCT `school_name` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
+    $sql4 = "SELECT DISTINCT `school_name` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
     $result4 = mysqli_query($conn, $sql4);
     $total4 = mysqli_num_rows($result4);
 }
@@ -41,7 +41,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     $Bl = $_POST['Block'];
     $school = $_POST['school'];
     $PC = $_POST['PC'];
-    $sql44 = "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' ";
+    $sql44 = "SELECT * from `asset` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' ";
     $result44 = mysqli_query($conn, $sql44);
     $row = $result44->fetch_assoc();
     $tot44 = mysqli_num_rows($result44);
