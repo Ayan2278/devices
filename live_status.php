@@ -25,7 +25,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block'])) {
     $total3 = mysqli_num_rows($result3);
 }
 // Select all School-Name 
-if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
+    $school = $_POST['school'];
     $village = $_POST['Village'];
     $Dis = $_POST['DIST'];
     $Bl = $_POST['Block'];
@@ -34,15 +35,17 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     $total4 = mysqli_num_rows($result4);
 }
 // Select All PC Serial Number
-if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
     $village = $_POST['Village'];
     $Dis = $_POST['DIST'];
     $Bl = $_POST['Block'];
+    $school = $_POST['school'];
+    $PC = $_POST['PC'];
     $sql44 = "SELECT * from `school` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' ";
     $result44 = mysqli_query($conn, $sql44);
     $row = $result44->fetch_assoc();
     $tot44 = mysqli_num_rows($result44);
-    if ($tot44 != 0 && $_POST['school'] != 'Please Select') {
+    if ($tot44 != 0 && $_POST['school'] != 'All') {
         $schl = $row['school_name'];
         $sql5 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
         $result5 = mysqli_query($conn, $sql5);
@@ -447,7 +450,7 @@ function status($pcNo)
                                         // If District is Please Select then display all records 
                                     
                                         $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
-
+                                        
                                         // else if for diplaying School Name According to the Villages     
                                         if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
 
