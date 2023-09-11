@@ -6,13 +6,13 @@ include 'authentication.php';
 include '_db_Connect.php';
 
 //select all districts
-$sql = "SELECT DISTINCT `district` FROM `school`;";
+$sql = "SELECT DISTINCT `district` FROM `asset`;";
 $result = mysqli_query($conn, $sql);
 
 //fetch block for select box
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
-  $sql2 = "SELECT DISTINCT `block` FROM `school` WHERE `district`='$Dis' ORDER BY `school`.`block` ASC;";
+  $sql2 = "SELECT DISTINCT `block` FROM `asset` WHERE `district`='$Dis' ORDER BY `asset`.`block` ASC;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -20,7 +20,7 @@ if (isset($_POST['DIST'])) {
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql3 = "SELECT DISTINCT `village` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis';";
+  $sql3 = "SELECT DISTINCT `village` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis';";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
@@ -29,7 +29,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql4 = "SELECT  DISTINCT `school_name` FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
+  $sql4 = "SELECT  DISTINCT `school_name` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
@@ -62,7 +62,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
 
-  $sql4 = "SELECT * FROM `school` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village'  ;";
+  $sql4 = "SELECT * FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village'  ;";
   $result5 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result5);
 
@@ -439,31 +439,33 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                         </thead>
                 <tbody>';
 
-                        //count all Json files
-                        $directory = getcwd() . "/JSON PC//";
-                        $filecount = 0;
-                        $files2 = glob($directory . "*");
-                        if ($files2) {
-                          $filecount = count($files2);
-                        }
-
-                        // include connection file
-                        include '_db_Connect.php';
-                        $c = 1;
-                        $pcCount = 1;
-                        $count = 1;
-
-
+                
+                // include connection file
+                include '_db_Connect.php';
+                $c = 1;
+                $pcCount = 1;
+                $count = 1;
+                $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= ''PC0$c';";
+                
+                
+                //count all Json files
+                $directory = getcwd() . "/JSON PC//";
+                $filecount = 0;
+                $files2 = glob($directory . "*");
+                if ($files2) {
+                  $filecount = count($files2);
+                }
                       // displaying all data from database and Json file
-                    if (isset($_POST['Application']) && $_POST['Application'] == "Application") {
+                      if (!isset($_POST['DIST']) || isset($_POST['Application']) && $_POST['Application'] == "Application" && $_POST['DIST']=='All'){
                     
                       // include Json file
-                    if ($_POST['DIST'] == "All") {
+                  
                     while ($c <= $filecount) {
                       $file = "JSON PC/PC0" . $c . ".json";
                       $data = file_get_contents($file);
                       $data = json_decode($data, true);
-                       
+                      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c'";
+                      $result5 = mysqli_query($conn, $query5);
                         if ($result5) {
                           $total5 = mysqli_num_rows($result5);
                           if ($data != 0) {
@@ -499,9 +501,30 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                         $pcCount++;
                       }
                     }
-                elseif($_POST['DIST']!="All" && $_POST['Block']=="All" && $_POST['Application']=="Application"){
-                  $$Dis = $_POST['DIST'];
+                elseif($_POST['DIST']!="All" && $_POST['Block']=="All" ){
+                  $Dis = $_POST['DIST'];
                   $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis'";
+                }
+                elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']=="All"){
+                  $Dis = $_POST['DIST'];
+                  $Bl = $_POST['Block'];
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl'";
+                }
+                elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']=="All"){
+                  $Dis = $_POST['DIST'];
+                  $Bl = $_POST['Block'];
+                  $village = $_POST['Village'];
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village'";
+                }
+                elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']!="All" && $_POST['PC']=="All"){
+                  $school = $_POST['school'];
+                  $village = $_POST['Village'];
+                  $Dis = $_POST['DIST'];
+                  $Bl = $_POST['Block'];
+                  $PC = $_POST['PC'];
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$school'";
+                }
+                if(isset($query5)){
                   $result5 = mysqli_query($conn, $query5);
                   $tot5 = mysqli_num_rows($result5);
                   if ($tot5 != 0) {
@@ -546,7 +569,56 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     
                   
                     
-                    }   
+              //       }   
+              //   elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']=="All" && $_POST['Application']=="Application"){
+              //     $$Dis = $_POST['DIST'];
+              //     $Bl = $_POST['Block'];
+              //     $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl'";
+              //     $result5 = mysqli_query($conn, $query5);
+              //     $tot5 = mysqli_num_rows($result5);
+              //     if ($tot5 != 0) {
+              //       while($row5 = $result5->fetch_assoc()){
+              //         $pcsr = $row5['pc_sr'];
+              //         $file = "JSON PC/" . $pcsr . ".json";
+              //         $data = file_get_contents($file);
+              //         $data = json_decode($data, true);
+              //         if ($data != 0) {
+              //           foreach ($data as $row) {
+              //             echo '
+
+              //               <tr  style=" height:40px; font-size:14px;text-align:center;">
+              //                 <td style="margin:10px;">' . $count . '</td>
+              //                 <td>' . $pcsr . '</td>
+              //                 <td>' . $row['Activity'] . '</td>
+              //                 <td>' . $row['Date'] . '</td>
+              //                 <td>' . $row['Start time'] . '</td><td>';
+              //                 date_default_timezone_set('Asia/Kolkata');
+              //                 $date = date('h:i:s');
+              //                 $datee = date("d/m/Y");
+              //                 $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+              //                 if ($newDate < $row['End time'] && $datee == $row['Date']) {
+              //                   echo '<small class="badge badge-success">Running</small>';
+              //                 }else {
+              //                   echo $row['End time'] . '</td>';
+              //                 }
+              //                 echo '
+                
+              //                 <td>' . $row['Duration'] . '</td>
+              //             </tr>
+              //             ';
+              //                 $count += 1;
+              //               }
+              //             } else
+              //               echo "<tr><td colspan='9'>No data found</td></tr>";
+              //           }
+              //           }
+                      
+              // $count += 1;
+              //       $pcsr++;
+                    
+                  
+                    
+              //       }   
 
                 
 
@@ -612,7 +684,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                       }
                     }
 }
-                    
+
                   ?>
 
                                     </tbody>
