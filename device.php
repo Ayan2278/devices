@@ -401,12 +401,12 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
   if ($files2) {
     $filecount = count($files2);
   }
+  if ($_POST['DIST'] == "All" && $_POST['Device'] == "Device"){
   while ($c <= $filecount) {
     $file = "JSON/PC0" . $c . ".json";
     $data = file_get_contents($file);
     $data = json_decode($data, true);
     
-      if ($_POST['DIST'] == "All" && $_POST['Device'] == "Device"){
       $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c'";
       $result5 = mysqli_query($conn, $query5);
       if ($result5) {
@@ -442,32 +442,25 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
       $c++;
       $pcCount++;
     }
+      
   }
-  if ($_POST['DIST'] != "All" && $_POST['Block']=="All") {
-  
-    $c = 1;
-    $pcCount = 1;
-    $count = 1;
-    while ($c <= $filecount) {
-      $file = "JSON/PC0" . $c . ".json";
-      $query4 = "SELECT * from `asset` where `district`='$Dis';";
-      $result4 = mysqli_query($conn, $query4);
-      $total4 = mysqli_num_rows($result4);
-
-      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis';";
-      $result5 = mysqli_query($conn, $query5);
-      $data = file_get_contents($file);
-      $data = json_decode($data, true);
-      if ($result5) {
-
-        $total5 = mysqli_num_rows($result5);
-
+  else if ($_POST['DIST'] != "All" && $_POST['Block']=="All" && $_POST['Device'] == "Device"){
+    $district = $_POST['DIST'];
+    $query5 = "SELECT * FROM `asset` WHERE `district`= '$district'";
+    $result5 = mysqli_query($conn, $query5);
+    $tot5 = mysqli_num_rows($result5);
+    if ($tot5 != 0) {
+      while($row5 = $result5->fetch_assoc()){
+        $pcsr = $row5['pc_sr'];
+        $file = "JSON/" . $pcsr . ".json";
+        $data = file_get_contents($file);
+        $data = json_decode($data, true);
         if ($data != 0) {
           foreach ($data as $row) {
             echo '
-              <tr style=" height:40px; font-size:14px;text-align:center;">
+            <tr style="text-align:center; height:41px; font-size:15px;">
                 <td>' . $count . '</td>
-                <td>PC0' . $c . '</td>
+                <td>' . $pcsr . '</td>
                 <td>' . $row['Date'] . '</td>
                 <td>' . $row['Start_time'] . '</td><td>';
             date_default_timezone_set('Asia/Kolkata');
@@ -489,11 +482,13 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
           }
         } else
           echo "<tr><td colspan='9'>No data found</td></tr>";
-      }
+      }}
       $c++;
       $pcCount++;
-    }
+    
+      
   }
+ 
 
 
 
