@@ -453,6 +453,7 @@ function status($pcNo)
                                         
                                         // else if for diplaying School Name According to the Villages     
                                         if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
+                                            
 
                                             $PC = $_POST['PC'];
                                             $school = $_POST['school'];

@@ -516,14 +516,15 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   $village = $_POST['Village'];
                   $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village'";
                 }
-                elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']!="All" && $_POST['PC']=="All"){
-                  $school = $_POST['school'];
-                  $village = $_POST['Village'];
+               
+                elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']!="All" && $_POST==['All']){
                   $Dis = $_POST['DIST'];
                   $Bl = $_POST['Block'];
-                  $PC = $_POST['PC'];
-                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$school'";
+                  $village = $_POST['Village'];
+                  $school=$_POST['school']
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school`='$school'";
                 }
+               
                 if(isset($query5)){
                   $result5 = mysqli_query($conn, $query5);
                   if ($result5) {
@@ -566,7 +567,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                         }
                         }
                       
-              $count += 1;
+                    $count += 1;
                     $pcsr++;
                     
                   
@@ -612,8 +613,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
               </tr>
               ';
               $count += 1;
-          } elseif ($_POST['PC'] != "All" && $_POST['Activity'] == "All") {
-            echo '
+            }
+            elseif($_POST['PC']!= "All" && $_POST['Activity'] == "All") {
+            echo'
             <tr style=" height:40px; font-size:14px;text-align:center;">
             <td>' . $count . '</td>
                 <td>' . $PC . '</td>
@@ -623,7 +625,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 <td>' . $row['End time'] . '</td>
                 <td>' . $row['Duration'] . '</td>
               </tr>
-            ';
+                  ';
                                 $count += 1;
                               }
                             }

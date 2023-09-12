@@ -438,13 +438,13 @@ $directory = getcwd() . "/JSON//";
       }
       $c++;
       $pcCount++;
-    }
-      
   }
-if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
-  // count json file
+      
+    }
+// if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
+//   // count json file
   
-  if($_POST['DIST'] != "All" && $_POST['Block']=="All" ){
+  elseif($_POST['DIST'] != "All" && $_POST['Block']=="All" ){
     $Dis = $_POST['DIST'];
     $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis'";
   }
@@ -453,7 +453,7 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
       $Bl = $_POST['Block'];
       $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl'";
     }
-   elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All"  && $_POST['PC']=="All"){
+    elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All"  && $_POST['PC']=="All"){
     
       $village = $_POST['Village'];
       $Dis = $_POST['DIST'];
@@ -462,7 +462,7 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
       $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' ";
     }
     if(isset($query5)){
-      $result5 = mysqli_query($conn, $query5);
+    $result5 = mysqli_query($conn, $query5);
     $result5 = mysqli_query($conn, $query5);
     $tot5 = mysqli_num_rows($result5);
     if ($tot5 != 0) {
@@ -503,7 +503,7 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
       $pcCount++;
     
       
-  }
+  
  
 
 
@@ -546,7 +546,8 @@ if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
     }
   }
 
-}
+    }
+  
 
 ?>
 
