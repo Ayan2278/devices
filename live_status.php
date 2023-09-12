@@ -492,7 +492,7 @@ function status($pcNo)
                                                 $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis' ";
                                             } 
                                             elseif ($_POST['PC'] == "All" && $_POST['school'] != "All") {
-                                                $query1 = "SELECT  * FROM `asset`WHERE `school_name`='$school' ";
+                                                $query1 = "SELECT  * FROM `asset`WHERE `block`='$Bl' AND `school_name`='$school' ";
                                             }
                                             elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] != "All" && $_POST['PC'] != "All") {
                                                 $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
