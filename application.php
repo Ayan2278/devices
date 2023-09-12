@@ -616,9 +616,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                           <td>' . $row['End time'] . '</td>
                                           <td>' . $row['Duration'] . '</td>
                                           </tr>
-                                          ';
-                                          $count += 1;
-                                        }
+                                        ';
+                                        $count += 1;
+                                      }
             // elseif($_POST['PC']!= "All" && $_POST['Activity'] == "All") {
             // echo'
             // <tr style=" height:40px; font-size:14px;text-align:center;">
