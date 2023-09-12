@@ -412,8 +412,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                         <td>' . $row['school_name'] . '</td>
                         <td>' . $row['district'] . '</td>
                         <td>' . $row['block'] . '</td>
-                        <td>' . $row['village'] . '</td>
-                        <td>' . $row['pincode'] . '</td>
+                        <td>' . $row['village'] . '</td>';
+                      $qry = "SELECT * from `school` where `school_name`='".$row['school_name']."'";
+                      $reslt = mysqli_query($conn,$qry);
+                      $rowq = $reslt->fetch_assoc();
+                        echo '<td>' . $rowq['pincode'] . '</td>
                         </tr>
                       ';
                       $count += 1;
