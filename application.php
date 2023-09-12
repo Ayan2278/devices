@@ -606,6 +606,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                           $cd++;
 
                         }
+                        
                       }
 
                       $PC = $_POST['PC'];
