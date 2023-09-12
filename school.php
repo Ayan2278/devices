@@ -1,6 +1,7 @@
 <?php
 // include authentication file 
-include 'authentication.php';
+// include 'authentication.php';
+include "authentication.php";
 
 // connection file
 include '_db_Connect.php';
@@ -372,7 +373,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
             
                 include '_db_Connect.php';
                 $count = 1;
-                $query5 = "SELECT * FROM `school` ORDER BY  `school`.`school_name` ASC";
+                $query5 = "SELECT * FROM `asset` ORDER BY  `asset`.`school_name` ASC";
                 //displaying all Record from Database
                 if (isset($_POST["Search"])) {
                   $schl = $_POST['school'];
@@ -380,23 +381,23 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   $Dis = $_POST['DIST'];
                   $Bl = $_POST['Block'];
                   if ($_POST['DIST'] == "All") {
-                  $query5 = "SELECT * FROM `school` ORDER BY  `school`.`school_name` ASC";
+                  $query5 = "SELECT * FROM `asset` ORDER BY  `asset`.`school_name` ASC";
                 }
                 elseif($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
-                  $query5 = "SELECT * FROM `school`  WHERE `district` = '$Dis'";
+                  $query5 = "SELECT * FROM `asset`  WHERE `district` = '$Dis'";
                 }
                
                 elseif($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] == "All") {
-                  $query5 = "SELECT * FROM `school`  WHERE `district` = '$Dis' AND `block` = '$Bl'";
+                  $query5 = "SELECT * FROM `asset`  WHERE `district` = '$Dis' AND `block` = '$Bl'";
                 }
                
                 elseif($_POST['DIST'] != "All"  && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] == "All") {
-                  $query5 = "SELECT * FROM `school`  WHERE `village` = '$village' AND `district` = '$Dis' AND `block` = '$Bl'";
+                  $query5 = "SELECT * FROM `asset`  WHERE `village` = '$village' AND `district` = '$Dis' AND `block` = '$Bl'";
                 }
                
               
                 elseif(isset($_POST['school'])) {
-                  $query5 = "SELECT * FROM `school` WHERE `school_name` = '$schl' AND `village`='$village';";
+                  $query5 = "SELECT * FROM `asset` WHERE `school_name` = '$schl' AND `village`='$village';";
                 }
               }
                 $result5 = mysqli_query($conn, $query5);
