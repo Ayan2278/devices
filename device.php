@@ -517,24 +517,25 @@ $directory = getcwd() . "/JSON//";
 
 
 
-  if (isset($_POST['PC'])) {
-    $file = "JSON/" . $_POST['PC'] . ".json";
-    $PC = $_POST['PC'];
-    if ($PC) {
-      $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
-      $result4 = mysqli_query($conn, $query4);
-      $total4 = mysqli_num_rows($result4);
-
-    }
-    $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
-    $result5 = mysqli_query($conn, $query5);
-    if ($_POST['PC'] != "All") {
-      $data = file_get_contents($file);
-      $data = json_decode($data, true);
-      if ($result5) {
+    else if (isset($_POST['PC']) && $_POST['PC']!= 'All') {
+      $file = "JSON/" . $_POST['PC'] . ".json";
+      $PC = $_POST['PC'];
+      if ($PC) {
+        $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
+        $result4 = mysqli_query($conn, $query4);
+        $total4 = mysqli_num_rows($result4);
+        
+      }
+      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
+      $result5 = mysqli_query($conn, $query5);
+      
+      if ($_POST['PC'] != "All") {
+        $count = 1;
+        $data = file_get_contents($file);
+        $data = json_decode($data, true);
+        if ($result5) {
 
         $total5 = mysqli_num_rows($result5);
-        $count = 1;
         if ($data != 0) {
           foreach ($data as $row) {
             echo '
