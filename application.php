@@ -33,30 +33,46 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
-
-// fetch pc serial number
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
-  $school = $_POST['school'];
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql44 = "SELECT  DISTINCT `pc_sr` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village' AND `school_name`='$school'";
-  $result44 = mysqli_query($conn, $sql44);
-  $row = $result44->fetch_assoc();
-  $tot44 = mysqli_num_rows($result44);
-  if ($tot44 != 0) {
-
-    $schl = $row['school_name'];
-    $sql6 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
-    $result6 = mysqli_query($conn, $sql6);
-    $total6 = mysqli_num_rows($result6);
-  }
+  $schl=$_POST['school'];
+  $sql8 = "SELECT  DISTINCT `pc_sr` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village' AND `school_name`='$schl'";
+  $result8 = mysqli_query($conn, $sql8);
+  $total8 = mysqli_num_rows($result8);
 }
+
+
+
+
+
+
+
+
+// fetch pc serial number
+// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
+//   $school = $_POST['school'];
+//   $village = $_POST['Village'];
+//   $Dis = $_POST['DIST'];
+//   $Bl = $_POST['Block'];
+//   $sql44 = "SELECT  DISTINCT `pc_sr` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village' AND `school_name`='$school'";
+//   $result44 = mysqli_query($conn, $sql44);
+//   $row = $result44->fetch_assoc();
+//   $tot44 = mysqli_num_rows($result44);
+//   if ($tot44 != 0) {
+
+//     $schl = $row['school_name'];
+//     $sql6 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
+//     $result6 = mysqli_query($conn, $sql6);
+//     $total6 = mysqli_num_rows($result6);
+//   }
+// }
 
 
 // fetch activity from the json file 
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
-  $school = $_POST['school'];
+  $schl = $_POST['school'];
   $PC = $_POST['PC'];
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
@@ -365,12 +381,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     <option value="All">All</option>
                                     <?php
                   // select pc serial number
-                  if ($result6) {
+                  if ($result8) {
 
-                    while ($row6 = $result6->fetch_assoc()) {
+                    while ($row8 = $result8->fetch_assoc()) {
                       echo "<option ";
-                      echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
-                      echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
+                      echo isset($_POST["PC"]) && $_POST["PC"] == $row8["pc_sr"] ? "selected " : "";
+                      echo "value='" . $row8["pc_sr"] . "'>" . $row8["pc_sr"] . "</option>";
 
                     }
                   }
@@ -520,17 +536,17 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   $Dis = $_POST['DIST'];
                   $Bl = $_POST['Block'];
                   $village = $_POST['Village'];
-                  $school=$_POST['school'];
+                  $schl=$_POST['school'];
                   $PC = $_POST['PC'];
-                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$school' ";
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$schl' ";
                 }
                elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']!="All" && $_POST['PC']!="All" && $_POST['Activity']=="All"){
                   $Dis = $_POST['DIST'];
                   $Bl = $_POST['Block'];
                   $village = $_POST['Village'];
-                  $school=$_POST['school'];
+                  $schl=$_POST['school'];
                   $PC = $_POST['PC'];
-                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$school' AND `pc_sr`='$PC' ";
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$schl' AND `pc_sr`='$PC' ";
                 }
                
                 if(isset($query5)){
