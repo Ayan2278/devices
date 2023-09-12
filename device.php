@@ -27,20 +27,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block'])) {
 }
 
 // select district ,block and village
-if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) ) {
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql44 = "SELECT  DISTINCT `school_name` from `asset` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl'";
-  $result44 = mysqli_query($conn, $sql44);
-  $row = $result44->fetch_assoc();
-  $tot44 = mysqli_num_rows($result44);
-  if ($tot44 != 0) {
-    $schl = $row['school_name'];
-    $sql4 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
-    $result4 = mysqli_query($conn, $sql4);
-    $total4 = mysqli_num_rows($result4);
-  }
+ 
+  $sql8 = "SELECT  DISTINCT `pc_sr` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village'";
+  $result8 = mysqli_query($conn, $sql8);
+  $total8 = mysqli_num_rows($result8);
 }
 
 ?>
@@ -325,10 +319,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                                     <option value="All">All</option>
                                     <?php
                   // select pc serial number
-                  if ($result3) {
+                  if ($result8) {
 
-                    if ($total4 != 0) {
-                      while ($row4 = $result4->fetch_assoc()) {
+                    if ($total8 != 0) {
+                      while ($row4 = $result8->fetch_assoc()) {
                         echo "<option ";
                         echo isset($_POST["PC"]) && $_POST["PC"] == $row4["pc_sr"] ? "selected " : "";
                         echo "value='" . $row4["pc_sr"] . "'>" . $row4["pc_sr"] . "</option>";

@@ -26,32 +26,48 @@ if (isset($_POST['DIST']) && isset($_POST['Block'])) {
 }
 // Select all School-Name 
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
-    $school = $_POST['school'];
-    $village = $_POST['Village'];
+  
     $Dis = $_POST['DIST'];
     $Bl = $_POST['Block'];
-    $sql4 = "SELECT DISTINCT `school_name` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
-    $result4 = mysqli_query($conn, $sql4);
-    $total4 = mysqli_num_rows($result4);
-}
-// Select All PC Serial Number
-if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
     $village = $_POST['Village'];
-    $Dis = $_POST['DIST'];
-    $Bl = $_POST['Block'];
-    $school = $_POST['school'];
-    $PC = $_POST['PC'];
-    $sql44 = "SELECT * from `asset` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' ";
+    $sql44 = "SELECT DISTINCT `school_name` FROM `asset` WHERE `district`='$Dis' AND `block`='$Bl' AND  `village`='$village';";
     $result44 = mysqli_query($conn, $sql44);
-    $row = $result44->fetch_assoc();
-    $tot44 = mysqli_num_rows($result44);
-    if ($tot44 != 0 && $_POST['school'] != 'All') {
-        $schl = $row['school_name'];
-        $sql5 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
-        $result5 = mysqli_query($conn, $sql5);
-        $total5 = mysqli_num_rows($result5);
-    }
+    $total44 = mysqli_num_rows($result44);
 }
+
+
+// Select All PC Serial Number
+if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])&& isset($_POST['PC'])) {
+    $village = $_POST['Village'];
+    $Dis = $_POST['DIST'];
+    $Bl = $_POST['Block'];
+    $school=$_POST['school'];
+    $sql8 = "SELECT  DISTINCT `pc_sr` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village' AND `school_name`='$school'";
+    $result8 = mysqli_query($conn, $sql8);
+    $total8 = mysqli_num_rows($result8);
+  }
+
+
+
+
+
+// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
+//     $village = $_POST['Village'];
+//     $Dis = $_POST['DIST'];
+//     $Bl = $_POST['Block'];
+//     $school = $_POST['school'];
+//     $PC = $_POST['PC'];
+//     $sql44 = "SELECT * from `asset` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' ";
+//     $result44 = mysqli_query($conn, $sql44);
+//     $row = $result44->fetch_assoc();
+//     $tot44 = mysqli_num_rows($result44);
+//     if ($tot44 != 0 && $_POST['school'] != 'All') {
+//         $schl = $row['school_name'];
+//         $sql5 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
+//         $result5 = mysqli_query($conn, $sql5);
+//         $total5 = mysqli_num_rows($result5);
+//     }
+// }
 
 
 // Use function for Live Status of   Devices
@@ -353,13 +369,13 @@ function status($pcNo)
                                     <option value="All">All</option>
                                     <?php
                                     // Options for Select all School-Names
-                                    if ($result3) {
+                                    if ($result44) {
 
-                                        if ($total4 != 0) {
-                                            while ($row4 = $result4->fetch_assoc()) {
+                                        if ($total44 != 0) {
+                                            while ($row44 = $result44->fetch_assoc()) {
                                                 echo "<option ";
-                                                echo isset($_POST["school"]) && $_POST["school"] == $row4["school_name"] ? "selected " : "";
-                                                echo "value='" . $row4["school_name"] . "'>" . $row4["school_name"] . "</option>";
+                                                echo isset($_POST["school"]) && $_POST["school"] == $row44["school_name"] ? "selected " : "";
+                                                echo "value='" . $row44["school_name"] . "'>" . $row44["school_name"] . "</option>";
 
                                             }
                                         }
@@ -373,10 +389,10 @@ function status($pcNo)
                                 <option value="All">All</option>
                                     <?php
                                     // select pc serial number
-                                    if ($result5) {
+                                    if ($result8) {
 
-                                        if ($total5 != 0) {
-                                            while ($row6 = $result5->fetch_assoc()) {
+                                        if ($total8 != 0) {
+                                            while ($row6 = $result8->fetch_assoc()) {
                                                 echo "<option ";
                                                 echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
                                                 echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
