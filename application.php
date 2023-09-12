@@ -40,7 +40,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql44 = "SELECT * from `asset` WHERE `school_name`='$school'";
+  $sql44 = "SELECT  DISTINCT `pc_sr` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village' AND `school_name`='$school'";
   $result44 = mysqli_query($conn, $sql44);
   $row = $result44->fetch_assoc();
   $tot44 = mysqli_num_rows($result44);

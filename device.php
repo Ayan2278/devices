@@ -509,14 +509,6 @@ $directory = getcwd() . "/JSON//";
       }
     }
    
-    
-    
-      
-  
- 
-
-
-
     else if (isset($_POST['PC']) && $_POST['PC']!= 'All') {
       $file = "JSON/" . $_POST['PC'] . ".json";
       $PC = $_POST['PC'];

@@ -16,22 +16,29 @@ else {
 }
 
 
-function statuss($pc)
+function statuss($pcNo)
 {
-    $file = "JSON PC/" . $pc . ".json";
-    $data = file_get_contents($file);
-    $data = json_decode($data, true);
-    date_default_timezone_set('Asia/Kolkata');
-    $date = date('H:i:s');
-    $datee = date("d/m/Y");
-    $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-    
-    foreach ($data as $row) {
-        if ($newDate < $row['End time'] && $datee == $row['Date']) {
-            return 'Active';
-        }
+  // add Json file
+  $file = "JSON PC/" . $pcNo . ".json";
+  $data = file_get_contents($file);
+  $data = json_decode($data, true);
+  date_default_timezone_set('Asia/Kolkata');
+  $date = date('H:i:s');
+  $datee = date("d/m/Y");
+  $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+
+  foreach ($data as $row) {
+    if ($newDate < $row['End time'] && $datee == $row['Date']) {
+       return 'Active';
     }
+  }
 }
+
+
+
+
+
+
 $query0 = "SELECT DISTINCT `district` from `asset`; ";
 $result10 = mysqli_query($conn, $query0);
 function districts($name)
@@ -60,11 +67,33 @@ function districts($name)
     echo $count;
 }
 
+$countt = 0;
+// Toatl Inactive Status
+$query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
+$result1 = mysqli_query($conn, $query1);
+$total1 = mysqli_num_rows($result1);
+if (isset($result1) && $result1) {
+while ($row = $result1->fetch_assoc()) {
+    if (status($row['pc_sr']) != 'Active') {
+    $countt++;
+    }
+}
+echo '<b>' . sprintf('%02u', $countt) . '</b>';
+}
+
+
+
+
 
 function details($name)
 {
 
 }
+
+
+
+
+
 
 
 
@@ -193,7 +222,10 @@ function pop(){
                                                 <title id="bx-title-2">
                                                 <?php echo "Vadodara\nTotal Desktops: ";
                                                 districts("Vadodara");
-                                                ?>
+
+                                          
+                                                                                        
+                                                    ?>
                                             </title>
                                             </polygon>
                                             <!-- Amreli -->
