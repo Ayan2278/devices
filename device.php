@@ -461,8 +461,16 @@ $directory = getcwd() . "/JSON//";
      
       $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' ";
     }
+    elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All"  && $_POST['PC']!="All" && isset($_POST['Device']) && $_POST['Device'] == "Device"){
+    
+      $village = $_POST['Village'];
+      $Dis = $_POST['DIST'];
+      $Bl = $_POST['Block'];
+      $PC=$_POST['PC'];
+      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `pc_sr`='$PC'";
+    }
     if(isset($query5)){
-    $result5 = mysqli_query($conn, $query5);
+    
     $result5 = mysqli_query($conn, $query5);
     $tot5 = mysqli_num_rows($result5);
     if ($tot5 != 0) {
@@ -498,9 +506,10 @@ $directory = getcwd() . "/JSON//";
           }
         } else
           echo "<tr><td colspan='9'>No data found</td></tr>";
-      }}
-      $c++;
-      $pcCount++;
+      }
+    }
+   
+    
     
       
   

@@ -510,19 +510,19 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   $Bl = $_POST['Block'];
                   $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl'";
                 }
-                elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']=="All"){
+                elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school'] =="All"){
                   $Dis = $_POST['DIST'];
                   $Bl = $_POST['Block'];
                   $village = $_POST['Village'];
                   $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village'";
                 }
-               
-                elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']!="All" && $_POST==['All']){
+               elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']!="All" && $_POST['PC']==['All']){
                   $Dis = $_POST['DIST'];
                   $Bl = $_POST['Block'];
                   $village = $_POST['Village'];
-                  $school=$_POST['school']
-                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school`='$school'";
+                  $school=$_POST['school'];
+                  $PC = $_POST['PC'];
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school`='$school' ";
                 }
                
                 if(isset($query5)){

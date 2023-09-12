@@ -25,7 +25,7 @@ function statuss($pc)
     $date = date('H:i:s');
     $datee = date("d/m/Y");
     $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-
+    
     foreach ($data as $row) {
         if ($newDate < $row['End time'] && $datee == $row['Date']) {
             return 'Active';
