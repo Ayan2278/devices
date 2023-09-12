@@ -516,13 +516,21 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   $village = $_POST['Village'];
                   $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village'";
                 }
-               elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']!="All" && $_POST['PC']==['All']){
+               elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']!="All" && $_POST['PC']=="All"){
                   $Dis = $_POST['DIST'];
                   $Bl = $_POST['Block'];
                   $village = $_POST['Village'];
                   $school=$_POST['school'];
                   $PC = $_POST['PC'];
-                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school`='$school' ";
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$school' ";
+                }
+               elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All" && $_POST['school']!="All" && $_POST['PC']!="All" && $_POST['Activity']=="All"){
+                  $Dis = $_POST['DIST'];
+                  $Bl = $_POST['Block'];
+                  $village = $_POST['Village'];
+                  $school=$_POST['school'];
+                  $PC = $_POST['PC'];
+                  $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$school' AND `pc_sr`='$PC' ";
                 }
                
                 if(isset($query5)){
@@ -564,14 +572,11 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                             }
                           } else
                             echo "<tr><td colspan='9'>No data found</td></tr>";
+                            $count += 1;
+                            $pcsr++;
                         }
                         }
                       
-                    $count += 1;
-                    $pcsr++;
-                    
-                  
-
                     // displaying filter value in table
                     if (isset($_POST['PC']) && $_POST['PC'] != "All") {
                       $file = "JSON PC/" . $_POST['PC'] . ".json";
@@ -602,35 +607,37 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                             foreach ($data as $row) {
                               if ($_POST['Activity'] == $row['Activity']) {
                                 echo '
-              <tr style=" height:40px; font-size:14px;text-align:center;">
-                <td>' . $count . '</td>
-                <td>' . $PC . '</td>
-                <td>' . $act . '</td>
-                <td>' . $row['Date'] . '</td>
-                <td>' . $row['Start time'] . '</td>
-                <td>' . $row['End time'] . '</td>
-                <td>' . $row['Duration'] . '</td>
-              </tr>
-              ';
-              $count += 1;
-            }
-            elseif($_POST['PC']!= "All" && $_POST['Activity'] == "All") {
-            echo'
-            <tr style=" height:40px; font-size:14px;text-align:center;">
-            <td>' . $count . '</td>
-                <td>' . $PC . '</td>
-                <td>' . $row['Activity'] . '</td>
-                <td>' . $row['Date'] . '</td>
-                <td>' . $row['Start time'] . '</td>
-                <td>' . $row['End time'] . '</td>
-                <td>' . $row['Duration'] . '</td>
-              </tr>
-                  ';
-                                $count += 1;
-                              }
+                                        <tr style=" height:40px; font-size:14px;text-align:center;">
+                                          <td>' . $count . '</td>
+                                          <td>' . $PC . '</td>
+                                          <td>' . $row['Activity'] . '</td>
+                                          <td>' . $row['Date'] . '</td>
+                                          <td>' . $row['Start time'] . '</td>
+                                          <td>' . $row['End time'] . '</td>
+                                          <td>' . $row['Duration'] . '</td>
+                                          </tr>
+                                          ';
+                                          $count += 1;
+                                        }
+            // elseif($_POST['PC']!= "All" && $_POST['Activity'] == "All") {
+            // echo'
+            // <tr style=" height:40px; font-size:14px;text-align:center;">
+            // <td>' . $count . '</td>
+            //     <td>' . $PC . '</td>
+            //     <td>' . $row['Activity'] . '</td>
+            //     <td>' . $row['Date'] . '</td>
+            //     <td>' . $row['Start time'] . '</td>
+            //     <td>' . $row['End time'] . '</td>
+            //     <td>' . $row['Duration'] . '</td>
+            //   </tr>
+            //       ';
+            //                     $count += 1;
+            //                   }
+            //                 }
+            //               } else
+            //                 echo "<tr><td colspan='9'>No data found</td></tr>";
                             }
-                          } else
-                            echo "<tr><td colspan='9'>No data found</td></tr>";
+                          }
                         }
                       }
                     }
