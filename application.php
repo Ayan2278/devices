@@ -42,35 +42,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
   $result8 = mysqli_query($conn, $sql8);
   $total8 = mysqli_num_rows($result8);
 }
-
-
-
-
-
-
-
-
-// fetch pc serial number
-// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
-//   $school = $_POST['school'];
-//   $village = $_POST['Village'];
-//   $Dis = $_POST['DIST'];
-//   $Bl = $_POST['Block'];
-//   $sql44 = "SELECT  DISTINCT `pc_sr` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village' AND `school_name`='$school'";
-//   $result44 = mysqli_query($conn, $sql44);
-//   $row = $result44->fetch_assoc();
-//   $tot44 = mysqli_num_rows($result44);
-//   if ($tot44 != 0) {
-
-//     $schl = $row['school_name'];
-//     $sql6 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
-//     $result6 = mysqli_query($conn, $sql6);
-//     $total6 = mysqli_num_rows($result6);
-//   }
-// }
-
-
-// fetch activity from the json file 
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
   $schl = $_POST['school'];
   $PC = $_POST['PC'];
@@ -554,7 +525,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   if ($result5) {
                     $tot5 = mysqli_num_rows($result5);
                   }
-                  if ($tot5 != 0) {
+                  if ($tot5 != 0  && $_POST['Activity'] == "All") {
                     while($row5 = $result5->fetch_assoc()){
                       $pcsr = $row5['pc_sr'];
                       $file = "JSON PC/" . $pcsr . ".json";
