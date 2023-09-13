@@ -337,8 +337,8 @@ $result1 = mysqli_query($conn, $sql);
                                     <label for="device" style="float:left; margin-left:10px;">District</label>
                                     <div class="col-lg-12"> 
                                     <select class="form-control focus" name="district" style="height:45px;"required>
-                                            <option value="" class="Black">Please Select</option>
-                                            <?php
+                                        <option value="" class="Black">Please Select</option>
+                                        <?php
                                            // options for School Name
                                             if ($result1) {
                                                 $total1 = mysqli_num_rows($result1);
@@ -353,10 +353,8 @@ $result1 = mysqli_query($conn, $sql);
 
                                                 }
                                             }
-                                            ?>
-
-
-                                        </select>
+                                        ?>
+                                    </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-6">

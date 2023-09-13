@@ -18,7 +18,6 @@ if (isset($_POST["submit"])) {
     $district = $rowS0['district'];
     $block = $rowS0['block'];
     $village = $rowS0['village'];
-    
     $pc = $_POST["pc_sr"];
     $tft = $_POST["TFT_id"];
     $webcam = $_POST["Webcam_id"];
@@ -32,15 +31,13 @@ if (isset($_POST["submit"])) {
     // if connection is true then excute the query
     if ($conn) {
         $query1 = "INSERT INTO `asset`(`school_name`, `district`, `block`, `village`, `pc_sr`, `TFT_id`, `Webcam_id`, `Headphone_id`) VALUES ('$school','$district','$block','$village','$pc','$tft','$webcam','$headphone')";
-            $result = mysqli_query($conn, $query1);
-        
+        $result = mysqli_query($conn, $query1);
     }
     if ($result) {
         $login = true;
     }
 
 }
-
 // automectically print school name
 $sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
 $result1 = mysqli_query($conn, $sql);
@@ -329,8 +326,6 @@ $result1 = mysqli_query($conn, $sql);
                     </div>
                 </div>';
                 }
-                
-                
                 ?>
                     <center>
                         <div class="card col-lg-5 shadow">

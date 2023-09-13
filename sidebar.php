@@ -134,17 +134,6 @@ $current_url = end($url_parts);
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item ">
-              <a href="addAssets.php" class="nav-link">
-                <i class="nav-icon far fa-circle  <?php if ($current_url == 'addAssets.php') {
-                  echo ' fas text-purple';
-                } else{
-                  echo " far";} ?>"></i>
-                <p class="<?php if ($current_url == 'addAssets.php') {
-                  echo ' text-purple';
-                } ?>">Add Assets</p>
-              </a>
-            </li>
             <li class="nav-item">
               <a href="addSchool.php" class="nav-link">
                 <i class="nav-icon far fa-circle  <?php if ($current_url == 'addSchool.php') {
@@ -154,6 +143,17 @@ $current_url = end($url_parts);
                 <p class="<?php if ($current_url == 'addSchool.php') {
                   echo ' text-purple';
                 } ?>">Add School</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a href="addAssets.php" class="nav-link">
+                <i class="nav-icon far fa-circle  <?php if ($current_url == 'addAssets.php') {
+                  echo ' fas text-purple';
+                } else{
+                  echo " far";} ?>"></i>
+                <p class="<?php if ($current_url == 'addAssets.php') {
+                  echo ' text-purple';
+                } ?>">Add Assets</p>
               </a>
             </li>
           </ul>

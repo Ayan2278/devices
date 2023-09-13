@@ -47,7 +47,7 @@ function status($pcNo)
   date_default_timezone_set('Asia/Kolkata');
   $date = date('H:i:s');
   $datee = date("d/m/Y");
-  $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+  $newDate = date('h:i:s', strtotime($date . ' -5 minutes'));
 
   foreach ($data as $row) {
     if ($newDate < $row['End time'] && $datee == $row['Date']) {
@@ -55,6 +55,7 @@ function status($pcNo)
     }
   }
 }
+
 ?>
 
 <!DOCTYPE html>
