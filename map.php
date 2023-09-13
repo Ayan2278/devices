@@ -18,26 +18,59 @@ else {
 
 function statuss($pcNo)
 {
-  // add Json file
-  $file = "JSON PC/" . $pcNo . ".json";
-  $data = file_get_contents($file);
-  $data = json_decode($data, true);
-  date_default_timezone_set('Asia/Kolkata');
-  $date = date('H:i:s');
-  $datee = date("d/m/Y");
-  $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+    // add Json file
+    $file = "JSON PC/" . $pcNo . ".json";
+    $data = file_get_contents($file);
+    $data = json_decode($data, true);
+    date_default_timezone_set('Asia/Kolkata');
+    $date = date('H:i:s');
+    $datee = date("d/m/Y");
+    $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
 
-  foreach ($data as $row) {
-    if ($newDate < $row['End time'] && $datee == $row['Date']) {
-       return 'Active';
+    foreach ($data as $row) {
+        if ($newDate < $row['End time'] && $datee == $row['Date']) {
+            return 'Active';
+        }
     }
-  }
 }
 
+// if (status($row['pc_sr']) == 'Active') {
+//     echo '<small class="badge badge-success">Active</small>';
+//     // Else for Status is Inactive
+// } else {
+//     echo '<small class="badge badge-danger">Inactive</small>';
+// }
 
+function city($city)
+{
+    include '_db_Connect.php';
+    $qry = "SELECT * from `asset` where `district`='$city'";
+    $res = mysqli_query($conn, $qry);
+    $tot = mysqli_num_rows($res);
+    $countA=0;
+    $countI=0;
 
+    if ($tot != 0) {
+        while($rowQ = $res->fetch_assoc())
+        $pc = $rowQ['pc_sr'];
+        $file = "JSON PC/" . $pc . ".json";
+        echo $file;
+        $data = file_get_contents($file);
+        $data = json_decode($data, true);
+        date_default_timezone_set('Asia/Kolkata');
+        $date = date('H:i:s');
+        $datee = date("d/m/Y");
+        $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
 
+        foreach ($data as $row) {
+            if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                return 'Active';
+            }
+        }
 
+    }
+}
+city('Gandhinagar');
 
 $query0 = "SELECT DISTINCT `district` from `asset`; ";
 $result10 = mysqli_query($conn, $query0);
@@ -88,7 +121,8 @@ if (isset($_POST['submit'])) {
 </script>
     
 <?php
-function pop(){
+function pop()
+{
     echo "ABC";
 }
 ?>
@@ -184,18 +218,42 @@ function pop(){
                                             <!-- Gandhinagar -->
                                             <polygon points="1479.3,613.96 1478.9,623.43 1482.1,620.4 1488.5,627.14 1497.5,631.95 1505.6,637.23 1513.7,637.55 1522.8,639.38 1530.3,638.25 1540,638.89 1552.3,633.44 1558.7,625.35 1561.2,616.45 1563.5,610.85 1567.1,603.24 1568,594.66 1569.4,586.4 1570.2,578.48 1569.3,573.03 1570,571.23 1570.1,570.68 1570,570.57 1569.9,570.88 1562.7,564.29 1558.7,563.16 1551.8,559.38 1546.5,556.42 1538.9,556.09 1533.2,560.7 1533.2,560.69 1532.9,560.89 1533,560.56 1527.3,554.91 1520.6,554.91 1511.4,554.91 1504.7,556.58 1496.2,558.24 1487.1,560.39 1482.2,565.19 1479.6,571.78 1479.2,578.36 1479.5,583.97 1478.3,586.13 1476.7,595.83 1478.3,605.22 " id="polygon-2" onclick="city('Gandhinagar') <?php pop(); ?>" >
                                             
-                                            <title id="bx-title-1">
-                                                    <!-- fetch total number of Desktops in gandhinagar -->
                                                     <?php echo "Gandhinagar\nTotal Desktops: ";
-                                                    districts("Gandhinagar");
-
-                                                    if (statuss($row['status']) == 'Active') {
-                                                        echo 'Active';
-                                                        // Else for Status is Inactive
-                                                    } else {
-                                                        echo 'Inactive';
-                                                    }
+                                                    // $In=0;$Ac=0;
+                                                    // $qry = "SELECT * from `asset` where `district`='Gandhinagar'";
+                                                    // $res = mysqli_query($conn, $qry);
+                                                    // $tot = mysqli_num_rows($res);
+                                                    // if ($tot!=0) {
+                                                    //    while($rw = $res->fetch_assoc())
+                                                    //    {
+                                                    //     if (city('Gandhinagar') == 'Active') {
+                                                    //         $Ac++;
+                                                    //     }
+                                                    //    }
+                                                    // }
+                                                    // $qry = "SELECT * from `asset` where `district`='Gandhinagar'";
+                                                    // $res = mysqli_query($conn, $qry);
+                                                    // $tot = mysqli_num_rows($res);
+                                                    // if ($tot!=0) {
+                                                    //    while($rw = $res->fetch_assoc())
+                                                    //    {
+                                                    //     if (city('Gandhinagar') == '') {
+                                                    //         $In++;
+                                                    //     }
+                                                    //    }
+                                                    // }
+                                                    
                                                     ?>
+                                            <title id="bx-title-1">
+                                                <?php 
+                                                // echo "Gandhinagar\nTotal Desktops: ";
+                                                // districts("Gandhinagar");
+                                                // echo "\nActive PC : ";
+                                                // echo $Ac,"\n";
+                                                //     echo "Inactive PC : ";
+                                                //     echo $In,"\n";
+                                                ?>
+                                                    <!-- fetch total number of Desktops in gandhinagar -->
                                                 </title>
                                             </polygon>
                                             <!-- Vadodara -->
@@ -204,9 +262,9 @@ function pop(){
                                                 <?php echo "Vadodara\nTotal Desktops: ";
                                                 districts("Vadodara");
 
-                                          
-                                                                                        
-                                                    ?>
+
+
+                                                ?>
                                             </title>
                                             </polygon>
                                             <!-- Amreli -->
