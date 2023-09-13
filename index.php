@@ -474,13 +474,19 @@ function status($pcNo)
         ],
       },
       fill: {
-        colors: ['#848ade', '#393766', '#393766']
+        colors: ['#4da0ff', '#38daba', '#393766'],
+        
       },
       legend: {
         position: 'right',
         offsetX: 0,
         offsetY: 50
       },
+      dataLabels: {
+  style: {
+    colors: ['#000000', '#000000', '#000000']
+  }
+}
     };
 
     var chart = new ApexCharts(document.querySelector("#chartA"), options);
