@@ -397,7 +397,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                
               
                 elseif(isset($_POST['school'])) {
-                  $query5 = "SELECT * FROM `asset` WHERE `school_name` = '$schl' AND `village`='$village';";
+                  $query5 = "SELECT * FROM `asset`  WHERE `village` = '$village' AND `district` = '$Dis' AND `block` = '$Bl' AND `school_name`='$schl'";
+                  
                 }
               }
                 $result5 = mysqli_query($conn, $query5);
