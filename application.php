@@ -403,7 +403,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <?php
                   // displying all data in table
                   echo '<thead style="height:50px;">
-                                              <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
+                                              <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
                                                 <th>SR</th>
                                                 <th>PC</th>
                                                 <th>Application</th>

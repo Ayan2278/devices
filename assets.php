@@ -288,7 +288,7 @@ if (isset($_POST['school'])) {
 
                   <?php
                   echo '<thead style="height:50px;">
-                            <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
+                            <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
                               <th>SR</th>
                               <th>School name</th>
                               <th>PC Sr</th>

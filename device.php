@@ -365,7 +365,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 <?php
                     // displaying all devices data in table
 echo '<thead style="height:50px;">
-<tr style="text-align:center;height:20px; font-size:15px;">
+<tr style="text-align:center;height:20px; font-size:16px;">
             <th>SR</th>
             <th>PC serial no.</th>
             <th>Date</th>
@@ -472,7 +472,7 @@ $directory = getcwd() . "/JSON//";
         if ($data != 0) {
           foreach ($data as $row) {
             echo '
-            <tr style="text-align:center; height:41px; font-size:15px;">
+            <tr style="text-align:center; height:41px; font-size:14px;">
                 <td>' . $count . '</td>
                 <td>' . $pcsr . '</td>
                 <td>' . $row['Date'] . '</td>
