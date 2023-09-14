@@ -541,6 +541,40 @@ function status($pcNo)
                             </div>
                             <!-- /.card-body -->
                         </div>
+                        <form action="loginuser.php" method="POST" width="40px">
+                        <div class="card col-lg-3 shadow my-5">
+                        <div class="card-header" style="border:0px;">
+                            <h4 style="float:left; margin-top:10px;">Login Here</h4>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row">
+                                
+                                
+                                <div class="form-group col-lg-12">
+                                    <label for="device" style="float:left; margin-left:10px;">Username</label>
+
+                                    <div class="col-lg-12">
+                                        <input type="text" class="form-control focus" name="UserName"placeholder="Enter Username"
+                                            style="height:45px;" required>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="device" style="float:left; margin-left:10px;">Password</label>
+
+                                    <div class="col-lg-12">
+                                        <input type="password" class="form-control focus" name="Password" placeholder="Enter Password"
+                                            style="height:45px;" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group col-lg-12">
+                                    <button class="btn " type="submit" name="login_btn"
+                                        style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        </form>
                         <!-- /.card -->
             </section>
             <!-- /.card -->

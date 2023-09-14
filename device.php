@@ -134,6 +134,69 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
       background: linear-gradient(to top, #0088f5, #01378a);
     }
 
+    .popup-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+
+      /* display: none; */
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popupp {
+      width: 400px;
+      background: #fff;
+      border-radius: 0.4rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      padding: 0 30px 30px;
+      color: #333;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .popupp img {
+      width: 100px;
+      margin-top: -50px;
+      border-radius;
+      0.4rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .popupp h2 {
+      font-size: 38px;
+      font-weight: 500;
+      margin: 30px 0 10px;
+      color: red;
+    }
+
+    .popupp button {
+      width: 100%;
+      margin-top: 50px;
+      padding: 10px 0;
+      background: #6f42c1;
+      color: #fff;
+      border: 0;
+      outline: none;
+      font-size: 18px;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+      visibility: hidden;
+      display: none;
+    }
+
     @media print {
       body * {
         visibility: hidden;
@@ -165,6 +228,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
       }
     }
   </style>
+  <script>
+    function closePopup() {
+      var popup = document.getElementById('popupp');
+      popup.style.display = 'none';
+    }
+  </script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -354,17 +423,57 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
             </button>
           </div> -->
                 <!-- /.card-header -->
+                <div class="popup-container" id="popupp">
+                  <div class="popupp">
+                    <form action="loginuser.php" method="POST" width="40px">
+                      <div class="card col-lg-12 ">
+                        <div class="card-header" style="border:0px;">
+                          <h4 style="float:left; margin-top:10px;">Login Here</h4>
+                        </div>
+                        <div class="card-body ">
+                          <div class="row">
+
+
+                            <div class="form-group col-lg-12">
+                              <label for="device" style="float:left; margin-left:10px;">Username</label>
+
+                              <div class="col-lg-12">
+                                <input type="text" class="form-control focus" name="UserName"
+                                  placeholder="Enter Username" style="height:45px;" required>
+                              </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                              <label for="device" style="float:left; margin-left:10px;">Password</label>
+
+                              <div class="col-lg-12">
+                                <input type="password" class="form-control focus" name="Password"
+                                  placeholder="Enter Password" style="height:45px;" required>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-12">
+                          <button class="btn " type="submit" name="login_btn"
+                            style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;"
+                            onClick="closePopup()">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
 
                 <div class="card-body">
                   <h4 class="card-title">Data</h4>
+
                   <table id="example2" class="  table-striped table-bordered table-hover" style="top:0; width:100%;">
 
 
 
 
-<?php
+                    <?php
                     // displaying all devices data in table
-echo '<thead style="height:50px;">
+                    echo '<thead style="height:50px;">
 <tr style="text-align:center;height:20px; font-size:16px;">
             <th>SR</th>
             <th>PC serial no.</th>
@@ -375,152 +484,144 @@ echo '<thead style="height:50px;">
           </tr>
         </thead>
 <tbody>';
-// connection file
-include '_db_Connect.php';
+                    // connection file
+                    include '_db_Connect.php';
 
-$c = 1;
-$pcCount = 1;
-$count = 1;
-$query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
-$directory = getcwd() . "/JSON//";
-  $filecount = 0;
-  $files2 = glob($directory . "*");
-  if ($files2) {
-    $filecount = count($files2);
-  }
-  if (!isset($_POST['DIST']) || isset($_POST['Device']) && $_POST['Device'] == "Device" && $_POST['DIST']=='All'){
-  while ($c <= $filecount) {
-    $file = "JSON/PC0" . $c . ".json";
-    $data = file_get_contents($file);
-    $data = json_decode($data, true);
-    
-      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c'";
-      $result5 = mysqli_query($conn, $query5);
-      if ($result5) {
-        $total5 = mysqli_num_rows($result5);
-        if ($data != 0) {
-          foreach ($data as $row) {
-            echo '
+                    $c = 1;
+                    $pcCount = 1;
+                    $count = 1;
+                    $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
+                    $directory = getcwd() . "/JSON//";
+                    $filecount = 0;
+                    $files2 = glob($directory . "*");
+                    if ($files2) {
+                      $filecount = count($files2);
+                    }
+                    if (!isset($_POST['DIST']) || isset($_POST['Device']) && $_POST['Device'] == "Device" && $_POST['DIST'] == 'All') {
+                      while ($c <= $filecount) {
+                        $file = "JSON/PC0" . $c . ".json";
+                        $data = file_get_contents($file);
+                        $data = json_decode($data, true);
+
+                        $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c'";
+                        $result5 = mysqli_query($conn, $query5);
+                        if ($result5) {
+                          $total5 = mysqli_num_rows($result5);
+                          if ($data != 0) {
+                            foreach ($data as $row) {
+                              echo '
             <tr style="text-align:center; height:41px; font-size:15px;">
                 <td>' . $count . '</td>
                 <td>PC0' . $c . '</td>
                 <td>' . $row['Date'] . '</td>
                 <td>' . $row['Start_time'] . '</td><td>';
-            date_default_timezone_set('Asia/Kolkata');
-            $date = date('h:i:s');
-            $datee = date("d/m/Y");
-            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-            if ($newDate < $row['End_time'] && $datee == $row['Date']) {
-              echo '<small class="badge badge-success">Running</small>';
-            }
-            else {
-              echo $row['End_time'] . '</td>';
-            }
-            echo '
+                              date_default_timezone_set('Asia/Kolkata');
+                              $date = date('h:i:s');
+                              $datee = date("d/m/Y");
+                              $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                              if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+                                echo '<small class="badge badge-success">Running</small>';
+                              } else {
+                                echo $row['End_time'] . '</td>';
+                              }
+                              echo '
                 
                 <td>' . $row['Duration'] . '</td>
               </tr>
             ';
-            $count += 1;
-          }
-        } else
-          echo "<tr><td colspan='9'>No data found</td></tr>";
-      }
-      $c++;
-      $pcCount++;
-  }
-      
-    }
-// if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
+                              $count += 1;
+                            }
+                          } else
+                            echo "<tr><td colspan='9'>No data found</td></tr>";
+                        }
+                        $c++;
+                        $pcCount++;
+                      }
+
+                    }
+                    // if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
 //   // count json file
-  
-  elseif($_POST['DIST'] != "All" && $_POST['Block']=="All" ){
-    $Dis = $_POST['DIST'];
-    $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis'";
-  }
-    elseif($_POST['DIST'] != "All" && $_POST['Block']!="All"&& $_POST['Village']=="All"){
-      $Dis = $_POST['DIST'];
-      $Bl = $_POST['Block'];
-      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl'";
-    }
-    elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All"  && $_POST['PC']=="All"){
-    
-      $village = $_POST['Village'];
-      $Dis = $_POST['DIST'];
-      $Bl = $_POST['Block'];
-     
-      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' ";
-    }
-    elseif($_POST['DIST']!="All" && $_POST['Block']!="All" && $_POST['Village']!="All"  && $_POST['PC']!="All" && isset($_POST['Device']) && $_POST['Device'] == "Device"){
-    
-      $village = $_POST['Village'];
-      $Dis = $_POST['DIST'];
-      $Bl = $_POST['Block'];
-      $PC=$_POST['PC'];
-      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `pc_sr`='$PC'";
-    }
-    if(isset($query5)){
-    
-    $result5 = mysqli_query($conn, $query5);
-    $tot5 = mysqli_num_rows($result5);
-    if ($tot5 != 0) {
-      while($row5 = $result5->fetch_assoc()){
-        $pcsr = $row5['pc_sr'];
-        $file = "JSON/" . $pcsr . ".json";
-        $data = file_get_contents($file);
-        $data = json_decode($data, true);
-        if ($data != 0) {
-          foreach ($data as $row) {
-            echo '
+                    elseif ($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
+                      $Dis = $_POST['DIST'];
+                      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis'";
+                    } elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] == "All") {
+                      $Dis = $_POST['DIST'];
+                      $Bl = $_POST['Block'];
+                      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl'";
+                    } elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['PC'] == "All") {
+
+                      $village = $_POST['Village'];
+                      $Dis = $_POST['DIST'];
+                      $Bl = $_POST['Block'];
+
+                      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' ";
+                    } elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['PC'] != "All" && isset($_POST['Device']) && $_POST['Device'] == "Device") {
+
+                      $village = $_POST['Village'];
+                      $Dis = $_POST['DIST'];
+                      $Bl = $_POST['Block'];
+                      $PC = $_POST['PC'];
+                      $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `pc_sr`='$PC'";
+                    }
+                    if (isset($query5)) {
+
+                      $result5 = mysqli_query($conn, $query5);
+                      $tot5 = mysqli_num_rows($result5);
+                      if ($tot5 != 0) {
+                        while ($row5 = $result5->fetch_assoc()) {
+                          $pcsr = $row5['pc_sr'];
+                          $file = "JSON/" . $pcsr . ".json";
+                          $data = file_get_contents($file);
+                          $data = json_decode($data, true);
+                          if ($data != 0) {
+                            foreach ($data as $row) {
+                              echo '
             <tr style="text-align:center; height:41px; font-size:14px;">
                 <td>' . $count . '</td>
                 <td>' . $pcsr . '</td>
                 <td>' . $row['Date'] . '</td>
                 <td>' . $row['Start_time'] . '</td><td>';
-            date_default_timezone_set('Asia/Kolkata');
-            $date = date('h:i:s');
-            $datee = date("d/m/Y");
-            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-            if ($newDate < $row['End_time'] && $datee == $row['Date']) {
-              echo '<small class="badge badge-success">Running</small>';
-            }
-            else {
-              echo $row['End_time'] . '</td>';
-            }
-            echo '
+                              date_default_timezone_set('Asia/Kolkata');
+                              $date = date('h:i:s');
+                              $datee = date("d/m/Y");
+                              $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                              if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+                                echo '<small class="badge badge-success">Running</small>';
+                              } else {
+                                echo $row['End_time'] . '</td>';
+                              }
+                              echo '
                 
                 <td>' . $row['Duration'] . '</td>
               </tr>
             ';
-            $count += 1;
-          }
-        } else
-          echo "<tr><td colspan='9'>No data found</td></tr>";
-      }
-    }
-   
-    else if (isset($_POST['PC']) && $_POST['PC']!= 'All') {
-      $file = "JSON/" . $_POST['PC'] . ".json";
-      $PC = $_POST['PC'];
-      if ($PC) {
-        $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
-        $result4 = mysqli_query($conn, $query4);
-        $total4 = mysqli_num_rows($result4);
-        
-      }
-      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
-      $result5 = mysqli_query($conn, $query5);
-      
-      if ($_POST['PC'] != "All") {
-        $count = 1;
-        $data = file_get_contents($file);
-        $data = json_decode($data, true);
-        if ($result5) {
+                              $count += 1;
+                            }
+                          } else
+                            echo "<tr><td colspan='9'>No data found</td></tr>";
+                        }
+                      } else if (isset($_POST['PC']) && $_POST['PC'] != 'All') {
+                        $file = "JSON/" . $_POST['PC'] . ".json";
+                        $PC = $_POST['PC'];
+                        if ($PC) {
+                          $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
+                          $result4 = mysqli_query($conn, $query4);
+                          $total4 = mysqli_num_rows($result4);
 
-        $total5 = mysqli_num_rows($result5);
-        if ($data != 0) {
-          foreach ($data as $row) {
-            echo '
+                        }
+                        $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
+                        $result5 = mysqli_query($conn, $query5);
+
+                        if ($_POST['PC'] != "All") {
+                          $count = 1;
+                          $data = file_get_contents($file);
+                          $data = json_decode($data, true);
+                          if ($result5) {
+
+                            $total5 = mysqli_num_rows($result5);
+                            if ($data != 0) {
+                              foreach ($data as $row) {
+                                echo '
               <tr  style=" height:40px; font-size:14px;text-align:center;">
                 <td>' . $count . '</td>
                 <td>' . $PC . '</td>
@@ -530,17 +631,17 @@ $directory = getcwd() . "/JSON//";
                 <td>' . $row['Duration'] . '</td>
               </tr>
             ';
-            $count += 1;
-          }
-        }else
-          echo "<tr><td colspan='9'>No data found</td></tr>";
-      }
-    }
-  }
+                                $count += 1;
+                              }
+                            } else
+                              echo "<tr><td colspan='9'>No data found</td></tr>";
+                          }
+                        }
+                      }
 
-    }
+                    }
 
-?>
+                    ?>
 
 
                     </tbody>
