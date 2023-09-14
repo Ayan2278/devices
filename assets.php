@@ -15,19 +15,16 @@ if (isset($_POST['school'])) {
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
-
-
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Assets</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Assets</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     <!-- Font Awesome -->
@@ -58,7 +55,7 @@ if (isset($_POST['school'])) {
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <style>
+    <style>
     body {
       font-family: 'Poppins', sans-serif;
       font-weight: 200;
@@ -143,8 +140,8 @@ if (isset($_POST['school'])) {
         top: -350px;
       }
     }
-  </style>
-  <style>
+    </style>
+    <style>
     body {
       font-family: 'Poppins', sans-serif;
       font-weight: 200;
@@ -172,68 +169,59 @@ if (isset($_POST['school'])) {
       border-radius: 10px;
       background: #c7c7c7;
     }
-  </style>
+    </style>
 </head>
-
+<!-- Main Sidebar Container -->
 <body class="hold-transition sidebar-mini layout-fixed ">
   <?php
   include 'sidebar.php'
     ?>
+     <!-- Wrapper class -->
   <div class="wrapper">
-
-    <!-- Navbar -->
-
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <div class="content-header">
-
+        <!-- /.container-fluid -->
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0 text-dark">Assets</h1>
-            </div><!-- /.col -->
+            </div>
+            <!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item">Dashboard</li>
                 <li class="breadcrumb-item active">Assets</li>
               </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- /.content-header -->
-
       <!-- Main content -->
-
-
-      <!-- general form elements -->
       <section class="content">
-      <div class="card mx-2 shadow">
+        <!-- /.card-shadow -->
+        <div class="card mx-2 shadow">
+          <!-- /.card-header -->
           <div class="card-header" style="border:0px;">
+            <!-- /.card-title -->
             <h3 class="card-title ">Assets report</h3>
           </div>
-          <!-- /.card-header -->
           <!-- form start -->
           <form method="post" action="assets.php" role="form" id="myform">
             <div class="card-body row">
               <div class="form-group col-lg-2">
                 <label for="device">School</label>
                 <select class="form-control select2bs4" style="width: 100%" name="school" onchange="change()">
-                <option value="All">All</option>
+                  <option value="All">All</option>
                   <?php
                   // total school
                   if ($result) {
                     $total = mysqli_num_rows($result);
                     if ($total != 0) {
                       while ($row = $result->fetch_assoc()) {
-
                         echo "<option value='" . $row['school_name'] . "'";
-
                         echo isset($_POST["school"]) && $_POST["school"] == $row['school_name'] ? "selected " : "";
                         echo ">" . $row['school_name'] . "</option>";
                       }
@@ -242,6 +230,7 @@ if (isset($_POST['school'])) {
                   ?>
                 </select>
               </div>
+              <!-- general form elements -->
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC Id</label>
                 <select class="form-control select2bs4" style="width: 100%" name='pc'>
@@ -249,35 +238,28 @@ if (isset($_POST['school'])) {
                   <?php
                   // total pc ID
                   if ($result2) {
-
                     if ($total2 != 0) {
                       while ($row2 = $result2->fetch_assoc()) {
                         echo "<option ";
                         echo isset($_POST["pc"]) && $_POST["pc"] == $row2["pc_sr"] ? "selected " : "";
                         echo "value='" . $row2["pc_sr"] . "'>" . $row2["pc_sr"] . "</option>";
-
                       }
                     }
                   }
                   ?>
                 </select>
               </div>
-
-
-
-
               <form action="#" method="get">
                 <div class="form-group col-lg-1 my-4 w-100">
                   <button type="submit" name="Assets" value="Assets" class="btn "
                     style="margin-top:8px; width:100%; background:#6f42c1; color:white;">Assets</button>
                 </div>
               </form>
-
             </div>
             <!-- /.card-body -->
 
           </form>
-                </div>
+          </div>
         <!-- <div class="card mx-2 shadow" style="height:590px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>

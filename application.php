@@ -383,18 +383,17 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   }
 
                   ?>
-                                </select>
-                            </div>
+                        </select>
+                          </div>
                             <form action="application.php" method="POST">
                                 <div class="form-group col-lg-1 w-100 my-4">
                                     <button type="submit" name="Application" value="Application" class="btn"
-                                        style="margin-top:8px;width:100%; background:#6f42c1; color:white;">Application</button>
+                                     style="margin-top:8px;width:100%; background:#6f42c1; color:white;">Application</button>
                                 </div>
                             </form>
 
                         </div>
                         <!-- /.card-body -->
-
                     </form>
                 </div>
             </section>
@@ -437,12 +436,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     }
                                     // displaying all data from database and Json file
                                   if (!isset($_POST['DIST']) || isset($_POST['Application']) && $_POST['Application'] == "Application" && $_POST['DIST']=='All'){
-                                  
-                                    // include Json file
+                                  // include Json file
                                   while ($c <= $filecount) {
                                     $file = "JSON PC/PC0" . $c . ".json";
                                     $data = file_get_contents($file);
                                     $data = json_decode($data, true);
+                                    // Query for fetching data according to the pc serial number
                                     $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c'";
                                     $result5 = mysqli_query($conn, $query5);
                                   if ($result5) {
@@ -548,8 +547,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                             $pcsr++;
                                         }
                                       }
-                                      
-                                    // displaying filter value in table
+                                      // displaying filter value in table
                                     if (isset($_POST['PC']) && $_POST['PC'] != "All") {
                                       $file = "JSON PC/" . $_POST['PC'] . ".json";
                                       $act = $_POST['Activity'];
@@ -647,12 +645,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
-
+    <!-- jQuery UI 1.11.4 -->
     <script src="plugins/datatables/jquery.dataTables.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>

@@ -419,9 +419,7 @@ function status($pcNo)
         }
         
         ?>],
-
-
-      }, {
+        }, {
         name: 'Inactive',
         data: [
 
