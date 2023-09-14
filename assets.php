@@ -281,12 +281,10 @@ if (isset($_POST['school'])) {
 
                 <h4 class="card-title">Data</h4>
               </div>
-
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="  table-striped table-bordered table-hover" style="top:0; width:100%;">
-
-                  <?php
+                <?php
                   echo '<thead style="height:50px;">
                             <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
                               <th>SR</th>
@@ -298,15 +296,14 @@ if (isset($_POST['school'])) {
                             </tr>
                           </thead>
                   <tbody>';
-                  // if (isset($_POST['Assets']) && $_POST['Assets'] == "Assets") {
-                  
                   // connection file
                   include '_db_Connect.php';
-
                   $count = 1;
                   $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
+
                   //display all records from the database
-                  if (isset($_POST["Assets"])) {
+                  // if (isset($_POST["Assets"])) {
+                    if(isset($_POST['pc'])){
                     $pc = $_POST['pc'];
                     $school = $_POST['school'];
                     if ($_POST['school'] == "All") {

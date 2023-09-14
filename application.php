@@ -403,7 +403,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                   <?php
                   // displying all data in table
                   echo '<thead style="height:50px;">
-                                              <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
+                                              <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
                                                 <th>SR</th>
                                                 <th>PC</th>
                                                 <th>Application</th>
@@ -517,7 +517,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                               <td>' . $row['Date'] . '</td>
                                               <td>' . $row['Start time'] . '</td><td>';
                             date_default_timezone_set('Asia/Kolkata');
-                            $date = date('h:i:s');
+                            $date = date('H:i:s');
                             $datee = date("d/m/Y");
                             $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
                             if ($newDate < $row['End time'] && $datee == $row['Date']) {
@@ -557,7 +557,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                         $data = json_decode($data, true);
                         if ($result5) {
                           $total5 = mysqli_num_rows($result5);
-                          //while($row1->fetch_assoc($total5  )){
+                          
                           $count = 1;
                           if ($data != 0) {
                             foreach ($data as $row) {

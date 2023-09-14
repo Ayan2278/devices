@@ -359,7 +359,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   $count = 1;
                   $query5 = "SELECT * FROM `asset` ORDER BY  `asset`.`school_name` ASC";
                   //displaying all Record from Database
-                  if (isset($_POST["Search"])) {
+                  // if (isset($_POST["Search"])) {
+                    if(isset($_POST['school'])){
                     $schl = $_POST['school'];
                     $village = $_POST['Village'];
                     $Dis = $_POST['DIST'];
