@@ -260,8 +260,8 @@ $result1 = mysqli_query($conn, $sql);
     </style>
 </head>
 
-<!-- Main Sidebar Container -->
 
+<!-- Main Sidebar Container -->
 <body class="hold-transition sidebar-mini layout-fixed ">
     <?php
     // include sidebar file
