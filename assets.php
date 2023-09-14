@@ -18,44 +18,45 @@ if (isset($_POST['school'])) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Assets</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <style>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Assets</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
     body {
       font-family: 'Poppins', sans-serif;
       font-weight: 200;
@@ -140,8 +141,8 @@ if (isset($_POST['school'])) {
         top: -350px;
       }
     }
-    </style>
-    <style>
+  </style>
+  <style>
     body {
       font-family: 'Poppins', sans-serif;
       font-weight: 200;
@@ -169,14 +170,15 @@ if (isset($_POST['school'])) {
       border-radius: 10px;
       background: #c7c7c7;
     }
-    </style>
+  </style>
 </head>
 <!-- Main Sidebar Container -->
+
 <body class="hold-transition sidebar-mini layout-fixed ">
   <?php
   include 'sidebar.php'
     ?>
-     <!-- Wrapper class -->
+  <!-- Wrapper class -->
   <div class="wrapper">
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -234,7 +236,7 @@ if (isset($_POST['school'])) {
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC Id</label>
                 <select class="form-control select2bs4" style="width: 100%" name='pc'>
-                   <option value="All">All</option>
+                  <option value="All">All</option>
                   <?php
                   // total pc ID
                   if ($result2) {
@@ -259,7 +261,7 @@ if (isset($_POST['school'])) {
             <!-- /.card-body -->
 
           </form>
-          </div>
+        </div>
         <!-- <div class="card mx-2 shadow" style="height:590px;">
           <div class="card-header" style="border:0px;">
             <h3 class="card-title">Data</h3>
@@ -268,10 +270,10 @@ if (isset($_POST['school'])) {
                 <i class="fas fa-download"></i> Print PDF
               </button>
             </div> -->
-          <!-- </div> -->
-          <!-- /.card-header -->
-          </section>
-                    <section class="content">
+        <!-- </div> -->
+        <!-- /.card-header -->
+      </section>
+      <section class="content">
         <div class="row">
           <div class="col-12">
             <div class="card mx-2">
@@ -279,13 +281,13 @@ if (isset($_POST['school'])) {
 
                 <h4 class="card-title">Data</h4>
               </div>
-             
-                <!-- /.card-header -->
-                <div class="card-body">
+
+              <!-- /.card-header -->
+              <div class="card-body">
                 <table id="example2" class="  table-striped table-bordered table-hover" style="top:0; width:100%;">
 
-                            <?php
-                            echo '<thead style="height:50px;">
+                  <?php
+                  echo '<thead style="height:50px;">
                             <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
                               <th>SR</th>
                               <th>School name</th>
@@ -296,35 +298,34 @@ if (isset($_POST['school'])) {
                             </tr>
                           </thead>
                   <tbody>';
-              // if (isset($_POST['Assets']) && $_POST['Assets'] == "Assets") {
+                  // if (isset($_POST['Assets']) && $_POST['Assets'] == "Assets") {
+                  
+                  // connection file
+                  include '_db_Connect.php';
 
-                // connection file
-                include '_db_Connect.php';
-
-                $count = 1;
-                $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
-                //display all records from the database
-                if (isset($_POST["Assets"])) {
-                  $pc = $_POST['pc'];
-                  $school = $_POST['school'];
-                  if ($_POST['school'] == "All") {
+                  $count = 1;
                   $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
-                }
-                elseif($_POST['school'] != "All" && $_POST['pc'] == "All") {
-                  $query = "SELECT * FROM `asset` WHERE `school_name`='$school'";
-                }
-                
-                // display records according to the pc serial number
-                elseif($_POST['school'] != "All" && $_POST['pc'] != "All"){
-                  $query = "SELECT * FROM `asset` WHERE `pc_sr`='$pc' AND `school_name`='$school' ;";
-                }
-              }
-                $result = mysqli_query($conn, $query);
-                $total = mysqli_num_rows($result);
-                if ($total != 0) {
-                  // fetcging all records
-                  while ($row = $result->fetch_assoc()) {
-                    echo '
+                  //display all records from the database
+                  if (isset($_POST["Assets"])) {
+                    $pc = $_POST['pc'];
+                    $school = $_POST['school'];
+                    if ($_POST['school'] == "All") {
+                      $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
+                    } elseif ($_POST['school'] != "All" && $_POST['pc'] == "All") {
+                      $query = "SELECT * FROM `asset` WHERE `school_name`='$school'";
+                    }
+
+                    // display records according to the pc serial number
+                    elseif ($_POST['school'] != "All" && $_POST['pc'] != "All") {
+                      $query = "SELECT * FROM `asset` WHERE `pc_sr`='$pc' AND `school_name`='$school' ;";
+                    }
+                  }
+                  $result = mysqli_query($conn, $query);
+                  $total = mysqli_num_rows($result);
+                  if ($total != 0) {
+                    // fetcging all records
+                    while ($row = $result->fetch_assoc()) {
+                      echo '
                         <tr  style=" height:40px; font-size:14px;text-align:center;">
                       <td style="margin:10px;">' . $count . '</td>
                        
@@ -336,20 +337,20 @@ if (isset($_POST['school'])) {
                           </tr>
                       ';
                       $count += 1;
-                     }
-                     
                     }
-                  
-              
-            ?>
 
-              </tbody>
+                  }
 
-            </table>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+
+                  ?>
+
+                  </tbody>
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
       </section>
       <!-- /.card -->
       <!-- right col -->
@@ -362,9 +363,9 @@ if (isset($_POST['school'])) {
   </div>
   <!-- /.content-wrapper -->
   <?php
-   //include footer file
-    include  'footer.php';
-    ?>
+  //include footer file
+  include 'footer.php';
+  ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -374,89 +375,89 @@ if (isset($_POST['school'])) {
   </div>
   <!-- ./wrapper -->
   <script>
-        function change() {
-            document.getElementById("myform").submit();
-        }
-    </script>
-    <script>
-        function printTable() {
-            window.print();
-        }
-    </script>
-    <script>
-        $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-            });
-        });
-    </script>
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    function change() {
+      document.getElementById("myform").submit();
+    }
+  </script>
+  <script>
+    function printTable() {
+      window.print();
+    }
+  </script>
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": false,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
 
-    <script src="plugins/datatables/jquery.dataTables.js"></script>
-    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
-    <!-- Sparkline -->
-    <script src="plugins/sparklines/sparkline.js"></script>
-    <!-- JQVMap -->
-    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
-    <script src="plugins/moment/moment.min.js"></script>
-    <script src="plugins/daterangepicker/daterangepicker.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <!-- Summernote -->
-    <script src="plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <!-- <script src="dist/js/adminlte.js"></script> -->
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="dist/js/pages/dashboard.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
-    <script src="plugins/select2/js/select2.full.min.js"></script>
-    <script>
-        $('.select2').select2();
-        $('.select2bs4').select2({
-            theme: 'bootstrap4',
-            placeholder: 'Please Select'
-        });
-    </script>
-    <script src="dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <!-- page script -->
-    <script>
-        $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-            });
-        });
-    </script>
+  <script src="plugins/datatables/jquery.dataTables.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- ChartJS -->
+  <script src="plugins/chart.js/Chart.min.js"></script>
+  <!-- Sparkline -->
+  <script src="plugins/sparklines/sparkline.js"></script>
+  <!-- JQVMap -->
+  <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+  <!-- daterangepicker -->
+  <script src="plugins/moment/moment.min.js"></script>
+  <script src="plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- Summernote -->
+  <script src="plugins/summernote/summernote-bs4.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- AdminLTE App -->
+  <!-- <script src="dist/js/adminlte.js"></script> -->
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="dist/js/pages/dashboard.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
+  <script src="plugins/select2/js/select2.full.min.js"></script>
+  <script>
+    $('.select2').select2();
+    $('.select2bs4').select2({
+      theme: 'bootstrap4',
+      placeholder: 'Please Select'
+    });
+  </script>
+  <script src="dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <!-- page script -->
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": false,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
 
 </body>
 
