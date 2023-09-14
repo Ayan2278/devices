@@ -2,35 +2,36 @@
 // create database connection
 include '_db_Connect.php';
 
-function city($city)
+function city($pc)
 {
     include '_db_Connect.php';
-    $qry = "SELECT * from `asset` where `district`='$city'";
+    $qry = "SELECT * from `asset` where `pc_sr`='$pc'";
     $res = mysqli_query($conn, $qry);
     $tot = mysqli_num_rows($res);
     $countA = 0;
     $countI = 0;
 
     if ($tot != 0) {
-        while ($rowQ = $res->fetch_assoc())
+        // echo $tot;
+        while ($rowQ = $res->fetch_assoc()) {
             $pc = $rowQ['pc_sr'];
-        $file = "JSON PC/" . $pc . ".json";
-        $data = file_get_contents($file);
-        $data = json_decode($data, true);
-        date_default_timezone_set('Asia/Kolkata');
-        $date = date('H:i:s');
-        $datee = date("d/m/Y");
-        $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+            $file = "JSON PC/" . $pc . ".json";
+            $data = file_get_contents($file);
+            $data = json_decode($data, true);
+            date_default_timezone_set('Asia/Kolkata');
+            $date = date('H:i:s');
+            $datee = date("d/m/Y");
+            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
 
-        foreach ($data as $row) {
-            if ($newDate < $row['End time'] && $datee == $row['Date']) {
-                return 'Active';
+            foreach ($data as $row) {
+                if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                    return 'Active';
+                }
             }
-        }
 
+        }
     }
 }
-// city('Gandhinagar');
 
 
 $query0 = "SELECT DISTINCT `district` from `asset`; ";
@@ -69,11 +70,12 @@ function pc($pc)
     $qry = "SELECT * from `asset` where `district`='$pc'";
     $res = mysqli_query($conn, $qry);
     $tot = mysqli_num_rows($res);
+    // echo $tot;
     if ($tot != 0) {
         while ($rw = $res->fetch_assoc()) {
-            if (city($pc) == 'Active') {
+            if (city($rw['pc_sr']) == 'Active') {
                 $Ac++;
-            } else {
+            } else{
                 $In++;
             }
         }
@@ -86,7 +88,7 @@ function pc($pc)
     echo $In, "\n";
 }
 
-
+// pc("Gandhinagar");
 
 
 
