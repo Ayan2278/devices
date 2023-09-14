@@ -400,7 +400,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
             <section class="content">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card mx-2">
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <h4 class="card-title">Data</h4>

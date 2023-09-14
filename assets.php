@@ -274,7 +274,7 @@ if (isset($_POST['school'])) {
                     <section class="content">
         <div class="row">
           <div class="col-12">
-            <div class="card">
+            <div class="card mx-2">
               <div class="card-header" style="border:0px;">
 
                 <h4 class="card-title">Data</h4>
