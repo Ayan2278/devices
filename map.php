@@ -59,7 +59,7 @@ function districts($name)
             }
         }
     }
-    echo $count;
+    echo $name,"\nTotal Desktops: ",$count;
 }
 
 function pc($pc)
@@ -80,7 +80,6 @@ function pc($pc)
             }
         }
     }
-    echo "$pc\nTotal Desktops: ";
     districts($pc);
     echo "\nActive PC : ";
     echo $Ac, "\n";
