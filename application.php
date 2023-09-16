@@ -437,48 +437,49 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     $filecount = count($files2);
                   }
                   // displaying all data from database and Json file
-                  if (!isset($_POST['DIST']) || isset($_POST['application']) && $_POST['application'] == "application" && $_POST['DIST'] == 'All') {
-                    // include Json file
-                    while ($c <= $filecount) {
-                      $file = "JSON PC/PC0" . $c . ".json";
-                      $data = file_get_contents($file);
-                      $data = json_decode($data, true);
-                      // Query for fetching data according to the pc serial number
-                      $query5="SELECT * FROM `asset` WHERE `pc_sr`= '$id'";
-                      // echo $query5;
-                      $result5 = mysqli_query($conn, $query5);
-                      if ($result5) {
-                        $total5 = mysqli_num_rows($result5);
-                        if ($data != 0) {
-                          foreach ($data as $row) {
-                            echo '
-                                            <tr  style=" height:40px; font-size:14px;text-align:center;">
-                                              <td style="margin:10px;">' . $count . '</td>
-                                              <td>PC0' . $c . '</td>
-                                              <td>' . $row['Activity'] . '</td>
-                                              <td>' . $row['Date'] . '</td>
-                                              <td>' . $row['Start time'] . '</td><td>';
-                            date_default_timezone_set('Asia/Kolkata');
-                            $date = date('h:i:s');
-                            $datee = date("d/m/Y");
-                            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                            if ($newDate < $row['End time'] && $datee == $row['Date']) {
-                              echo '<small class="badge badge-success">Running</small>';
-                            } else {
-                              echo $row['End time'] . '</td>';
-                            }
-                            echo '
-                                              <td>' . $row['Duration'] . '</td>
-                                        </tr>';
-                            $count += 1;
-                          }
-                        } else
-                          echo "<tr><td colspan='9'>No data found</td></tr>";
-                      }
-                      $c++;
-                      $pcCount++;
-                    }
-                  } elseif ($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
+                  // if (!isset($_POST['DIST']) || isset($_POST['application']) && $_POST['application'] == "application" && $_POST['DIST'] == 'All') {
+                  //   // include Json file
+                  //   while ($c <= $filecount) {
+                  //     $file = "JSON PC/PC0" . $c . ".json";
+                  //     $data = file_get_contents($file);
+                  //     $data = json_decode($data, true);
+                  //     // Query for fetching data according to the pc serial number
+                  //     $query5="SELECT * FROM `asset` WHERE `pc_sr`= '$id'";
+                  //     // echo $query5;
+                  //     $result5 = mysqli_query($conn, $query5);
+                  //     if ($result5) {
+                  //       $total5 = mysqli_num_rows($result5);
+                  //       if ($data != 0) {
+                  //         foreach ($data as $row) {
+                  //           echo '
+                  //                           <tr  style=" height:40px; font-size:14px;text-align:center;">
+                  //                             <td style="margin:10px;">' . $count . '</td>
+                  //                             <td>PC0' . $c . '</td>
+                  //                             <td>' . $row['Activity'] . '</td>
+                  //                             <td>' . $row['Date'] . '</td>
+                  //                             <td>' . $row['Start time'] . '</td><td>';
+                  //           date_default_timezone_set('Asia/Kolkata');
+                  //           $date = date('h:i:s');
+                  //           $datee = date("d/m/Y");
+                  //           $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                  //           if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                  //             echo '<small class="badge badge-success">Running</small>';
+                  //           } else {
+                  //             echo $row['End time'] . '</td>';
+                  //           }
+                  //           echo '
+                  //                             <td>' . $row['Duration'] . '</td>
+                  //                       </tr>';
+                  //           $count += 1;
+                  //         }
+                  //       } else
+                  //         echo "<tr><td colspan='9'>No data found</td></tr>";
+                  //     }
+                  //     $c++;
+                  //     $pcCount++;
+                  //   }
+                  // }
+                   elseif ($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
                     $Dis = $_POST['DIST'];
                     $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis'";
                   } elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] == "All") {
@@ -505,13 +506,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     $PC = $_POST['PC'];
                     $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$schl' AND `pc_sr`='$PC' ";
                   }
+                  
                   if (isset($query5)) {
                     $result5 = mysqli_query($conn, $query5);
                     if ($result5) {
                       $tot5 = mysqli_num_rows($result5);
                     }
 
-                    if ($tot5 != 0 && isset($_POST['Activity']) && $_POST['Activity'] == "All") {
+                    if ($tot5 != 0) {
                       while ($row5 = $result5->fetch_assoc()) {
                         $pcsr = $row5['pc_sr'];
                         $file = "JSON PC/" . $pcsr . ".json";
