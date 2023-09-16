@@ -10,9 +10,8 @@ include '_db_Connect.php';
 // $sql = "SELECT DISTINCT `district` FROM `asset`;";
 $id=$_SESSION['pc_sr'];
 $userN=$_SESSION['username'];
-echo $userN,$userN,$userN,$userN,$userN,$userN,$userN;
 // $PASSWORD=$_SESSION['Password'];
-$sql = "SELECT DISTINCT `district` FROM `asset` WHERE `pc_sr`= '$id'";
+$sql = "SELECT DISTINCT `district` FROM `user` WHERE `pc_sr`= '$id'";
 $result = mysqli_query($conn, $sql);
 
 //fetch block for select box
@@ -417,6 +416,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                                 <th>Start time</th>
                                                 <th>End time</th>
                                                 <th>Duration</th>
+                                                <th>user</th>
                                               </tr>
                                             </thead>
                                     <tbody>';
@@ -547,6 +547,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                             }
                             echo '
                                               <td>' . $row['Duration'] . '</td>
+                                              <td>' . $row['username'] . '</td>
                                             </tr>';
                             $count += 1;
                           }
