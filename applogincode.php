@@ -35,10 +35,10 @@ if(isset($_POST['submit']))
     }
     else{
         $_SESSION['Status']="Invalid";
-        header("Location:login.php");
+        header("Location:applogin.php");
         echo'
             <script>
-            window.location.href="Login.php";
+            window.location.href="applogin.php";
             alert("login failed. Invalid Email and password")
         ';
         
@@ -48,7 +48,7 @@ if(isset($_POST['submit']))
 else{
 
     $_SESSION['Status']="Access denied";
-    header('Location:Login.php');
+    header('Location:applogin.php');
    
 
 }
