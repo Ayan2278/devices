@@ -5,7 +5,8 @@
         "Start time": "13:00:44",
         "End time": "13:01:04",
         "Duration": "00:00:20",
-        "status": "-"
+        "status": "-",
+        "username": "Bright"
     },
     {
         "Activity": "Notepad",
@@ -13,7 +14,8 @@
         "Start time": "01:16:43",
         "End time": "16:55:53",
         "Duration": "00:00:30",
-        "status": "-"
+        "status": "-",
+        "username": "Bright"
     },
     {
         "Activity": "Save ",
@@ -21,7 +23,8 @@
         "Start time": "13:01:55",
         "End time": "18:02:05",
         "Duration": "00:00:10",
-        "status": "-"
+        "status": "-",
+        "username": "Bright"
     },
     {
         "Activity": "Notepad",
@@ -29,6 +32,7 @@
         "Start time": "13:02:17",
         "End time": "13:02:37",
         "Duration": "00:00:20",
-        "status": "-"
+        "status": "-",
+        "username": "Bright"
     }
 ]
