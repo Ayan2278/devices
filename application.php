@@ -519,7 +519,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
                     }
 
-                    if ($tot5 != 0 && $_POST['Activity'] == "All") {
+                    if ($tot5 != 0  || isset($_POST['Activity']) && $_POST['Activity'] == "All") {
                       while ($row5 = $res6->fetch_assoc()) {
                         $pcsr = $row5['pc_sr'];
                         $usname = $row5['username'];
