@@ -85,7 +85,6 @@ $current_url = end($url_parts);
           </a>
 
         </li>
-
         <li class="nav-item has-treeview">
           <a href="device.php" class="nav-link <?php if ($current_url == 'device.php' || $current_url == 'application.php') {
             echo 'active';
@@ -98,6 +97,7 @@ $current_url = end($url_parts);
             </p>
           </a>
           <ul class="nav nav-treeview">
+            
             <li class="nav-item ">
               <a href="device.php" class="nav-link">
                 <i class="nav-icon  fa-circle  <?php if ($current_url == 'device.php') {
@@ -110,18 +110,20 @@ $current_url = end($url_parts);
               </a>
             </li>
             <li class="nav-item">
-              <a href="application.php" class="nav-link">
-                <i class="nav-icon far fa-circle  <?php if ($current_url == 'application.php') {
+              <a href="applogin.php" class="nav-link">
+                <i class="nav-icon far fa-circle  <?php if ($current_url == 'applogin.php') {
                   echo ' fas text-purple';
                 } else{
                   echo " far";} ?>"></i>
-                <p class="<?php if ($current_url == 'application.php') {
+                <p class="<?php if ($current_url == 'applogin.php') {
                   echo ' text-purple';
                 } ?>">Application timing</p>
               </a>
             </li>
+            
           </ul>
         </li>
+       
         <li class="nav-item ">
           <a href="addAssets.php" class="nav-link <?php if ($current_url == 'addAssets.php' || $current_url == 'addSchool.php') {
             echo 'active';
@@ -156,12 +158,21 @@ $current_url = end($url_parts);
                 } ?>">Add Assets</p>
               </a>
             </li>
+            <li class="nav-item ">
+              <a href="adduser.php" class="nav-link">
+                <i class="nav-icon far fa-circle  <?php if ($current_url == 'adduser.php') {
+                  echo ' fas text-purple';
+                } else{
+                  echo " far";} ?>"></i>
+                <p class="<?php if ($current_url == 'adduser.php') {
+                  echo ' text-purple';
+                } ?>">Add User</p>
+              </a>
+            </li>
           </ul>
         </li>
-
-        
-        
-        <li class="nav-item has-treeview">
+     
+      <li class="nav-item has-treeview">
           <a href="school.php" class="nav-link <?php if ($current_url == 'school.php') {
             echo 'active';
           } ?>">

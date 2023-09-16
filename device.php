@@ -423,12 +423,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
             </button>
           </div> -->
                 <!-- /.card-header -->
-                <div class="popup-container" id="popupp">
+                <!-- <div class="popup-container" id="popupp">
                   <div class="popupp">
-                    <form action="loginuser.php" method="POST" width="40px">
+                    <form action="loginscluser.php" method="POST" width="40px">
                       <div class="card col-lg-12 ">
                         <div class="card-header" style="border:0px;">
-                          <h4 style="float:left; margin-top:10px;">Login Here</h4>
+                          <h4 name="login_btn" value="login_btn" style="float:left; margin-top:10px;">Login Here</h4>
                         </div>
                         <div class="card-body ">
                           <div class="row">
@@ -438,7 +438,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                               <label for="device" style="float:left; margin-left:10px;">Username</label>
 
                               <div class="col-lg-12">
-                                <input type="text" class="form-control focus" name="UserName"
+                                <input type="text" class="form-control focus" name="username"
                                   placeholder="Enter Username" style="height:45px;" required>
                               </div>
                             </div>
@@ -461,7 +461,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                       </div>
                     </form>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="card-body">
                   <h4 class="card-title">Data</h4>

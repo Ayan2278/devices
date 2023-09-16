@@ -1,9 +1,13 @@
 <?php
+// session_start(); 
+// echo "Welcme".$_SESSION['username'];
+
 // include authentication file 
 include 'authentication.php';
 
 // connection file
 include '_db_Connect.php';
+
 // query for Active Status or Inactive Status
 $qry = 'SELECT DISTINCT `school_name`,`district` FROM `asset`;';
 

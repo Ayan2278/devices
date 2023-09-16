@@ -4,9 +4,13 @@ include 'authentication.php';
 
 // includeing connection file
 include '_db_Connect.php';
+// include 'login.php';
 
 //select all districts
-$sql = "SELECT DISTINCT `district` FROM `asset`;";
+// $sql = "SELECT DISTINCT `district` FROM `asset`;";
+$id=$_SESSION['pc_sr'];
+$EMP_NAME=$_SESSION['username'];
+$sql = "SELECT DISTINCT `district` FROM `asset` WHERE `pc_sr`= '$id'";
 $result = mysqli_query($conn, $sql);
 
 //fetch block for select box
@@ -416,11 +420,15 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     <tbody>';
                   // include connection file
                   include '_db_Connect.php';
+                  $EMP_NAME=$_SESSION['username'];
+                  $id=$_SESSION['pc_sr'];
                   $c = 1;
                   $pcCount = 1;
                   $count = 1;
-                  $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
+                  // $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
 
+                  $query5="SELECT * FROM `asset` WHERE `pc_sr`= '$id'";
+               
                   //count all Json files
                   $directory = getcwd() . "/JSON PC//";
                   $filecount = 0;
@@ -429,14 +437,15 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     $filecount = count($files2);
                   }
                   // displaying all data from database and Json file
-                  if (!isset($_POST['DIST']) || isset($_POST['Application']) && $_POST['Application'] == "Application" && $_POST['DIST'] == 'All') {
+                  if (!isset($_POST['DIST']) || isset($_POST['application']) && $_POST['application'] == "application" && $_POST['DIST'] == 'All') {
                     // include Json file
                     while ($c <= $filecount) {
                       $file = "JSON PC/PC0" . $c . ".json";
                       $data = file_get_contents($file);
                       $data = json_decode($data, true);
                       // Query for fetching data according to the pc serial number
-                      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c'";
+                      $query5="SELECT * FROM `asset` WHERE `pc_sr`= '$id'";
+                      // echo $query5;
                       $result5 = mysqli_query($conn, $query5);
                       if ($result5) {
                         $total5 = mysqli_num_rows($result5);
@@ -501,6 +510,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     if ($result5) {
                       $tot5 = mysqli_num_rows($result5);
                     }
+
                     if ($tot5 != 0 && isset($_POST['Activity']) && $_POST['Activity'] == "All") {
                       while ($row5 = $result5->fetch_assoc()) {
                         $pcsr = $row5['pc_sr'];
@@ -538,6 +548,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     }
                     // displaying filter value in table
                     if (isset($_POST['PC']) && $_POST['PC'] != "All") {
+                    // if (isset($_POST['username'])) {
                       $file = "JSON PC/" . $_POST['PC'] . ".json";
                       $act = $_POST['Activity'];
                       if ($act) {
@@ -548,7 +559,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                           $cd++;
                         }
                       }
-                      $PC = $_POST['PC'];
+                      // $EMP_NAME=$_SESSION['username'];
+                      // $id=$_SESSION['pc_sr'];
                       // query for fetching data 
                       $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
                       $result5 = mysqli_query($conn, $query5);

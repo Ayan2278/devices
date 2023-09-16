@@ -6,7 +6,10 @@ include 'authentication.php';
 include '_db_Connect.php';
 
 // query for Select All districts
-$sql = "SELECT DISTINCT `district` FROM `asset`;";
+// $EMP_NAME=$_SESSION['username'];
+// $sql = "SELECT DISTINCT `district` FROM `asset` WHERE `username`= '$EMP_NAME'";
+
+$sql = "SELECT DISTINCT `district` FROM `asset` ";
 $result = mysqli_query($conn, $sql);
 
 //Select all blocks For filter Data
@@ -457,14 +460,15 @@ function status($pcNo)
 
                                     // displaying all devices data in table
 
-
+                                        // $EMP_NAME=$_SESSION['username'];
                                         $count = 1;
                                         $c = 1;
                                         $pcCount = 1;
                                         $count = 1;
                                         // If District is Please Select then display all records 
                                     
-                                        $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
+                                         $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
+                                            // $query1="SELECT * FROM `asset` WHERE `username`= '$EMP_NAME'";
                                         
                                         // else if for diplaying School Name According to the Villages     
                                         if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
@@ -541,7 +545,7 @@ function status($pcNo)
                             </div>
                             <!-- /.card-body -->
                         </div>
-                        <form action="loginuser.php" method="POST" width="40px">
+                        <!-- <form action="loginuser.php" method="POST" width="40px">
                         <div class="card col-lg-3 shadow my-5">
                         <div class="card-header" style="border:0px;">
                             <h4 style="float:left; margin-top:10px;">Login Here</h4>
@@ -574,7 +578,7 @@ function status($pcNo)
                             </div>
                         </div>
                     </div>
-                        </form>
+                        </form> -->
                         <!-- /.card -->
             </section>
             <!-- /.card -->
