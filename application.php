@@ -513,7 +513,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                       $tot5 = mysqli_num_rows($result5);
                     }
 
-                    if ($tot5 != 0) {
+                    if ($tot5 != 0 && $_POST['Activity'] == "All") {
                       while ($row5 = $result5->fetch_assoc()) {
                         $pcsr = $row5['pc_sr'];
                         $file = "JSON PC/" . $pcsr . ".json";
@@ -549,7 +549,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                       }
                     }
                     // displaying filter value in table
-                    if (isset($_POST['PC']) && $_POST['PC'] != "All") {
+                    elseif (isset($_POST['PC']) && $_POST['PC'] != "All") {
                     // if (isset($_POST['username'])) {
                       $file = "JSON PC/" . $_POST['PC'] . ".json";
                       $act = $_POST['Activity'];
