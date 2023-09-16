@@ -561,10 +561,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                           $cd++;
                         }
                       }
-                      // $EMP_NAME=$_SESSION['username'];
-                      // $id=$_SESSION['pc_sr'];
-                      // query for fetching data 
-                      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
+                     
+                      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC' AND `block`='  $Bl'";
+                      //  echo $query5;
                       $result5 = mysqli_query($conn, $query5);
                       if ($_POST['Activity'] != "All" && $_POST['Application'] = "Application") {
                         $data = file_get_contents($file);

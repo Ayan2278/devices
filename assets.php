@@ -314,10 +314,11 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                             <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
                               <th>SR</th>
                               <th>School name</th>
+                              <th>Username</th>
                               <th>PC Sr</th>
                               <th>TFT</th>
                               <th>Webcam</th>
-                              <th>Headphone</th>
+                              <th>HeadPhone</th>
                             </tr>
                           </thead>
                   <tbody>';
@@ -352,6 +353,7 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                       <td style="margin:10px;">' . $count . '</td>
                        
                           <td>' . $row['school_name'] . '</td>
+                          <td>' . $row['username'] . '</td>
                           <td>' . $row['pc_sr'] . '</td>
                           <td>' . $row['TFT_id'] . '</td>
                           <td>' . $row['Webcam_id'] . '</td>
