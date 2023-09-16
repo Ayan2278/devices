@@ -288,11 +288,13 @@ if (isset($_POST['school'])) {
                   echo '<thead style="height:50px;">
                             <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
                               <th>SR</th>
-                              <th>School name</th>
+                              <th>School Name</th>
+                              <th>UserName</th>
                               <th>PC Sr</th>
-                              <th>TFT</th>
-                              <th>Webcam</th>
-                              <th>Headphone</th>
+                              <th>District</th>
+                              <th>Block</th>
+                              <th>Village</th>
+                             
                             </tr>
                           </thead>
                   <tbody>';
@@ -326,11 +328,13 @@ if (isset($_POST['school'])) {
                         <tr  style=" height:40px; font-size:14px;text-align:center;">
                       <td style="margin:10px;">' . $count . '</td>
                        
-                          <td>' . $row['school_name'] . '</td>
+                      <td>' . $row['school_name'] . '</td>
+                          <td>' . $row['username'] . '</td>
                           <td>' . $row['pc_sr'] . '</td>
-                          <td>' . $row['TFT_id'] . '</td>
-                          <td>' . $row['Webcam_id'] . '</td>
-                          <td>' . $row['Headphone_id'] . '</td>
+                          <td>' . $row['district'] . '</td>
+                          <td>' . $row['block'] . '</td>
+                          <td>' . $row['village'] . '</td>
+                         
                           </tr>
                       ';
                       $count += 1;
