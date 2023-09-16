@@ -9,7 +9,7 @@ if(isset($_POST['submit']))
     $EMP_NAME=$_POST['username'];
     $PASSWORD=$_POST['Password'];
                 
-    $log_query=$conn->prepare("SELECT * FROM `asset` WHERE `username`='$EMP_NAME' AND `Password`='$PASSWORD' LIMIT 1");
+    $log_query=$conn->prepare("SELECT * FROM `asset` WHERE `username`='$EMP_NAME' AND `Password`='$PASSWORD'");
     $log_query->execute();
     $result=$log_query->get_result();
 
