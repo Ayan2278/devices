@@ -11,7 +11,13 @@ $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['school'])) {
   $school = $_POST['school'];
-  $sql2 = "SELECT * FROM `asset` WHERE `school_name`='$school';";
+  $sql3 = "SELECT DISTINCT `username` FROM `asset` WHERE `school_name`='$school';";
+  $result3 = mysqli_query($conn, $sql3);
+  $total3 = mysqli_num_rows($result3);
+}
+if (isset($_POST['school']) && isset($_POST['username'])) {
+  $username = $_POST['username'];
+  $sql2 = "SELECT * FROM `asset` WHERE `username`='$username';";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -232,6 +238,25 @@ if (isset($_POST['school'])) {
                   ?>
                 </select>
               </div>
+              <div class="form-group col-lg-2">
+                <label for="device">Username</label>
+                <select class="form-control select2bs4" style="width: 100%" name="username" onchange="change()">
+                  <option value="All">All</option>
+                  <?php
+                  // total school
+                  if ($result3) {
+                    $total3 = mysqli_num_rows($result3);
+                    if ($total3 != 0) {
+                      while ($row3 = $result3->fetch_assoc()) {
+                        echo "<option value='" . $row3['username'] . "'";
+                        echo isset($_POST["username"]) && $_POST["username"] == $row3['username'] ? "selected " : "";
+                        echo ">" . $row3['username'] . "</option>";
+                      }
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
               <!-- general form elements -->
               <div class="form-group col-lg-2">
                 <label for="exampleInputPassword1">PC Id</label>
@@ -288,13 +313,11 @@ if (isset($_POST['school'])) {
                   echo '<thead style="height:50px;">
                             <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
                               <th>SR</th>
-                              <th>School Name</th>
-                              <th>UserName</th>
+                              <th>School name</th>
                               <th>PC Sr</th>
-                              <th>District</th>
-                              <th>Block</th>
-                              <th>Village</th>
-                             
+                              <th>TFT</th>
+                              <th>Webcam</th>
+                              <th>Headphone</th>
                             </tr>
                           </thead>
                   <tbody>';
@@ -328,13 +351,11 @@ if (isset($_POST['school'])) {
                         <tr  style=" height:40px; font-size:14px;text-align:center;">
                       <td style="margin:10px;">' . $count . '</td>
                        
-                      <td>' . $row['school_name'] . '</td>
-                          <td>' . $row['username'] . '</td>
+                          <td>' . $row['school_name'] . '</td>
                           <td>' . $row['pc_sr'] . '</td>
-                          <td>' . $row['district'] . '</td>
-                          <td>' . $row['block'] . '</td>
-                          <td>' . $row['village'] . '</td>
-                         
+                          <td>' . $row['TFT_id'] . '</td>
+                          <td>' . $row['Webcam_id'] . '</td>
+                          <td>' . $row['Headphone_id'] . '</td>
                           </tr>
                       ';
                       $count += 1;
