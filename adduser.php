@@ -15,9 +15,9 @@ if (isset($_POST["submit"])) {
     // direct print in database table district , block and village 
     $resultS0 = mysqli_query($conn, $sqlS0);
     $rowS0 = $resultS0->fetch_assoc();
-    $district = $rowS0['district'];
-    $block = $rowS0['block'];
-    $village = $rowS0['village'];
+    // $district = $rowS0['district'];
+    // $block = $rowS0['block'];
+    // $village = $rowS0['village'];
     $pc = $_POST["pc_sr"];
     $username=$_POST["username"];
     $pass=$_POST["Password"];
@@ -32,7 +32,7 @@ if (isset($_POST["submit"])) {
     }
     // if connection is true then excute the query
     if ($conn) {
-        $query1 = "INSERT INTO `asset`(`school_name`, `district`, `block`, `village`, `pc_sr`, `username`,`Password`) VALUES ('$school','$district','$block','$village','$pc','$username','$pass')";
+        $query1 = "INSERT INTO `user`(`pc_sr`, `username`, `Password`, `school_name`) VALUES ('$pc','$username','$pass','$school')";
         $result = mysqli_query($conn, $query1);
     }
     if ($result) {
@@ -324,7 +324,31 @@ $result1 = mysqli_query($conn, $sql);
                             </div>
                             <div class="card-body ">
                                 <div class="row">
+                                <div class="form-group col-lg-12">
+                                        <label for="device" style="float:left; margin-left:10px;">School</label>
+                                        <div class="col-lg-12">
+                                            <select class="form-control focus" name="school_name" style="height:45px;"
+                                                required>
+                                                <option value="" class="Black">Please Select</option>
+                                                <?php
+                                            
+                                            // options for School Name
+                                            if ($result1) {
+                                                $total1 = mysqli_num_rows($result1);
+                                                if ($total1 != 0) {
+                                                    while ($row = $result1->fetch_assoc()) {
 
+                                                        echo "<option value='" . $row['school_name'] . "'  class='Black'";
+                                                        echo isset($_POST["school_name"]) && $_POST["school_name"] == $row['school_name'] ? "selected " : "";
+                                                        echo ">" . $row['school_name'] . "</option>";
+                                                    }
+                                                }
+                                            }
+                                            ?>
+
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="form-group col-lg-6">
                                         <label for="device" style="float:left; margin-left:10px;">PC ID</label>
 
@@ -350,31 +374,7 @@ $result1 = mysqli_query($conn, $sql);
                                                 placeholder="Enter Valid Password" style="height:45px;" required>
                                         </div>
                                     </div>
-                                    <div class="form-group col-lg-12">
-                                        <label for="device" style="float:left; margin-left:10px;">School</label>
-                                        <div class="col-lg-12">
-                                            <select class="form-control focus" name="school_name" style="height:45px;"
-                                                required>
-                                                <option value="" class="Black">Please Select</option>
-                                                <?php
-                                            
-                                            // options for School Name
-                                            if ($result1) {
-                                                $total1 = mysqli_num_rows($result1);
-                                                if ($total1 != 0) {
-                                                    while ($row = $result1->fetch_assoc()) {
-
-                                                        echo "<option value='" . $row['school_name'] . "'  class='Black'";
-                                                        echo isset($_POST["school_name"]) && $_POST["school_name"] == $row['school_name'] ? "selected " : "";
-                                                        echo ">" . $row['school_name'] . "</option>";
-                                                    }
-                                                }
-                                            }
-                                            ?>
-
-                                            </select>
-                                        </div>
-                                    </div>
+                                    
                                     <!-- <div class="form-group col-lg-12">
                                         <label for="device" style="float:left; margin-left:10px;">Headphone Id</label>
 

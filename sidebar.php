@@ -125,7 +125,7 @@ $current_url = end($url_parts);
         </li>
        
         <li class="nav-item ">
-          <a href="addAssets.php" class="nav-link <?php if ($current_url == 'addAssets.php' || $current_url == 'addSchool.php') {
+          <a href="addAssets.php" class="nav-link <?php if ($current_url == 'addAssets.php' || $current_url == 'addSchool.php'|| $current_url == 'adduser.php') {
             echo 'active';
           } ?>">
             <i class="nav-icon far fa-plus-square"></i>
