@@ -9,8 +9,9 @@ include '_db_Connect.php';
 //select all districts
 // $sql = "SELECT DISTINCT `district` FROM `asset`;";
 $id=$_SESSION['pc_sr'];
-$EMP_NAME=$_SESSION['username'];
-// $EMP_NAME=$_SESSION['username'];
+$userN=$_SESSION['username'];
+echo $userN,$userN,$userN,$userN,$userN,$userN,$userN;
+// $PASSWORD=$_SESSION['Password'];
 $sql = "SELECT DISTINCT `district` FROM `asset` WHERE `pc_sr`= '$id'";
 $result = mysqli_query($conn, $sql);
 
