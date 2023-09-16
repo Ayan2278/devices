@@ -10,6 +10,7 @@ include '_db_Connect.php';
 // $sql = "SELECT DISTINCT `district` FROM `asset`;";
 $id=$_SESSION['pc_sr'];
 $EMP_NAME=$_SESSION['username'];
+// $EMP_NAME=$_SESSION['username'];
 $sql = "SELECT DISTINCT `district` FROM `asset` WHERE `pc_sr`= '$id'";
 $result = mysqli_query($conn, $sql);
 
@@ -420,7 +421,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     <tbody>';
                   // include connection file
                   include '_db_Connect.php';
-                  include 'applogincode.php';
                   $EMP_NAME=$_SESSION['username'];
                   $id=$_SESSION['pc_sr'];
                   $c = 1;
@@ -507,16 +507,22 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     $PC = $_POST['PC'];
                     $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$schl' AND `pc_sr`='$PC' ";
                   }
-                  echo $query5;
+                  // echo $query5;
                   if (isset($query5)) {
                     $result5 = mysqli_query($conn, $query5);
                     if ($result5) {
                       $tot5 = mysqli_num_rows($result5);
+                      $row6 = $result5->fetch_assoc();
+                      $user = $row6['username'];
+                      $qry6 = "SELECT * from `asset` where `username` = '$user'";
+                      $res6 = mysqli_query($conn,$qry6);
+
                     }
 
                     if ($tot5 != 0 && $_POST['Activity'] == "All") {
-                      while ($row5 = $result5->fetch_assoc()) {
+                      while ($row5 = $res6->fetch_assoc()) {
                         $pcsr = $row5['pc_sr'];
+                        $usname = $row5['username'];
                         $file = "JSON PC/" . $pcsr . ".json";
                         $data = file_get_contents($file);
                         $data = json_decode($data, true);
