@@ -521,6 +521,7 @@ function status($pcNo)
                                             <td>' . $row['pc_sr'] . '</td>';
                                                 echo "<td>";
 
+                                                
                                                 // if for Status is Active
                                                 if (status($row['pc_sr']) == 'Active') {
                                                     echo '<small class="badge badge-success">Active</small>';
