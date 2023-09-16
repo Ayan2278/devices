@@ -48,6 +48,9 @@
 </style>
 </head>
 
+<?php
+    include 'sidebar.php'
+        ?>
 <body class="bg">
     <?php
             if(isset( $_SESSION['status'])){
