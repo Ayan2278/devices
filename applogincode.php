@@ -33,6 +33,7 @@ if(isset($_POST['submit']))
             $_SESSION['pc_sr']=$id;
             header('location:application.php');
     }
+    
     else{
         $_SESSION['Status']="Invalid";
         header("Location:applogin.php");
