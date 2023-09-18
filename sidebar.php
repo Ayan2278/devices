@@ -86,7 +86,7 @@ $current_url = end($url_parts);
 
         </li>
         <li class="nav-item has-treeview">
-          <a href="device.php" class="nav-link <?php if ($current_url == 'device.php' || $current_url == 'application.php') {
+          <a href="device.php" class="nav-link <?php if ($current_url == 'device.php' || $current_url == 'application.php' || $current_url == 'applogin.php') {
             echo 'active';
           } ?>">
             <i class="nav-icon fas fa-table"></i>

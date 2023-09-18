@@ -11,7 +11,8 @@ include '_db_Connect.php';
 $id=$_SESSION['pc_sr'];
 $userN=$_SESSION['username'];
 // $PASSWORD=$_SESSION['Password'];
-$sql = "SELECT DISTINCT `district` FROM `user` WHERE `pc_sr`= '$id'";
+$sql = "SELECT DISTINCT `district` FROM `asset` WHERE `pc_sr`= '$id'";
+// echo $sql,$sql,$sql,$sql,$sql;
 $result = mysqli_query($conn, $sql);
 
 //fetch block for select box
@@ -529,6 +530,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                         $data = json_decode($data, true);
                         if ($data != 0) {
                           foreach ($data as $row) {
+                            if ($row['username'] == 'ayan') {
+                              # code...
+                            
                             echo '
                                             <tr  style=" height:40px; font-size:14px;text-align:center;">
                                               <td style="margin:10px;">' . $count . '</td>
@@ -551,6 +555,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                             </tr>';
                             $count += 1;
                           }
+                        }
                         } else
                           echo "<tr><td colspan='9'>No data found</td></tr>";
                         $count += 1;
