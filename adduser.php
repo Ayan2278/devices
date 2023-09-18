@@ -10,34 +10,36 @@ $alert = false;
 $conn = mysqli_connect("localhost", "root", "", "device");
 if (isset($_POST["submit"])) {
     $school = $_POST["school_name"];
-    $sqlS0 = "SELECT * FROM `school` WHERE `school_name`='$school';";
-    
-    // direct print in database table district , block and village 
-    $resultS0 = mysqli_query($conn, $sqlS0);
-    $rowS0 = $resultS0->fetch_assoc();
-    // $district = $rowS0['district'];
-    // $block = $rowS0['block'];
-    // $village = $rowS0['village'];
     $pc = $_POST["pc_sr"];
     $username=$_POST["username"];
     $pass=$_POST["Password"];
-    // $tft = $_POST["TFT_id"];
-    // $webcam = $_POST["Webcam_id"];
-    // $headphone = $_POST["Headphone_id"];
-    
-    // check connection
-    if ($conn->connect_error) {
-        die("Connection failed: "
-            . $conn->connect_error);
+   
+    $q="SELECT * FROM `user` WHERE `username`='$username' ";
+    $r=mysqli_query($conn, $q);
+    $n=mysqli_num_rows($r);
+    if($n > 0){
+            $alert="Username is Already Taken";
     }
+    else{
+    // check connection
+    // if ($conn->connect_error) {
+    //     die("Connection failed: "
+    //         . $conn->connect_error);
+    // }
     // if connection is true then excute the query
     if ($conn) {
         $query1 = "INSERT INTO `user`(`pc_sr`, `username`, `Password`, `school_name`) VALUES ('$pc','$username','$pass','$school')";
         $result = mysqli_query($conn, $query1);
+        if ($result) {
+            $login = true;
+        }
+        else{
+            $alert=true;
+        }
+    
+       
     }
-    if ($result) {
-        $login = true;
-    }
+}
 }
 // automectically print school name
 $sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
@@ -310,18 +312,25 @@ $result1 = mysqli_query($conn, $sql);
                 if (isset($result) && $result) {
                     echo '<div class="popup-container" id="popupp">
                     <div class="popupp">
-                        <h2 style="color: #6f42c1;">Successfully Inserted</h2>
-                        <p style="color: #6f42c1;">Your data is inserted successfully.</p>
-                        <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+                    <h2 style="color: #6f42c1;">Successfully Inserted</h2>
+                    <p style="color: #6f42c1;">Your data is inserted successfully.</p>
+                    <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
                     </div>
-                </div>';
+                    </div>';
                 }
                 ?>
                     <center>
+                <?php
+                if($alert){
+                    echo "Username is all ready taken";
+                }
+                ?>
                         <div class="card col-lg-5 shadow">
                             <div class="card-header" style="border:0px;">
                                 <h4 style="float:left; margin-top:10px;">Add User</h4>
                             </div>
+                            
+
                             <div class="card-body ">
                                 <div class="row">
                                 <div class="form-group col-lg-12">
