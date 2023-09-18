@@ -12,7 +12,6 @@ $id=$_SESSION['pc_sr'];
 $userN=$_SESSION['username'];
 // $PASSWORD=$_SESSION['Password'];
 $sql = "SELECT DISTINCT `district` FROM `asset` WHERE `pc_sr`= '$id'";
-// echo $sql,$sql,$sql,$sql,$sql;
 $result = mysqli_query($conn, $sql);
 
 //fetch block for select box
@@ -423,7 +422,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     <tbody>';
                   // include connection file
                   include '_db_Connect.php';
-                  $EMP_NAME=$_SESSION['username'];
+                  // $EMP_NAME=$_SESSION['username'];
                   $id=$_SESSION['pc_sr'];
                   $c = 1;
                   $pcCount = 1;
@@ -530,7 +529,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                         $data = json_decode($data, true);
                         if ($data != 0) {
                           foreach ($data as $row) {
-                            if ($row['username'] == 'ayan') {
+                            if ($row['username'] == $_GET['u']) {
                               # code...
                             
                             echo '
@@ -554,8 +553,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                               <td>' . $row['username'] . '</td>
                                             </tr>';
                             $count += 1;
-                          }
-                        }
+                          }}
                         } else
                           echo "<tr><td colspan='9'>No data found</td></tr>";
                         $count += 1;

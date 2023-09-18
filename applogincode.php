@@ -15,12 +15,12 @@ if(isset($_POST['submit']))
 
     if($result->num_rows>0)
     {
+        $row= $result->fetch_assoc();
         
-        foreach($result as $row){
                 $id=$row['pc_sr'];
                 $EMP_NAME=$row['username'];
                 $PASSWORD=$row['Password'];
-        }
+        
             $_SESSION['auth']= true;
 
             $_SESSION['auth_user']=[
@@ -31,7 +31,7 @@ if(isset($_POST['submit']))
             $_SESSION['Status']="Log-In Successfully";
             // $_SESSION['username']=$EMP_NAME;
             $_SESSION['pc_sr']=$id;
-            header('location:application.php');
+            header('location:application.php?u='.$row['username']);
     }
 
     else{

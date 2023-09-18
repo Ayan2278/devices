@@ -48,23 +48,11 @@
 </style>
 </head>
 
+<body class="bg">
 <?php
     include 'sidebar.php'
         ?>
-<body class="bg">
-    <?php
-            if(isset( $_SESSION['status'])){
-               // echo $_SESSION['status'];
-                ?>
-    <div class="alert  alert-primary alert-dismissible fade show" role="alert">
-        <strong></strong>
-        <?php  echo $_SESSION['status']; ?>.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <?php
-                unset($_SESSION['status']);
-            }
-    ?>
+
 
 
     <div class="home_content wrapper">
