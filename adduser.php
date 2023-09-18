@@ -322,7 +322,8 @@ $result1 = mysqli_query($conn, $sql);
                     <center>
                 <?php
                 if($alert){
-                    echo '<div class="alert alert-danger col-lg-5" role="alert">
+                    echo '
+                    <div class="alert alert-danger col-lg-5" role="alert" id="alert">
                     Username is already taken....!
                   </div>';
                 }
