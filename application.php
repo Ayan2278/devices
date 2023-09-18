@@ -509,7 +509,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$schl' AND `pc_sr`='$PC' ";
                   }
                   // echo $query5;
-                  echo $query5;
                   if (isset($query5)) {
                     $result5 = mysqli_query($conn, $query5);
                     if ($result5) {
@@ -528,13 +527,13 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                         $file = "JSON PC/" . $pcsr . ".json";
                         $data = file_get_contents($file);
                         $data = json_decode($data, true);
-                        echo $file;
+                        
                         if ($data != 0) {
                           foreach ($data as $row) {
                             if (isset($_GET['u']) && $row['username'] == $_GET['u']) {
                               # code...
                             
-                            echo '
+                            echo ' 
                                             <tr  style=" height:40px; font-size:14px;text-align:center;">
                                               <td style="margin:10px;">' . $count . '</td>
                                               <td>' . $pcsr . '</td>
@@ -555,35 +554,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                               <td>' . $row['username'] . '</td>
                                             </tr>';
                             $count += 1;
-                          }
-                            elseif (!isset($_GET['u']) ) {
-                              
-                            
-                            echo '
-                                            <tr  style=" height:40px; font-size:14px;text-align:center;">
-                                              <td style="margin:10px;">' . $count . '</td>
-                                              <td>' . $pcsr . '</td>
-                                              <td>' . $row['Activity'] . '</td>
-                                              <td>' . $row['Date'] . '</td>
-                                              <td>' . $row['Start time'] . '</td><td>';
-                            date_default_timezone_set('Asia/Kolkata');
-                            $date = date('H:i:s');
-                            $datee = date("d/m/Y");
-                            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                            if ($newDate < $row['End time'] && $datee == $row['Date']) {
-                              echo '<small class="badge badge-success">Running</small>';
-                            } else {
-                              echo $row['End time'] . '</td>';
-                            }
-                            echo '
-                                              <td>' . $row['Duration'] . '</td>
-                                              <td>' . $row['username'] . '</td>
-                                            </tr>';
-                            $count += 1;
-                          }
+                          
                           
                         }
-                          
+                      }
                         } else
                           echo "<tr><td colspan='9'>No data found</td></tr>";
                         $count += 1;

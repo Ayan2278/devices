@@ -322,7 +322,9 @@ $result1 = mysqli_query($conn, $sql);
                     <center>
                 <?php
                 if($alert){
-                    echo "Username is all ready taken";
+                    echo '<div class="alert alert-danger col-lg-5" role="alert">
+                    Username is already taken....!
+                  </div>';
                 }
                 ?>
                         <div class="card col-lg-5 shadow">
