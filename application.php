@@ -529,7 +529,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                         $data = json_decode($data, true);
                         if ($data != 0) {
                           foreach ($data as $row) {
-                            if ($row['username'] == $_GET['u']) {
+                            if (isset($_GET['u']) && $row['username'] == $_GET['u']) {
                               # code...
                             
                             echo '
@@ -553,7 +553,32 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                               <td>' . $row['username'] . '</td>
                                             </tr>';
                             $count += 1;
-                          }}
+                          }
+                          else{
+                            echo '
+                                            <tr  style=" height:40px; font-size:14px;text-align:center;">
+                                              <td style="margin:10px;">' . $count . '</td>
+                                              <td>' . $pcsr . '</td>
+                                              <td>' . $row['Activity'] . '</td>
+                                              <td>' . $row['Date'] . '</td>
+                                              <td>' . $row['Start time'] . '</td><td>';
+                            date_default_timezone_set('Asia/Kolkata');
+                            $date = date('H:i:s');
+                            $datee = date("d/m/Y");
+                            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                            if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                              echo '<small class="badge badge-success">Running</small>';
+                            } else {
+                              echo $row['End time'] . '</td>';
+                            }
+                            echo '
+                                              <td>' . $row['Duration'] . '</td>
+                                              <td>' . $row['username'] . '</td>
+                                            </tr>';
+                            $count += 1;
+                          }
+                        }
+                          
                         } else
                           echo "<tr><td colspan='9'>No data found</td></tr>";
                         $count += 1;
