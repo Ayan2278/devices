@@ -5,11 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Login For Application</title>
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Assets</title>
+    <title>application</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -48,11 +48,23 @@
 </style>
 </head>
 
-<body class="bg">
 <?php
     include 'sidebar.php'
         ?>
-
+<body class="bg">
+    <?php
+            if(isset( $_SESSION['status'])){
+               // echo $_SESSION['status'];
+                ?>
+    <div class="alert  alert-primary alert-dismissible fade show" role="alert">
+        <strong></strong>
+        <?php  echo $_SESSION['status']; ?>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+                unset($_SESSION['status']);
+            }
+    ?>
 
 
     <div class="home_content wrapper">

@@ -6,18 +6,18 @@ include 'authentication.php';
 include '_db_Connect.php';
 
 // total school
-$sql = "SELECT  DISTINCT `school_name` FROM `asset`;";
+$sql = "SELECT  DISTINCT `school_name` FROM `user` ORDER BY `user`.`school_name` ASC";
 $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['school'])) {
   $school = $_POST['school'];
-  $sql3 = "SELECT DISTINCT `username` FROM `asset` WHERE `school_name`='$school';";
+  $sql3 = "SELECT DISTINCT `username` FROM `user` WHERE `school_name`='$school';";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
 if (isset($_POST['school']) && isset($_POST['username'])) {
   $username = $_POST['username'];
-  $sql2 = "SELECT * FROM `asset` WHERE `username`='$username';";
+  $sql2 = "SELECT * FROM `user` WHERE `username`='$username';";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -325,22 +325,26 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                   // connection file
                   include '_db_Connect.php';
                   $count = 1;
-                  $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
+                  $query = "SELECT * FROM `user` ORDER BY `user`.`pc_sr` ASC";
 
                   //display all records from the database
                   // if (isset($_POST["Assets"])) {
                     if(isset($_POST['pc'])){
                     $pc = $_POST['pc'];
                     $school = $_POST['school'];
+                    $user=$_POST['username'];
                     if ($_POST['school'] == "All") {
-                      $query = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC";
-                    } elseif ($_POST['school'] != "All" && $_POST['pc'] == "All") {
-                      $query = "SELECT * FROM `asset` WHERE `school_name`='$school'";
+                      $query = "SELECT * FROM `user` ORDER BY `user`.`pc_sr` ASC";
+                    }elseif(($_POST['school'])!= "All" && $_POST['username']=="All"){
+                      $query="SELECT * FROM `user` WHERE `school_name`='$school'";
+                    }
+                     elseif ($_POST['school'] != "All" && $_POST['username']!="All" && $_POST['pc'] == "All") {
+                      $query = "SELECT * FROM `user` WHERE `school_name`='$school' AND `username`='$user'";
                     }
 
                     // display records according to the pc serial number
                     elseif ($_POST['school'] != "All" && $_POST['pc'] != "All") {
-                      $query = "SELECT * FROM `asset` WHERE `pc_sr`='$pc' AND `school_name`='$school' ;";
+                      $query = "SELECT * FROM `user` WHERE `pc_sr`='$pc' AND `school_name`='$school' AND `username`='$user' ;";
                     }
                   }
                   $result = mysqli_query($conn, $query);
@@ -354,10 +358,14 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                        
                           <td>' . $row['school_name'] . '</td>
                           <td>' . $row['username'] . '</td>
-                          <td>' . $row['pc_sr'] . '</td>
-                          <td>' . $row['TFT_id'] . '</td>
-                          <td>' . $row['Webcam_id'] . '</td>
-                          <td>' . $row['Headphone_id'] . '</td>
+                          <td>' . $row['pc_sr'] . '</td>';
+                          $qry = "SELECT * from `asset` where `school_name`='" . $row['school_name'] . "'";
+                          $reslt = mysqli_query($conn, $qry);
+                          $rowq = $reslt->fetch_assoc();
+                          echo
+                          '<td>' . $rowq['TFT_id'] . '</td>
+                          <td>' . $rowq['Webcam_id'] . '</td>
+                          <td>' . $rowq['Headphone_id'] . '</td>
                           </tr>
                       ';
                       $count += 1;

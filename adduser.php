@@ -322,12 +322,21 @@ $result1 = mysqli_query($conn, $sql);
                     <center>
                 <?php
                 if($alert){
+                   
                     echo '
+
                     <div class="alert alert-danger col-lg-5" role="alert" id="alert">
                     Username is already taken....!
                   </div>';
                 }
                 ?>
+                 <script>
+                    var id=settimeout(alert, 3000);
+                    function alert(){
+                        var target=document.getElementById("alert");
+                        target.style.width="500px";
+                    }
+                    </script>
                         <div class="card col-lg-5 shadow">
                             <div class="card-header" style="border:0px;">
                                 <h4 style="float:left; margin-top:10px;">Add User</h4>

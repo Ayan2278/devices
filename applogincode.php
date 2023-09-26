@@ -29,9 +29,9 @@ if(isset($_POST['submit']))
                 'PC'=>$id
             ];
             $_SESSION['Status']="Log-In Successfully";
-            // $_SESSION['username']=$EMP_NAME;
+            $_SESSION['username']=$EMP_NAME;
             $_SESSION['pc_sr']=$id;
-            header('location:application.php?u='.$row['username']);
+            header('location:application.php?username='.$row['username']);
     }
 
     else{

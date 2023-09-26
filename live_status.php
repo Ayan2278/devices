@@ -99,7 +99,7 @@ function status($pcNo)
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Device</title>
+    <title>Live-Status</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -471,9 +471,9 @@ function status($pcNo)
                                             // $query1="SELECT * FROM `asset` WHERE `username`= '$EMP_NAME'";
                                         
                                         // else if for diplaying School Name According to the Villages     
-                                        if (isset($_POST['Status']) && $_POST['Status'] == "Status") {
+                                      
                                             
-
+                                            if(isset($_POST['PC'])){
                                             $PC = $_POST['PC'];
                                             $school = $_POST['school'];
                                             $Dis = $_POST['DIST'];
@@ -500,7 +500,7 @@ function status($pcNo)
                                             elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] != "All" && $_POST['PC'] != "All") {
                                                 $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
                                             } 
-                                        }
+                                            }
                                         //Set the connection for result
                                         if (isset($query1)) {
                                             $result1 = mysqli_query($conn, $query1);
