@@ -1,4 +1,4 @@
-
+<!-- this page for login in dashboard  -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,18 +101,10 @@
                             </div>
                         </div>
                     </div>
-                        </form>
-                    
+                </form>
         </center>
-
     </div>
-
-
-
-
     </div>
-
-
     <script>
         let btn = document.querySelector("#btn");
         let sidebar = document.querySelector(".sidebar");
@@ -127,8 +119,6 @@
             offc.classList.add("offcanvas");
             offc.classList.add("offcanvas-start");
         }
-
-
     </script>
 </body>
 

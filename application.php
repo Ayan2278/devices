@@ -4,14 +4,17 @@ include 'authentication.php';
 
 // includeing connection file
 include '_db_Connect.php';
-// include 'login.php';
+// $sql = "SELECT DISTINCT `district` FROM `asset`;";
+// $PASSWORD=$_SESSION['Password'];
+
+//select user-name according to login users
+$EMP_NAME=$_SESSION['username'];
+$queryy = "SELECT * FROM `user` WHERE `username`='$EMP_NAME'";
+$resultt = mysqli_query($conn, $queryy);
 
 //select all districts
-// $sql = "SELECT DISTINCT `district` FROM `asset`;";
 $id=$_SESSION['pc_sr'];
-$userN=$_SESSION['username'];
-// $PASSWORD=$_SESSION['Password'];
-$sql = "SELECT DISTINCT `district` FROM `asset` WHERE `pc_sr`= '$id'";
+$sql = "SELECT DISTINCT `district` FROM `user` WHERE  `username`='$EMP_NAME'";
 $result = mysqli_query($conn, $sql);
 
 //fetch block for select box
@@ -21,7 +24,8 @@ if (isset($_POST['DIST'])) {
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
-// fetch village according to district
+
+//fetch village according to district
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
@@ -29,54 +33,49 @@ if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
-// fetch school
+
+//fetch school-name According to the district , block and village
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql4 = "SELECT  DISTINCT `school_name` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
+  $sql4 = "SELECT  DISTINCT `school_name` FROM `user` WHERE `district`='$Dis' AND `username`='$EMP_NAME'";
   $result4 = mysqli_query($conn, $sql4);
   $total4 = mysqli_num_rows($result4);
 }
+
+//fetch PC-Serial number According to school-name
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
   $village = $_POST['Village'];
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
   $schl = $_POST['school'];
-  $sql8 = "SELECT  DISTINCT `pc_sr` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village' AND `school_name`='$schl'";
+  $sql8 = "SELECT  DISTINCT `pc_sr` FROM `user` WHERE `district`='$Dis' AND `username`='$EMP_NAME' AND `school_name`='$schl'";
   $result8 = mysqli_query($conn, $sql8);
   $total8 = mysqli_num_rows($result8);
 }
- if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC']) && $_POST['PC'] != "All" ) {
-       
-        $PC = $_POST['PC'];
-    // $EMP_NAME=$_POST['username'];
-    // $schl = $_POST['school'];
-    // $village = $_POST['Village'];
-    // $Dis = $_POST['DIST'];
-    // $Bl = $_POST['Block'];
-    // $sql4 = "SELECT * FROM `user` WHERE `username`='$userN'";
-    // echo $sql4;
-    // $sql4 = "SELECT * FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village'";
-    // $EMP_NAME=$_SESSION['username'];
-    // $sql4 ="SELECT * FROM user WHERE `district`= '$Dis' AND `pc_sr`='$PC' AND `username`='$EMP_NAME'";
-    // $result5 = mysqli_query($conn, $sql4);
-    // $total5 = mysqli_num_rows($result5);
-    // if (isset($_POST['PC']) && $_POST['PC'] != "All" ) {
 
-  //   fetch data from json file
+//fetch all Activities According to users and pc-sr
+ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC']) && $_POST['PC'] != "All" ) {
+    $PC = $_POST['PC'];
+    $EMP_NAME=$_POST['username'];
+    $schl = $_POST['school'];
+    $village = $_POST['Village'];
+    $Dis = $_POST['DIST'];
+    $Bl = $_POST['Block'];
+    $sql4 = "SELECT * FROM `user` WHERE `username`='$EMP_NAME'";
+    $result5 = mysqli_query($conn, $sql4);
+    $total5 = mysqli_num_rows($result5);
+  if (isset($_POST['PC']) && $_POST['PC'] != "All" ) {
+
+  //fetch data from json file
     $cd = 1;
-    $file = "JSON PC/" . $_POST['PC'] . ".json";
+    $file = "JSON PC/" . $_POST['username'] . ".json";
     $data = file_get_contents($file);
     $data = json_decode($data, true);
-    // $data = array_unique($data, true);
     $cd++;
-
   }
- 
-
-
-
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -232,13 +231,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     <?php
   include 'sidebar.php'
     ?>
+    <!-- Main Sidebar Container -->
     <div class="wrapper">
-
-        <!-- Navbar -->
-
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -248,16 +242,30 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     <div class="row ">
                         <div class="col-sm-6">
                             <h1 class="m-0 text-dark">Application</h1>
-                        </div><!-- /.col -->
+                        </div>
+                        <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <!-- <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                 <li class="breadcrumb-item">Dashboard</li>
-                                <li class="breadcrumb-item active">Application</li>
+                                <li class="breadcrumb-item active">Application</li> -->
+
+                                <div class="info">
+                                    <form action="userout.php" method="POST">
+                                        <button type="submit" name="logout_btn"
+                                            style="margin-left:195px;margin-top:0px;color:solid black;" class="btn ">
+                                            <i class="fa-solid fa-right-from-bracket"
+                                                style="font-size:25px;color:black;"></i></button>
+                                    </form>
+                                </div>
+
                             </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
 
@@ -267,33 +275,52 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
             <!-- general form elements -->
             <section class="content">
                 <div class="card mx-2" style="top:0;">
+                    <!---card-header -->
                     <div class="card-header" style="border:0px;">
                         <h3 class="card-title">Application Timing</h3>
                     </div>
-                    <!-- /.card-header -->
                     <!-- form start -->
                     <form method="POST" action="application.php" role="form" id="myform">
                         <div class="card-body row">
+                            <div class="form-group col-lg-1">
+                                <label for="exampleInputPassword1">User</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='username'>
+                                    <?php
+                                          if ($resultt) {
+                                            // Selected option according to login users
+                                            $totall = mysqli_num_rows($resultt);
+                                            if ($totall != 0) {
+                                              while ($row = $resultt->fetch_assoc()) {
+
+                                                // fetch username 
+                                                echo "<option value='" . $row['username'] . "' ";
+                                                echo isset($_POST["username"]) && $_POST["username"] == $row['username'] ? "selected " : "";
+                                                echo ">" . $row['username'] . "</option>";
+                                              }
+                                            }
+                                          }
+                                      ?>
+                                </select>
+                            </div>
                             <div class="form-group col-lg-2">
                                 <label for="device">District</label>
                                 <select class="form-control select2bs4" style="width: 100%" name="DIST"
                                     onchange="change()">
                                     <option value="All">All</option>
                                     <?php
-                  if ($result) {
-                    // options for district
-                    $total = mysqli_num_rows($result);
-                    if ($total != 0) {
-                      while ($row = $result->fetch_assoc()) {
+                                            if ($result) {
+                                              // options for district
+                                              $total = mysqli_num_rows($result);
+                                              if ($total != 0) {
+                                                while ($row = $result->fetch_assoc()) {
 
-                        echo "<option value='" . $row['district'] . "' ";
-
-                        echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
-                        echo ">" . $row['district'] . "</option>";
-                      }
-                    }
-                  }
-                  ?>
+                                                  echo "<option value='" . $row['district'] . "' ";
+                                                  echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
+                                                  echo ">" . $row['district'] . "</option>";
+                                                }
+                                              }
+                                            }
+                                     ?>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
@@ -301,19 +328,18 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 <select class="form-control select2bs4" style="width: 100%" name='Block'
                                     onchange="change()">
                                     <option value="All">All</option>
-                                    <?php
-                  if ($result2) {
-                    // options for Block
-                    if ($total2 != 0) {
-                      while ($row2 = $result2->fetch_assoc()) {
-                        echo "<option ";
-                        echo isset($_POST["Block"]) && $_POST["Block"] == $row2["block"] ? "selected " : "";
-                        echo "value='" . $row2["block"] . "'>" . $row2["block"] . "</option>";
-
-                      }
-                    }
-                  }
-                  ?>
+                                      <?php
+                                            if ($result2) {
+                                              // options for Block
+                                              if ($total2 != 0) {
+                                                while ($row2 = $result2->fetch_assoc()) {
+                                                  echo "<option ";
+                                                  echo isset($_POST["Block"]) && $_POST["Block"] == $row2["block"] ? "selected " : "";
+                                                  echo "value='" . $row2["block"] . "'>" . $row2["block"] . "</option>";
+                                                }
+                                              }
+                                            }
+                                        ?>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
@@ -321,19 +347,18 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 <select class="form-control select2bs4" style="width: 100%" name='Village'
                                     onchange="change()">
                                     <option value="All">All</option>
-                                    <?php
-                  if ($result3) {
-                    // options for Village
-                    if ($total3 != 0) {
-                      while ($row3 = $result3->fetch_assoc()) {
-                        echo "<option ";
-                        echo isset($_POST["Village"]) && $_POST["Village"] == $row3["village"] ? "selected " : "";
-                        echo "value='" . $row3["village"] . "'>" . $row3["village"] . "</option>";
-
-                      }
-                    }
-                  }
-                  ?>
+                                      <?php
+                                          if ($result3) {
+                                            // options for Village
+                                            if ($total3 != 0) {
+                                              while ($row3 = $result3->fetch_assoc()) {
+                                                echo "<option ";
+                                                echo isset($_POST["Village"]) && $_POST["Village"] == $row3["village"] ? "selected " : "";
+                                                echo "value='" . $row3["village"] . "'>" . $row3["village"] . "</option>";
+                                              }
+                                            }
+                                          }
+                                        ?>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
@@ -341,59 +366,55 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 <select class="form-control select2bs4" style="width: 100%" name='school'
                                     onchange="change()">
                                     <option value="All">All</option>
-                                    <?php
-                  if ($result3) {
-                    // options for school Name
-                    if ($total4 != 0) {
-                      while ($row4 = $result4->fetch_assoc()) {
-                        echo "<option ";
-                        echo isset($_POST["school"]) && $_POST["school"] == $row4["school_name"] ? "selected " : "";
-                        echo "value='" . $row4["school_name"] . "'>" . $row4["school_name"] . "</option>";
-
-                      }
-                    }
-                  }
-                  ?>
+                                      <?php
+                                          if ($result3) {
+                                            // options for school Name
+                                            if ($total4 != 0) {
+                                              while ($row4 = $result4->fetch_assoc()) {
+                                                echo "<option ";
+                                                echo isset($_POST["school"]) && $_POST["school"] == $row4["school_name"] ? "selected " : "";
+                                                echo "value='" . $row4["school_name"] . "'>" . $row4["school_name"] . "</option>";
+                                              }
+                                            }
+                                          }
+                                        ?>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-2">
+                            <div class="form-group col-lg-1">
                                 <label for="exampleInputPassword1">PC serial no.</label>
                                 <select class="form-control select2bs4" style="width: 100%" name='PC'
                                     onchange="change()">
                                     <option value="All">All</option>
-                                    <?php
-                  // select pc serial number
-                  if ($result8) {
+                                      <?php
+                                          // select pc serial number
+                                          if ($result8) {
 
-                    while ($row8 = $result8->fetch_assoc()) {
-                      echo "<option ";
-                      echo isset($_POST["PC"]) && $_POST["PC"] == $row8["pc_sr"] ? "selected " : "";
-                      echo "value='" . $row8["pc_sr"] . "'>" . $row8["pc_sr"] . "</option>";
-
-                    }
-                  }
-                  ?>
+                                            while ($row8 = $result8->fetch_assoc()) {
+                                              echo "<option ";
+                                              echo isset($_POST["PC"]) && $_POST["PC"] == $row8["pc_sr"] ? "selected " : "";
+                                              echo "value='" . $row8["pc_sr"] . "'>" . $row8["pc_sr"] . "</option>";
+                                            }
+                                          }
+                                        ?>
                                 </select>
                             </div>
+
                             <div class="form-group col-lg-1">
                                 <label for="exampleInputPassword1">Activity</label>
                                 <select class="form-control select2bs4" style="width: 100%" name='Activity'>
                                     <option value="All">All</option>
                                     <?php
-                  //  if ($result5) {
+                                          if ($result5) {
 
-                    // options for Activity Name
-                    foreach ($data as $row) {
-                      $arr[] = $row['Activity'];
-                      echo "<option ";
-                      echo isset($_POST["Activity"]) && $_POST["Activity"] == $row["Activity"] ? "selected " : "";
-                      echo "value='" . $row["Activity"] . "'>" . $row["Activity"] . "</option>";
-
-                    }
-                  // }
-                  
-
-                  ?>
+                                          // options for Activity Name
+                                          foreach ($data as $row) {
+                                            $arr[] = $row['Activity'];
+                                            echo "<option ";
+                                            echo isset($_POST["Activity"]) && $_POST["Activity"] == $row["Activity"] ? "selected " : "";
+                                            echo "value='" . $row["Activity"] . "'>" . $row["Activity"] . "</option>";
+                                          }
+                                      }
+                                      ?>
                                 </select>
                             </div>
                             <form action="application.php" method="POST">
@@ -402,246 +423,129 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                         style="margin-top:8px;width:100%; background:#6f42c1; color:white;">Application</button>
                                 </div>
                             </form>
-
                         </div>
-                        <!-- /.card-body -->
+                        <!-- /.form end -->
                     </form>
                 </div>
+                <!--- section end ---->
             </section>
+            <!--- section start ---->
             <section class="content">
                 <div class="row">
                     <div class="col-12">
                         <div class="card mx-2">
-                            <!-- /.card-header -->
+                            <!---card-body -->
                             <div class="card-body">
+                                <!---card-title -->
                                 <h4 class="card-title">Data</h4>
                                 <table id="example2" class=" table-striped table-bordered table-hover"
                                     style="top:0; width:100%;">
-                                    <?php
-                  // displying all data in table
-                  echo '<thead style="height:50px;">
-                                              <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
-                                                <th>SR</th>
-                                                <th>PC</th>
-                                                <th>Application</th>
-                                                <th>Date</th>
-                                                <th>Start time</th>
-                                                <th>End time</th>
-                                                <th>Duration</th>
-                                                <th>user</th>
-                                              </tr>
-                                            </thead>
-                                    <tbody>';
-                  // include connection file
-                  include '_db_Connect.php';
-                  
-                 
-                  $id=$_SESSION['pc_sr'];
-                  $c = 1;
-                  $pcCount = 1;
-                  $count = 1;
-                  // $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= 'PC0$c';";
 
-                  
-                  //count all Json files
-                  $directory = getcwd() . "/JSON PC//";
-                  $filecount = 0;
-                  $files2 = glob($directory . "*");
-                  if ($files2) {
-                    $filecount = count($files2);
+                                  <?php
+                                  // include connection file
+                                  include '_db_Connect.php';
 
-                    $query5="SELECT * FROM `asset` WHERE `pc_sr`= '$id'";
-                    
-                  //   if(isset($_POST['DIST']) && $_POST['DIST']=="All"){
-                  //       $query5="SELECT * FROM `asset` WHERE `pc_sr`= '$id'";
-                  //   }
-                  //   if (isset($_POST['DIST']) && $_POST['DIST'] != "All" && $_POST['Block'] == "All" && $_POST['Application'] = "Application") {
-                  //   $Dis = $_POST['DIST'];
-                  //   $query5 = "SELECT * FROM `user` WHERE `district`= '$Dis'";
-                  //   }
-                  //   elseif ( isset($_POST['Block']) && $_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] == "All" && $_POST['Application'] ="Application"  ) {
-                  //   $Dis = $_POST['DIST'];
-                  //   $Bl = $_POST['Block'];
-                  //   $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl'";
-                  //   }
-                  //   elseif (isset($_POST['Village']) && $_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] == "All") {
-                  //   $Dis = $_POST['DIST'];
-                  //   $Bl = $_POST['Block'];
-                  //   $village = $_POST['Village'];
-                  //   $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village'";
-                  //   }
-                  //   elseif (isset($_POST['school']) && $_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] != "All" && $_POST     ['PC']== "All") {
-                  //   $Dis = $_POST['DIST'];
-                  //   $Bl = $_POST['Block'];
-                  //   $village = $_POST['Village'];
-                  //   $schl = $_POST['school'];
-                  //   $PC = $_POST['PC'];
-                  //   $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$schl' ";
-                  //   }
-                  //   elseif (isset($_POST['PC']) && $_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] != "All" && $_POST['PC'] !=  "All" && $_POST['Activity'] == "All") {
-                  //   $Dis = $_POST['DIST'];
-                  //   $Bl = $_POST['Block'];
-                  //   $village = $_POST['Village'];
-                  //   $schl = $_POST['school'];
-                  //   $PC = $_POST['PC'];
-                  //   $EMP_NAME=$_SESSION['username'];
-                  //   $query5 ="SELECT * FROM user WHERE `district`= '$Dis' AND `pc_sr`='$PC' AND `username`='$EMP_NAME'";
-                  //   echo $query5;
-                  //   // echo $query5;
-                  //   // $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis' AND `block`='$Bl' AND `village`='$village' AND `school_name`='$schl' AND `pc_sr`='$PC'";
-                  // }
-                
-                  // echo $query5;
-                  if (isset($query5)) {
-                    $result5 = mysqli_query($conn, $query5);
-                    if ($result5) {
-                      $tot5 = mysqli_num_rows($result5);
-                      $row6 = $result5->fetch_assoc();
-                      $pcsr = $row6['pc_sr'];
-                      $qry6 = "SELECT * from `asset` where `pc_sr` = '$pcsr'";
-                      $res6 = mysqli_query($conn,$qry6);
+                                          // table headings
+                                          echo '<thead style="height:50px;">
+                                                  <tr class:"p-2" style="height:20px; font-size:15px;text-align:center;">
+                                                    <th>SR</th>
+                                                    <th>PC</th>
+                                                    <th>Application</th>
+                                                    <th>Date</th>
+                                                    <th>Start time</th>
+                                                    <th>End time</th>
+                                                    <th>Duration</th>
+                                                    <th>user</th>
+                                                  </tr>
+                                                </thead>
+                                          <tbody>';
+                                  // counts the Activity serial number
+                                  $count = 1;
+                                  $EMP_NAME=$_SESSION['username'];
+                                  
+                                  // display data according to login user
+                                  $qry6 = "SELECT * from `user` where `username` = '$EMP_NAME'";
+                                  $res6 = mysqli_query($conn,$qry6);
+                                  if($row5 = $res6->fetch_assoc()) {
+                                    $pcsr = $row5['pc_sr'];
 
-                      if ($tot5 != 0 ) {
-                      while ($row5 = $res6->fetch_assoc()) {
-                        $pcsr = $row5['pc_sr'];
-                        // $usname = $row5['username'];
-                        $file = "JSON PC/" . $pcsr . ".json";
-                        $data = file_get_contents($file);
-                        $data = json_decode($data, true);
-                        
-                        if ($data != 0) {
-                          foreach ($data as $row) {
-                            // for this condition filter data does not printed 
-                            if (isset($_GET['username']) && $row['username'] == $_GET['username']) {
-                            //  if (isset($_POST['username'])) {
-                              # code...
-                              
-                              echo ' 
-                                            <tr  style=" height:40px; font-size:14px;text-align:center;">
-                                            <td style="margin:10px;">' . $count . '</td>
-                                            <td>' . $pcsr . '</td>
-                                            <td>' . $row['Activity'] . '</td>
-                                            <td>' . $row['Date'] . '</td>
-                                            <td>' . $row['Start time'] . '</td><td>';
-                            date_default_timezone_set('Asia/Kolkata');
-                            $date = date('H:i:s');
-                            $datee = date("d/m/Y");
-                            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                            if ($newDate < $row['End time'] && $datee == $row['Date']) {
-                              echo '<small class="badge badge-success">Running</small>';
-                            } else {
-                              echo $row['End time'] . '</td>';
-                            }
-                            echo '
-                                              <td>' . $row['Duration'] . '</td>
-                                              <td>' . $row['username'] . '</td>
-                                            </tr>';
+                                    if(isset($_POST['Activity'])  && $_POST['Activity'] == "All") {
+                                    $EMP_NAME=$_SESSION['username'];
+                                    $file = "JSON PC/" . $_POST['username'] . ".json";
+                                   
+                                      $data = file_get_contents($file);
+                                      $data = json_decode($data, true);
+                                        if ($data != 0) {
+                                        foreach ($data as $row) {
+                                          if ($row['username'] == $EMP_NAME) {
+                                            # code... 
+                                            // fetch data from json file 
+                                            echo '
+                                                <tr style=" height:40px; font-size:14px;text-align:center;">
+                                                        <td style="margin:10px;">' . $count . '</td>
+                                                        <td>' . $pcsr . '</td>
+                                                        <td>' . $row['Activity'] . '</td>
+                                                        <td>' . $row['Date'] . '</td>
+                                                        <td>' . $row['Start time'] . '</td><td>';
+                                                        date_default_timezone_set('Asia/Kolkata');
+                                                        $date = date('H:i:s');
+                                                        $datee = date("d/m/Y");
+                                                        $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                                                        if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                                                        echo '<small class="badge badge-success">Running</small>';
+                                                        } else {
+                                                        echo $row['End time'] . '</td>';
+                                                        }
+                                                        echo '
+                                                        <td>' . $row['Duration'] . '</td>
+                                                        <td>' . $row['username'] . '</td>
+                                                </tr>';
                                             $count += 1;
-                                            
-                                            
-                          }
                                         }
-                                      } else
-                                      echo "<tr><td colspan='9'>No data found</td></tr>";
-                                      $count += 1;
-                                      $pcsr++;
-                      }
-                    
-                    // displaying filter value in table
-                    if (isset($_POST['PC']) && $_POST['PC'] != "All") {
-                    // if (isset($_POST['username'])) {
-                      $file = "JSON PC/" . $_POST['PC'] . ".json";
-                      $act = $_POST['Activity'];
-                      if ($act) {
-                        if (isset($_POST['Activity'])) {
-                          $cd = 1;
-                          $data = file_get_contents($file);
-                          $data = json_decode($data, true);
-                          $cd++;
-                        }
-                      }
-                      
-                      $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC' AND `block`='  $Bl'";
-                      //  echo $query5;
-                      $result5 = mysqli_query($conn, $query5);
-                      if ($_POST['Activity'] != "All" && $_POST['Application'] = "Application") {
-                        $data = file_get_contents($file);
-                        $data = json_decode($data, true);
-                        if ($result5) {
-                          $total5 = mysqli_num_rows($result5);
-                          
-                          $count = 1;
-                          if ($data != 0) {
-                            foreach ($data as $row) {
-                              if ($_POST['Activity'] == $row['Activity']) {
-                                echo '
-                                <tr style=" height:40px; font-size:14px;text-align:center;">
-                                <td>' . $count . '</td>
-                                <td>' . $PC . '</td>
-                                <td>' . $row['Activity'] . '</td>
-                                <td>' . $row['Date'] . '</td>
-                                <td>' . $row['Start time'] . '</td>
-                                <td>' . $row['End time'] . '</td>
-                                                      <td>' . $row['Duration'] . '</td>
-                                                      <td>' . $row['username'] . '</td>
-                                                      </tr>
-                                                      ';
-                                                      $count += 1;
                                       }
+                                    }
                                   }
-                                }
-                              }
-                            }
-                          }
-                        }
-                        }
-                      }
-                    }
-                      // displaying all data from database and Json file
-                      // if (!isset($_POST['DIST']) || isset($_POST['application']) && $_POST['application'] == "application" && $_POST['DIST'] == 'All') {
-                      //   // include Json file
-                      //   while ($c <= $filecount) {
-                      //     $file = "JSON PC/PC0" . $c . ".json";
-                      //     $data = file_get_contents($file);
-                      //     $data = json_decode($data, true);
-                      //     // Query for fetching data according to the pc serial number
-                      //     $query5="SELECT * FROM `asset` WHERE `pc_sr`= '$id'";
-                      //     // echo $query5;
-                      //     $result5 = mysqli_query($conn, $query5);
-                      //     if ($result5) {
-                      //       $total5 = mysqli_num_rows($result5);
-                      //       if ($data != 0) {
-                      //         foreach ($data as $row) {
-                      //           echo '
-                      //                           <tr  style=" height:40px; font-size:14px;text-align:center;">
-                      //                             <td style="margin:10px;">' . $count . '</td>
-                      //                             <td>PC0' . $c . '</td>
-                      //                             <td>' . $row['Activity'] . '</td>
-                      //                             <td>' . $row['Date'] . '</td>
-                      //                             <td>' . $row['Start time'] . '</td><td>';
-                      //           date_default_timezone_set('Asia/Kolkata');
-                      //           $date = date('h:i:s');
-                      //           $datee = date("d/m/Y");
-                      //           $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                      //           if ($newDate < $row['End time'] && $datee == $row['Date']) {
-                      //             echo '<small class="badge badge-success">Running</small>';
-                      //           } else {
-                      //             echo $row['End time'] . '</td>';
-                      //           }
-                      //           echo '
-                      //                             <td>' . $row['Duration'] . '</td>
-                      //                       </tr>';
-                      //           $count += 1;
-                      //         }
-                      //       } else
-                      //         echo "<tr><td colspan='9'>No data found</td></tr>";
-                      //     }
-                      //     $c++;
-                      //     $pcCount++;
-                      //   }
-                      // }
-                  ?>
+                                // display seleceted filter data in table
+                                if(isset($_POST['Activity'])  && $_POST['Activity'] != "All") {
+                                  $file = "JSON PC/" . $_POST['username'] . ".json";
+                                   $data = file_get_contents($file);
+                                   $data = json_decode($data, true);
+                                      $count = 1;
+                                      if ($data != 0) {
+                                        foreach ($data as $row) {
+                                          if ($_POST['Activity'] == $row['Activity']) {
+                                           // display Activity data from json file 
+                                                echo '
+                                                    <tr style=" height:40px; font-size:14px;text-align:center;">
+                                                        <td>' . $count . '</td>
+                                                        <td>' . $pcsr . '</td>
+                                                        <td>' . $row['Activity'] . '</td>
+                                                        <td>' . $row['Date'] . '</td>
+                                                        <td>' . $row['Start time'] . '</td><td>';
+                                                        date_default_timezone_set('Asia/Kolkata');
+                                                        $date = date('H:i:s');
+                                                        $datee = date("d/m/Y");
+                                                        $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                                                        if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                                                        echo '<small class="badge badge-success">Running</small>';
+                                                        } else {
+                                                        echo $row['End time'] . '</td>';
+                                                        }
+                                                        echo '
+                                                        <td>' . $row['Duration'] . '</td>
+                                                        <td>' . $row['username'] . '</td>
+                                                    </tr>';
+                                                    $count += 1;
+                                                  }
+                                                }
+                                              }
+                                            }
+                                           }
+                                        // }
+                                      ?>
+                                    <!-- /.table-body-->
                                     </tbody>
+                                    <!-- /.table -->
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -651,6 +555,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
+                <!--/section end-->
             </section>
             <!-- /.card -->
             <!-- right col -->
@@ -659,8 +564,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+    </div> <!-- /.content-wrapper -->
     <?php
   //include footer file
   include 'footer.php';

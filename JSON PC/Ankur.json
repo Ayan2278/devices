@@ -1,0 +1,38 @@
+[
+    {
+        "Activity": "Save As",
+        "Date": "14/06/2023",
+        "Start time": "13:01:55",
+        "End time": "13:02:05",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Ankur"
+    },
+    {
+        "Activity": "DTS",
+        "Date": "03/08/2023",
+        "Start time": "12:43:43",
+        "End time": "12:43:53",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Ankur"
+    },
+    {
+        "Activity": "Notepad",
+        "Date": "19/07/2023",
+        "Start time": "13:02:17",
+        "End time": "13:02:37",
+        "Duration": "00:00:20",
+        "status": "-",
+        "username": "Ankur"
+    },
+    {
+        "Activity": "Google Chrome",
+        "Date": "11/09/2023",
+        "Start time": "01:16:43",
+        "End time": "13:55:53",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Asiap"
+    }
+]

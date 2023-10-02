@@ -1,0 +1,47 @@
+[
+    {
+        "Activity": "notepad",
+        "Date": "15/07/2023",
+        "Start time": "13:01:55",
+        "End time": "13:02:05",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Genius"
+    },
+    {
+        "Activity": "DTS",
+        "Date": "03/08/2023",
+        "Start time": "12:43:43",
+        "End time": "12:43:53",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Genius"
+    },
+    {
+        "Activity": "Dashboard",
+        "Date": "03/08/2023",
+        "Start time": "12:43:43",
+        "End time": "12:43:53",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Genius"
+    },
+    {
+        "Activity": "DTS",
+        "Date": "03/08/2023",
+        "Start time": "12:43:43",
+        "End time": "12:43:53",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Genius"
+    },
+    {
+        "Activity": "notepad",
+        "Date": "08/09/2023",
+        "Start time": "13:02:17",
+        "End time": "01:02:37",
+        "Duration": "00:00:20",
+        "status": "-",
+        "username": "Genius"
+    }
+]

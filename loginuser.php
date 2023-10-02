@@ -1,5 +1,6 @@
 <?php
-        // connection file
+// this login page for dashboard and its password in database table
+// connection file
 include '_db_Connect.php';
   session_start();
  $conn = mysqli_connect("localhost", "root", "", "device");
@@ -15,7 +16,6 @@ if(isset($_POST['login_btn']))
 
     if($result->num_rows>0)
     {
-        
         foreach($result as $row){
                 $EMP_NAME=$row['username'];
                 $PASSWORD=$row['Password'];

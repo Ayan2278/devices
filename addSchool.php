@@ -4,6 +4,8 @@ include 'authentication.php';
 //include connection file
 include '_db_Connect.php';
 $alert = false;
+
+//connetion
 $conn = mysqli_connect("localhost", "root", "", "device");
 if (isset($_POST["submit"])) {
     $school = $_POST["school_name"];
@@ -27,7 +29,7 @@ if (isset($_POST["submit"])) {
     }
 }
 
-// print District Name 
+// display District Names in accending order
 $sql = "SELECT * FROM `district` ORDER BY `district`.`name` ASC";
 $result1 = mysqli_query($conn, $sql);
 ?>
@@ -322,7 +324,7 @@ $result1 = mysqli_query($conn, $sql);
                                             required>
                                             <option value="" class="Black">Please Select</option>
                                             <?php
-                                           // options for School Name
+                                           // display all School-Name 
                                             if ($result1) {
                                                 $total1 = mysqli_num_rows($result1);
                                                 if ($total1 != 0) {
@@ -377,7 +379,7 @@ $result1 = mysqli_query($conn, $sql);
             <!-- /.content -->
             <button class="btn swalDefaultSuccess" id='alert' type="submit" name="submit"></button>
         </div>
-        <?php
+<?php
     //include footer file
     include  'footer.php';
 ?>

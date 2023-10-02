@@ -313,20 +313,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     style="margin-top:8px; width:100%; background:#6f42c1; color:white;">Search</button>
                 </div>
               </form>
-
             </div>
             <!-- /.card-body -->
-
           </form>
         </div>
-        <!-- <div class="card mx-2 shadow" style="height:590px;">
-          <div class="card-header" style="border:0px;">
-            <h3 class="card-title">Data</h3>
-            <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
-              <button type="submit" class="btn w-100" style="background-color:#ffc167;" onclick="printTable()">
-                <i class="fas fa-download"></i> Print PDF
-              </button>
-            </div> -->
         <!-- </div> -->
         <!-- /.card-header -->
       </section>
@@ -343,18 +333,17 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                   <?php
                   echo '<thead style="height:50px;">
                             <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
-                                   
-                          <th>SR</th>
-                          <th>School name</th>
-                          <th>District</th>
-                          <th>Block</th>
-                          <th>Village</th>
-                          <th>Pincode</th>
-                        </tr>
+                                <th>SR</th>
+                                <th>School name</th>
+                                <th>District</th>
+                                <th>Block</th>
+                                <th>Village</th>
+                                <th>Pincode</th>
+                            </tr>
                       </thead>
               <tbody>';
 
-
+                  //database connection file
                   include '_db_Connect.php';
                   $count = 1;
                   $query5 = "SELECT * FROM `asset` ORDER BY  `asset`.`school_name` ASC";
@@ -373,14 +362,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     elseif ($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
                       $query5 = "SELECT * FROM `asset`  WHERE `district` = '$Dis'";
                     }
-                    //display all district and block data
                     elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] == "All") {
                       $query5 = "SELECT * FROM `asset`  WHERE `district` = '$Dis' AND `block` = '$Bl'";
-                    } elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] == "All") {
+                    }
+                     elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] == "All") {
                       $query5 = "SELECT * FROM `asset`  WHERE `village` = '$village' AND `district` = '$Dis' AND `block` = '$Bl'";
-                    } elseif (isset($_POST['school'])) {
+                    }
+                     elseif (isset($_POST['school'])) {
                       $query5 = "SELECT * FROM `asset`  WHERE `village` = '$village' AND `district` = '$Dis' AND `block` = '$Bl' AND `school_name`='$schl'";
-
                     }
                   }
                   $result5 = mysqli_query($conn, $query5);
@@ -390,18 +379,18 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                       // Fetching All recods
                       while ($row = $result5->fetch_assoc()) {
                         echo '
-                      <tr  style=" height:40px; font-size:14px;text-align:center;">
-                      <td style="margin:10px;">' . $count . '</td>
-                        <td>' . $row['school_name'] . '</td>
-                        <td>' . $row['district'] . '</td>
-                        <td>' . $row['block'] . '</td>
-                        <td>' . $row['village'] . '</td>';
-                        $qry = "SELECT * from `school` where `school_name`='" . $row['school_name'] . "'";
-                        $reslt = mysqli_query($conn, $qry);
-                        $rowq = $reslt->fetch_assoc();
-                        echo '<td>' . $rowq['pincode'] . '</td>
-                        </tr>
-                      ';
+                              <tr  style=" height:40px; font-size:14px;text-align:center;">
+                                  <td style="margin:10px;">' . $count . '</td>
+                                  <td>' . $row['school_name'] . '</td>
+                                  <td>' . $row['district'] . '</td>
+                                  <td>' . $row['block'] . '</td>
+                                  <td>' . $row['village'] . '</td>';
+                                  $qry = "SELECT * from `school` where `school_name`='" . $row['school_name'] . "'";
+                                  $reslt = mysqli_query($conn, $qry);
+                                  $rowq = $reslt->fetch_assoc();
+                                  echo '<td>' . $rowq['pincode'] . '</td>
+                            </tr>
+                           ';
                         $count += 1;
                       }
                     } else

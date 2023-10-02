@@ -2,6 +2,7 @@
 // create database connection
 include '_db_Connect.php';
 
+// function for pc active or inactive device
 function city($pc)
 {
     include '_db_Connect.php';
@@ -33,7 +34,7 @@ function city($pc)
     }
 }
 
-
+// display active or inactive device according to district device
 $query0 = "SELECT DISTINCT `district` from `asset`; ";
 $result10 = mysqli_query($conn, $query0);
 function districts($name)
@@ -61,7 +62,7 @@ function districts($name)
     }
     echo $name,"\nTotal Desktops: ",$count;
 }
-
+// active or inactive device in district
 function pc($pc)
 {
     include '_db_Connect.php';

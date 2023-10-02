@@ -271,6 +271,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 
 <body class="hold-transition sidebar-mini layout-fixed ">
   <?php
+  // include sidebar file
   include 'sidebar.php'
     ?>
   <div class="wrapper">
@@ -417,51 +418,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
           <div class="row">
             <div class="col-12">
               <div class="card mx-2">
-                <!-- <div class="col-lg-1 col-md-5 col-sm-6  " style="float:right;">
-            <button type="submit" class="btn  w-100" style="background-color:#ffc167;" onclick="printTable()">
-              <i class="fas fa-download"></i> Print PDF
-            </button>
-          </div> -->
-                <!-- /.card-header -->
-                <!-- <div class="popup-container" id="popupp">
-                  <div class="popupp">
-                    <form action="loginscluser.php" method="POST" width="40px">
-                      <div class="card col-lg-12 ">
-                        <div class="card-header" style="border:0px;">
-                          <h4 name="login_btn" value="login_btn" style="float:left; margin-top:10px;">Login Here</h4>
-                        </div>
-                        <div class="card-body ">
-                          <div class="row">
-
-
-                            <div class="form-group col-lg-12">
-                              <label for="device" style="float:left; margin-left:10px;">Username</label>
-
-                              <div class="col-lg-12">
-                                <input type="text" class="form-control focus" name="username"
-                                  placeholder="Enter Username" style="height:45px;" required>
-                              </div>
-                            </div>
-                            <div class="form-group col-lg-12">
-                              <label for="device" style="float:left; margin-left:10px;">Password</label>
-
-                              <div class="col-lg-12">
-                                <input type="password" class="form-control focus" name="Password"
-                                  placeholder="Enter Password" style="height:45px;" required>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                        <div class="form-group col-lg-12">
-                          <button class="btn " type="submit" name="login_btn"
-                            style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;"
-                            onClick="closePopup()">Submit</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div> -->
+              
 
                 <div class="card-body">
                   <h4 class="card-title">Data</h4>
@@ -474,16 +431,16 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     <?php
                     // displaying all devices data in table
                     echo '<thead style="height:50px;">
-<tr style="text-align:center;height:20px; font-size:16px;">
-            <th>SR</th>
-            <th>PC serial no.</th>
-            <th>Date</th>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Duration</th>
-          </tr>
-        </thead>
-<tbody>';
+                              <tr style="text-align:center;height:20px; font-size:16px;">
+                                          <th>SR</th>
+                                          <th>PC serial no.</th>
+                                          <th>Date</th>
+                                          <th>Start time</th>
+                                          <th>End time</th>
+                                          <th>Duration</th>
+                                        </tr>
+                                      </thead>
+                              <tbody>';
                     // connection file
                     include '_db_Connect.php';
 
@@ -510,37 +467,36 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                           if ($data != 0) {
                             foreach ($data as $row) {
                               echo '
-            <tr style="text-align:center; height:41px; font-size:15px;">
-                <td>' . $count . '</td>
-                <td>PC0' . $c . '</td>
-                <td>' . $row['Date'] . '</td>
-                <td>' . $row['Start_time'] . '</td><td>';
-                              date_default_timezone_set('Asia/Kolkata');
-                              $date = date('h:i:s');
-                              $datee = date("d/m/Y");
-                              $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                              if ($newDate < $row['End_time'] && $datee == $row['Date']) {
-                                echo '<small class="badge badge-success">Running</small>';
-                              } else {
-                                echo $row['End_time'] . '</td>';
+                                    <tr style="text-align:center; height:41px; font-size:15px;">
+                                        <td>' . $count . '</td>
+                                        <td>PC0' . $c . '</td>
+                                        <td>' . $row['Date'] . '</td>
+                                        <td>' . $row['Start_time'] . '</td><td>';
+                                        date_default_timezone_set('Asia/Kolkata');
+                                        $date = date('h:i:s');
+                                        $datee = date("d/m/Y");
+                                        $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                                        if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+                                        echo '<small class="badge badge-success">Running</small>';
+                                        } else {
+                                        echo $row['End_time'] . '</td>';
+                                        }
+                                        echo '
+                                        <td>' . $row['Duration'] . '</td>
+                                    </tr>
+                                    ';
+                                $count += 1;
                               }
-                              echo '
-                
-                <td>' . $row['Duration'] . '</td>
-              </tr>
-            ';
-                              $count += 1;
-                            }
-                          } else
+                           } else
                             echo "<tr><td colspan='9'>No data found</td></tr>";
                         }
-                        $c++;
-                        $pcCount++;
+                          $c++;
+                          $pcCount++;
                       }
 
                     }
                     // if (isset($_POST['Device']) && $_POST['Device'] == "Device") {
-//   // count json file
+                    //   // count json file
                     elseif ($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
                       $Dis = $_POST['DIST'];
                       $query5 = "SELECT * FROM `asset` WHERE `district`= '$Dis'";
@@ -576,76 +532,70 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                           if ($data != 0) {
                             foreach ($data as $row) {
                               echo '
-            <tr style="text-align:center; height:41px; font-size:14px;">
-                <td>' . $count . '</td>
-                <td>' . $pcsr . '</td>
-                <td>' . $row['Date'] . '</td>
-                <td>' . $row['Start_time'] . '</td><td>';
-                              date_default_timezone_set('Asia/Kolkata');
-                              $date = date('h:i:s');
-                              $datee = date("d/m/Y");
-                              $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                              if ($newDate < $row['End_time'] && $datee == $row['Date']) {
-                                echo '<small class="badge badge-success">Running</small>';
-                              } else {
-                                echo $row['End_time'] . '</td>';
-                              }
-                              echo '
-                
-                <td>' . $row['Duration'] . '</td>
-              </tr>
-            ';
+                                  <tr style="text-align:center; height:41px; font-size:14px;">
+                                          <td>' . $count . '</td>
+                                          <td>' . $pcsr . '</td>
+                                          <td>' . $row['Date'] . '</td>
+                                          <td>' . $row['Start_time'] . '</td><td>';
+                                          date_default_timezone_set('Asia/Kolkata');
+                                          $date = date('h:i:s');
+                                          $datee = date("d/m/Y");
+                                          $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                                          if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+                                            echo '<small class="badge badge-success">Running</small>';
+                                          } else {
+                                            echo $row['End_time'] . '</td>';
+                                          }
+                                          echo '
+                            
+                                        <td>' . $row['Duration'] . '</td>
+                                  </tr>
+                                ';
                               $count += 1;
                             }
-                          } else
-                            echo "<tr><td colspan='9'>No data found</td></tr>";
+                            } else
+                              echo "<tr><td colspan='9'>No data found</td></tr>";
                         }
                       } else if (isset($_POST['PC']) && $_POST['PC'] != 'All') {
-                        $file = "JSON/" . $_POST['PC'] . ".json";
-                        $PC = $_POST['PC'];
-                        if ($PC) {
-                          $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
-                          $result4 = mysqli_query($conn, $query4);
-                          $total4 = mysqli_num_rows($result4);
-
-                        }
+                          $file = "JSON/" . $_POST['PC'] . ".json";
+                          $PC = $_POST['PC'];
+                          if ($PC) {
+                            $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
+                            $result4 = mysqli_query($conn, $query4);
+                            $total4 = mysqli_num_rows($result4);
+                          }
                         $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
                         $result5 = mysqli_query($conn, $query5);
-
                         if ($_POST['PC'] != "All") {
                           $count = 1;
                           $data = file_get_contents($file);
                           $data = json_decode($data, true);
                           if ($result5) {
-
                             $total5 = mysqli_num_rows($result5);
                             if ($data != 0) {
                               foreach ($data as $row) {
                                 echo '
-              <tr  style=" height:40px; font-size:14px;text-align:center;">
-                <td>' . $count . '</td>
-                <td>' . $PC . '</td>
-                <td>' . $row['Date'] . '</td>
-                <td>' . $row['Start_time'] . '</td>
-                <td>' . $row['End_time'] . '</td>
-                <td>' . $row['Duration'] . '</td>
-              </tr>
-            ';
-                                $count += 1;
+                                    <tr  style=" height:40px; font-size:14px;text-align:center;">
+                                      <td>' . $count . '</td>
+                                      <td>' . $PC . '</td>
+                                      <td>' . $row['Date'] . '</td>
+                                      <td>' . $row['Start_time'] . '</td>
+                                      <td>' . $row['End_time'] . '</td>
+                                      <td>' . $row['Duration'] . '</td>
+                                    </tr>
+                                  ';
+                                 $count += 1;
                               }
                             } else
                               echo "<tr><td colspan='9'>No data found</td></tr>";
+                            }
                           }
                         }
+
                       }
 
-                    }
-
                     ?>
-
-
                     </tbody>
-
                   </table>
                 </div>
                 <!-- /.card-body -->

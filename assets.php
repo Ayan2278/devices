@@ -11,13 +11,15 @@ $result = mysqli_query($conn, $sql);
 
 if (isset($_POST['school'])) {
   $school = $_POST['school'];
+  // select username according to School-name
   $sql3 = "SELECT DISTINCT `username` FROM `user` WHERE `school_name`='$school';";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
+// select pc-sr according to username
 if (isset($_POST['school']) && isset($_POST['username'])) {
   $username = $_POST['username'];
-  $sql2 = "SELECT * FROM `user` WHERE `username`='$username';";
+  $sql2 = "SELECT * FROM `user` WHERE `username`='$username'";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -243,7 +245,7 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                 <select class="form-control select2bs4" style="width: 100%" name="username" onchange="change()">
                   <option value="All">All</option>
                   <?php
-                  // total school
+                  // username
                   if ($result3) {
                     $total3 = mysqli_num_rows($result3);
                     if ($total3 != 0) {
@@ -263,7 +265,7 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                 <select class="form-control select2bs4" style="width: 100%" name='pc'>
                   <option value="All">All</option>
                   <?php
-                  // total pc ID
+                  //PC serial number
                   if ($result2) {
                     if ($total2 != 0) {
                       while ($row2 = $result2->fetch_assoc()) {
@@ -377,7 +379,6 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                   ?>
 
                   </tbody>
-
                 </table>
               </div>
               <!-- /.card-body -->

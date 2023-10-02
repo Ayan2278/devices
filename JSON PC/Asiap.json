@@ -1,0 +1,99 @@
+[
+    {
+        "Activity": "Google Chrome",
+        "Date": "09/08/2023",
+        "Start time": "12:44:04",
+        "End time": "12:44:14",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Asiap"
+    },
+    
+    {
+        "Activity": "Program Manager",
+        "Date": "05/08/2023",
+        "Start time": "12:45:16",
+        "End time": "12:45:26",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Asiap"
+    },
+   
+    {
+        "Activity": "Notepad",
+        "Date": "24/08/2023",
+        "Start time": "12:45:36",
+        "End time": "12:46:18",
+        "Duration": "00:00:41",
+        "status": "-",
+        "username": "Asiap"
+    },
+    {
+        "Activity": "Google Chrome",
+        "Date": "11/09/2023",
+        "Start time": "01:16:43",
+        "End time": "13:55:53",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Asiap"
+    },
+    {
+        "Activity": "Excel",
+        "Date": "28/09/2023",
+        "Start time": "03:16:43",
+        "End time": "03:16:53",
+        "Duration": "00:00:20",
+        "status": "-",
+        "username": "Asiap"
+    },
+   
+    {
+        "Activity": "Google Chrome",
+        "Date": "11/09/2023",
+        "Start time": "01:16:43",
+        "End time": "13:55:53",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Asiap"
+    },
+    {
+        "Activity": "Excel",
+        "Date": "26/09/2023",
+        "Start time": "16:46:43",
+        "End time": "16:46:53",
+        "Duration": "00:00:20",
+        "status": "-",
+        "username": "Asiap"
+    },
+   
+    {
+        "Activity": "Notepad",
+        "Date": "06/09/2023",
+        "Start time": "15:07:36",
+        "End time": "15 :44:18",
+        "Duration": "00:00:31",
+        "status": "-",
+        "username": "Asiap"
+    },
+  
+    {
+        "Activity": "Excel",
+        "Date": "05/09/2023",
+        "Start time": "03:16:43",
+        "End time": "03:16:53",
+        "Duration": "00:00:20",
+        "status": "-",
+        "username": "Asiap"
+    },
+   
+    {
+        "Activity": "Program Manager",
+        "Date": "05/08/2023",
+        "Start time": "12:45:16",
+        "End time": "12:45:26",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "Asiap"
+    }
+    
+]

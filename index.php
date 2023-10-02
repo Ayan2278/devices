@@ -45,6 +45,7 @@ $tot1 = mysqli_num_rows($res1);
 function status($pcNo)
 {
   // add Json file
+  $EMP_NAME=$_SESSION['username'];
   $file = "JSON PC/" . $pcNo . ".json";
   $data = file_get_contents($file);
   $data = json_decode($data, true);
@@ -200,10 +201,10 @@ function status($pcNo)
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <?php
+  // include sidebar file
   include 'sidebar.php'
-    ?>
+  ?>
   <div class="wrapper">
-
     <!-- Main Sidebar Container -->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -218,17 +219,13 @@ function status($pcNo)
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item" style="color:purple;"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
-
               </ol>
             </div>
           </div>
         </div>
       </div>
-
       <!-- Main content -->
       <section class="content">
-
-
         <div class="row ">
           <div class="col-lg-3 col-6 ">
 
@@ -258,7 +255,6 @@ function status($pcNo)
               </div>
             </div>
           </div>
-
           <div class="col-lg-3 col-6">
             <div class="card bg-c-green effect order-card" style="color:black; height:135px;">
               <div class="card-block">
@@ -283,7 +279,6 @@ function status($pcNo)
               </div>
             </div>
           </div>
-
           <div class="col-lg-3 col-6">
             <div class="card bg-c-yellow effect order-card" style="color:black; height:135px;">
               <div class="card-block">
@@ -297,22 +292,15 @@ function status($pcNo)
               </div>
             </div>
           </div>
-
-         
         </div>
         <div class="row">
-
           <!-- Chart 1 -->
           <section class="col-lg-6 ">
             <!-- Custom tabs (Charts with tabs)-->
-
-
             <div class="card shadow" style="min-height: 500px;">
               <div class="card-header" style="border:0px;">
-
                 <h3 class="card-title"><i class='bx bxs-bar-chart-alt-2 mx-1 '
                     style=" font-size:25px;"></i>Active/Inactive Status</h3>
-
               </div>
               <div class="card-body">
                 <div id="chartA" style="min-height: 100%; height: 350px; max-height: 500px; max-width: 100%;"></div>
@@ -324,20 +312,15 @@ function status($pcNo)
           <!-- Chart 2 -->
           <section class="col-lg-6 ">
             <!-- Custom tabs (Charts with tabs)-->
-
-
-
-
-
             <div class="container-fluid" style="height='450px';">
-
-
-              <?php include 'map.php'; ?>
+              
+            <?php
+            // include map file
+            include 'map.php';
+             ?>
 
             </div>
-            
           </section>
-
         </div>
         <!-- /.row (main row) -->
         </div3><!-- /.container-fluid -->
@@ -345,7 +328,6 @@ function status($pcNo)
       <!-- /.content -->
       <section class="content">
         <!-- Chart -->
-
       </section>
     </div>
     <!-- /.content-wrapper -->
@@ -427,10 +409,8 @@ function status($pcNo)
         name: 'Inactive',
         data: [
 
-<?php
-            
-            
-            if ($totDist != 0) {
+      <?php
+          if ($totDist != 0) {
               while ($rowDist = $resDist->fetch_assoc()) {
                 $inactive = 0;
                 $sqlINA = "SELECT * from `asset` where `district`='" . $rowDist["district"] . "';";
@@ -493,14 +473,7 @@ function status($pcNo)
 
     var chart = new ApexCharts(document.querySelector("#chartA"), options);
     chart.render();
-
-
   </script>
-
-
-
-
-
 </body>
 
 </html>

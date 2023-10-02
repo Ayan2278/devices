@@ -49,8 +49,9 @@
 </head>
 
 <?php
+    // include sidebar file
     include 'sidebar.php'
-        ?>
+?>
 <body class="bg">
     <?php
             if(isset( $_SESSION['status'])){
@@ -65,11 +66,21 @@
                 unset($_SESSION['status']);
             }
     ?>
-
-
     <div class="home_content wrapper">
 
         <center>
+<!-- <?php
+//  if(isset( $_SESSION['status'])){
+//                 if($alert){
+                   
+//                     echo '
+
+//                     <div class="alert alert-danger col-lg-3" role="alert" id="alert">
+//                     Incorrect Username or Password....!
+//                   </div>';
+//                 }
+//             }
+                ?> -->
             
                         <form action="applogincode.php" method="POST" width="40px" >
                         <div class="card col-lg-3 shadow my-5">
@@ -110,7 +121,7 @@
 
     </div>
 
-
+            
 
 
     </div>

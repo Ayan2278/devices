@@ -1,4 +1,4 @@
-<!-- logout from dashboard  -->
+<!-- logout from application-->
 <?php
 
 session_start();
@@ -9,9 +9,9 @@ if(isset($_POST['logout_btn'])){
      unset($_SESSION['auth_user']);
 
      $_SESSION['Status']="log-out successfully";
-     header('Location:login.php');
+     header('Location:applogin.php');
      exit(0);
                 
     
 }
-?>
+?>  

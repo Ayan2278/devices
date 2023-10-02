@@ -18,6 +18,7 @@ if (isset($_POST["submit"])) {
     $district = $rowS0['district'];
     $block = $rowS0['block'];
     $village = $rowS0['village'];
+    // continue for inserting data
     $pc = $_POST["pc_sr"];
     $tft = $_POST["TFT_id"];
     $webcam = $_POST["Webcam_id"];
@@ -37,7 +38,7 @@ if (isset($_POST["submit"])) {
         $login = true;
     }
 }
-// automectically print school name
+// display all school name
 $sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
 $result1 = mysqli_query($conn, $sql);
 ?>

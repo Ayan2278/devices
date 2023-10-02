@@ -1,0 +1,47 @@
+[
+    {
+        "Activity": "Google Chrome",
+        "Date": "07/08/2023",
+        "Start time": "13:00:44",
+        "End time": "13:01:04",
+        "Duration": "00:00:20",
+        "status": "-",
+        "username": "bghs"
+    },
+    {
+        "Activity": "DTS",
+        "Date": "03/08/2023",
+        "Start time": "12:43:43",
+        "End time": "12:43:53",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "bghs"
+    },
+    {
+        "Activity": "Notepad",
+        "Date": "14/09/2023",
+        "Start time": "01:16:43",
+        "End time": "16:55:53",
+        "Duration": "00:00:30",
+        "status": "-",
+        "username": "bghs"
+    },
+    {
+        "Activity": "Save ",
+        "Date": "13/09/2023",
+        "Start time": "13:01:55",
+        "End time": "18:02:05",
+        "Duration": "00:00:10",
+        "status": "-",
+        "username": "bghs"
+    },
+    {
+        "Activity": "Notepad",
+        "Date": "26/07/2023",
+        "Start time": "13:02:17",
+        "End time": "13:02:37",
+        "Duration": "00:00:20",
+        "status": "-",
+        "username": "bghs"
+    }
+]

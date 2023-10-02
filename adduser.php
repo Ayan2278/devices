@@ -6,11 +6,20 @@ include 'authentication.php';
 include '_db_Connect.php';
 $alert = false;
 
-// connection file
+//create connection
 $conn = mysqli_connect("localhost", "root", "", "device");
+
 if (isset($_POST["submit"])) {
-    $school = $_POST["school_name"];
     $pc = $_POST["pc_sr"];
+    $school = $_POST["school_name"];
+    $sql = "SELECT * FROM `asset` WHERE `school_name`='$school';";
+    
+    // direct print in database table district
+    $result= mysqli_query($conn, $sql);
+    $row = $result->fetch_assoc();
+    $district = $row['district'];
+    
+    // continue to inserting data in table
     $username=$_POST["username"];
     $pass=$_POST["Password"];
    
@@ -22,13 +31,13 @@ if (isset($_POST["submit"])) {
     }
     else{
     // check connection
-    // if ($conn->connect_error) {
-    //     die("Connection failed: "
-    //         . $conn->connect_error);
-    // }
+    if ($conn->connect_error) {
+        die("Connection failed: "
+            . $conn->connect_error);
+    }
     // if connection is true then excute the query
     if ($conn) {
-        $query1 = "INSERT INTO `user`(`pc_sr`, `username`, `Password`, `school_name`) VALUES ('$pc','$username','$pass','$school')";
+        $query1 = "INSERT INTO `user`(`pc_sr`,`district`, `username`, `Password`, `school_name`) VALUES ('$pc','$district','$username','$pass','$school')";
         $result = mysqli_query($conn, $query1);
         if ($result) {
             $login = true;
@@ -41,7 +50,7 @@ if (isset($_POST["submit"])) {
     }
 }
 }
-// automectically print school name
+// automectically display all school-name
 $sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
 $result1 = mysqli_query($conn, $sql);
 ?>
@@ -320,7 +329,7 @@ $result1 = mysqli_query($conn, $sql);
                 }
                 ?>
                     <center>
-                <?php
+                        <?php
                 if($alert){
                    
                     echo '
@@ -330,22 +339,23 @@ $result1 = mysqli_query($conn, $sql);
                   </div>';
                 }
                 ?>
-                 <script>
-                    var id=settimeout(alert, 3000);
-                    function alert(){
-                        var target=document.getElementById("alert");
-                        target.style.width="500px";
-                    }
-                    </script>
+                        <script>
+                        var id = settimeout(alert, 3000);
+
+                        function alert() {
+                            var target = document.getElementById("alert");
+                            target.style.width = "500px";
+                        }
+                        </script>
                         <div class="card col-lg-5 shadow">
                             <div class="card-header" style="border:0px;">
                                 <h4 style="float:left; margin-top:10px;">Add User</h4>
                             </div>
-                            
+
 
                             <div class="card-body ">
                                 <div class="row">
-                                <div class="form-group col-lg-12">
+                                    <div class="form-group col-lg-12">
                                         <label for="device" style="float:left; margin-left:10px;">School</label>
                                         <div class="col-lg-12">
                                             <select class="form-control focus" name="school_name" style="height:45px;"
@@ -353,7 +363,7 @@ $result1 = mysqli_query($conn, $sql);
                                                 <option value="" class="Black">Please Select</option>
                                                 <?php
                                             
-                                            // options for School Name
+                                            // display all School-Name in options
                                             if ($result1) {
                                                 $total1 = mysqli_num_rows($result1);
                                                 if ($total1 != 0) {
@@ -373,7 +383,7 @@ $result1 = mysqli_query($conn, $sql);
                                     <div class="form-group col-lg-6">
                                         <label for="device" style="float:left; margin-left:10px;">PC ID</label>
 
-                                        <div class="col-lg-12"> 
+                                        <div class="col-lg-12">
                                             <input type="text" class="form-control focus" name="pc_sr"
                                                 placeholder="Enter PC Serial" style="height:45px;" required>
                                         </div>
@@ -395,14 +405,6 @@ $result1 = mysqli_query($conn, $sql);
                                                 placeholder="Enter Valid Password" style="height:45px;" required>
                                         </div>
                                     </div>
-                                    
-                                    <!-- <div class="form-group col-lg-12">
-                                        <label for="device" style="float:left; margin-left:10px;">Headphone Id</label>
-
-                                        <div class="col-lg-12">
-                                            <input type="text" class="form-control focus" name="Headphone_id"
-                                                placeholder="Enter Headphone Id" style="height:45px;" required>
-                                        </div> -->
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <button class="btn " type="submit" name="submit"

@@ -133,123 +133,123 @@ function status($pcNo)
     <!-- Google Font: Source Sans Pro -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    .scrollbar {
+        height: 300px;
+        overflow-y: auto;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #ADB5BD;
+        border-radius: 5px;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+    }
+
+
+    ::-webkit-scrollbar-track {
+        background-color: #f5f5f5;
+        border-radius: 1px;
+    }
+
+    .card-title {
+        float: left;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0;
+    }
+
+
+    .bg {
+        background: linear-gradient(to bottom, #2196F3, #0D47A1);
+        border: none;
+    }
+
+    .bg:hover {
+        transition: 0.3s;
+        background: linear-gradient(to top, #0088f5, #01378a);
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        table,
+        table * {
+            visibility: visible;
+
+        }
+
+        th {
             font-weight: 200;
-            font-size: 16px;
+            font-size: 14px;
         }
 
-        .scrollbar {
-            height: 300px;
-            overflow-y: auto;
+        td {
+
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+            font-size: 10px;
         }
 
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-            background-color: #ADB5BD;
-            border-radius: 5px;
+        table {
+            position: absolute;
+            left: 0;
+            top: -320px;
         }
-
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
-        }
-
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
-        }
-
-
-        ::-webkit-scrollbar-track {
-            background-color: #f5f5f5;
-            border-radius: 1px;
-        }
-
-        .card-title {
-            float: left;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin: 0;
-        }
-
-
-        .bg {
-            background: linear-gradient(to bottom, #2196F3, #0D47A1);
-            border: none;
-        }
-
-        .bg:hover {
-            transition: 0.3s;
-            background: linear-gradient(to top, #0088f5, #01378a);
-        }
-
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-
-            table,
-            table * {
-                visibility: visible;
-
-            }
-
-            th {
-                font-weight: 200;
-                font-size: 14px;
-            }
-
-            td {
-
-                border-color: inherit;
-                border-style: solid;
-                border-width: 0;
-                font-size: 10px;
-            }
-
-            table {
-                position: absolute;
-                left: 0;
-                top: -320px;
-            }
-        }
+    }
     </style>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 200;
-            font-size: 16px;
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
 
-        ::-webkit-scrollbar {
-            max-width: 7px;
-        }
+    ::-webkit-scrollbar {
+        max-width: 7px;
+    }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #5c5c5c;
-            border-radius: 10px;
-        }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #5c5c5c;
+        border-radius: 10px;
+    }
 
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            border-radius: 10px;
-            background: #c7c7c7;
-        }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        border-radius: 10px;
+        background: #c7c7c7;
+    }
 
-        .focus:focus {
-            border: 1px solid purple;
-        }
+    .focus:focus {
+        border: 1px solid purple;
+    }
     </style>
 </head>
 
@@ -388,7 +388,7 @@ function status($pcNo)
                             <div class="form-group col-lg-2">
                                 <label for="exampleInputPassword1">PC serial no.</label>
                                 <select class="form-control select2bs4" style="width: 100%" name='PC'>
-                                <option value="All">All</option>
+                                    <option value="All">All</option>
                                     <?php
                                     // select pc serial number
                                     if ($result8) {
@@ -408,7 +408,7 @@ function status($pcNo)
 
                             <form action="live_status.php" method="post">
                                 <div class="form-group col-lg-1 my-4 w-100">
-                                    <button type="submit" name="Status" value="Status" class="btn  " 
+                                    <button type="submit" name="Status" value="Status" class="btn  "
                                         style="margin-top:8px;width:100%;  background:#6f42c1; color:white;">Status</button>
                                 </div>
                             </form>
@@ -470,9 +470,6 @@ function status($pcNo)
                                          $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
                                             // $query1="SELECT * FROM `asset` WHERE `username`= '$EMP_NAME'";
                                         
-                                        // else if for diplaying School Name According to the Villages     
-                                      
-                                            
                                             if(isset($_POST['PC'])){
                                             $PC = $_POST['PC'];
                                             $school = $_POST['school'];
@@ -491,14 +488,14 @@ function status($pcNo)
                                             elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] == "All") {
                                                 $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis' AND `block`='$Bl' AND `village`= '$village'";
                                             } 
-                                            elseif ($_POST['DIST'] != "All" && $_POST['Block'] == "All") {
-                                                $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis' ";
+                                            elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] != "All" && $_POST['PC'] == "All") {
+                                                $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis'AND `block`='$Bl' AND `village`= '$village' AND `school_name` = '$school'";
                                             } 
-                                            elseif ($_POST['PC'] == "All" && $_POST['school'] != "All") {
-                                                $query1 = "SELECT  * FROM `asset`WHERE `block`='$Bl' AND `school_name`='$school' ";
-                                            }
+                                            // elseif ($_POST['PC'] == "All" && $_POST['school'] != "All") {
+                                            //     $query1 = "SELECT  * FROM `asset`WHERE `block`='$Bl' AND `school_name`='$school' ";
+                                            // }
                                             elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] != "All" && $_POST['PC'] != "All") {
-                                                $query1 = "SELECT * FROM `asset` WHERE `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
+                                                $query1 = "SELECT * FROM `asset` WHERE `district`='$Dis' AND `block`='$Bl' AND `village`= '$village' AND `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
                                             } 
                                             }
                                         //Set the connection for result
@@ -512,74 +509,36 @@ function status($pcNo)
                                             while ($row = $result1->fetch_assoc()) {
 
                                                 echo '
-                                        <tr  style=" height:40px; font-size:14px;text-align:center;">
-                                            <td>' . $count . '</td>
-                                            <td>' . $row['district'] . '</td>
-                                            <td>' . $row['block'] . '</td>
-                                            <td>' . $row['village'] . '</td>
-                                            <td>' . $row['school_name'] . '</td>
-                                            <td>' . $row['pc_sr'] . '</td>';
-                                                echo "<td>";
+                                                    <tr  style=" height:40px; font-size:14px;text-align:center;">
+                                                        <td>' . $count . '</td>
+                                                        <td>' . $row['district'] . '</td>
+                                                        <td>' . $row['block'] . '</td>
+                                                        <td>' . $row['village'] . '</td>
+                                                        <td>' . $row['school_name'] . '</td>
+                                                        <td>' . $row['pc_sr'] . '</td>';
+                                                        echo "<td>";
+                                                        // if for Status is Active
+                                                        if (status($row['pc_sr']) == 'Active') {
+                                                        echo '<small class="badge badge-success">Active</small>';
+                                                        // Else for Status is Inactive
+                                                        } else {
+                                                        echo '<small class="badge badge-danger">Inactive</small>';
+                                                        }
+                                                        echo "</td>";
+                                                        echo "</tr>";
 
-                                                
-                                                // if for Status is Active
-                                                if (status($row['pc_sr']) == 'Active') {
-                                                    echo '<small class="badge badge-success">Active</small>';
-                                                    // Else for Status is Inactive
-                                                } else {
-                                                    echo '<small class="badge badge-danger">Inactive</small>';
-                                                }
-                                                echo "</td>";
-                                                echo "</tr>";
-
-                                                $count += 1;
-                                                $c++;
+                                                        $count += 1;
+                                                        $c++;
                                             }
                                         } else
                                             echo "<tr><td colspan='9'>No data found</td></tr>";
                                     
                                     ?>
-
                                     </tbody>
-
                                 </table>
                             </div>
                             <!-- /.card-body -->
                         </div>
-                        <!-- <form action="loginuser.php" method="POST" width="40px">
-                        <div class="card col-lg-3 shadow my-5">
-                        <div class="card-header" style="border:0px;">
-                            <h4 style="float:left; margin-top:10px;">Login Here</h4>
-                        </div>
-                        <div class="card-body ">
-                            <div class="row">
-                                
-                                
-                                <div class="form-group col-lg-12">
-                                    <label for="device" style="float:left; margin-left:10px;">Username</label>
-
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="UserName"placeholder="Enter Username"
-                                            style="height:45px;" required>
-                                    </div>
-                                </div>
-                                <div class="form-group col-lg-12">
-                                    <label for="device" style="float:left; margin-left:10px;">Password</label>
-
-                                    <div class="col-lg-12">
-                                        <input type="password" class="form-control focus" name="Password" placeholder="Enter Password"
-                                            style="height:45px;" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group col-lg-12">
-                                    <button class="btn " type="submit" name="login_btn"
-                                        style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        </form> -->
                         <!-- /.card -->
             </section>
             <!-- /.card -->
@@ -605,28 +564,28 @@ function status($pcNo)
     </div>
     <!-- ./wrapper -->
     <script>
-        function change() {
-            document.getElementById("myform").submit();
-        }
+    function change() {
+        document.getElementById("myform").submit();
+    }
     </script>
     <script>
-        function printTable() {
-            window.print();
-        }
+    function printTable() {
+        window.print();
+    }
     </script>
 
     <script>
-        $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-            });
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
         });
+    });
     </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
@@ -637,7 +596,7 @@ function status($pcNo)
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -667,27 +626,27 @@ function status($pcNo)
     <script src="dist/js/demo.js"></script>
     <script src="plugins/select2/js/select2.full.min.js"></script>
     <script>
-        $('.select2').select2();
-        $('.select2bs4').select2({
-            theme: 'bootstrap4',
-            placeholder: 'Please Select'
-        });
+    $('.select2').select2();
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        placeholder: 'Please Select'
+    });
     </script>
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!-- page script -->
     <script>
-        $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-            });
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
         });
+    });
     </script>
 
 </body>
