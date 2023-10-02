@@ -355,7 +355,7 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                     // fetcging all records
                     while ($row = $result->fetch_assoc()) {
                       echo '
-                        <tr  style=" height:40px; font-size:14px;text-align:center;">
+                        <tr  style=" height:39px; font-size:14px;text-align:center;">
                       <td style="margin:10px;">' . $count . '</td>
                        
                           <td>' . $row['school_name'] . '</td>
