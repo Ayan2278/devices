@@ -270,10 +270,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
             </div>
             <!-- /.content-header -->
 
-            <!-- Main content -->
-
-
-            <!-- general form elements -->
             <section class="content">
                 <div class="card mx-2" style="top:0;">
                     <!---card-header -->
