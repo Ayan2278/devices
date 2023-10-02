@@ -254,8 +254,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     <form action="userout.php" method="POST">
                                         <button type="submit" name="logout_btn"
                                             style="margin-left:195px;margin-top:0px;color:solid black;" class="btn ">
+                                            <label class="mx-2" style="font-size:20px;color:purple;">Logout user</label>
                                             <i class="fa-solid fa-right-from-bracket"
-                                                style="font-size:25px;color:black;"></i></button>
+                                                style="font-size:23px;color:purple;"></i></button>
                                     </form>
                                 </div>
 
