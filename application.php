@@ -252,8 +252,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
                                 <div class="info">
                                     <form action="userout.php" method="POST">
-                                        <button type="submit" name="logout_btn"
-                                            style="font-size:20px;color:#6f42c1;" class="btn ">
+                                        <button type="submit" name="logout_btn" style="font-size:20px;color:#6f42c1;"
+                                            class="btn ">
                                             Logout user
                                             <i class="fa-solid fa-right-from-bracket"
                                                 style="font-size:23px;color:#6f42c1;"></i></button>
@@ -325,7 +325,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 <select class="form-control select2bs4" style="width: 100%" name='Block'
                                     onchange="change()">
                                     <option value="All">All</option>
-                                      <?php
+                                    <?php
                                             if ($result2) {
                                               // options for Block
                                               if ($total2 != 0) {
@@ -344,7 +344,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 <select class="form-control select2bs4" style="width: 100%" name='Village'
                                     onchange="change()">
                                     <option value="All">All</option>
-                                      <?php
+                                    <?php
                                           if ($result3) {
                                             // options for Village
                                             if ($total3 != 0) {
@@ -363,7 +363,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 <select class="form-control select2bs4" style="width: 100%" name='school'
                                     onchange="change()">
                                     <option value="All">All</option>
-                                      <?php
+                                    <?php
                                           if ($result3) {
                                             // options for school Name
                                             if ($total4 != 0) {
@@ -382,7 +382,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 <select class="form-control select2bs4" style="width: 100%" name='PC'
                                     onchange="change()">
                                     <option value="All">All</option>
-                                      <?php
+                                    <?php
                                           // select pc serial number
                                           if ($result8) {
 
@@ -438,7 +438,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                 <table id="example2" class=" table-striped table-bordered table-hover"
                                     style="top:0; width:100%;">
 
-                                  <?php
+                                    <?php
                                   // include connection file
                                   include '_db_Connect.php';
 
