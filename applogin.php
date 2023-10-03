@@ -48,7 +48,7 @@
 </style>
 </head>
 
-<body class="bg">
+<body class="sidebar-mini layout-fixed">
 <?php
     // include sidebar file
     include 'sidebar.php'
@@ -107,10 +107,15 @@
                                             style="height:45px;" required>
                                     </div>
                                 </div>
+                                <div class="form-group col-lg-12">
+                                    <label class='mx-2' style="float:right; margin-left:10px;color:#026ee0;"><u><a href='forgetP.php'>Forget password</a></u></label>
+
+                                    
+                                </div>
                                 
                                 <div class="form-group col-lg-12">
                                     <button class="btn " type="submit" name="submit" value="submit"
-                                        style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
+                                        style="background:#6f42c1;color:white; height:45px; width:98%;">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -126,24 +131,53 @@
 
     </div>
 
-
+   
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="plugins/datatables/jquery.dataTables.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <script>
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        let dark = document.querySelector("#Dark");
-        let bodi = document.querySelector(".bg");
-        let offc = document.querySelector(".ab");
-        let widthh = window.innerWidth;
-
-
-        btn.onclick = function () {
-            // sidebar.classList.toggle("active");
-            offc.classList.add("offcanvas");
-            offc.classList.add("offcanvas-start");
-        }
-
-
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <!-- <script src="dist/js/adminlte.js"></script> -->
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <script src="plugins/select2/js/select2.full.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <!-- DataTables -->
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+ 
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

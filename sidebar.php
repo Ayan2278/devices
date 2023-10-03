@@ -86,7 +86,7 @@ $current_url = end($url_parts);
 
         </li>
         <li class="nav-item has-treeview">
-          <a href="device.php" class="nav-link <?php if ($current_url == 'device.php' || $current_url == 'application.php' || $current_url == 'applogin.php') {
+          <a href="device.php" class="nav-link <?php if ($current_url == 'device.php' || $current_url == 'application.php' || $current_url == 'applogin.php'|| $current_url == 'forgetP.php') {
             echo 'active';
           } ?>">
             <i class="nav-icon fas fa-table"></i>
@@ -111,11 +111,11 @@ $current_url = end($url_parts);
             </li>
             <li class="nav-item">
               <a href="applogin.php" class="nav-link">
-                <i class="nav-icon far fa-circle  <?php if ($current_url == 'applogin.php') {
+                <i class="nav-icon far fa-circle  <?php if ($current_url == 'applogin.php' || $current_url == 'forgetP.php') {
                   echo ' fas text-purple';
                 } else{
                   echo " far";} ?>"></i>
-                <p class="<?php if ($current_url == 'applogin.php') {
+                <p class="<?php if ($current_url == 'applogin.php'|| $current_url == 'forgetP.php') {
                   echo ' text-purple';
                 } ?>">Application timing</p>
               </a>
