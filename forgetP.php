@@ -223,9 +223,9 @@ if (isset($_POST['submitP'])) {
 
 
                             <div class="form-group col-lg-12">
-                            <a href="applogin.php" class="btn" style="background:#6f42c1;color:white; height:45px; width:40%; margin-top:20px;">login Again?</a>
+                            
                                 <button class="btn " type="submit" name="submitP" value="submit"
-                                    style="background:#6f42c1;color:white; height:45px; width:40%; margin-top:20px;">Reset Password</button>
+                                    style="background:#6f42c1;color:white; height:45px; width:96%; margin-top:20px;">Reset Password</button>
                             </div>
                         </div>
                     </div>
