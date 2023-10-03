@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
-                                    <label class='mx-2' style="float:right; margin-left:10px;color:#026ee0;"><u><a href='forgetP.php'>Forget password</a></u></label>
+                                    <label class='mx-2' style="float:right; margin-left:10px;color:#026ee0;"><u><a href='forgetP.php'>Forget password?</a></u></label>
 
                                     
                                 </div>

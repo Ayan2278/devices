@@ -190,7 +190,7 @@ if (isset($_POST['submitP'])) {
             <form action="#" method="POST" width="40px">
                 <div class="card col-lg-3 shadow my-5">
                     <div class="card-header" style="border:0px;">
-                        <h4 style="float:left; margin-top:10px;">Forget Password</h4>
+                        <h4 style="float:left; margin-top:10px;">Forget Password </h4>
                     </div>
                     <div class="card-body ">
                         <div class="row">
@@ -223,8 +223,9 @@ if (isset($_POST['submitP'])) {
 
 
                             <div class="form-group col-lg-12">
+                            <a href="applogin.php" class="btn" style="background:#6f42c1;color:white; height:45px; width:40%; margin-top:20px;">login Again?</a>
                                 <button class="btn " type="submit" name="submitP" value="submit"
-                                    style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
+                                    style="background:#6f42c1;color:white; height:45px; width:40%; margin-top:20px;">Reset Password</button>
                             </div>
                         </div>
                     </div>
