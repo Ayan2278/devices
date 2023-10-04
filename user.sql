@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2023 at 09:32 AM
+-- Generation Time: Oct 04, 2023 at 09:47 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,6 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `user` (
   `pc_sr` varchar(20) NOT NULL,
   `district` varchar(50) NOT NULL,
+  `block` varchar(20) NOT NULL,
+  `village` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `Password` varchar(20) NOT NULL,
   `school_name` varchar(50) NOT NULL
@@ -39,18 +41,18 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`pc_sr`, `district`, `username`, `Password`, `school_name`) VALUES
-('PC04', 'Rajkot', 'Ankur', 'ankur', 'Ankur School'),
-('PC05', 'Patan', 'ANS', 'ans', 'Anand niketan school'),
-('PC08', 'Gandhinagar', 'Asia', 'asia', 'Asia Pacific School'),
-('PC01', 'Vadodara', 'Asiap', 'Asiap', 'Asia Pacific School'),
-('PC09', 'Ahmedabad', 'ayan', 'ayan', 'Anand niketan school'),
-('PC09', 'Vadodara', 'ayarna', 'ayarna', 'Anand niketan school'),
-('PC03', 'Bhavnagar', 'bghs', 'bghs', 'Bright School'),
-('PC07', 'Bhavnagar', 'Bright', 'bright', 'Bright school'),
-('PC06', 'Kutch', 'Genius', 'genius', 'Genius Acadmi'),
-('PC01', 'Ahmedabad', 'jinal', 'jinal', 'Asia Pacific School'),
-('PC07', 'Ahmedabad', 'meet', 'meet', 'Nalanda School');
+INSERT INTO `user` (`pc_sr`, `district`, `block`, `village`, `username`, `Password`, `school_name`) VALUES
+('PC04', 'Rajkot', 'L', 'Theltej', 'Ankur', 'ankur', 'Ankur School'),
+('PC05', 'Patan', 'B', 'Satelite', 'ANS', 'ans', 'Anand niketan school'),
+('PC08', 'Gandhinagar', 'B', 'Theltej', 'Asia', 'asia', 'Asia Pacific School'),
+('PC09', 'Ahmedabad', 'B', 'Satelite', 'ayan', 'ayan', 'Anand niketan school'),
+('PC09', 'Vadodara', 'D', 'Gota', 'ayarna', 'ayarna', 'Anand niketan school'),
+('PC03', 'Bhavnagar', 'C', 'Naroda', 'bghs', 'bghs', 'Bright School'),
+('PC07', 'Bhavnagar', 'F', 'Naroda', 'Bright', 'bright', 'Bright school'),
+('PC06', 'Kutch', 'E', 'Paldi', 'Genius', 'genius', 'Genius Acadmi'),
+('PC01', 'Ahmedabad', 'A', 'Gatlodia', 'jinal', 'jinal', 'Asia Pacific School'),
+('PC07', 'Ahmedabad', 'A', 'Gatlodia', 'meet', 'meet', 'Nalanda School'),
+('PC07', 'Amreli', 'J', 'Nikol', 'Varun', 'varun', 'MVN Secondary School');
 
 --
 -- Indexes for dumped tables
@@ -62,6 +64,7 @@ INSERT INTO `user` (`pc_sr`, `district`, `username`, `Password`, `school_name`) 
 ALTER TABLE `user`
   ADD UNIQUE KEY `username` (`username`);
 COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
