@@ -16,7 +16,7 @@ $client->setClientId('402201038344-l08vsoiqjnuoje4amh2ppbrkkjgb6slc.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('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');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/GitHub/devices/login.php');
+$client->setRedirectUri('http://localhost/GitHub/devices/index.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
