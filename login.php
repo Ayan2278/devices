@@ -16,7 +16,7 @@ $client->setClientId('402201038344-l08vsoiqjnuoje4amh2ppbrkkjgb6slc.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('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');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/Devices/devices/index.php');
+$client->setRedirectUri('http://localhost/Devices/devices/login.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
@@ -38,25 +38,25 @@ if (isset($_GET['code'])):
         // Storing data into database
         $id = mysqli_real_escape_string($conn, $google_account_info->id);
         $full_name = mysqli_real_escape_string($conn, trim($google_account_info->name));
-        $email = mysqli_real_escape_string($db_connection, $google_account_info->email);
-        $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
+        $email = mysqli_real_escape_string($conn, $google_account_info->email);
+        $profile_pic = mysqli_real_escape_string($conn, $google_account_info->picture);
 
         // checking user already exists or not
-        $get_user = mysqli_query($db_connection, "SELECT `google_id` FROM `users` WHERE `google_id`='$id'");
+        $get_user = mysqli_query($conn, "SELECT `google_id` FROM `users` WHERE `google_id`='$id'");
         if (mysqli_num_rows($get_user) > 0) {
 
             $_SESSION['login_id'] = $id;
-            header('Location: home.php');
+            header('Location: index.php');
             exit;
 
         } else {
 
             // if user not exists we will insert the user
-            $insert = mysqli_query($db_connection, "INSERT INTO `users`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
+            $insert = mysqli_query($conn, "INSERT INTO `users`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
 
             if ($insert) {
                 $_SESSION['login_id'] = $id;
-                header('Location: home.php');
+                header('Location: index.php');
                 exit;
             } else {
                 echo "Sign up failed!(Something went wrong).";
@@ -134,7 +134,7 @@ else:
             margin: 0;
         }
         ._container{
-            max-width: 400px;
+            max-width: 600px;
             background-color: #ffffff;
             padding: 20px;
             margin: 0 auto;
@@ -232,7 +232,7 @@ else:
                                 <div class="form-group col-lg-12">
                                     <!-- <div class="_container btn"> -->
 
-                                        <a type="button" class="login-with-google-btn col-lg-11 mx-2"
+                                        <a type="button" class="login-with-google-btn col-lg-12 mx-2"
                                             href="<?php echo $client->createAuthUrl(); ?>">
                                             Sign in with Google
                                         </a>

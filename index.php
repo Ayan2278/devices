@@ -66,7 +66,7 @@ $tot1 = mysqli_num_rows($res1);
 function status($pcNo)
 {
   // add Json file
-  $EMP_NAME=$_SESSION['username'];
+//   $EMP_NAME=$_SESSION['username'];
   $file = "JSON PC/" . $pcNo . ".json";
   $data = file_get_contents($file);
   $data = json_decode($data, true);
