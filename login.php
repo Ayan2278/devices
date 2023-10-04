@@ -1,4 +1,36 @@
 <!-- this page for login in dashboard  -->
+<?php
+require_once 'vendor/autoload.php';
+
+// init configuration
+$clientID = '<YOUR_CLIENT_ID>';
+$clientSecret = '<YOUR_CLIENT_SECRET>';
+$redirectUri = '<REDIRECT_URI>';
+
+// create Client Request to access Google API
+$client = new Google_Client();
+$client->setClientId('18293274430-cvum3i09adtfpno0n56pot7jdk30icp3.apps.googleusercontent.com');
+$client->setClientSecret('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');
+$client->setRedirectUri('http://localhost/Devices/devices/index.php');
+$client->addScope("email");
+$client->addScope("profile");
+
+// authenticate code from Google OAuth Flow
+if (isset($_GET['code'])) {
+    $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+    $client->setAccessToken($token['access_token']);
+
+    // get profile info
+    $google_oauth = new Google_Service_Oauth2($client);
+    $google_account_info = $google_oauth->userinfo->get();
+    $email = $google_account_info->email;
+    $name = $google_account_info->name;
+
+    // now you can use this profile info to create account in your website and make user logged in.
+} else {
+    echo "<a href='" . $client->createAuthUrl() . "'>Google Login</a>";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,71 +69,72 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<style>
-    .focus:focus {
+    <style>
+        .focus:focus {
             border: 1px solid #6f42c1;
             color: #6f42c1;
         }
-        .Black{
-            color:black;
+
+        .Black {
+            color: black;
         }
-</style>
+    </style>
 </head>
 
 <body class="bg">
     <?php
-            if(isset( $_SESSION['status'])){
-               // echo $_SESSION['status'];
-                ?>
-    <div class="alert  alert-primary alert-dismissible fade show" role="alert">
-        <strong></strong>
-        <?php  echo $_SESSION['status']; ?>.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <?php
-                unset($_SESSION['status']);
-            }
+    if (isset($_SESSION['status'])) {
+        // echo $_SESSION['status'];
+        ?>
+        <div class="alert  alert-primary alert-dismissible fade show" role="alert">
+            <strong></strong>
+            <?php echo $_SESSION['status']; ?>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php
+        unset($_SESSION['status']);
+    }
     ?>
 
 
     <div class="home_content wrapper">
 
         <center>
-            
-                        <form action="loginuser.php" method="POST" width="40px" >
-                        <div class="card col-lg-3 shadow my-5">
-                        <div class="card-header" style="border:0px;">
-                            <h4 style="float:left; margin-top:10px;">Login Here</h4>
-                        </div>
-                        <div class="card-body ">
-                            <div class="row">
-                                
-                                
-                                <div class="form-group col-lg-12">
-                                    <label for="device" style="float:left; margin-left:10px;">Username</label>
 
-                                    <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="username"placeholder="Enter Username"
-                                            style="height:45px;" required>
-                                    </div>
-                                </div>
-                                <div class="form-group col-lg-12">
-                                    <label for="device" style="float:left; margin-left:10px;">Password</label>
+            <form action="loginuser.php" method="POST" width="40px">
+                <div class="card col-lg-3 shadow my-5">
+                    <div class="card-header" style="border:0px;">
+                        <h4 style="float:left; margin-top:10px;">Login Here</h4>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
 
-                                    <div class="col-lg-12">
-                                        <input type="password" class="form-control focus" name="Password" placeholder="Enter Password"
-                                            style="height:45px;" required>
-                                    </div>
+
+                            <div class="form-group col-lg-12">
+                                <label for="device" style="float:left; margin-left:10px;">Username</label>
+
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control focus" name="username"
+                                        placeholder="Enter Username" style="height:45px;" required>
                                 </div>
-                                
-                                <div class="form-group col-lg-12">
-                                    <button class="btn " type="submit" name="login_btn"
-                                        style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label for="device" style="float:left; margin-left:10px;">Password</label>
+
+                                <div class="col-lg-12">
+                                    <input type="password" class="form-control focus" name="Password"
+                                        placeholder="Enter Password" style="height:45px;" required>
                                 </div>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <button class="btn " type="submit" name="login_btn"
+                                    style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
+            </form>
         </center>
     </div>
     </div>
