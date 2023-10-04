@@ -16,7 +16,7 @@ $client->setClientId('402201038344-l08vsoiqjnuoje4amh2ppbrkkjgb6slc.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('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');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/github/devices/index.php');
+$client->setRedirectUri('http://localhost/Devices/devices/index.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
@@ -36,7 +36,7 @@ if (isset($_GET['code'])):
         $google_account_info = $google_oauth->userinfo->get();
 
         // Storing data into database
-        $id = mysqli_real_escape_string($db_connection, $google_account_info->id);
+        $id = mysqli_real_escape_string($conn, $google_account_info->id);
         $full_name = mysqli_real_escape_string($db_connection, trim($google_account_info->name));
         $email = mysqli_real_escape_string($db_connection, $google_account_info->email);
         $profile_pic = mysqli_real_escape_string($db_connection, $google_account_info->picture);
