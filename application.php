@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $sql);
 //fetch block for select box
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
-  $sql2 = "SELECT DISTINCT `block` FROM `asset` WHERE `district`='$Dis' ORDER BY `asset`.`block` ASC;";
+  $sql2 = "SELECT DISTINCT `block` FROM `user` WHERE `district`='$Dis' AND `username`='$EMP_NAME' ORDER BY `user`.`block` ASC;";
   $result2 = mysqli_query($conn, $sql2);
   $total2 = mysqli_num_rows($result2);
 }
@@ -29,7 +29,7 @@ if (isset($_POST['DIST'])) {
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];
   $Bl = $_POST['Block'];
-  $sql3 = "SELECT DISTINCT `village` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis';";
+  $sql3 = "SELECT DISTINCT `village` FROM `user` WHERE `block`='$Bl' AND `district`='$Dis' AND `username`='$EMP_NAME'";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }

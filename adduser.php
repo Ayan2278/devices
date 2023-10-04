@@ -18,6 +18,8 @@ if (isset($_POST["submit"])) {
     $result= mysqli_query($conn, $sql);
     $row = $result->fetch_assoc();
     $district = $row['district'];
+    $block = $row['block'];
+    $village = $row['village'];
     
     // continue to inserting data in table
     $username=$_POST["username"];
@@ -37,7 +39,7 @@ if (isset($_POST["submit"])) {
     }
     // if connection is true then excute the query
     if ($conn) {
-        $query1 = "INSERT INTO `user`(`pc_sr`,`district`, `username`, `Password`, `school_name`) VALUES ('$pc','$district','$username','$pass','$school')";
+        $query1 = "INSERT INTO `user`(`pc_sr`,`district`,`block`,`village`, `username`, `Password`, `school_name`) VALUES ('$pc','$district','$block','$village','$username','$pass','$school')";
         $result = mysqli_query($conn, $query1);
         if ($result) {
             $login = true;
