@@ -92,7 +92,6 @@ $current_url = end($url_parts);
             <i class="nav-icon fas fa-table"></i>
             <p>
               Timings
-
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
