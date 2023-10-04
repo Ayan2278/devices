@@ -1,6 +1,7 @@
 <!-- this page for login in dashboard  -->
 <?php
-require_once 'vendor/autoload.php';
+session_start();
+require_once 'vendor/google/auth/autoload.php';
 
 // init configuration
 $clientID = '<YOUR_CLIENT_ID>';
