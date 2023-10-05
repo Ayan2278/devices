@@ -64,7 +64,7 @@ $tot1 = mysqli_num_rows($res1);
 
 // Function For Active Status And Inactive Status
 function status($pcNo)
-{
+{ 
   // add Json file
 //   $EMP_NAME=$_SESSION['username'];
   $file = "JSON PC/" . $pcNo . ".json";
