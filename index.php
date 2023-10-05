@@ -24,7 +24,7 @@ else{
 // echo "Welcme".$_SESSION['username'];
 
 // include authentication file 
-// include 'authentication.php';
+ include 'authentication.php';
 
 // connection file
 include '_db_Connect.php';

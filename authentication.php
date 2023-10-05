@@ -1,5 +1,5 @@
 <?php
-Authentication file
+// Authentication file
  session_start();
  if(!isset($_SESSION['auth']))
  {

@@ -1,6 +1,6 @@
 <?php
 // include authentication file 
-include 'authentication.php';
+// include 'authentication.php';
 //include connection file
 include '_db_Connect.php';
 $alert = false;
