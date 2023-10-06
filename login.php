@@ -242,7 +242,7 @@ else:
                             </div>
                         </div>
                     </form>
-                    <a type="button" class="login-with-google-btn col-lg-11 mx-3"
+                    <a type="button" class="login-with-google-btn col-lg-11 mx-3"style="margin-bottom:25px;"
                     href="<?php echo $client->createAuthUrl(); ?>">
                     Sign in with Google
                 </a>
