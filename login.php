@@ -16,7 +16,7 @@ $client->setClientId('402201038344-l08vsoiqjnuoje4amh2ppbrkkjgb6slc.apps.googleu
 // Enter your Client Secrect
 $client->setClientSecret('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');
 // Enter the Redirect URL
-$client->setRedirectUri('http://localhost/github/devices/login.php');
+$client->setRedirectUri('http://localhost/Devices/devices/login.php');
 
 // Adding those scopes which we want to get (email & profile Information)
 $client->addScope("email");
@@ -229,16 +229,14 @@ else:
                                             placeholder="Enter Password" style="height:45px;" required>
                                     </div>
                                 </div>
-                                <div class="form-group col-lg-12">
                                     <!-- <div class="_container btn"> -->
 
-                                        <a type="button" class="login-with-google-btn col-lg-12 mx-2"
+                                        <a type="button" class="login-with-google-btn col-lg-11 mx-3"
                                             href="<?php echo $client->createAuthUrl(); ?>">
                                             Sign in with Google
                                         </a>
 
                                     <!-- </div> -->
-                                </div>
 
                                 <div class="form-group col-lg-12">
                                     <button class="btn " type="submit" name="login_btn"
