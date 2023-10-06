@@ -205,8 +205,8 @@ else:
 
             <center>
 
+                <div class="card col-lg-3 shadow my-5">
                 <form action="loginuser.php" method="POST" width="40px">
-                    <div class="card col-lg-3 shadow my-5">
                         <div class="card-header" style="border:0px;">
                             <h4 style="float:left; margin-top:10px;">Login Here</h4>
                         </div>
@@ -232,21 +232,21 @@ else:
                                 </div>
                                     <!-- <div class="_container btn"> -->
 
-                                        <a type="button" class="login-with-google-btn col-lg-11 mx-3"
-                                            href="<?php echo $client->createAuthUrl(); ?>">
-                                            Sign in with Google
-                                        </a>
-
-                                    <!-- </div> -->
-
+                                        
+                                        <!-- </div> -->
+                                        
                                 <div class="form-group col-lg-12">
                                     <button class="btn " type="submit" name="login_btn"
                                         style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
-                                </div>
+                                    </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                    <a type="button" class="login-with-google-btn col-lg-11 mx-3"
+                    href="<?php echo $client->createAuthUrl(); ?>">
+                    Sign in with Google
+                </a>
+            </div>
             </center>
         </div>
         </div>
