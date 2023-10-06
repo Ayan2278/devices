@@ -1,7 +1,5 @@
 <?php
-// include authentication file 
-// include 'authentication.php';
-// include "authentication.php";
+
 
 // connection file
 include '_db_Connect.php';
@@ -42,6 +40,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>School</title>
+  
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -190,6 +189,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed ">
+
   <?php
   // Include Sidebar File
   include 'sidebar.php'
