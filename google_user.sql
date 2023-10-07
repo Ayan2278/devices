@@ -24,44 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `google_user`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `google_user` (
   `id` int(11) NOT NULL,
   `google_id` varchar(150) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `profile_image` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `google_id`, `name`, `email`, `profile_image`) VALUES
-(6, '107763483415135544355', 'jinal chauhan', 'jinalc201@gmail.com', 'https://lh3.googleusercontent.com/a/ACg8ocIYQkV4AJiq5GvvTL7oaFK6f7SERqcNjPQA1dl2z7HS=s96-c');
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `users`
+-- Indexes for table `google_user`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
+ALTER TABLE `google_user`
   ADD UNIQUE KEY `google_id` (`google_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
