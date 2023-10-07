@@ -23,7 +23,7 @@ if(isset($_POST['submit']))
         // fetch the username from database table
         $row= $result->fetch_assoc();
         
-                $id=$row['pc_sr'];
+                $id=$row['pc_sr'];  
                 $EMP_NAME=$row['username'];
                 $PASSWORD=$row['Password'];
         
