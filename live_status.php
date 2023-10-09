@@ -1,5 +1,6 @@
 <?php
 // include authentication file 
+session_start();
  include 'authentication.php';
 
 // connetion file

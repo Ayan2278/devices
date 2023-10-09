@@ -1,8 +1,9 @@
 <?php
 // include authentication file 
-// include 'authentication.php';
 
 // connetion file
+session_start();
+include 'authentication.php';
 include '_db_Connect.php';
 
 // display all districts

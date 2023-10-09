@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+include 'authentication.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 

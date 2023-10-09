@@ -1,6 +1,7 @@
 <?php
 
-
+session_start();
+include 'authentication.php';
 // connection file
 include '_db_Connect.php';
 // Query for Select District

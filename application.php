@@ -1,5 +1,7 @@
 <?php
 // include authenticatine file 
+// session_start();
+session_start();
 include 'authentication.php';
 
 // includeing connection file
@@ -10,6 +12,7 @@ include '_db_Connect.php';
 //select user-name according to login users
 $EMP_NAME=$_SESSION['username'];
 $queryy = "SELECT * FROM `user` WHERE `username`='$EMP_NAME'";
+echo $queryy;
 $resultt = mysqli_query($conn, $queryy);
 
 //select all districts
