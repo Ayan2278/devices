@@ -1,24 +1,24 @@
-<?php
-require 'config.php';
-include '_db_Connect.php';
+<!-- <?php
+// require 'config.php';
+// include '_db_Connect.php';
 
-if(!isset($_SESSION['login_id'])){
-    header('Location: login.php');
-    exit;
-}
+// if(!isset($_SESSION['login_id'])){
+//     header('Location: login.php');
+//     exit;
+// }
 
-$id = $_SESSION['login_id'];
+// $id = $_SESSION['login_id'];
 
-$get_user = mysqli_query($conn, "SELECT * FROM `users` WHERE `google_id`='$id'");
+// $get_user = mysqli_query($conn, "SELECT * FROM `users` WHERE `google_id`='$id'");
 
-if(mysqli_num_rows($get_user) > 0){
-    $user = mysqli_fetch_assoc($get_user);
-}
-else{
-    header('Location: logout.php');
-    exit;
-}
-?>
+// if(mysqli_num_rows($get_user) > 0){
+//     $user = mysqli_fetch_assoc($get_user);
+// }
+// else{
+//     header('Location: logout.php');
+//     exit;
+// }
+?> -->
 <?php
 // session_start(); 
 // echo "Welcme".$_SESSION['username'];
