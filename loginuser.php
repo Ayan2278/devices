@@ -2,7 +2,8 @@
 // this login page for dashboard and its password in database table
 // connection file
 // require 'config.php';
-// include 'authentication.php';   
+// include 'authentication.php'; 
+  
 include '_db_Connect.php';
 session_start();
  $conn = mysqli_connect("localhost", "root", "", "device");
@@ -12,7 +13,7 @@ if(isset($_POST['login_btn']))
     $EMP_NAME=$_POST['username'];
     $PASSWORD=$_POST['Password'];
                 
-    $log_query=$conn->prepare("SELECT * FROM `login` WHERE `username`='$EMP_NAME' AND `Password`='$PASSWORD'");
+    $log_query=$conn->prepare("SELECT * FROM `login` WHERE `username`='$EMP_NAME' AND `P assword`='$PASSWORD'");
     // echo $log_query;
     $log_query->execute();
     $result=$log_query->get_result();
