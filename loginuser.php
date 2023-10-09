@@ -2,7 +2,7 @@
 // this login page for dashboard and its password in database table
 // connection file
 // require 'config.php';
-// include 'authentication.php'; 
+include 'authentication.php'; 
   
 include '_db_Connect.php';
 session_start();
@@ -10,10 +10,10 @@ session_start();
 if(isset($_POST['login_btn']))
 {
 
-    $EMP_NAME=$_POST['username'];
+    $EMP_NAME=$_POST['UserName'];
     $PASSWORD=$_POST['Password'];
                 
-    $log_query=$conn->prepare("SELECT * FROM `login` WHERE `username`='$EMP_NAME' AND `P assword`='$PASSWORD'");
+    $log_query=$conn->prepare("SELECT * FROM `login` WHERE `UserName`='$EMP_NAME' AND `Password`='$PASSWORD'");
     // echo $log_query;
     $log_query->execute();
     $result=$log_query->get_result();
@@ -21,18 +21,18 @@ if(isset($_POST['login_btn']))
     if($result->num_rows>0)
     {
         foreach($result as $row){
-                $EMP_NAME=$row['username'];
+                $EMP_NAME=$row['UserName'];
                 $PASSWORD=$row['Password'];
         }
-            $_SESSION['authe']= true;
+            $_SESSION['auth']= true;
 
-            $_SESSION['authe_user']=[
-                'username'=>$EMP_NAME,
+            $_SESSION['auth_user']=[
+                'UserName'=>$EMP_NAME,
                 'Password'=>$PASSWORD
             ];
             $_SESSION['Status']="Log-In Successfully";
-            $_SESSION['username']=$EMP_NAME;
-            header('location:index.php');
+            $_SESSION['UserName']=$EMP_NAME;
+            header('location:index.php?UserName='.$row['UserName']);
     }
     else{
         $_SESSION['Status']="Invalid";

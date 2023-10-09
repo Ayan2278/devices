@@ -3,6 +3,31 @@ include "_db_Connect.php";
 $url_parts = explode("/", $_SERVER['REQUEST_URI']);
 $current_url = end($url_parts);
 ?>
+<?php
+  include 'authentication.php';
+if(isset( $_SESSION['auth'])){
+$_SESSION['auth_user']=['UserName'];
+}
+else{
+  echo"Not logged in dashboard ";
+}
+
+
+// if(isset($_SESSION['auth'])){
+
+  // $EMP_NAME=$_POST['UserName'];
+ $EMP_NAME=$_SESSION['UserName'];
+$queryy = "SELECT * FROM `Login` WHERE `UserName`='$EMP_NAME'";
+echo $queryy;
+$resultt = mysqli_query($conn, $queryy);
+// // }
+  
+
+
+//  $_SESSION['UserName']=$EMP_NAME;
+//  $query="SELECT * FROM `Login` WHERE `UserName` = '$EMP_NAME'";
+//  echo $query;
+?>
 
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -27,7 +52,26 @@ $current_url = end($url_parts);
     <div class="info">
 
       <form action="logout.php" method="POST">
+      <div class="form-group col-lg-1">
+                                <label for="exampleInputPassword1">User</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='UserName'>
+                                    <?php
+                                          if ($resultt) {
+                                            // Selected option according to login users
+                                            $totall = mysqli_num_rows($resultt);
+                                            if ($totall != 0) {
+                                              while ($row = $resultt->fetch_assoc()) {
 
+                                                // fetch username 
+                                                echo "<option value='" . $row['UserName'] . "' ";
+                                                echo isset($_POST["UserName"]) && $_POST["UserName"] == $row['UserName'] ? "selected " : "";
+                                                echo ">" . $row['UserName'] . "</option>";
+                                              }
+                                            }
+                                          }
+                                      ?>
+                                </select>
+                            </div>
         
         <button type="submit" name="logout_btn" style="margin-left:195px;margin-top:7px;color:black;" class="btn ">
       <i class="fa-solid fa-right-from-bracket" style="font-size:25px;color:black;"></i></button>

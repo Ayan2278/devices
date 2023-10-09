@@ -147,7 +147,7 @@ include 'home.php';
                                     <label for="device" style="float:left; margin-left:10px;">Username</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="username"
+                                        <input type="text" class="form-control focus" name="UserName"
                                             placeholder="Enter Username" style="height:45px;" required>
                                     </div>
                                 </div>
