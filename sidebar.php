@@ -14,7 +14,6 @@ $current_url = end($url_parts);
     <li class="nav-item d-none d-sm-inline-block">
       <a href="index.php" class="nav-link">Home</a>
     </li>
-
   </ul>
 
 
