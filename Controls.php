@@ -173,6 +173,7 @@ include 'authentication.php';
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table class="table table-bordered">
+                      <center>
                     <?php
                   echo '
                       <thead>
@@ -189,7 +190,7 @@ include 'authentication.php';
 
                       include '_db_Connect.php';
                       $count = 1;
-                      $query = "SELECT * FROM `login` ORDER BY `login`.`UserName` ASC";
+                      $query = "SELECT * FROM `login`;";
                       $result = mysqli_query($conn, $query);
                       $total = mysqli_num_rows($result);
                       if ($result) {
@@ -242,6 +243,7 @@ include 'authentication.php';
                         }
                     }
                       ?>
+                  </center>
                     </table>
                   </div>
                   <!-- /.card-body -->
