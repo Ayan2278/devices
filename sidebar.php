@@ -235,6 +235,17 @@ $current_url = end($url_parts);
           </a>
 
         </li>
+        <li class="nav-item has-treeview">
+          <a href="Controls.php" class="nav-link <?php if ($current_url == 'Controls.php') {
+            echo 'active';
+          } ?>">
+            <i class=" nav-icon fas fa-setting-alt"></i>
+            <p>
+              Controls
+            </p>
+          </a>
+
+        </li>
 
       </ul>
 

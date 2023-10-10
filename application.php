@@ -438,7 +438,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                                     <th>Start time</th>
                                                     <th>End time</th>
                                                     <th>Duration</th>
-                                                    <th>user</th>
+                                                  
                                                   </tr>
                                                 </thead>
                                           <tbody>';
@@ -481,7 +481,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                                         }
                                                         echo '
                                                         <td>' . $row['Duration'] . '</td>
-                                                        <td>' . $row['username'] . '</td>
+                                                
                                                 </tr>';
                                             $count += 1;
                                         }
@@ -517,7 +517,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                                         }
                                                         echo '
                                                         <td>' . $row['Duration'] . '</td>
-                                                        <td>' . $row['username'] . '</td>
+                                                     
                                                     </tr>';
                                                     $count += 1;
                                                   }
