@@ -8,42 +8,33 @@ include 'authentication.php';
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>School</title>
-  
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-
-  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
   <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-  <!-- summernote -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <style>
+    .ColWidth {
+      width: 15%;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       font-weight: 200;
@@ -165,3 +156,157 @@ include 'authentication.php';
   // Include Sidebar File
   include 'sidebar.php'
     ?>
+  <div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Admin Controls</h1>
+              </div>
+              <div class="col-md-12">
+                <div class="card my-4">
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Sr no.</th>
+                          <th>Name</th>
+                          <th>Live Status</th>
+                          <th>Assets</th>
+                          <th>Timing</th>
+                          <th>Schools</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="width:9%;">1.</td>
+                          <td>Ayan</td>
+                          <td class='ColWidth'>
+                            <center>
+                              <div class="card-body">
+                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
+                                  data-off-color="danger" data-on-color="success">
+                              </div>
+                            </center>
+                          </td>
+                          <td class='ColWidth'>
+                            <center>
+                              <div class="card-body">
+                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
+                                  data-off-color="danger" data-on-color="success">
+                              </div>
+                            </center>
+                          </td>
+                          <td class='ColWidth'>
+                          <center>
+                              <div class="card-body">
+                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
+                                  data-off-color="danger" data-on-color="success">
+                              </div>
+                            </center>
+                          </td>
+                          <td class='ColWidth'>
+                            <center>
+                              <div class="card-body">
+                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
+                                  data-off-color="danger" data-on-color="success">
+                              </div>
+                            </center>
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer clearfix">
+
+                  </div>
+                </div>
+                <!-- /.card -->
+
+
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- /.row -->
+
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </section>
+      </div>
+    </div>
+  </div>
+  <script>
+    function change() {
+      document.getElementById("myform").submit();
+    }
+  </script>
+  <script>
+    function printTable() {
+      window.print();
+    }
+  </script>
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": false,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Select2 -->
+  <script src="plugins/select2/js/select2.full.min.js"></script>
+  <!-- Bootstrap4 Duallistbox -->
+  <script src="plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+  <!-- InputMask -->
+  <script src="plugins/moment/moment.min.js"></script>
+  <script src="plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+  <!-- date-range-picker -->
+  <script src="plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- bootstrap color picker -->
+  <script src="plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- Bootstrap Switch -->
+  <script src="plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
+  <!-- Page script -->
+  <script>
+    $(function () {
+      //Initialize Select2 Elements
+
+
+      $("input[data-bootstrap-switch]").each(function () {
+        $(this).bootstrapSwitch('state', $(this).prop('checked'));
+      });
+
+    })
+  </script>
+
+</body>
+
+</html>

@@ -239,7 +239,7 @@ $current_url = end($url_parts);
           <a href="Controls.php" class="nav-link <?php if ($current_url == 'Controls.php') {
             echo 'active';
           } ?>">
-            <i class=" nav-icon fas fa-setting-alt"></i>
+            <i class="nav-icon fas fa-book"></i>
             <p>
               Controls
             </p>
