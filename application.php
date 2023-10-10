@@ -284,26 +284,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                     <!-- form start -->
                     <form method="POST" action="application.php" role="form" id="myform">
                         <div class="card-body row">
-                            <div class="form-group col-lg-1">
-                                <label for="exampleInputPassword1">User</label>
-                                <select class="form-control select2bs4" style="width: 100%" name='username'>
-                                    <?php
-                                          if ($resultt) {
-                                            // Selected option according to login users
-                                            $totall = mysqli_num_rows($resultt);
-                                            if ($totall != 0) {
-                                              while ($row = $resultt->fetch_assoc()) {
-
-                                                // fetch username 
-                                                echo "<option value='" . $row['username'] . "' ";
-                                                echo isset($_POST["username"]) && $_POST["username"] == $row['username'] ? "selected " : "";
-                                                echo ">" . $row['username'] . "</option>";
-                                              }
-                                            }
-                                          }
-                                      ?>
-                                </select>
-                            </div>
+                           
                             <div class="form-group col-lg-2">
                                 <label for="device">District</label>
                                 <select class="form-control select2bs4" style="width: 100%" name="DIST"
@@ -382,7 +363,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                         ?>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-1">
+                            <div class="form-group col-lg-2">
                                 <label for="exampleInputPassword1">PC serial no.</label>
                                 <select class="form-control select2bs4" style="width: 100%" name='PC'
                                     onchange="change()">
