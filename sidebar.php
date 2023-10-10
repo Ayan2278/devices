@@ -154,7 +154,7 @@ $current_url = end($url_parts);
         $row = $resultt->fetch_assoc();
         $una = $row['UserName'];
         
-        if ($row['roll'] == "Admin") {
+        if ($row['roll'] == "CEO") {
           echo '
             <li class="nav-item ">
           <a href="addAssets.php" class="nav-link';
