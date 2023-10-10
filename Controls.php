@@ -32,7 +32,7 @@ include 'authentication.php';
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style>
     .ColWidth {
-      width: 15%;
+      width: 14%;
     }
 
     body {
@@ -185,6 +185,7 @@ include 'authentication.php';
                   <th>Live Status</th>
                   <th>Assets</th>
                   <th>Timing</th>
+                  <th>Add</th>
                   <th>Schools</th>
                   </tr>
                   </thead>';
@@ -201,7 +202,7 @@ include 'authentication.php';
                               echo '
                               <tbody>
                         <tr style="text-align:center;   ">
-                          <td style="width:9%;">'.$count.' </td>
+                          <td style="width:7%;">'.$count.' </td>
                           <td>' . $row['UserName'] . '</td>
                           <td>' . $row['roll'] . '</td>
                           <td class="ColWidth">
@@ -214,6 +215,14 @@ include 'authentication.php';
                           </td>
                           <td class="ColWidth">
                             <center>
+                              <div class="card-body">
+                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
+                                  data-off-color="danger" data-on-color="success">
+                              </div>
+                            </center>
+                          </td>
+                          <td class="ColWidth">
+                          <center>
                               <div class="card-body">
                                 <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
                                   data-off-color="danger" data-on-color="success">
