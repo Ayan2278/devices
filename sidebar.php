@@ -67,7 +67,9 @@ $current_url = end($url_parts);
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview ">
-          <a href="index.php" class="nav-link <?php if ($current_url == 'index.php') {
+          <a href="index.php" class="nav-link <?php 
+          $EMP_NAME = $_SESSION['UserName'];
+          if ($current_url == 'index.php') {
             echo ' active style="background-color:#0471a4"';
           } ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
