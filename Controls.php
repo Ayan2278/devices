@@ -146,6 +146,7 @@ include 'authentication.php';
     ::-webkit-scrollbar-thumb:hover {
       border-radius: 10px;
       background: #c7c7c7;
+      
     }
   </style>
 </head>
@@ -173,33 +174,33 @@ include 'authentication.php';
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table class="table table-bordered">
-                      <center>
-                    <?php
+                        <center>
+                        <?php
                   echo '
-                      <thead>
-                        <tr>
-                          <th>Sr no.</th>
-                          <th>Name</th>
-                          <th>Position</th>
-                          <th>Live Status</th>
-                          <th>Assets</th>
-                          <th>Timing</th>
-                          <th>Schools</th>
-                        </tr>
-                      </thead>';
-
-                      include '_db_Connect.php';
-                      $count = 1;
-                      $query = "SELECT * FROM `login`;";
-                      $result = mysqli_query($conn, $query);
-                      $total = mysqli_num_rows($result);
-                      if ($result) {
-                        if ($total != 0) {
+                  <thead>
+                  <tr style="text-align:center;">
+                  <th>Sr no.</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Live Status</th>
+                  <th>Assets</th>
+                  <th>Timing</th>
+                  <th>Schools</th>
+                  </tr>
+                  </thead>';
+                  
+                  include '_db_Connect.php';
+                  $count = 1;
+                  $query = "SELECT * FROM `login`;";
+                  $result = mysqli_query($conn, $query);
+                  $total = mysqli_num_rows($result);
+                  if ($result) {
+                      if ($total != 0) {
                           // Fetching All recods
                           while ($row = $result->fetch_assoc()) {
-                            echo '
-                      <tbody>
-                        <tr>
+                              echo '
+                              <tbody>
+                        <tr style="text-align:center;   ">
                           <td style="width:9%;">'.$count.' </td>
                           <td>' . $row['UserName'] . '</td>
                           <td>' . $row['roll'] . '</td>
