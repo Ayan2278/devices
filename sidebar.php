@@ -1,6 +1,11 @@
 <?php
 
 include "_db_Connect.php";
+// session_start();
+if (isset($_SESSION['login_id']) && $_SESSION['login_id'] != '') {
+  $id = $_SESSION['login_id'];
+  // echo $id;
+}
 $url_parts = explode("/", $_SERVER['REQUEST_URI']);
 $current_url = end($url_parts);
 ?>
@@ -63,7 +68,7 @@ $current_url = end($url_parts);
                with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview ">
           <a href="index.php" class="nav-link <?php if ($current_url == 'index.php') {
-            echo 'active style="background-color:#0471a4"';
+            echo ' active style="background-color:#0471a4"';
           } ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
@@ -74,221 +79,223 @@ $current_url = end($url_parts);
         </li>
         <?php
 
-        if (isset($_SESSION['auth'])) {
-          $_SESSION['auth_user'] = ['UserName'];
-        } else {
-          echo "Not logged in dashboard ";
-        }
-
-        $EMP_NAME = $_SESSION['UserName'];
-        $queryy = "SELECT * FROM `Login` WHERE `UserName`='$EMP_NAME'";
-        // echo $queryy;
-        $resultt = mysqli_query($conn, $queryy);
-        // // }
-        $row = $resultt->fetch_assoc();
-        $una = $row['UserName'];
-
-
-        // for Live status page showing
-        if ($row['live_status'] == "true") {
-          echo '
-        <li class="nav-item has-treeview">
-          <a href="live_status.php" class="nav-link';
-          if ($current_url == 'live_status.php') {
-            echo 'active';
+        if (!isset($_SESSION['login_id'])) {
+          if (isset($_SESSION['auth'])) {
+            $_SESSION['auth_user'] = ['UserName'];
+          } else {
+            echo "Not logged in dashboard ";
           }
-          echo '">
-            <i class="nav-icon fas fa-toggle-on"></i>
-            <p>
-              Live Status
 
-            </p>
-          </a>
+          $EMP_NAME = $_SESSION['UserName'];
+          $queryy = "SELECT * FROM `Login` WHERE `UserName`='$EMP_NAME'";
+          // echo $queryy;
+          $resultt = mysqli_query($conn, $queryy);
+          // // }
+          $row = $resultt->fetch_assoc();
+          $una = $row['UserName'];
 
-        </li>
-        ';
-        } 
 
-       
-        // for Asset page showing
-        if ($row['asset'] == "true") {
-          echo '
-        <li class="nav-item has-treeview">
-        <a href="assets.php" class="nav-link';
-          if ($current_url == "assets.php") {
-            echo "active";
-          }
-          echo '">
-          <i class="nav-icon fas fa-cubes"></i>
-            <p>
-              Assets
-              
+          // for Live status page showing
+          if ($row['live_status'] == "true") {
+            echo '
+          <li class="nav-item has-treeview">
+            <a href="live_status.php" class="nav-link';
+            if ($current_url == 'live_status.php') {
+              echo ' active ';
+            }
+            echo '">
+              <i class="nav-icon fas fa-toggle-on"></i>
+              <p>
+                Live Status
+  
               </p>
+            </a>
+  
+          </li>
+          ';
+          }
+
+
+          // for Asset page showing
+          if ($row['asset'] == "true") {
+            echo '
+          <li class="nav-item has-treeview">
+          <a href="assets.php" class="nav-link';
+            if ($current_url == "assets.php") {
+              echo " active ";
+            }
+            echo '">
+            <i class="nav-icon fas fa-cubes"></i>
+              <p>
+                Assets
+                
+                </p>
+            </a>
+            
+            </li>';
+          }
+
+          // for Timings page showing
+          if ($row['timming'] == "true") {
+            echo '
+          <li class="nav-item has-treeview">
+            <a href="device.php" class="nav-link';
+            if ($current_url == 'device.php' || $current_url == 'application.php' || $current_url == 'applogin.php' || $current_url == 'forgetP.php') {
+              echo ' active ';
+            }
+            echo '">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Timings
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item ">
+                <a href="device.php" class="nav-link">
+                  <i class="nav-icon  fa-circle';
+            if ($current_url == 'device.php') {
+              echo ' fas text-purple';
+            } else {
+              echo " far";
+            }
+            echo '"></i>
+                  <p class="';
+            if ($current_url == 'device.php') {
+              echo ' text-purple';
+            }
+            echo '">Device timing</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="applogin.php" class="nav-link">
+                  <i class="nav-icon far fa-circle';
+            if ($current_url == 'applogin.php' || $current_url == 'forgetP.php') {
+              echo ' fas text-purple';
+            } else {
+              echo " far";
+            }
+            echo '"></i>
+                  <p class="';
+            if ($current_url == 'applogin.php' || $current_url == 'forgetP.php') {
+              echo ' text-purple';
+            }
+            echo '">Application timing</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>';
+          }
+
+          // for Add page showing
+        
+          if ($row['add'] == "true") {
+            echo '
+              <li class="nav-item ">
+            <a href="addAssets.php" class="nav-link';
+            if ($current_url == 'addAssets.php' || $current_url == 'addSchool.php' || $current_url == 'adduser.php') {
+              echo ' active ';
+            }
+            echo '">
+              <i class="nav-icon far fa-plus-square"></i>
+              <p>
+                Add
+  
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="addSchool.php" class="nav-link">
+                  <i class="nav-icon far fa-circle';
+            if ($current_url == "addSchool.php") {
+              echo " fas text-purple";
+            } else {
+              echo " far";
+            }
+            echo '"></i>
+                  <p class="';
+            if ($current_url == "addSchool.php") {
+              echo " text-purple";
+            }
+            echo '">Add School</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a href="addAssets.php" class="nav-link">
+                  <i class="nav-icon far fa-circle';
+            if ($current_url == "addAssets.php") {
+              echo " fas text-purple";
+            } else {
+              echo " far";
+            }
+            echo '"></i>
+                  <p class="';
+            if ($current_url == "addAssets.php") {
+              echo " text-purple";
+            }
+            echo '">Add Assets</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a href="adduser.php" class="nav-link">
+                  <i class="nav-icon far fa-circle';
+            if ($current_url == "adduser.php") {
+              echo " fas text-purple";
+            } else {
+              echo " far";
+            }
+            echo '"></i>
+                  <p class="';
+            if ($current_url == "adduser.php") {
+              echo " text-purple";
+            }
+            echo '">Add User</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+              ';
+          }
+
+
+          //for school page
+          if ($row['school'] == "true") {
+            echo '
+          <li class="nav-item has-treeview">
+            <a href="school.php" class="nav-link';
+            if ($current_url == 'school.php') {
+              echo ' active ';
+            }
+            echo '">
+              <i class=" nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Schools
+              </p>
+            </a>
+  
+          </li>';
+          }
+
+          //for controls page
+          if ($row['UserName'] == "Nilesh") {
+            echo '
+          <li class="nav-item has-treeview">
+            <a href="Controls.php" class="nav-link';
+            if ($current_url == 'Controls.php') {
+              echo ' active ';
+            }
+            echo '">
+            <i class="nav-icon fas fa-book"></i>
+            <p>
+              Controls
+            </p>
           </a>
           
-          </li>';
-        }
-
-        // for Timings page showing
-        if ($row['timming'] == "true") {
-          echo '
-        <li class="nav-item has-treeview">
-          <a href="device.php" class="nav-link';
-          if ($current_url == 'device.php' || $current_url == 'application.php' || $current_url == 'applogin.php' || $current_url == 'forgetP.php') {
-            echo 'active';
-          }
-          echo '">
-            <i class="nav-icon fas fa-table"></i>
-            <p>
-              Timings
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            
-            <li class="nav-item ">
-              <a href="device.php" class="nav-link">
-                <i class="nav-icon  fa-circle';
-          if ($current_url == 'device.php') {
-            echo ' fas text-purple';
-          } else {
-            echo " far";
-          }
-          echo '"></i>
-                <p class="';
-          if ($current_url == 'device.php') {
-            echo ' text-purple';
-          }
-          echo '">Device timing</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="applogin.php" class="nav-link">
-                <i class="nav-icon far fa-circle';
-          if ($current_url == 'applogin.php' || $current_url == 'forgetP.php') {
-            echo ' fas text-purple';
-          } else {
-            echo " far";
-          }
-          echo '"></i>
-                <p class="';
-          if ($current_url == 'applogin.php' || $current_url == 'forgetP.php') {
-            echo ' text-purple';
-          }
-          echo '">Application timing</p>
-              </a>
-            </li>
-            
-          </ul>
         </li>';
-        }
-
-        // for Add page showing
-        
-        if ($row['add'] == "true") {
-          echo '
-            <li class="nav-item ">
-          <a href="addAssets.php" class="nav-link';
-          if ($current_url == 'addAssets.php' || $current_url == 'addSchool.php' || $current_url == 'adduser.php') {
-            echo 'active';
           }
-          echo '">
-            <i class="nav-icon far fa-plus-square"></i>
-            <p>
-              Add
-
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="addSchool.php" class="nav-link">
-                <i class="nav-icon far fa-circle';
-          if ($current_url == "addSchool.php") {
-            echo " fas text-purple";
-          } else {
-            echo " far";
-          }
-          echo '"></i>
-                <p class="';
-          if ($current_url == "addSchool.php") {
-            echo " text-purple";
-          }
-          echo '">Add School</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a href="addAssets.php" class="nav-link">
-                <i class="nav-icon far fa-circle';
-          if ($current_url == "addAssets.php") {
-            echo " fas text-purple";
-          } else {
-            echo " far";
-          }
-          echo '"></i>
-                <p class="';
-          if ($current_url == "addAssets.php") {
-            echo " text-purple";
-          }
-          echo '">Add Assets</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a href="adduser.php" class="nav-link">
-                <i class="nav-icon far fa-circle';
-          if ($current_url == "adduser.php") {
-            echo " fas text-purple";
-          } else {
-            echo " far";
-          }
-          echo '"></i>
-                <p class="';
-          if ($current_url == "adduser.php") {
-            echo " text-purple";
-          }
-          echo '">Add User</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-            ';
-        }
-
-
-        //for school page
-        if ($row['school'] == "true") {
-          echo '
-        <li class="nav-item has-treeview">
-          <a href="school.php" class="nav-link';
-          if ($current_url == 'school.php') {
-            echo 'active';
-          }
-          echo '">
-            <i class=" nav-icon fas fa-calendar-alt"></i>
-            <p>
-              Schools
-            </p>
-          </a>
-
-        </li>';
-        }
-
-        //for controls page
-        if ($row['UserName'] == "Nilesh") {
-          echo '
-        <li class="nav-item has-treeview">
-          <a href="Controls.php" class="nav-link';
-          if ($current_url == 'Controls.php') {
-            echo 'active';
-          }
-          echo '">
-          <i class="nav-icon fas fa-book"></i>
-          <p>
-            Controls
-          </p>
-        </a>
-        
-      </li>';
         }
 
         ?>
