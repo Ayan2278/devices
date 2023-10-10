@@ -11,6 +11,8 @@ include 'authentication.php';
   <title>School</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- daterange picker -->
@@ -207,42 +209,42 @@ include 'authentication.php';
                           <td>' . $row['roll'] . '</td>
                           <td class="ColWidth">
                             <center>
-                              <div class="card-body">
-                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
-                                  data-off-color="danger" data-on-color="success">
-                              </div>
+                                <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                  <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                </div>
                             </center>
                           </td>
                           <td class="ColWidth">
                             <center>
-                              <div class="card-body">
-                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
-                                  data-off-color="danger" data-on-color="success">
-                              </div>
+                            <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                          </div>
                             </center>
                           </td>
                           <td class="ColWidth">
                           <center>
-                              <div class="card-body">
-                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
-                                  data-off-color="danger" data-on-color="success">
-                              </div>
+                          <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                        </div>
                             </center>
                           </td>
                           <td class="ColWidth">
                           <center>
-                              <div class="card-body">
-                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
-                                  data-off-color="danger" data-on-color="success">
-                              </div>
+                          <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                        </div>
                             </center>
                           </td>
                           <td class="ColWidth">
                             <center>
-                              <div class="card-body">
-                                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
-                                  data-off-color="danger" data-on-color="success">
-                              </div>
+                            <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                          </div>
                             </center>
                           </td>
                         </tr>
@@ -290,6 +292,8 @@ include 'authentication.php';
       document.getElementById("myform").submit();
     }
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
   <script>
     function printTable() {
       window.print();
