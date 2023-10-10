@@ -173,6 +173,8 @@ include 'authentication.php';
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table class="table table-bordered">
+                    <?php
+                  echo '
                       <thead>
                         <tr>
                           <th>Sr no.</th>
@@ -182,12 +184,23 @@ include 'authentication.php';
                           <th>Timing</th>
                           <th>Schools</th>
                         </tr>
-                      </thead>
+                      </thead>';
+
+                      include '_db_Connect.php';
+                      $count = 1;
+                      $query = "SELECT * FROM `login` ORDER BY `login`.`UserName` ASC";
+                      $result = mysqli_query($conn, $query);
+                      $total = mysqli_num_rows($result);
+                      if ($result) {
+                        if ($total != 0) {
+                          // Fetching All recods
+                          while ($row = $result->fetch_assoc()) {
+                            echo '
                       <tbody>
                         <tr>
-                          <td style="width:9%;">1.</td>
-                          <td>Ayan</td>
-                          <td class='ColWidth'>
+                          <td style="width:9%;">'.$count.' </td>
+                          <td>' . $row['UserName'] . '</td>
+                          <td class="ColWidth">
                             <center>
                               <div class="card-body">
                                 <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
@@ -195,7 +208,7 @@ include 'authentication.php';
                               </div>
                             </center>
                           </td>
-                          <td class='ColWidth'>
+                          <td class="ColWidth">
                             <center>
                               <div class="card-body">
                                 <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
@@ -203,7 +216,7 @@ include 'authentication.php';
                               </div>
                             </center>
                           </td>
-                          <td class='ColWidth'>
+                          <td class="ColWidth">
                           <center>
                               <div class="card-body">
                                 <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
@@ -211,7 +224,7 @@ include 'authentication.php';
                               </div>
                             </center>
                           </td>
-                          <td class='ColWidth'>
+                          <td class="ColWidth">
                             <center>
                               <div class="card-body">
                                 <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch
@@ -221,7 +234,12 @@ include 'authentication.php';
                           </td>
                         </tr>
 
-                      </tbody>
+                      </tbody>';
+                      $count++;
+                          }
+                        }
+                    }
+                      ?>
                     </table>
                   </div>
                   <!-- /.card-body -->
