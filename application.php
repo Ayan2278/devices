@@ -12,7 +12,7 @@ include '_db_Connect.php';
 //select user-name according to login users
 $EMP_NAME=$_SESSION['username'];
 $queryy = "SELECT * FROM `user` WHERE `username`='$EMP_NAME'";
-echo $queryy;
+// echo $queryy;
 $resultt = mysqli_query($conn, $queryy);
 
 //select all districts
@@ -61,7 +61,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 //fetch all Activities According to users and pc-sr
  if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC']) && $_POST['PC'] != "All" ) {
     $PC = $_POST['PC'];
-    $EMP_NAME=$_POST['username'];
+    // $EMP_NAME=$_POST['username'];
     $schl = $_POST['school'];
     $village = $_POST['Village'];
     $Dis = $_POST['DIST'];
@@ -73,7 +73,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 
   //fetch data from json file
     $cd = 1;
-    $file = "JSON PC/" . $_POST['username'] . ".json";
+    $file = "JSON PC/" . $EMP_NAME . ".json";
     $data = file_get_contents($file);
     $data = json_decode($data, true);
     $cd++;
@@ -231,8 +231,10 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed ">
+
     <?php
-  include 'sidebar.php'
+  include 'sidebar.php';
+ 
     ?>
     <!-- Main Sidebar Container -->
     <div class="wrapper">
@@ -244,7 +246,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 <div class="container-fluid">
                     <div class="row ">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Application</h1>
+                            <h1 class="m-0 text-dark">Application Timing</h1>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
@@ -277,7 +279,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                 <div class="card mx-2" style="top:0;">
                     <!---card-header -->
                     <div class="card-header" style="border:0px;">
-                        <h3 class="card-title">Application Timing</h3>
+                        <h3 class="card-title"><?php $EMP_NAME = $_SESSION['username'];echo $EMP_NAME,"'s Data"; ?></h3>
                     </div>
                     <!-- form start -->
                     <form method="POST" action="application.php" role="form" id="myform">
@@ -461,7 +463,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                           <tbody>';
                                   // counts the Activity serial number
                                   $count = 1;
-                                  $EMP_NAME=$_SESSION['username'];
+                                  // $EMP_NAME=$_SESSION['username'];
                                   
                                   // display data according to login user
                                   $qry6 = "SELECT * from `user` where `username` = '$EMP_NAME'";
@@ -470,8 +472,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     $pcsr = $row5['pc_sr'];
 
                                     if(isset($_POST['Activity'])  && $_POST['Activity'] == "All") {
-                                    $EMP_NAME=$_SESSION['username'];
-                                    $file = "JSON PC/" . $_POST['username'] . ".json";
+                                    // $EMP_NAME=$_SESSION['username'];
+                                    $file = "JSON PC/" . $EMP_NAME . ".json";
                                    
                                       $data = file_get_contents($file);
                                       $data = json_decode($data, true);
@@ -507,13 +509,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                   }
                                 // display seleceted filter data in table
                                 if(isset($_POST['Activity'])  && $_POST['Activity'] != "All") {
-                                  $file = "JSON PC/" . $_POST['username'] . ".json";
+                                  $file = "JSON PC/" . $EMP_NAME . ".json";
                                    $data = file_get_contents($file);
                                    $data = json_decode($data, true);
                                       $count = 1;
                                       if ($data != 0) {
                                         foreach ($data as $row) {
                                           if ($_POST['Activity'] == $row['Activity']) {
+                                            if ($row['username'] == $EMP_NAME) {
                                            // display Activity data from json file 
                                                 echo '
                                                     <tr style=" height:40px; font-size:14px;text-align:center;">
@@ -537,6 +540,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                                     </tr>';
                                                     $count += 1;
                                                   }
+                                                }
                                                 }
                                               }
                                             }
