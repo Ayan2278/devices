@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2023 at 12:09 PM
+-- Generation Time: Oct 10, 2023 at 12:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -27,21 +27,27 @@ SET time_zone = "+00:00";
 -- Table structure for table `login`
 --
 
-
 CREATE TABLE `login` (
   `UserName` varchar(50) NOT NULL,
-  `Password` varchar(20) NOT NULL
+  `Password` varchar(20) NOT NULL,
+  `roll` varchar(20) NOT NULL,
+  `live_status` varchar(50) NOT NULL,
+  `asset` varchar(50) NOT NULL,
+  `timming` varchar(50) NOT NULL,
+  `school` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`UserName`, `Password`) VALUES
-('jinal', '6629'),
-('ayan', '1122'),
-('Varun', '2673'),
-('Meet', '1234');
+
+INSERT INTO `login` (`UserName`, `Password`, `roll`, `live_status`, `asset`, `timming`, `school`) VALUES
+('Nilesh', 'nilesh', 'CEO', 'true', 'true', 'true', 'true'),
+('Varun', 'varun', 'HOD', 'true', 'true', 'false', 'false'),
+('jinal', 'jinal', 'employee', 'true', 'false', 'false', 'false'),
+('ayan', 'ayan', 'employee', 'false', 'true', 'true', 'false'),
+('Meet', 'meet', 'employee', 'false', 'false', 'true', 'true');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
