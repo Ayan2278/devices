@@ -231,7 +231,6 @@ $current_url = end($url_parts);
             <i class=" nav-icon fas fa-calendar-alt"></i>
             <p>
               Schools
-
             </p>
           </a>
 

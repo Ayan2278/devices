@@ -1,6 +1,6 @@
 <!-- <?php
 session_start();
-include 'authentication.php';
+// include 'authentication.php';
 // require 'config.php';
 // include '_db_Connect.php';
 
