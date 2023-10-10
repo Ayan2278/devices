@@ -179,6 +179,7 @@ include 'authentication.php';
                         <tr>
                           <th>Sr no.</th>
                           <th>Name</th>
+                          <th>Position</th>
                           <th>Live Status</th>
                           <th>Assets</th>
                           <th>Timing</th>
@@ -200,6 +201,7 @@ include 'authentication.php';
                         <tr>
                           <td style="width:9%;">'.$count.' </td>
                           <td>' . $row['UserName'] . '</td>
+                          <td>' . $row['roll'] . '</td>
                           <td class="ColWidth">
                             <center>
                               <div class="card-body">
@@ -244,7 +246,7 @@ include 'authentication.php';
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer clearfix">
-                  <form action="application.php" method="POST">
+                  <form action="#" method="POST">
                                 <div class="form-group col-lg-1 w-100 my-4" style="float:right;">
                                     <button type="submit" name="Application" value="Application" class="btn"
                                         style="margin-top:8px;width:100%; background:#6f42c1; color:white;">Update</button>
