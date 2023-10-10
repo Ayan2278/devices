@@ -226,7 +226,12 @@ include 'authentication.php';
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer clearfix">
-
+                  <form action="application.php" method="POST">
+                                <div class="form-group col-lg-1 w-100 my-4" style="float:right;">
+                                    <button type="submit" name="Application" value="Application" class="btn"
+                                        style="margin-top:8px;width:100%; background:#6f42c1; color:white;">Update</button>
+                                </div>
+                            </form>
                   </div>
                 </div>
                 <!-- /.card -->
