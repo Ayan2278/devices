@@ -2,7 +2,56 @@
 
 session_start();
 include 'authentication.php';
+include '_db_Connect.php';
+if (isset($_POST['Update']) && $_POST['Update'] == 'Update') {
+  $id = $_POST['id'];
+  // For Live status
+  if (isset($_POST['Live_S'])) {
+    $qryT = "UPDATE `login` SET `live_status`='true' WHERE `id` = '$id'";
+  }
+  else{
+    $qryT = "UPDATE `login` SET `live_status`='false' WHERE `id` = '$id'";
+  }
+  $res = mysqli_query($conn , $qryT);
 
+  // For asset
+  if (isset($_POST['Asset'])) {
+    $qryT = "UPDATE `login` SET `asset`='true' WHERE `id` = '$id'";
+  }
+  else{
+    $qryT = "UPDATE `login` SET `asset`='false' WHERE `id` = '$id'";
+  }
+  $res = mysqli_query($conn , $qryT);
+
+  // For timing 
+  if (isset($_POST['Timing'])) {
+    $qryT = "UPDATE `login` SET `timming`='true' WHERE `id` = '$id'";
+  }
+  else{
+    $qryT = "UPDATE `login` SET `timming`='false' WHERE `id` = '$id'";
+  }
+  $res = mysqli_query($conn , $qryT);
+
+  // For Add
+  if (isset($_POST['Add'])) {
+    $qryT = "UPDATE `login` SET `add`='true' WHERE `id` = '$id'";
+  }
+  else{
+    $qryT = "UPDATE `login` SET `add`='false' WHERE `id` = '$id'";
+  }
+  $res = mysqli_query($conn , $qryT);
+
+
+  // For asset
+  if (isset($_POST['School'])) {
+    $qryT = "UPDATE `login` SET `school`='true' WHERE `id` = '$id'";
+  }
+  else{
+    $qryT = "UPDATE `login` SET `school`='false' WHERE `id` = '$id'";
+  }
+  $res = mysqli_query($conn , $qryT);
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -177,7 +226,7 @@ include 'authentication.php';
                 <div class="card my-4">
                   <!-- /.card-header -->
                   <div class="card-body">
-                    <form action="#" method='post'>
+                    
                     <table class="table table-bordered">
                         <center>
                         <?php
@@ -192,6 +241,7 @@ include 'authentication.php';
                   <th>Timing</th>
                   <th>Add</th>
                   <th>Schools</th>
+                  <th>Update</th>
                   </tr>
                   </thead>';
                   
@@ -205,6 +255,7 @@ include 'authentication.php';
                           // Fetching All recods
                           while ($row = $result->fetch_assoc()) {
                               echo '
+                              <form action="#" method="post">
                               <tbody>
                         <tr style="text-align:center;   ">
                           <td style="width:7%;">'.$count.' </td>
@@ -213,7 +264,7 @@ include 'authentication.php';
                           <td class="ColWidth">
                             <center>
                                 <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"  name="Live_S" value='. $row['id'] .'
                                   ';
                                   if ($row['live_status'] == 'true') {
                                     echo ' checked ';
@@ -226,7 +277,7 @@ include 'authentication.php';
                           <td class="ColWidth">
                             <center>
                             <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="Asset" value='. $row['id'] .'
                             ';
                                   if ($row['asset'] == 'true') {
                                     echo ' checked ';
@@ -239,18 +290,14 @@ include 'authentication.php';
                           <td class="ColWidth">
                           <center>
                           <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="timing" value='. $row['id'] .'
+                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="Timing" value='. $row['id'] .'
                           ';
                                   if ($row['timming'] == 'true') {
                                     echo ' checked ';
                                   }
                                   echo '>';
-                                  $qry = "UPDATE `login` SET `timming`='true' WHERE `id`='".$row['id']."';";
-                                  echo $qry;
-                                  if (isset($_POST['timing'])) {
-                                    echo 'true';
-                                  }
-                                  else echo 'false';
+                                  
+                                 
                                   echo '
                           <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                         </div>
@@ -259,7 +306,7 @@ include 'authentication.php';
                           <td class="ColWidth">
                           <center>
                           <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="Add" value='. $row['id'] .'
                           ';
                                   if ($row['add'] == 'true') {
                                     echo ' checked ';
@@ -272,7 +319,7 @@ include 'authentication.php';
                           <td class="ColWidth">
                             <center>
                             <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="School" value='. $row['id'] .'
                             ';
                                   if ($row['school'] == 'true') {
                                     echo ' checked ';
@@ -282,9 +329,18 @@ include 'authentication.php';
                           </div>
                             </center>
                           </td>
+                          <td>
+                          <div class="form-group col-lg-1 w-100">
+                          
+                            <button type="submit" name="Update" value="Update" class="btn"
+                            style=" background:#6f42c1; color:white;">
+                            <input type="hidden" value="'. $row['id'] .'" name="id">
+                            Update</button>
+                          </div>
+                          </td>
                         </tr>
 
-                      </tbody>';
+                      </tbody></form>';
                       $count++;
                           }
                         }
@@ -294,12 +350,8 @@ include 'authentication.php';
                     </table>
                   </div>
                   <!-- /.card-body -->
-                  <div class="card-footer clearfix">
-                      <div class="form-group col-lg-1 w-100 my-4" style="float:right;">
-                        <button type="submit" name="Application" value="Application" class="btn"
-                        style="margin-top:8px;width:100%; background:#6f42c1; color:white;">Update</button>
-                      </div>
-                  </form>
+                  
+                  
                   </div>
                 </div>
                 <!-- /.card -->
