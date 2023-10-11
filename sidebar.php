@@ -8,8 +8,7 @@ if (isset($_SESSION['login_id']) && $_SESSION['login_id'] != '') {
 }
 $url_parts = explode("/", $_SERVER['REQUEST_URI']);
 $current_url = end($url_parts);
-?>
-<?php
+
 
 
 // if(isset($_SESSION['auth'])){
@@ -44,7 +43,27 @@ $current_url = end($url_parts);
   <script src="https://kit.fontawesome.com/1c4021e600.js" crossorigin="anonymous"></script>
   <!-- Brand Logo -->
   <div class="info">
+  <?php
 
+if (!isset($_SESSION['login_id'])) {
+  if (isset($_SESSION['auth'])) {
+    $_SESSION['auth_user'] = ['UserName'];
+  } else {
+    echo "Not logged in dashboard ";
+  }
+
+  $EMP_NAME = $_SESSION['UserName'];
+  $queryy = "SELECT * FROM `Login` WHERE `UserName`='$EMP_NAME'";
+  // echo $queryy;
+  $resultt = mysqli_query($conn, $queryy);
+  // // }
+  $row = $resultt->fetch_assoc();
+  $una = $row['UserName'];
+  echo '
+  <div class="d-flex" style="text-align:center; justify-content:center;">
+  <i class="bx bxs-user-circle mx-1 my-2" style="font-size:35px;"></i>
+  <h4 class="mx-1 my-3">'. $una .'</h4>
+  </div>
     <form action="logout.php" method="POST">
 
 
@@ -67,34 +86,19 @@ $current_url = end($url_parts);
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview ">
-          <a href="index.php" class="nav-link <?php 
+          <a href="index.php" class="nav-link'; 
           $EMP_NAME = $_SESSION['UserName'];
           if ($current_url == 'index.php') {
             echo ' active style="background-color:#0471a4"';
-          } ?>">
+          } echo'">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
 
             </p>
           </a>
-        </li>
-        <?php
-
-        if (!isset($_SESSION['login_id'])) {
-          if (isset($_SESSION['auth'])) {
-            $_SESSION['auth_user'] = ['UserName'];
-          } else {
-            echo "Not logged in dashboard ";
-          }
-
-          $EMP_NAME = $_SESSION['UserName'];
-          $queryy = "SELECT * FROM `Login` WHERE `UserName`='$EMP_NAME'";
-          // echo $queryy;
-          $resultt = mysqli_query($conn, $queryy);
-          // // }
-          $row = $resultt->fetch_assoc();
-          $una = $row['UserName'];
+        </li>';
+        
 
 
           // for Live status page showing
