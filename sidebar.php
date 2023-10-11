@@ -21,7 +21,7 @@ $current_url = end($url_parts);
 //  $query="SELECT * FROM `Login` WHERE `UserName` = '$EMP_NAME'";
 //  echo $query;
 ?>
-
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
   <!-- Left navbar links -->
