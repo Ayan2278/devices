@@ -135,11 +135,19 @@ include 'home.php';
             <center>
 
                 <div class="card col-lg-3 shadow my-5">
-                <form action="loginuser.php" method="POST" width="40px">
-                        <div class="card-header" style="border:0px;">
+                    <!-- <form action="signup.php" method="POST"> -->
+                        <a href="signup.php">
+                        <button type="submit" name="" value="submit" class="btn "
+                        style="margin-top:8px; margin-left:250px; width:30%; background:#6f42c1; color:white;">Sign-Up</button>
+    </a>
+                    <!-- </form> -->
+                    
+                    <form action="loginuser.php" method="POST" width="40px">
+                            <div class="card-header" style="border:0px;">
                             <h4 style="float:left; margin-top:10px;">Login Here</h4>
                         </div>
                         <div class="card-body ">
+
                             <div class="row">
 
 
