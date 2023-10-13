@@ -60,16 +60,16 @@ if (!isset($_SESSION['login_id'])) {
   $row = $resultt->fetch_assoc();
   $una = $row['UserName'];
   echo '
-  <div class="d-flex" style="text-align:center; justify-content:center;">
-  <i class="bx bxs-user-circle mx-1 my-2" style="font-size:35px;"></i>
-  <h4 class="mx-1 my-3">'. $una .'</h4>
-  </div>
-    <form action="logout.php" method="POST">
+  <form action="logout.php" method="POST">
 
 
-      <button type="submit" name="logout_btn" style="margin-left:195px;margin-top:7px;color:black;" class="btn ">
-        <i class="fa-solid fa-right-from-bracket" style="font-size:25px;color:black;"></i></button>
-    </form>
+    <button type="submit" name="logout_btn" style="margin-left:195px;margin-top:7px;color:black;" class="btn ">
+      <i class="fa-solid fa-right-from-bracket" style="font-size:25px;color:black;"></i></button>
+  </form>
+    <div style="text-align:center; justify-content:center;">
+    <i class="bx bxs-user-circle mx-1 my-2" style="font-size:50px;"></i>
+    <h4 class="mx-1">'. $una .'</h4>
+    </div>
 
   </div>
 

@@ -13,9 +13,9 @@ require 'google-api\google-api\vendor\autoload.php';
 $client = new Google_Client();
 
 // Enter your Client ID
-$client->setClientId('402201038344-l08vsoiqjnuoje4amh2ppbrkkjgb6slc.apps.googleusercontent.com');
+$client->setClientId('659638545067-mqultavvs7j44lgi699bub9bqe6j24mr.apps.googleusercontent.com');
 // Enter your Client Secrect
-$client->setClientSecret('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');
+$client->setClientSecret('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');
 // Enter the Redirect URL
 $client->setRedirectUri('http://localhost/Devices/devices/login.php');
 
