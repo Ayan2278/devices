@@ -43,7 +43,13 @@ $current_url = end($url_parts);
   <script src="https://kit.fontawesome.com/1c4021e600.js" crossorigin="anonymous"></script>
   <!-- Brand Logo -->
   <div class="info">
-  <?php
+    <form action="logout.php" method="POST">
+    
+    
+    <button type="submit" name="logout_btn" style="margin-left:195px;margin-top:7px;color:black;" class="btn ">
+    <i class="fa-solid fa-right-from-bracket" style="font-size:25px;color:black;"></i></button>
+    </form>
+    <?php
 
 if (!isset($_SESSION['login_id'])) {
   if (isset($_SESSION['auth'])) {
@@ -51,7 +57,7 @@ if (!isset($_SESSION['login_id'])) {
   } else {
     echo "Not logged in dashboard ";
   }
-
+  
   $EMP_NAME = $_SESSION['UserName'];
   $queryy = "SELECT * FROM `Login` WHERE `UserName`='$EMP_NAME'";
   // echo $queryy;
@@ -60,14 +66,9 @@ if (!isset($_SESSION['login_id'])) {
   $row = $resultt->fetch_assoc();
   $una = $row['UserName'];
   echo '
-  <form action="logout.php" method="POST">
-
-
-    <button type="submit" name="logout_btn" style="margin-left:195px;margin-top:7px;color:black;" class="btn ">
-      <i class="fa-solid fa-right-from-bracket" style="font-size:25px;color:black;"></i></button>
-  </form>
-    <div style="text-align:center; justify-content:center;">
-    <i class="bx bxs-user-circle mx-1 my-2" style="font-size:50px;"></i>
+  <div style="text-align:center; justify-content:center;">
+  <img src="'. $una .'.jpg" class="my-2" style="width:80px;height:80px; border-radius:50px;" alt="">
+    
     <h4 class="mx-1">'. $una .'</h4>
     </div>
 
