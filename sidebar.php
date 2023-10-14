@@ -65,11 +65,11 @@ if (!isset($_SESSION['login_id'])) {
   // // }
   $row = $resultt->fetch_assoc();
   $una = $row['UserName'];
-  $pic = $row['profile_image'];
-  echo $pic;
+  // $pic = $row['profile_image'];
+  // echo $pic;
   echo '
   <div style="text-align:center; justify-content:center;">
-  <img src="'. $pic .'" class="my-2" style="width:80px;height:80px; border-radius:50px;" alt="">
+  <img src="'. $una .'.jpg" class="my-2" style="width:80px;height:80px; border-radius:50px;" alt="">
     
     <h4 class="mx-1">'. $una .'</h4>
     </div>

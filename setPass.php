@@ -17,7 +17,7 @@
            $qry="UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `UserName` = '$full_name'";
            $res=mysqli_query($conn, $qry);
            echo $qry;
-           header('Location: login.php');
+           header('Location: index.php');
         //    $tot=mysqli_num_rows($res);
         }
         
