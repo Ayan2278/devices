@@ -7,17 +7,17 @@
         $passd=$_POST['Passwordd'];
         $cpassd=$_POST['cPasswordd'];
         $poss=$_POST['Positionn'];
-        $email = $_SESSION['email'];
+        $full_name = $_SESSION['name'];
         // echo $email;
         if ($conn->connect_error) {
             die("Connection failed: "
                 . $conn->connect_error);
         }
         elseif($passd==$cpassd){
-           $qry="UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `UserName` = '$email'";
+           $qry="UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `UserName` = '$full_name'";
            $res=mysqli_query($conn, $qry);
            echo $qry;
-           header('Location: index.php');
+           header('Location: login.php');
         //    $tot=mysqli_num_rows($res);
         }
         

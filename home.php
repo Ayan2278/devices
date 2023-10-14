@@ -13,9 +13,9 @@ require 'google-api\google-api\vendor\autoload.php';
 $client = new Google_Client();
 
 // Enter your Client ID
-$client->setClientId('954283802476-ubj0ahmfdd8khhtpsp87d4sb7p5sr2tg.apps.googleusercontent.com');
+$client->setClientId('659638545067-mqultavvs7j44lgi699bub9bqe6j24mr.apps.googleusercontent.com');
 // Enter your Client Secrect
-$client->setClientSecret('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');
+$client->setClientSecret('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');
 // Enter the Redirect URL
 $client->setRedirectUri('http://localhost/Devices/devices/login.php');
 
@@ -47,7 +47,7 @@ if (isset($_GET['code'])):
         if (mysqli_num_rows($get_user) > 0) {
 
             $_SESSION['login_id'] = $id;
-            $_SESSION['email'] = $email;
+            $_SESSION['name'] = $full_name;
             header('Location: setPass.php');
             exit;
 
@@ -55,11 +55,11 @@ if (isset($_GET['code'])):
 
             // if user not exists we will insert the user
             $insert = mysqli_query($conn, "INSERT INTO `users`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
-            $insert2 = mysqli_query($conn, "INSERT INTO `login`(`UserName`,`profile_image`) VALUES('$email','$profile_pic')");
-
+            $insert2 = mysqli_query($conn, "INSERT INTO `login`(`UserName`,`profile_image`) VALUES('$full_name','$profile_pic')");
+            echo $insert2;
             if ($insert) {
                 $_SESSION['login_id'] = $id;
-                $_SESSION['email'] = $email;
+                $_SESSION['name'] = $full_name;
                 header('Location: setPass.php');
                 exit;
             } else {

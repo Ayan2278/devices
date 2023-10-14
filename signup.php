@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
     $username=$_POST['username'];
     $pass=$_POST['Password'];
     $cpass=$_POST['cPassword'];
-    $pos=$_POST['position'];
+    $pos=$_POST['Position'];
     if ($conn->connect_error) {
         die("Connection failed: "
             . $conn->connect_error);
