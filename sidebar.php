@@ -44,44 +44,46 @@ $current_url = end($url_parts);
   <!-- Brand Logo -->
   <div class="info">
     <form action="logout.php" method="POST">
-    
-    
-    <button type="submit" name="logout_btn" style="margin-left:195px;margin-top:7px;color:black;" class="btn ">
-    <i class="fa-solid fa-right-from-bracket" style="font-size:25px;color:black;"></i></button>
+
+
+      <button type="submit" name="logout_btn" style="margin-left:195px;margin-top:7px;color:black;" class="btn ">
+        <i class="fa-solid fa-right-from-bracket" style="font-size:25px;color:black;"></i></button>
     </form>
     <?php
 
-if (!isset($_SESSION['login_id'])) {
-  if (isset($_SESSION['auth'])) {
-    $_SESSION['auth_user'] = ['UserName'];
-  } else {
-    echo "Not logged in dashboard ";
-  }
-  
-  $EMP_NAME = $_SESSION['UserName'];
-  $queryy = "SELECT * FROM `Login` WHERE `UserName`='$EMP_NAME'";
-  // echo $queryy;
-  $resultt = mysqli_query($conn, $queryy);
-  // // }
-  $row = $resultt->fetch_assoc();
-  $una = $row['UserName'];
-  // $pic = $row['profile_image'];
-  // echo $pic;
-  echo '
-  <div style="text-align:center; justify-content:center;">
-  <img src="'. $una .'.jpg" class="my-2" style="width:80px;height:80px; border-radius:50px;" alt="">
-    
-    <h4 class="mx-1">'. $una .'</h4>
-    </div>
+    if (!isset($_SESSION['login_id'])) {
+      if (isset($_SESSION['auth'])) {
+        $_SESSION['auth_user'] = ['UserName'];
+      } else {
+        echo "Not logged in dashboard ";
+      }
 
-  </div>
+      $EMP_NAME = $_SESSION['UserName'];
+      $queryy = "SELECT * FROM `Login` WHERE `UserName`='$EMP_NAME'";
+      // echo $queryy;
+      $resultt = mysqli_query($conn, $queryy);
+      // // }
+      $row = $resultt->fetch_assoc();
+      $una = $row['UserName'];
+      // $pic = $row['profile_image'];
+      // echo $pic;
+      echo '
+      
+
 
   <center><img src="Ciencias logo.png" style="width:80px;" alt="Logo" class="  my-4" style="opacity: .8"></center>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
-
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+      <img src="' . $una . '.jpg" class="img-circle elevation-2" alt="User Image">
+    </div>
+    <div class="info">
+      <a href="#" class="d-block">' . $una . '</a>
+    </div>
+  </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
@@ -89,11 +91,12 @@ if (!isset($_SESSION['login_id'])) {
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview ">
-          <a href="index.php" class="nav-link'; 
-          $EMP_NAME = $_SESSION['UserName'];
-          if ($current_url == 'index.php') {
-            echo ' active style="background-color:#0471a4"';
-          } echo'">
+          <a href="index.php" class="nav-link';
+      $EMP_NAME = $_SESSION['UserName'];
+      if ($current_url == 'index.php') {
+        echo ' active style="background-color:#0471a4"';
+      }
+      echo '">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -101,18 +104,18 @@ if (!isset($_SESSION['login_id'])) {
             </p>
           </a>
         </li>';
-        
 
 
-          // for Live status page showing
-          if ($row['live_status'] == "true") {
-            echo '
+
+      // for Live status page showing
+      if ($row['live_status'] == "true") {
+        echo '
           <li class="nav-item has-treeview">
             <a href="live_status.php" class="nav-link';
-            if ($current_url == 'live_status.php') {
-              echo ' active ';
-            }
-            echo '">
+        if ($current_url == 'live_status.php') {
+          echo ' active ';
+        }
+        echo '">
               <i class="nav-icon fas fa-toggle-on"></i>
               <p>
                 Live Status
@@ -122,18 +125,18 @@ if (!isset($_SESSION['login_id'])) {
   
           </li>
           ';
-          }
+      }
 
 
-          // for Asset page showing
-          if ($row['asset'] == "true") {
-            echo '
+      // for Asset page showing
+      if ($row['asset'] == "true") {
+        echo '
           <li class="nav-item has-treeview">
           <a href="assets.php" class="nav-link';
-            if ($current_url == "assets.php") {
-              echo " active ";
-            }
-            echo '">
+        if ($current_url == "assets.php") {
+          echo " active ";
+        }
+        echo '">
             <i class="nav-icon fas fa-cubes"></i>
               <p>
                 Assets
@@ -142,17 +145,17 @@ if (!isset($_SESSION['login_id'])) {
             </a>
             
             </li>';
-          }
+      }
 
-          // for Timings page showing
-          if ($row['timming'] == "true") {
-            echo '
+      // for Timings page showing
+      if ($row['timming'] == "true") {
+        echo '
           <li class="nav-item has-treeview">
             <a href="device.php" class="nav-link';
-            if ($current_url == 'device.php' || $current_url == 'application.php' || $current_url == 'applogin.php' || $current_url == 'forgetP.php') {
-              echo ' active ';
-            }
-            echo '">
+        if ($current_url == 'device.php' || $current_url == 'application.php' || $current_url == 'applogin.php' || $current_url == 'forgetP.php') {
+          echo ' active ';
+        }
+        echo '">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Timings
@@ -164,50 +167,50 @@ if (!isset($_SESSION['login_id'])) {
               <li class="nav-item ">
                 <a href="device.php" class="nav-link">
                   <i class="nav-icon  fa-circle';
-            if ($current_url == 'device.php') {
-              echo ' fas text-purple';
-            } else {
-              echo " far";
-            }
-            echo '"></i>
+        if ($current_url == 'device.php') {
+          echo ' fas text-purple';
+        } else {
+          echo " far";
+        }
+        echo '"></i>
                   <p class="';
-            if ($current_url == 'device.php') {
-              echo ' text-purple';
-            }
-            echo '">Device timing</p>
+        if ($current_url == 'device.php') {
+          echo ' text-purple';
+        }
+        echo '">Device timing</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="applogin.php" class="nav-link">
                   <i class="nav-icon far fa-circle';
-            if ($current_url == 'applogin.php' || $current_url == 'forgetP.php') {
-              echo ' fas text-purple';
-            } else {
-              echo " far";
-            }
-            echo '"></i>
+        if ($current_url == 'applogin.php' || $current_url == 'forgetP.php') {
+          echo ' fas text-purple';
+        } else {
+          echo " far";
+        }
+        echo '"></i>
                   <p class="';
-            if ($current_url == 'applogin.php' || $current_url == 'forgetP.php') {
-              echo ' text-purple';
-            }
-            echo '">Application timing</p>
+        if ($current_url == 'applogin.php' || $current_url == 'forgetP.php') {
+          echo ' text-purple';
+        }
+        echo '">Application timing</p>
                 </a>
               </li>
               
             </ul>
           </li>';
-          }
+      }
 
-          // for Add page showing
-        
-          if ($row['add'] == "true") {
-            echo '
+      // for Add page showing
+    
+      if ($row['add'] == "true") {
+        echo '
               <li class="nav-item ">
             <a href="addAssets.php" class="nav-link';
-            if ($current_url == 'addAssets.php' || $current_url == 'addSchool.php' || $current_url == 'adduser.php') {
-              echo ' active ';
-            }
-            echo '">
+        if ($current_url == 'addAssets.php' || $current_url == 'addSchool.php' || $current_url == 'adduser.php') {
+          echo ' active ';
+        }
+        echo '">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Add
@@ -219,66 +222,66 @@ if (!isset($_SESSION['login_id'])) {
               <li class="nav-item">
                 <a href="addSchool.php" class="nav-link">
                   <i class="nav-icon far fa-circle';
-            if ($current_url == "addSchool.php") {
-              echo " fas text-purple";
-            } else {
-              echo " far";
-            }
-            echo '"></i>
+        if ($current_url == "addSchool.php") {
+          echo " fas text-purple";
+        } else {
+          echo " far";
+        }
+        echo '"></i>
                   <p class="';
-            if ($current_url == "addSchool.php") {
-              echo " text-purple";
-            }
-            echo '">Add School</p>
+        if ($current_url == "addSchool.php") {
+          echo " text-purple";
+        }
+        echo '">Add School</p>
                 </a>
               </li>
               <li class="nav-item ">
                 <a href="addAssets.php" class="nav-link">
                   <i class="nav-icon far fa-circle';
-            if ($current_url == "addAssets.php") {
-              echo " fas text-purple";
-            } else {
-              echo " far";
-            }
-            echo '"></i>
+        if ($current_url == "addAssets.php") {
+          echo " fas text-purple";
+        } else {
+          echo " far";
+        }
+        echo '"></i>
                   <p class="';
-            if ($current_url == "addAssets.php") {
-              echo " text-purple";
-            }
-            echo '">Add Assets</p>
+        if ($current_url == "addAssets.php") {
+          echo " text-purple";
+        }
+        echo '">Add Assets</p>
                 </a>
               </li>
               <li class="nav-item ">
                 <a href="adduser.php" class="nav-link">
                   <i class="nav-icon far fa-circle';
-            if ($current_url == "adduser.php") {
-              echo " fas text-purple";
-            } else {
-              echo " far";
-            }
-            echo '"></i>
+        if ($current_url == "adduser.php") {
+          echo " fas text-purple";
+        } else {
+          echo " far";
+        }
+        echo '"></i>
                   <p class="';
-            if ($current_url == "adduser.php") {
-              echo " text-purple";
-            }
-            echo '">Add User</p>
+        if ($current_url == "adduser.php") {
+          echo " text-purple";
+        }
+        echo '">Add User</p>
                 </a>
               </li>
             </ul>
           </li>
               ';
-          }
+      }
 
 
-          //for school page
-          if ($row['school'] == "true") {
-            echo '
+      //for school page
+      if ($row['school'] == "true") {
+        echo '
           <li class="nav-item has-treeview">
             <a href="school.php" class="nav-link';
-            if ($current_url == 'school.php') {
-              echo ' active ';
-            }
-            echo '">
+        if ($current_url == 'school.php') {
+          echo ' active ';
+        }
+        echo '">
               <i class=" nav-icon fas fa-calendar-alt"></i>
               <p>
                 Schools
@@ -286,17 +289,17 @@ if (!isset($_SESSION['login_id'])) {
             </a>
   
           </li>';
-          }
+      }
 
-          //for controls page
-          if ($row['UserName'] == "Nilesh") {
-            echo '
+      //for controls page
+      if ($row['UserName'] == "Nilesh") {
+        echo '
           <li class="nav-item has-treeview">
             <a href="Controls.php" class="nav-link';
-            if ($current_url == 'Controls.php') {
-              echo ' active ';
-            }
-            echo '">
+        if ($current_url == 'Controls.php') {
+          echo ' active ';
+        }
+        echo '">
             <i class="nav-icon fas fa-book"></i>
             <p>
               Controls
@@ -304,11 +307,11 @@ if (!isset($_SESSION['login_id'])) {
           </a>
           
         </li>';
-          }
-        }
+      }
+    }
 
-        ?>
-      </ul>
+    ?>
+    </ul>
 
 
 
