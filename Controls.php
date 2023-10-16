@@ -5,54 +5,51 @@ include 'authentication.php';
 include '_db_Connect.php';
 if (isset($_POST['Update']) && $_POST['Update'] == 'Update') {
   $id = $_POST['id'];
-  echo $id;
   // For Live status
-  if (isset($_POST['Live_S']) || isset($_POST['Asset']) || isset($_POST['Timing']) || isset($_POST['Add']) || isset($_POST['School']))
-  {
-    $qryT = "UPDATE `login` SET `live_status`='true' AND `asset`='true' AND `timming`='true' AND  `add`='true' AND `school`='true'   WHERE `id` = '$id'";
-    echo $qryT;
+  if (isset($_POST['Live_S'])) {
+    $qryT = "UPDATE `login` SET `live_status`='true' WHERE `id` = '$id'";
   }
   else{
-    $qryT = "UPDATE `login` SET `live_status`='false' AND `asset`='false' AND `timming`='false' AND  `add`='false' AND `school`='false' WHERE `id` = '$id'";
+    $qryT = "UPDATE `login` SET `live_status`='false' WHERE `id` = '$id'";
   }
   $res = mysqli_query($conn , $qryT);
-echo $qryT;
+
   // For asset
-  // if (isset($_POST['Asset'])) {
-  //   $qryT = "UPDATE `login` SET `asset`='true' WHERE `id` = '$id'";
-  // }
-  // else{
-  //   $qryT = "UPDATE `login` SET `asset`='false' WHERE `id` = '$id'";
-  // }
-  // $res = mysqli_query($conn , $qryT);
+  if (isset($_POST['Asset'])) {
+    $qryT = "UPDATE `login` SET `asset`='true' WHERE `id` = '$id'";
+  }
+  else{
+    $qryT = "UPDATE `login` SET `asset`='false' WHERE `id` = '$id'";
+  }
+  $res = mysqli_query($conn , $qryT);
 
-  // // For timing 
-  // if (isset($_POST['Timing'])) {
-  //   $qryT = "UPDATE `login` SET `timming`='true' WHERE `id` = '$id'";
-  // }
-  // else{
-  //   $qryT = "UPDATE `login` SET `timming`='false' WHERE `id` = '$id'";
-  // }
-  // $res = mysqli_query($conn , $qryT);
+  // For timing 
+  if (isset($_POST['Timing'])) {
+    $qryT = "UPDATE `login` SET `timming`='true' WHERE `id` = '$id'";
+  }
+  else{
+    $qryT = "UPDATE `login` SET `timming`='false' WHERE `id` = '$id'";
+  }
+  $res = mysqli_query($conn , $qryT);
 
-  // // For Add
-  // if (isset($_POST['Add'])) {
-  //   $qryT = "UPDATE `login` SET `add`='true' WHERE `id` = '$id'";
-  // }
-  // else{
-  //   $qryT = "UPDATE `login` SET `add`='false' WHERE `id` = '$id'";
-  // }
-  // $res = mysqli_query($conn , $qryT);
+  // For Add
+  if (isset($_POST['Add'])) {
+    $qryT = "UPDATE `login` SET `add`='true' WHERE `id` = '$id'";
+  }
+  else{
+    $qryT = "UPDATE `login` SET `add`='false' WHERE `id` = '$id'";
+  }
+  $res = mysqli_query($conn , $qryT);
 
 
-  // // For asset
-  // if (isset($_POST['School'])) {
-  //   $qryT = "UPDATE `login` SET `school`='true' WHERE `id` = '$id'";
-  // }
-  // else{
-  //   $qryT = "UPDATE `login` SET `school`='false' WHERE `id` = '$id'";
-  // }
-  // $res = mysqli_query($conn , $qryT);
+  // For asset
+  if (isset($_POST['School'])) {
+    $qryT = "UPDATE `login` SET `school`='true' WHERE `id` = '$id'";
+  }
+  else{
+    $qryT = "UPDATE `login` SET `school`='false' WHERE `id` = '$id'";
+  }
+  $res = mysqli_query($conn , $qryT);
 
 }
 
@@ -244,7 +241,7 @@ echo $qryT;
                   <th>Timing</th>
                   <th>Add</th>
                   <th>Schools</th>
-                 
+                  <th>Update</th>
                   </tr>
                   </thead>';
                   
@@ -332,7 +329,15 @@ echo $qryT;
                           </div>
                             </center>
                           </td>
-                        
+                          <td>
+                          <div class="form-group col-lg-1 w-100">
+                          
+                            <button type="submit" name="Update" value="Update" class="btn"
+                            style=" background:#6f42c1; color:white;">
+                            <input type="hidden" value="'. $row['id'] .'" name="id">
+                            Update</button>
+                          </div>
+                          </td>
                         </tr>
 
                       </tbody></form>';
@@ -341,16 +346,6 @@ echo $qryT;
                         }
                     }
                       ?>
-                      <form action="#" method="POST">
-                  <td>
-                        <div class="form-group col-lg-1 w-100">
-                          <button type="submit" name="Update" value="Update" class="btn"
-                          style=" background:#6f42c1; color:white;">
-                          <input type="hidden" value="<?php $row['id'] ?>"name="id">
-                          Update</button>
-                        </div>
-                        </td>
-                  </form>
                   </center>
                     </table>
                   </div>
