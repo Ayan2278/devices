@@ -3,55 +3,57 @@
 session_start();
 include 'authentication.php';
 include '_db_Connect.php';
-if (isset($_POST['Update']) && $_POST['Update'] == 'Update') {
-  $id = $_POST['id'];
-  // For Live status
-  if (isset($_POST['Live_S'])) {
-    $qryT = "UPDATE `login` SET `live_status`='true' WHERE `id` = '$id'";
-  }
-  else{
-    $qryT = "UPDATE `login` SET `live_status`='false' WHERE `id` = '$id'";
-  }
-  $res = mysqli_query($conn , $qryT);
+// include 'switch.php';
 
-  // For asset
-  if (isset($_POST['Asset'])) {
-    $qryT = "UPDATE `login` SET `asset`='true' WHERE `id` = '$id'";
-  }
-  else{
-    $qryT = "UPDATE `login` SET `asset`='false' WHERE `id` = '$id'";
-  }
-  $res = mysqli_query($conn , $qryT);
+// if (isset($_POST['Update']) && $_POST['Update'] == 'Update') {
+//   $id = $_POST['id'];
+//   // For Live status
+  // if (isset($_POST['Live_S'])) {
+  //   $qryT = "UPDATE `login` SET `live_status`='true' WHERE `id` = '$id'";
+  // }
+  // else{
+  //   $qryT = "UPDATE `login` SET `live_status`='false' WHERE `id` = '$id'";
+  // }
+  // $res = mysqli_query($conn , $qryT);
 
-  // For timing 
-  if (isset($_POST['Timing'])) {
-    $qryT = "UPDATE `login` SET `timming`='true' WHERE `id` = '$id'";
-  }
-  else{
-    $qryT = "UPDATE `login` SET `timming`='false' WHERE `id` = '$id'";
-  }
-  $res = mysqli_query($conn , $qryT);
+//   // For asset
+//   if (isset($_POST['Asset'])) {
+//     $qryT = "UPDATE `login` SET `asset`='true' WHERE `id` = '$id'";
+//   }
+//   else{
+//     $qryT = "UPDATE `login` SET `asset`='false' WHERE `id` = '$id'";
+//   }
+//   $res = mysqli_query($conn , $qryT);
 
-  // For Add
-  if (isset($_POST['Add'])) {
-    $qryT = "UPDATE `login` SET `add`='true' WHERE `id` = '$id'";
-  }
-  else{
-    $qryT = "UPDATE `login` SET `add`='false' WHERE `id` = '$id'";
-  }
-  $res = mysqli_query($conn , $qryT);
+//   // For timing 
+//   if (isset($_POST['Timing'])) {
+//     $qryT = "UPDATE `login` SET `timming`='true' WHERE `id` = '$id'";
+//   }
+//   else{
+//     $qryT = "UPDATE `login` SET `timming`='false' WHERE `id` = '$id'";
+//   }
+//   $res = mysqli_query($conn , $qryT);
+
+//   // For Add
+//   if (isset($_POST['Add'])) {
+//     $qryT = "UPDATE `login` SET `add`='true' WHERE `id` = '$id'";
+//   }
+//   else{
+//     $qryT = "UPDATE `login` SET `add`='false' WHERE `id` = '$id'";
+//   }
+//   $res = mysqli_query($conn , $qryT);
 
 
-  // For asset
-  if (isset($_POST['School'])) {
-    $qryT = "UPDATE `login` SET `school`='true' WHERE `id` = '$id'";
-  }
-  else{
-    $qryT = "UPDATE `login` SET `school`='false' WHERE `id` = '$id'";
-  }
-  $res = mysqli_query($conn , $qryT);
+//   // For asset
+//   if (isset($_POST['School'])) {
+//     $qryT = "UPDATE `login` SET `school`='true' WHERE `id` = '$id'";
+//   }
+//   else{
+//     $qryT = "UPDATE `login` SET `school`='false' WHERE `id` = '$id'";
+//   }
+//   $res = mysqli_query($conn , $qryT);
 
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -255,7 +257,7 @@ if (isset($_POST['Update']) && $_POST['Update'] == 'Update') {
                           // Fetching All recods
                           while ($row = $result->fetch_assoc()) {
                               echo '
-                              <form action="#" method="post">
+                              
                               <tbody>
                         <tr style="text-align:center;   ">
                           <td style="width:7%;">'.$count.' </td>
@@ -264,12 +266,17 @@ if (isset($_POST['Update']) && $_POST['Update'] == 'Update') {
                           <td class="ColWidth">
                             <center>
                                 <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"  name="Live_S" value='. $row['id'] .'
+                                <form action="switch.php" method="post" id="myform">
+                                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onchange="change()"  name="Live_S" value="'. $row['id'] .'"
                                   ';
                                   if ($row['live_status'] == 'true') {
                                     echo ' checked ';
                                   }
                                   echo '>
+                                  <input type="hidden" value="'. $row['id'] .'" name="idUN">';
+                                  echo $row['id'];
+                                  
+                                  echo ' </form>
                                   <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                 </div>
                             </center>
@@ -340,7 +347,7 @@ if (isset($_POST['Update']) && $_POST['Update'] == 'Update') {
                           </td>
                         </tr>
 
-                      </tbody></form>';
+                      </tbody>';
                       $count++;
                           }
                         }
@@ -376,6 +383,7 @@ if (isset($_POST['Update']) && $_POST['Update'] == 'Update') {
   <script>
     function change() {
       document.getElementById("myform").submit();
+      
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
