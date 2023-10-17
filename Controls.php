@@ -299,8 +299,8 @@ include '_db_Connect.php';
                                   <td class="ColWidth">
                                   <center>
                                   <div class="form-check form-switch">
-                                  <a href="switch.php?id='.$row['id'].'">
-                            <button type ="submit" name="btnS" class="btn btn-';
+                                
+                            <button type ="submit" name="btntm" class="btn btn-';
                             if ($row['timming'] == 'true') {
                               echo 'success" value="enable">Enable';
                             }
@@ -309,15 +309,15 @@ include '_db_Connect.php';
                             // danger">Disable';
                                 
                                 
-                                echo '</button> </a>
+                                echo '</button> 
                                   </div>
                                   </center>
                           </td>
                           <td class="ColWidth">
                           <center>
                           <div class="form-check form-switch">
-                          <a href="switch.php?id='.$row['id'].'">
-                            <button type ="submit" name="btnS" class="btn btn-';
+                         
+                            <button type ="submit" name="btnad" class="btn btn-';
                             if ($row['add'] == 'true') {
                               echo 'success" value="enable">Enable';
                             }
@@ -326,15 +326,15 @@ include '_db_Connect.php';
                             // danger">Disable';
                                 
                                 
-                                echo '</button> </a>
+                                echo '</button>
                         </div>
                             </center>
                           </td>
                           <td class="ColWidth">
                             <center>
                             <div class="form-check form-switch">
-                            <a href="switch.php?id='.$row['id'].'">
-                            <button type ="submit" name="btnS" class="btn btn-';
+                           
+                            <button type ="submit" name="btnsc" class="btn btn-';
                             if ($row['school'] == 'true') {
                               echo 'success" value="enable">Enable';
                             }
@@ -343,7 +343,7 @@ include '_db_Connect.php';
                             // danger">Disable';
                                 
                                 
-                                echo '</button> </a>
+                                echo '</button> 
                           </div>
                             </center>
                           </td>
