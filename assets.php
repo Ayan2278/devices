@@ -305,7 +305,7 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
       <section class="content">
         <div class="row">
           <div class="col-12">
-            <div class="card mx-2">
+            <div class="card mx-2" style="overflow:hidden; overflow-x:scroll;">
               <div class="card-header" style="border:0px;">
 
                 <h4 class="card-title">Data</h4>

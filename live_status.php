@@ -434,7 +434,7 @@ function status($pcNo)
             <section class="content">
                 <div class="row" style="margin:1px;">
                     <div class="col-12">
-                        <div class="card shadow">
+                        <div class="card shadow" style="overflow:hidden; overflow-x:scroll;">
                             <div class="card-header" style="border: 0px; ">
                                 <h4 class="card-title">Data</h4>
                             </div>
