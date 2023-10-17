@@ -274,8 +274,6 @@ include '_db_Connect.php';
                             else echo 'danger" value="disable">Disable';
                             
                             // danger">Disable';
-                                
-                                
                                 echo '</button> 
                                 </div>
                                 </center>
@@ -290,8 +288,6 @@ include '_db_Connect.php';
                             else echo 'danger" value="disable">Disable';
                             
                             // danger">Disable';
-                                
-                                
                                 echo '</button> 
                                   </div>
                                   </center>
