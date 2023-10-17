@@ -5,19 +5,21 @@ if (isset($_GET['id'])) {
     $qry = "SELECT * from `login` where `id`='$id';";
     $res = mysqli_query($conn,$qry);
     $row= $res->fetch_assoc();
-    if ($row['live_status'] == 'false') {
+    if ($row['live_status'] == 'false' && isset($_POST['btnLS']) && $_POST['btnLS'] == 'disable') {
         $qryT = "UPDATE `login` SET `live_status`='true' WHERE `id` = '$id'";
     }
-    else{
+    else if($row['live_status'] == 'true' && isset($_POST['btnLS']) && $_POST['btnLS'] == 'enable'){
         $qryT = "UPDATE `login` SET `live_status`='false' WHERE `id` = '$id'";
       }
-      $res = mysqli_query($conn , $qryT);
+    if (isset($qryT)) {
+        $res = mysqli_query($conn , $qryT);
+    }
 
 
-    if ($row['asset'] == 'false') {
+    if ($row['asset'] == 'false' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'disable') {
         $qryT = "UPDATE `login` SET `asset`='true' WHERE `id` = '$id'";
     }
-    else{
+    else if ($row['asset'] == 'true' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'enable') {
         $qryT = "UPDATE `login` SET `asset`='false' WHERE `id` = '$id'";
       }
       $res = mysqli_query($conn , $qryT);

@@ -257,6 +257,7 @@ include '_db_Connect.php';
                         while ($row = $result->fetch_assoc()) {
                           echo '
                           
+                          <form action="switch.php?id='.$row['id'].'" method="post">
                           <tbody>
                           <tr style="text-align:center;   ">
                           <td style="width:7%;">'.$count.' </td>
@@ -266,8 +267,7 @@ include '_db_Connect.php';
                             <center>
                             
                             <div class="form-check form-switch">
-                            <a href="switch.php?id='.$row['id'].'">
-                            <button type ="submit" name="btnS" class="btn btn-';
+                            <button type ="submit" name="btnLS" class="btn btn-';
                             if ($row['live_status'] == 'true') {
                               echo 'success" value="enable">Enable';
                             }
@@ -276,15 +276,14 @@ include '_db_Connect.php';
                             // danger">Disable';
                                 
                                 
-                                echo '</button> </a>
+                                echo '</button> 
                                 </div>
                                 </center>
                                 </td>
                                 <td class="ColWidth">
                                 <center>
                                 <div class="form-check form-switch">
-                                <a href="switch.php?id='.$row['id'].'">
-                            <button type ="submit" name="btnS" class="btn btn-';
+                            <button type ="submit" name="btnAsset" class="btn btn-';
                             if ($row['asset'] == 'true') {
                               echo 'success" value="enable">Enable';
                             }
@@ -293,7 +292,7 @@ include '_db_Connect.php';
                             // danger">Disable';
                                 
                                 
-                                echo '</button> </a>
+                                echo '</button> 
                                   </div>
                                   </center>
                                   </td>
@@ -351,7 +350,7 @@ include '_db_Connect.php';
                           
                         </tr>
 
-                      </tbody>';
+                      </tbody></form>';
                       $count++;
                           }
                         }
