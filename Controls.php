@@ -230,7 +230,7 @@ include '_db_Connect.php';
                   <div class="card-body">
                     
                     <table class="table table-bordered">
-                        <center>
+                      <center>
                         <?php
                   echo '
                   <thead>
@@ -243,7 +243,6 @@ include '_db_Connect.php';
                   <th>Timing</th>
                   <th>Add</th>
                   <th>Schools</th>
-                  <th>Update</th>
                   </tr>
                   </thead>';
                   
@@ -254,97 +253,102 @@ include '_db_Connect.php';
                   $total = mysqli_num_rows($result);
                   if ($result) {
                       if ($total != 0) {
-                          // Fetching All recods
-                          while ($row = $result->fetch_assoc()) {
-                              echo '
-                              
-                              <tbody>
-                        <tr style="text-align:center;   ">
+                        // Fetching All recods
+                        while ($row = $result->fetch_assoc()) {
+                          echo '
+                          
+                          <tbody>
+                          <tr style="text-align:center;   ">
                           <td style="width:7%;">'.$count.' </td>
                           <td>' . $row['UserName'] . '</td>
                           <td>' . $row['roll'] . '</td>
                           <td class="ColWidth">
                             <center>
-                                <div class="form-check form-switch">
-                                <form action="switch.php" method="post" id="myform">
-                                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onchange="change()"  name="Live_S" value="'. $row['id'] .'"
-                                  ';
-                                  if ($row['live_status'] == 'true') {
-                                    echo ' checked ';
-                                  }
-                                  echo '>
-                                  <input type="hidden" value="'. $row['id'] .'" name="idUN">';
-                                  echo $row['id'];
-                                  
-                                  echo ' </form>
-                                  <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                            
+                            <div class="form-check form-switch">
+                            <a href="switch.php?id='.$row['id'].'">
+                            <button type ="submit" name="btnS" class="btn btn-';
+                            if ($row['live_status'] == 'true') {
+                              echo 'success" value="enable">Enable';
+                            }
+                            else echo 'danger" value="disable">Disable';
+                            
+                            // danger">Disable';
+                                
+                                
+                                echo '</button> </a>
                                 </div>
+                                </center>
+                                </td>
+                                <td class="ColWidth">
+                                <center>
+                                <div class="form-check form-switch">
+                                <a href="switch.php?id='.$row['id'].'">
+                            <button type ="submit" name="btnS" class="btn btn-';
+                            if ($row['asset'] == 'true') {
+                              echo 'success" value="enable">Enable';
+                            }
+                            else echo 'danger" value="disable">Disable';
+                            
+                            // danger">Disable';
+                                
+                                
+                                echo '</button> </a>
+                                  </div>
+                                  </center>
+                                  </td>
+                                  <td class="ColWidth">
+                                  <center>
+                                  <div class="form-check form-switch">
+                                  <a href="switch.php?id='.$row['id'].'">
+                            <button type ="submit" name="btnS" class="btn btn-';
+                            if ($row['timming'] == 'true') {
+                              echo 'success" value="enable">Enable';
+                            }
+                            else echo 'danger" value="disable">Disable';
+                            
+                            // danger">Disable';
+                                
+                                
+                                echo '</button> </a>
+                                  </div>
+                                  </center>
+                          </td>
+                          <td class="ColWidth">
+                          <center>
+                          <div class="form-check form-switch">
+                          <a href="switch.php?id='.$row['id'].'">
+                            <button type ="submit" name="btnS" class="btn btn-';
+                            if ($row['add'] == 'true') {
+                              echo 'success" value="enable">Enable';
+                            }
+                            else echo 'danger" value="disable">Disable';
+                            
+                            // danger">Disable';
+                                
+                                
+                                echo '</button> </a>
+                        </div>
                             </center>
                           </td>
                           <td class="ColWidth">
                             <center>
                             <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="Asset" value='. $row['id'] .'
-                            ';
-                                  if ($row['asset'] == 'true') {
-                                    echo ' checked ';
-                                  }
-                                  echo '>
-                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                            <a href="switch.php?id='.$row['id'].'">
+                            <button type ="submit" name="btnS" class="btn btn-';
+                            if ($row['school'] == 'true') {
+                              echo 'success" value="enable">Enable';
+                            }
+                            else echo 'danger" value="disable">Disable';
+                            
+                            // danger">Disable';
+                                
+                                
+                                echo '</button> </a>
                           </div>
                             </center>
                           </td>
-                          <td class="ColWidth">
-                          <center>
-                          <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="Timing" value='. $row['id'] .'
-                          ';
-                                  if ($row['timming'] == 'true') {
-                                    echo ' checked ';
-                                  }
-                                  echo '>';
-                                  
-                                 
-                                  echo '
-                          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                        </div>
-                            </center>
-                          </td>
-                          <td class="ColWidth">
-                          <center>
-                          <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="Add" value='. $row['id'] .'
-                          ';
-                                  if ($row['add'] == 'true') {
-                                    echo ' checked ';
-                                  }
-                                  echo '>
-                          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                        </div>
-                            </center>
-                          </td>
-                          <td class="ColWidth">
-                            <center>
-                            <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="School" value='. $row['id'] .'
-                            ';
-                                  if ($row['school'] == 'true') {
-                                    echo ' checked ';
-                                  }
-                                  echo '>
-                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                          </div>
-                            </center>
-                          </td>
-                          <td>
-                          <div class="form-group col-lg-1 w-100">
                           
-                            <button type="submit" name="Update" value="Update" class="btn"
-                            style=" background:#6f42c1; color:white;">
-                            <input type="hidden" value="'. $row['id'] .'" name="id">
-                            Update</button>
-                          </div>
-                          </td>
                         </tr>
 
                       </tbody>';
@@ -382,7 +386,7 @@ include '_db_Connect.php';
   </div>
   <script>
     function change() {
-      document.getElementById("myform").submit();
+      document.getElementById("myform").click();
       
     }
   </script>
