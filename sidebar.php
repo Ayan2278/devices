@@ -93,7 +93,7 @@ $current_url = end($url_parts);
         <li class="nav-item has-treeview ">
           <a href="index.php" class="nav-link';
       $EMP_NAME = $_SESSION['UserName'];
-      if ($current_url == 'index.php') {
+      if ($current_url == 'index.php' || $current_url == 'index.php?UserName='.$una.'') {
         echo ' active style="background-color:#0471a4"';
       }
       echo '">
