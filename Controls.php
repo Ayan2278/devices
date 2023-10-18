@@ -1,65 +1,11 @@
 <?php
-
 session_start();
 include 'authentication.php';
-include '_db_Connect.php';
-// include 'switch.php';
-
-// if (isset($_POST['Update']) && $_POST['Update'] == 'Update') {
-//   $id = $_POST['id'];
-//   // For Live status
-  // if (isset($_POST['Live_S'])) {
-  //   $qryT = "UPDATE `login` SET `live_status`='true' WHERE `id` = '$id'";
-  // }
-  // else{
-  //   $qryT = "UPDATE `login` SET `live_status`='false' WHERE `id` = '$id'";
-  // }
-  // $res = mysqli_query($conn , $qryT);
-
-//   // For asset
-//   if (isset($_POST['Asset'])) {
-//     $qryT = "UPDATE `login` SET `asset`='true' WHERE `id` = '$id'";
-//   }
-//   else{
-//     $qryT = "UPDATE `login` SET `asset`='false' WHERE `id` = '$id'";
-//   }
-//   $res = mysqli_query($conn , $qryT);
-
-//   // For timing 
-//   if (isset($_POST['Timing'])) {
-//     $qryT = "UPDATE `login` SET `timming`='true' WHERE `id` = '$id'";
-//   }
-//   else{
-//     $qryT = "UPDATE `login` SET `timming`='false' WHERE `id` = '$id'";
-//   }
-//   $res = mysqli_query($conn , $qryT);
-
-//   // For Add
-//   if (isset($_POST['Add'])) {
-//     $qryT = "UPDATE `login` SET `add`='true' WHERE `id` = '$id'";
-//   }
-//   else{
-//     $qryT = "UPDATE `login` SET `add`='false' WHERE `id` = '$id'";
-//   }
-//   $res = mysqli_query($conn , $qryT);
-
-
-//   // For asset
-//   if (isset($_POST['School'])) {
-//     $qryT = "UPDATE `login` SET `school`='true' WHERE `id` = '$id'";
-//   }
-//   else{
-//     $qryT = "UPDATE `login` SET `school`='false' WHERE `id` = '$id'";
-//   }
-//   $res = mysqli_query($conn , $qryT);
-
-
 
 ?>
+
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <title>Admin Controls</title>
     <!-- Font Awesome -->
@@ -269,33 +215,34 @@ include '_db_Connect.php';
                                                                     <center>
                                                                       <div class="form-check form-switch">
                                                                         <button type ="submit" name="btnLS" class="btn btn-';
-                                                                            if ($row['live_status'] == 'true') {
-                                                                            echo 'success" value="enable">Enable';
-                                                                          }
-                                                                          else echo 'danger" value="disable">Disable';
+                                                                            if ($row['live_status'] == 'true') 
+                                                                            {
+                                                                              echo 'success" value="enable">Enable';
+                                                                            }
+                                                                            else echo 'danger" value="disable">Disable';
                                                                               echo '</button> 
                                                                       </div>
                                                                     </center>
                                                                   </td>
-
                                                                   <td class="ColWidth">
                                                                     <center>
                                                                       <div class="form-check form-switch">
                                                                         <button type ="submit" name="btnAsset" class="btn btn-';
-                                                                            if ($row['asset'] == 'true') {
-                                                                            echo 'success" value="enable">Enable';
+                                                                            if ($row['asset'] == 'true') 
+                                                                            {
+                                                                              echo 'success" value="enable">Enable';
                                                                             }
                                                                             else echo 'danger" value="disable">Disable';
                                                                                 echo '</button> 
                                                                       </div>
                                                                     </center>
                                                               </td>
-
                                                               <td class="ColWidth">
                                                                   <center>
                                                                     <div class="form-check form-switch">
                                                                       <button type ="submit" name="btntm" class="btn btn-';
-                                                                          if ($row['timming'] == 'true') {
+                                                                          if ($row['timming'] == 'true') 
+                                                                          {
                                                                             echo 'success" value="enable">Enable';
                                                                           }
                                                                           else echo 'danger" value="disable">Disable';
@@ -303,12 +250,12 @@ include '_db_Connect.php';
                                                                     </div>
                                                                   </center>
                                                             </td>
-
                                                             <td class="ColWidth">
                                                                   <center>
                                                                     <div class="form-check form-switch">
                                                                       <button type ="submit" name="btnad" class="btn btn-';
-                                                                          if ($row['add'] == 'true') {
+                                                                          if ($row['add'] == 'true')
+                                                                          {
                                                                             echo 'success" value="enable">Enable';
                                                                           }
                                                                           else echo 'danger" value="disable">Disable';
@@ -316,12 +263,12 @@ include '_db_Connect.php';
                                                                     </div>
                                                                   </center>
                                                             </td>
-
                                                             <td class="ColWidth">
                                                                     <center>
                                                                       <div class="form-check form-switch">
                                                                       <button type ="submit" name="btnsc" class="btn btn-';
-                                                                      if ($row['school'] == 'true') {
+                                                                      if ($row['school'] == 'true') 
+                                                                      {
                                                                         echo 'success" value="enable">Enable';
                                                                       }
                                                                       else echo 'danger" value="disable">Disable';
@@ -331,10 +278,10 @@ include '_db_Connect.php';
                                                             </td>
                                                           </tr>
                                                         </tbody></form>';
-                                              $count++;
+                                                      $count++;
+                                                    }
                                                   }
                                                 }
-                                            }
                                               ?>
                                             </center>
                                         </table>
