@@ -2,7 +2,7 @@
 session_start();
 //create connection
 include '_db_Connect.php';
-if (isset($_POST["submitSetP"])) {
+if (isset($_POST["submitSetP"])) { 
     $alert = false;
     $passd = $_POST['Passwordd'];
     $cpassd = $_POST['cPasswordd'];
