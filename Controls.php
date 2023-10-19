@@ -177,23 +177,22 @@ include 'authentication.php';
                                 <div class="card my-4" style="overflow:hidden; overflow-x:scroll;">
                                     <!-- /.card-header -->
                                     <div class="card-body">
-
                                         <table class="table table-bordered">
                                             <center>
-                                                <?php
-                                          echo '
-                                          <thead>
-                                              <tr style="text-align:center;">
-                                                  <th>Sr no.</th>
-                                                  <th>Name</th>
-                                                  <th>Position</th>
-                                                  <th>Live Status</th>
-                                                  <th>Assets</th>
-                                                  <th>Timing</th>
-                                                  <th>Add</th>
-                                                  <th>Schools</th>
-                                              </tr>
-                                          </thead>';
+                                            <?php
+                                            echo '
+                                            <thead>
+                                                <tr style="text-align:center;">
+                                                    <th>Sr no.</th>
+                                                    <th>Name</th>
+                                                    <th>Position</th>
+                                                    <th>Live Status</th>
+                                                    <th>Assets</th>
+                                                    <th>Timing</th>
+                                                    <th>Add</th>
+                                                    <th>Schools</th>
+                                                </tr>
+                                            </thead>';
 
                                           include '_db_Connect.php';
                                           $count = 1;
