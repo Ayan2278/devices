@@ -8,16 +8,21 @@
         $cpassd=$_POST['cPasswordd'];
         $poss=$_POST['Positionn'];
         $full_name = $_SESSION['name'];
+        $email = $_SESSION['email'];
         // echo $email;
         if ($conn->connect_error) {
             die("Connection failed: "
                 . $conn->connect_error);
         }
         elseif($passd==$cpassd){
-           $qry="UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `UserName` = '$full_name'";
+           $qrry = "SELECT * from `login` where `email` = '$email' OR `UserName` = '$full_name'";
+           $ress = $conn->query($qrry);
+           $roww= $ress->fetch_assoc();
+           if ($roww['email'] != '') {
+            $qry="UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `email` = '$email'";
            $res=mysqli_query($conn, $qry);
-           echo $qry;
-           header('Location: index.php');
+           }
+           header('Location: login.php');
         //    $tot=mysqli_num_rows($res);
         }
         
