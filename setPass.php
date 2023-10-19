@@ -1,32 +1,48 @@
 <?php
-    session_start();
-    
-    //create connection
-    include '_db_Connect.php';
-    if (isset($_POST["submitt"])) {
-        $passd=$_POST['Passwordd'];
-        $cpassd=$_POST['cPasswordd'];
-        $poss=$_POST['Positionn'];
-        $full_name = $_SESSION['name'];
-        $email = $_SESSION['email'];
-        // echo $email;
-        if ($conn->connect_error) {
-            die("Connection failed: "
-                . $conn->connect_error);
+session_start();
+//create connection
+include '_db_Connect.php';
+if (isset($_POST["submitSetP"])) {
+    $alert = false;
+    $passd = $_POST['Passwordd'];
+    $cpassd = $_POST['cPasswordd'];
+    $poss = $_POST['Positionn'];
+    $full_name = $_SESSION['name'];
+    $email = $_SESSION['email'];
+    // echo $email;
+    if ($conn->connect_error) {
+        die("Connection failed: "
+            . $conn->connect_error);
+    } elseif ($passd == $cpassd) {
+        $qrry = "SELECT * from `login` where `email` = '$email' OR `UserName` = '$full_name'";
+        $ress = $conn->query($qrry);
+        $roww = $ress->fetch_assoc();
+        if ($roww['email'] != '') {
+            $qry = "UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `email` = '$email'";
+            echo $qry;
+            $res = mysqli_query($conn, $qry);
+            if ($res)
+            {
+                $alert=true;
+            }
         }
-        elseif($passd==$cpassd){
-           $qrry = "SELECT * from `login` where `email` = '$email' OR `UserName` = '$full_name'";
-           $ress = $conn->query($qrry);
-           $roww= $ress->fetch_assoc();
-           if ($roww['email'] != '') {
-            $qry="UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `email` = '$email'";
-           $res=mysqli_query($conn, $qry);
-           }
-           header('Location: index.php');
+        if($alert) 
+        {
+            echo'
+            <div class="popup-container" id="popupp">
+            <div class="popupp">
+                <h2 style="color: #6f42c1;">Successfully Inserted</h2>
+                <p style="color: #6f42c1;">Your data is inserted successfully.</p>
+                <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+            </div>
+        </div>';
+        $alert=false;
+        // header('Location: login.php');
+        }
         //    $tot=mysqli_num_rows($res);
-        }
-        
     }
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -76,75 +92,97 @@
         .Black {
             color: black;
         }
+
         .popup-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
 
-      /* display: none; */
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
+            /* display: none; */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
 
-    .popupp {
-      width: 400px;
-      background: #fff;
-      border-radius: 0.4rem;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      padding: 0 30px 30px;
-      color: #333;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
+        .popupp {
+            width: 400px;
+            background: #fff;
+            border-radius: 0.4rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
 
-    .popupp img {
-      width: 100px;
-      margin-top: -50px;
-      border-radius;
-      0.4rem;s
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
+        .popupp img {
+            width: 100px;
+            margin-top: -50px;
+            border-radius;
+            0.4rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
 
-    .popupp h2 {
-      font-size: 38px;
-      font-weight: 500;
-      margin: 30px 0 10px;
-      color: red;
-    }
+        .popupp h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+            color: red;
+        }
 
-    .popupp button {
-      width: 100%;
-      margin-top: 50px;
-      padding: 10px 0;
-      background: #6f42c1;
-      color: #fff;
-      border: 0;
-      outline: none;
-      font-size: 18px;
-      border-radius: 0.4rem;
-      cursor: pointer;
-      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    }
+        .popupp button {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6f42c1;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
 
-    .close {
-      visibility: hidden;
-      display: none;
-    }
+        .close {
+            visibility: hidden;
+            display: none;
+        }
     </style>
 </head>
 
 <body class="sidebar-mini layout-fixed">
 
+    <?php
+    if (isset($_SESSION['status'])) {
+        // echo $_SESSION['status'];
+        ?>
+        <div class="alert  alert-primary alert-dismissible fade show" role="alert">
+            <strong></strong>
+            <?php echo $_SESSION['status']; ?>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php
+        unset($_SESSION['status']);
+    }
+    ?><div class="popup-container" id="popupp">
+    <div class="popupp">
+        <h2 style="color: #6f42c1;">Successfully Inserted</h2>
+        <p style="color: #6f42c1;">Your data is inserted successfully.</p>
+        <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+    </div>
+</div>
     <div class="home_content wrapper">
-
+        <?php 
+        
+        ?>
         <center>
             <div class="card col-lg-3 shadow my-5">
 
@@ -153,18 +191,6 @@
                     <h4 style="float:left; margin-top:10px;">Set Password and post </h4>
                 </div>
                 <form action="#" method="POST" width="40px">
-                <?php
-                // alert messages pop-up
-                if (isset($res) && $res) {
-                    echo '<div class="popup-container" id="popupp">
-                    <div class="popupp">
-                        <h2 style="color: #6f42c1;">Successfully Inserted</h2>
-                        <p style="color: #6f42c1;">Your data is inserted successfully.</p>
-                        <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
-                    </div>
-                </div>';
-                }
-                ?>
                     <div class="card-body ">
                         <div class="row">
 
@@ -203,7 +229,7 @@
 
 
                             <div class="form-group col-lg-12">
-                                <button class="btn " type="submit" name="submitt" value="submitt"
+                                <button class="btn " type="submit" name="submitSetP" value="submitt"
                                     style="background:#6f42c1;color:white; height:45px; width:98%;">Sign-Up</button>
                             </div>
                         </div>
@@ -221,6 +247,13 @@
     </div>
 
 
+    <script>
+        function closePopup() {
+            var popup = document.getElementById('popupp');
+            popup.style.display = 'none';
+
+        }
+    </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -266,12 +299,7 @@
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!-- page script -->
-    <script>
-    function closePopup() {
-      var popup = document.getElementById('popupp');
-      popup.style.display = 'none';
-    }
-  </script> 
+
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
