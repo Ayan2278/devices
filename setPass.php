@@ -2,8 +2,8 @@
 session_start();
 //create connection
 include '_db_Connect.php';
-if (isset($_POST["submitSetP"])) { 
-    $alert = false;
+$alert = false;
+if (isset($_POST["submit"])) { 
     $passd = $_POST['Passwordd'];
     $cpassd = $_POST['cPasswordd'];
     $poss = $_POST['Positionn'];
@@ -19,7 +19,6 @@ if (isset($_POST["submitSetP"])) {
         $roww = $ress->fetch_assoc();
         if ($roww['email'] != '') {
             $qry = "UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `email` = '$email'";
-            echo $qry;
             $res = mysqli_query($conn, $qry);
             if ($res)
             {
@@ -160,25 +159,6 @@ if (isset($_POST["submitSetP"])) {
 
 <body class="sidebar-mini layout-fixed">
 
-    <?php
-    if (isset($_SESSION['status'])) {
-        // echo $_SESSION['status'];
-        ?>
-        <div class="alert  alert-primary alert-dismissible fade show" role="alert">
-            <strong></strong>
-            <?php echo $_SESSION['status']; ?>.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php
-        unset($_SESSION['status']);
-    }
-    ?><div class="popup-container" id="popupp">
-    <div class="popupp">
-        <h2 style="color: #6f42c1;">Successfully Inserted</h2>
-        <p style="color: #6f42c1;">Your data is inserted successfully.</p>
-        <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
-    </div>
-</div>
     <div class="home_content wrapper">
         <?php 
         
@@ -221,15 +201,11 @@ if (isset($_POST["submitSetP"])) {
                                         <option value="CEO" class="Black">CEO</option>
                                         <option value="HOD" class="Black">HOD</option>
                                         <option value="Employee" class="Black">Employee</option>
-
-
                                     </select>
                                 </div>
                             </div>
-
-
                             <div class="form-group col-lg-12">
-                                <button class="btn " type="submit" name="submitSetP" value="submitt"
+                                <button class="btn " type="submit" name="submit" value="submit"
                                     style="background:#6f42c1;color:white; height:45px; width:98%;">Sign-Up</button>
                             </div>
                         </div>
