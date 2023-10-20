@@ -1,4 +1,3 @@
-
 <?php
 
 include 'home.php';
@@ -41,6 +40,9 @@ include 'home.php';
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
     <style>
         .focus:focus {
             border: 1px solid #6f42c1;
@@ -146,51 +148,52 @@ include 'home.php';
 
             <div class="card col-lg-3 shadow my-5">
                 <!-- <form action="signup.php" method="POST"> -->
-                    <center>
-                <div class="card-header " style="border:0px;">
-                    <!-- </form> -->
-                    <h4 style="margin-top:10px; float:left;">Login Here</h4>
-                    
-                    <a href="signup.php">
-                        <button type="submit" name="" value="submit" class="btn "style="margin-top:8px; margin-left:250px; background:#6f42c1; color:white; float:right;">Sign-Up</button>
-                    </a>
-                </div>
+                <center>
+                    <div class="card-header " style="border:0px;">
+                        <!-- </form> -->
+                        <h4 style="margin-top:10px; float:left;">Login Here</h4>
+
+                        <a href="signup.php">
+                            <button type="submit" name="" value="submit" class="btn "
+                                style="margin-top:8px; margin-left:250px; background:#6f42c1; color:white; float:right;">Sign-Up</button>
+                        </a>
+                    </div>
                 </center>
 
                 <div class="card-body ">
                     <form action="loginuser.php" method="POST" width="40px">
 
-                    <div class="row">
+                        <div class="row">
 
 
-                        <div class="form-group col-lg-12">
-                            <label for="device" style="float:left; margin-left:10px;">Username</label>
+                            <div class="form-group col-lg-12">
+                                <label for="device" style="float:left; margin-left:10px;">Username</label>
 
-                            <div class="col-lg-12">
-                                <input type="text" class="form-control focus" name="UserName"
-                                    placeholder="Enter Username" style="height:45px;" required>
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control focus" name="UserName"
+                                        placeholder="Enter Username" style="height:45px;" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label for="device" style="float:left; margin-left:10px;">Password</label>
+
+                                <div class="col-lg-12">
+                                    <input type="password" class="form-control focus" name="Password"
+                                        placeholder="Enter Password" style="height:45px;" required>
+                                </div>
+                            </div>
+                            <!-- <div class="_container btn"> -->
+
+
+                            <!-- </div> -->
+
+                            <div class="form-group col-lg-12">
+                                <button class="btn " type="submit" name="login_btn" value="login_btn"
+                                    style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
                             </div>
                         </div>
-                        <div class="form-group col-lg-12">
-                            <label for="device" style="float:left; margin-left:10px;">Password</label>
-
-                            <div class="col-lg-12">
-                                <input type="password" class="form-control focus" name="Password"
-                                    placeholder="Enter Password" style="height:45px;" required>
-                            </div>
-                        </div>
-                        <!-- <div class="_container btn"> -->
-
-
-                        <!-- </div> -->
-
-                        <div class="form-group col-lg-12">
-                            <button class="btn " type="submit" name="login_btn" value="login_btn"
-                                style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
-                </form>
                 <a type="button" class="login-with-google-btn col-lg-11 mx-3" style="margin-bottom:25px;"
                     href="<?php echo $client->createAuthUrl(); ?>">
                     Sign in with Google
@@ -198,7 +201,74 @@ include 'home.php';
             </div>
         </center>
     </div>
+
+
+   <center>
+   <div class="login-box align-items-center">
+        <div class="login-logo">
+            <a href="index2.html"><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <form action="index3.html" method="post">
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <div class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-primary">
+                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    </a>
+                </div>
+                <!-- /.social-auth-links -->
+
+                <p class="mb-1">
+                    <a href="forgot-password.html">I forgot my password</a>
+                </p>
+                <p class="mb-0">
+                    <a href="register.html" class="text-center">Register a new membership</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
     </div>
+   </center>
     <script>
         let btn = document.querySelector("#btn");
         let sidebar = document.querySelector(".sidebar");
