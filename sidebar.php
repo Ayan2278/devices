@@ -262,7 +262,7 @@ $current_url = end($url_parts);
                     echo '
                       <li class="nav-item has-treeview">
                       <a href="Controls.php" class="nav-link';
-                  if ($current_url == 'Controls.php') {
+                  if ($current_url == 'Controls.php' || $current_url == 'category.php') {
                       echo ' active ';
                       }
                     echo '">

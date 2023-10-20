@@ -213,68 +213,43 @@ include 'authentication.php';
                                                               <tr style="text-align:center;   ">
                                                                   
                                                                   <td>' . $row['roll'] . '</td>
-                                                                  <td class="ColWidth">
-                                                                    <center>
-                                                                      <div class="form-check form-switch">
-                                                                        <button type ="submit" name="btnLS" class="btn btn-';
-                                                                            if ($row['live_status'] == 'true') 
-                                                                            {
-                                                                              echo 'success" value="enable">Enable';
-                                                                            }
-                                                                            else echo 'danger" value="disable">Disable';
-                                                                              echo '</button> 
-                                                                      </div>
-                                                                    </center>
+                                                                  <td  class="ColWidth">
+                                                                  <div>                                                                  
+                                                                  <button type="submit" name="LSE" value="'. $row['roll'] .'" class="btn btn-success">Enable</button>
+                                                                  <button type="submit" name="LSD" value="'. $row['roll'] .'" class="btn btn-danger my-2">Disable</button>
+                                                                  </div>
+
                                                                   </td>
+
                                                                   <td class="ColWidth">
                                                                     <center>
-                                                                      <div class="form-check form-switch">
-                                                                        <button type ="submit" name="btnAsset" class="btn btn-';
-                                                                            if ($row['asset'] == 'true') 
-                                                                            {
-                                                                              echo 'success" value="enable">Enable';
-                                                                            }
-                                                                            else echo 'danger" value="disable">Disable';
-                                                                                echo '</button> 
-                                                                      </div>
+                                                                    <div>                                                                  
+                                                                    <button type="submit" name="AssetE" value="'. $row['roll'] .'" class="btn btn-success">Enable</button>
+                                                                  <button type="submit" name="AssetD" value="'. $row['roll'] .'" class="btn btn-danger my-2">Disable</button>
+                                                                    </div>
                                                                     </center>
                                                               </td>
                                                               <td class="ColWidth">
                                                                   <center>
-                                                                    <div class="form-check form-switch">
-                                                                      <button type ="submit" name="btntm" class="btn btn-';
-                                                                          if ($row['timming'] == 'true') 
-                                                                          {
-                                                                            echo 'success" value="enable">Enable';
-                                                                          }
-                                                                          else echo 'danger" value="disable">Disable';
-                                                                              echo '</button> 
-                                                                    </div>
+                                                                  <div>                                                                  
+                                                                  <button type="submit" name="TimingE" value="'. $row['roll'] .'" class="btn btn-success">Enable</button>
+                                                                  <button type="submit" name="TimingD" value="'. $row['roll'] .'" class="btn btn-danger my-2">Disable</button>
+                                                                  </div>
                                                                   </center>
                                                             </td>
                                                             <td class="ColWidth">
                                                                   <center>
-                                                                    <div class="form-check form-switch">
-                                                                      <button type ="submit" name="btnad" class="btn btn-';
-                                                                          if ($row['add'] == 'true')
-                                                                          {
-                                                                            echo 'success" value="enable">Enable';
-                                                                          }
-                                                                          else echo 'danger" value="disable">Disable';
-                                                                              echo '</button>
-                                                                    </div>
+                                                                  <div>                                                                  
+                                                                  <button type="submit" name="AddE" value="'. $row['roll'] .'" class="btn btn-success">Enable</button>
+                                                                  <button type="submit" name="AddD" value="'. $row['roll'] .'" class="btn btn-danger my-2">Disable</button>
+                                                                  </div>
                                                                   </center>
                                                             </td>
                                                             <td class="ColWidth">
                                                                     <center>
-                                                                      <div class="form-check form-switch">
-                                                                      <button type ="submit" name="btnsc" class="btn btn-';
-                                                                      if ($row['school'] == 'true') 
-                                                                      {
-                                                                        echo 'success" value="enable">Enable';
-                                                                      }
-                                                                      else echo 'danger" value="disable">Disable';
-                                                                          echo '</button> 
+                                                                    <div>                                                                  
+                                                                    <button type="submit" name="SchoolE" value="'. $row['roll'] .'" class="btn btn-success">Enable</button>
+                                                                  <button type="submit" name="SchoolD" value="'. $row['roll'] .'" class="btn btn-danger my-2">Disable</button>
                                                                     </div>
                                                                   </center>
                                                             </td>
