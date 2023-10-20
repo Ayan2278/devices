@@ -177,7 +177,7 @@ include 'authentication.php';
                                 <div class="card my-4" style="overflow:hidden; overflow-x:scroll;">
                                     <div class="card-header">
                                         <a href="category.php">
-                                            <button class="btn btn-primary">Catagory</button>
+                                            <button class="btn btn-primary">Category</button>
                                         </a>
                                     </div>
                                     <!-- /.card-header -->
