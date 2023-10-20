@@ -32,7 +32,7 @@ if (isset($_POST["submit"])) {
             <div class="popupp">
                 <h2 style="color: #6f42c1;">Successfully Inserted</h2>
                 <p style="color: #6f42c1;">Your data is inserted successfully.</p>
-                <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+                <a href="login.php"><button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button></a>
             </div>
         </div>';
         $alert=false;

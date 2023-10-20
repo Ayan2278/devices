@@ -176,8 +176,8 @@ include 'authentication.php';
                             <div class="col-md-12">
                                 <div class="card my-4" style="overflow:hidden; overflow-x:scroll;">
                                     <div class="card-header">
-                                        <a href="category.php">
-                                            <button class="btn btn-primary">Catagory</button>
+                                        <a href="Controls.php">
+                                            <button class="btn btn-primary">Selected</button>
                                         </a>
                                     </div>
                                     <!-- /.card-header -->
@@ -188,8 +188,7 @@ include 'authentication.php';
                                             echo '
                                             <thead>
                                                 <tr style="text-align:center;">
-                                                    <th>Sr no.</th>
-                                                    <th>Name</th>
+                                                    
                                                     <th>Position</th>
                                                     <th>Live Status</th>
                                                     <th>Assets</th>
@@ -201,7 +200,7 @@ include 'authentication.php';
 
                                           include '_db_Connect.php';
                                           $count = 1;
-                                          $query = "SELECT * FROM `login`;";
+                                          $query = "SELECT DISTINCT `roll` FROM `login`;";
                                           $result = mysqli_query($conn, $query);
                                           $total = mysqli_num_rows($result);
                                           if ($result) {
@@ -209,11 +208,10 @@ include 'authentication.php';
                                                 // Fetching All recods
                                                 while ($row = $result->fetch_assoc()) {
                                                   echo '
-                                                  <form action="switch.php?id='.$row['id'].'" method="post">
+                                                  <form action="CatSwitch.php" method="post">
                                                             <tbody>
                                                               <tr style="text-align:center;   ">
-                                                                  <td style="width:7%;">'.$count.' </td>
-                                                                  <td>' . $row['UserName'] . '</td>
+                                                                  
                                                                   <td>' . $row['roll'] . '</td>
                                                                   <td class="ColWidth">
                                                                     <center>
