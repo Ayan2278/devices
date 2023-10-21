@@ -4,9 +4,9 @@ session_start();
 include '_db_Connect.php';
 $alert = false;
 if (isset($_POST["submit"])) { 
-    $passd = $_POST['Passwordd'];
-    $cpassd = $_POST['cPasswordd'];
-    $poss = $_POST['Positionn'];
+    $passd = $_POST['Password'];
+    $cpassd = $_POST['cPassword'];
+    $poss = $_POST['Position'];
     $full_name = $_SESSION['name'];
     $email = $_SESSION['email'];
     // echo $email;
@@ -57,6 +57,22 @@ if (isset($_POST["submit"])) {
     <title>application</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
@@ -82,6 +98,7 @@ if (isset($_POST["submit"])) {
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    
     <style>
         .focus:focus {
             border: 1px solid #6f42c1;
@@ -157,79 +174,90 @@ if (isset($_POST["submit"])) {
     </style>
 </head>
 
-<body class="sidebar-mini layout-fixed">
+<body class="hold-transition register-page">
+    <div class="register-box">
 
-    <div class="home_content wrapper">
-        <?php 
-        
-        ?>
-        <center>
-            <div class="card col-lg-3 shadow my-5">
+        <div class="login-logo">
+            <a href=""><b>Sign-Up</b>here</a>
+        </div>
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Register a new membership</p>
 
-
-                <div class="card-header" style="border:0px;">
-                    <h4 style="float:left; margin-top:10px;">Set Password and post </h4>
-                </div>
-                <form action="#" method="POST" width="40px">
-                    <div class="card-body ">
-                        <div class="row">
-
-
-
-                            <div class="form-group col-lg-12">
-                                <label for="device" style="float:left; margin-left:10px;">Password</label>
-
-                                <div class="col-lg-12">
-                                    <input type="password" class="form-control focus" name="Passwordd"
-                                        placeholder="Enter Password" style="height:45px;" required>
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label for="device" style="float:left; margin-left:10px;">Confirm-Password</label>
-
-                                <div class="col-lg-12">
-                                    <input type="password" class="form-control focus" name="cPasswordd"
-                                        placeholder="Enter Confirm-Password" style="height:45px;" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-lg-12">
-                                <label for="device" style="float:left; margin-left:10px;">Position</label>
-                                <div class="col-lg-12">
-                                    <select class="form-control focus" name="Positionn" style="height:45px;" required>
-                                        <option value="" class="Black">Please Select</option>
-                                        <option value="CEO" class="Black">CEO</option>
-                                        <option value="HOD" class="Black">HOD</option>
-                                        <option value="Employee" class="Black">Employee</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <button class="btn " type="submit" name="submit" value="submit"
-                                    style="background:#6f42c1;color:white; height:45px; width:98%;">Sign-Up</button>
+                <form action="#" method="post">
+                    
+                    <div class="input-group mb-3">
+                        <input type="password" name="Password" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
-                </form>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" name="cPassword" placeholder="Retype password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <select class="form-control " name="Position" required>
+                            <option value="Please Select" class="Black">Please Select</option>
+                            <option value="CEO" class="Black">CEO</option>
+                            <option value="HOD" class="Black">HOD</option>
+                            <option value="Employee" class="Black">Employee</option>
+                           
+
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+              <label for="agreeTerms">
+               I agree to the <a href="#">terms</a>
+              </label>
             </div>
+          </div> -->
+                    <!-- /.col -->
+                    <div class="col-14">
+                        <button type="submit" style="background:#6f42c1;color:white; " name="submit"
+                            class="btn btn-block">Register</button>
+                    </div>
+                    <!-- /.col -->
+            </div>
+            </form>
 
-        </center>
 
+            <a href="login.php" class="text-center" style="margin-bottom:20px;">For Login Again?</a>
+        </div>
+        <!-- /.form-box -->
+    </div><!-- /.card -->
     </div>
+    <!-- /.register-box -->
 
-
-
-
-    </div>
-
-
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    
+    
     <script>
         function closePopup() {
             var popup = document.getElementById('popupp');
             popup.style.display = 'none';
-
+            
         }
-    </script>
+        </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -240,7 +268,7 @@ if (isset($_POST["submit"])) {
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
-    </script>
+        </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
@@ -268,7 +296,7 @@ if (isset($_POST["submit"])) {
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <script src="plugins/select2/js/select2.full.min.js"></script>
-
+    
     <!-- Bootstrap 4 -->
     <!-- DataTables -->
     <!-- AdminLTE App -->
@@ -276,10 +304,10 @@ if (isset($_POST["submit"])) {
     <!-- AdminLTE for demo purposes -->
     <!-- page script -->
 
-</body>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
+    
+</body>
 
 </html>
