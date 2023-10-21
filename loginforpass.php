@@ -1,20 +1,15 @@
 <?php
 session_start();
 include("_db_connect.php");
-include("authentication.php");
+// include("authentication.php");
 
 if(isset($_POST["submit"])){
 $em=$_POST['email'];
 $pass=$_POST['Password'];
 $compass=$_POST['CPassword'];
 
-<<<<<<< HEAD
-$query="SELECT * FROM `login` WHERE `email`='$em'";
-$result=mysqli_query($conn,$query);
-=======
 $query1="SELECT * FROM `login` WHERE `email`='$em'";
 $result=mysqli_query($conn,$query1);
->>>>>>> 484a393bfa26465fd12133e6932e4f1cc6039d22
 $tot=mysqli_num_rows($result);
 if($pass==$compass && $tot !=0){
     $query= "UPDATE `login` SET `Password`='$pass' WHERE `email` ='$em'";
@@ -30,11 +25,11 @@ if($pass==$compass && $tot !=0){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login For Application</title>
+    <title>Forgate Password</title>
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>application</title>
+    <title>Forgate Password</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -64,103 +59,99 @@ if($pass==$compass && $tot !=0){
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
-        .focus:focus {
-            border: 1px solid #6f42c1;
-            color: #6f42c1;
-        }
+    .focus:focus {
+        border: 1px solid #6f42c1;
+        color: #6f42c1;
+    }
 
-        .Black {
-            color: black;
-        }
+    .Black {
+        color: black;
+    }
 
-        .popup-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+    .popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
 
-            /* display: none; */
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
+        /* display: none; */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
 
-        .popupp {
-            width: 400px;
-            background: #fff;
-            border-radius: 0.4rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            padding: 0 30px 30px;
-            color: #333;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
+    .popupp {
+        width: 400px;
+        background: #fff;
+        border-radius: 0.4rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
 
-        .popupp img {
-            width: 100px;
-            margin-top: -50px;
-            border-radius;
-            0.4rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
+    .popupp img {
+        width: 100px;
+        margin-top: -50px;
+        border-radius;
+        0.4rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
 
-        .popupp h2 {
-            font-size: 38px;
-            font-weight: 500;
-            margin: 30px 0 10px;
-            color: red;
-        }
+    .popupp h2 {
+        font-size: 38px;
+        font-weight: 500;
+        margin: 30px 0 10px;
+        color: red;
+    }
 
-        .popupp button {
-            width: 100%;
-            margin-top: 50px;
-            padding: 10px 0;
-            background: #6f42c1;
-            color: #fff;
-            border: 0;
-            outline: none;
-            font-size: 18px;
-            border-radius: 0.4rem;
-            cursor: pointer;
-            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-        }
+    .popupp button {
+        width: 100%;
+        margin-top: 50px;
+        padding: 10px 0;
+        background: #6f42c1;
+        color: #fff;
+        border: 0;
+        outline: none;
+        font-size: 18px;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    }
 
-        .close {
-            visibility: hidden;
-            display: none;
-        }
+    .close {
+        visibility: hidden;
+        display: none;
+    }
     </style>
 </head>
 
+<body>
 
-<body class="sidebar-mini layout-fixed">
-    <?php
-    // include sidebar file
-    include 'sidebar.php'
-        ?>
     <?php
     if (isset($_SESSION['status'])) {
         // echo $_SESSION['status'];
         ?>
-        <div class="alert  alert-primary alert-dismissible fade show" role="alert">
-            <strong></strong>
-            <?php echo $_SESSION['status']; ?>.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php
+    <div class="alert  alert-primary alert-dismissible fade show" role="alert">
+        <strong></strong>
+        <?php echo $_SESSION['status']; ?>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
         unset($_SESSION['status']);
     }
     ?>
     <div class="home_content wrapper">
 
-      
-            <form action="login.php" method="POST" width="40px">
+        <center>
+            <form action="#" method="POST" width="40px">
                 <div class="card col-lg-3 shadow my-5">
                     <div class="card-header" style="border:0px;">
                         <h4 style="float:left; margin-top:10px;">Forget Password </h4>
@@ -196,9 +187,15 @@ if($pass==$compass && $tot !=0){
 
 
                             <div class="form-group col-lg-12">
-                            
+
                                 <button class="btn " type="submit" name="submit" value="submit"
-                                    style="background:#6f42c1;color:white; height:45px; width:96%; margin-top:20px;">Reset Password</button>
+                                    style="background:#6f42c1;color:white; height:45px; width:96%; margin-top:20px;">Reset
+                                    Password</button>
+                                <div>
+                                <label for="">
+                                <a href="login.php"> For login Again ?</a>
+                                </label>
+</div>
                             </div>
                         </div>
                     </div>
@@ -210,7 +207,7 @@ if($pass==$compass && $tot !=0){
     </div>
 
 
-<script>
+    <script>
     function closePopup() {
         var popup = document.getElementById('popupp');
         popup.style.display = 'none';
@@ -224,7 +221,7 @@ if($pass==$compass && $tot !=0){
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -261,7 +258,7 @@ if($pass==$compass && $tot !=0){
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+</script>
 
 </html>

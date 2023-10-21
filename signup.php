@@ -87,7 +87,34 @@ $result1 = mysqli_query($conn, $sql);
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="input-group mb-3">
+        <select class="form-control focus" name="Position" style="height:45px;"
+                                                required>
+                                                <option value="" class="Black">Please Select</option>
+                                                <?php
+                                            
+                                            // options for School Name
+                                            if ($result1) {
+                                                $total1 = mysqli_num_rows($result1);
+                                                if ($total1 != 0) {
+                                                    while ($row = $result1->fetch_assoc()) {
+
+                                                        echo "<option value='" . $row['roll'] . "'  class='Black'";
+                                                        echo isset($_POST["Position"]) && $_POST["Position"] == $row['roll'] ? "selected " : "";
+                                                        echo ">" . $row['roll'] . "</option>";
+                                                    }
+                                                }
+                                            }
+                                            ?>
+
+                                            </select>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-"></span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="agreeTerms" name="terms" value="agree">
@@ -95,9 +122,9 @@ $result1 = mysqli_query($conn, $sql);
                I agree to the <a href="#">terms</a>
               </label>
             </div>
-          </div>
+          </div> -->
           <!-- /.col -->
-          <div class="col-4">
+          <div class="col-14">
             <button type="submit" class="btn btn-primary btn-block">Register</button>
           </div>
           <!-- /.col -->
