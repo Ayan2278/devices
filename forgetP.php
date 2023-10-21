@@ -1,4 +1,6 @@
 <?php
+session_start();
+include 'authentication.php';
 include '_db_Connect.php';
 if (isset($_POST['submitP'])) {
     $UN = $_POST['username'];
