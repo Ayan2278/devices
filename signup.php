@@ -29,7 +29,7 @@ $result1 = mysqli_query($conn, $sql);
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Registration Page</title>
+  <title>Registration Page</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -54,7 +54,7 @@ $result1 = mysqli_query($conn, $sql);
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="../../index.html" method="post">
+      <form action="#" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Full name">
           <div class="input-group-append">
