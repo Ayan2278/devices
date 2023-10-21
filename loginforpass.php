@@ -6,15 +6,15 @@ include("authentication.php");
 if(isset($_POST["submit"])){
 $em=$_POST['email'];
 $pass=$_POST['Password'];
-$compass=$_POST['CPassword']
+$compass=$_POST['CPassword'];
 
-$query="SELECT * FROM `login` WHERE `email`='$em'";
-$result=mysqli_query($conn,$query);
-$tot=mysqli_num_rows($result)
+$query1="SELECT * FROM `login` WHERE `email`='$em'";
+$result=mysqli_query($conn,$query1);
+$tot=mysqli_num_rows($result);
 if($pass==$compass && $tot !=0){
     $query= "UPDATE `login` SET `Password`='$pass' WHERE `email` ='$em'";
     $result=mysqli_query($conn,$query);
-    
+
 }
 }
 
@@ -155,7 +155,7 @@ if($pass==$compass && $tot !=0){
     <div class="home_content wrapper">
 
       
-            <form action="#" method="POST" width="40px">
+            <form action="login.php" method="POST" width="40px">
                 <div class="card col-lg-3 shadow my-5">
                     <div class="card-header" style="border:0px;">
                         <h4 style="float:left; margin-top:10px;">Forget Password </h4>
