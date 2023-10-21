@@ -183,7 +183,7 @@ if(isset($_POST["submit"])){
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" name="submit" class="btn btn-primary btn-block">Change password</button>
+                            <button type="submit" name="submit"  style="background:#6f42c1;color:white; " class="btn btn-block">Change password</button>
                         </div>
                         <!-- /.col -->
                     </div>

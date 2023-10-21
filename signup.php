@@ -47,6 +47,9 @@ $result1 = mysqli_query($conn, $sql);
 <body class="hold-transition register-page">
 <div class="register-box">
 
+          <div class="login-logo">
+              <a href=""><b>Sign-Up</b>here</a>
+          </div>
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
@@ -79,7 +82,7 @@ $result1 = mysqli_query($conn, $sql);
         <div class="input-group mb-3">
         <select class="form-control " name="Position"
                                                 required>
-                                                <option value="" class="Black">Please Select</option>
+                                                <option value="Please Select"  class="Black">Please Select</option>
                                                 <?php
                                             
                                             // options for School Name
@@ -114,14 +117,14 @@ $result1 = mysqli_query($conn, $sql);
           </div> -->
           <!-- /.col -->
           <div class="col-14">
-            <button type="submit" name="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit"  style="background:#6f42c1;color:white; " name="submit" class="btn btn-block">Register</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
 
-      <a href="login.php" class="text-center">I already have a membership</a>
+      <a href="login.php" class="text-center" style="margin-bottom:20px;">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
