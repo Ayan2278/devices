@@ -6,11 +6,11 @@ include("authentication.php");
 if(isset($_POST["submit"])){
 $em=$_POST['email'];
 $pass=$_POST['Password'];
-$compass=$_POST['CPassword']
+$compass=$_POST['CPassword'];
 
 $query="SELECT * FROM `login` WHERE `email`='$em'";
 $result=mysqli_query($conn,$query);
-$tot=mysqli_num_rows($result)
+$tot=mysqli_num_rows($result);
 if($pass==$compass && $tot !=0){
     $query= "UPDATE `login` SET `Password`='$pass' WHERE `email` ='$em'";
     $result=mysqli_query($conn,$query);
