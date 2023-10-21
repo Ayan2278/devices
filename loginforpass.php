@@ -8,13 +8,10 @@ $em=$_POST['email'];
 $pass=$_POST['Password'];
 $compass=$_POST['CPassword'];
 
-<<<<<<< HEAD
 $query="SELECT * FROM `login` WHERE `email`='$em'";
 $result=mysqli_query($conn,$query);
-=======
 $query1="SELECT * FROM `login` WHERE `email`='$em'";
 $result=mysqli_query($conn,$query1);
->>>>>>> 484a393bfa26465fd12133e6932e4f1cc6039d22
 $tot=mysqli_num_rows($result);
 if($pass==$compass && $tot !=0){
     $query= "UPDATE `login` SET `Password`='$pass' WHERE `email` ='$em'";
