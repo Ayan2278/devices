@@ -6,50 +6,50 @@ if (isset($_GET['id'])) {
     $res = mysqli_query($conn,$qry);
     $row= $res->fetch_assoc();
     
-    if ($row['live_status'] == 'false' && isset($_POST['btnLS']) && $_POST['btnLS'] == 'disable' || $row['live_status'] == '') {
+    if ($row['live_status'] == 'false' && isset($_POST['btnLS']) && $_POST['btnLS'] == 'Default' || $row['live_status'] == '') {
         $qryT = "UPDATE `login` SET `live_status`='true' WHERE `id` = '$id'";
     }
-    else if($row['live_status'] == 'true' && isset($_POST['btnLS']) && $_POST['btnLS'] == 'enable'  || $row['live_status'] == ''){
+    else if($row['live_status'] == 'true' && isset($_POST['btnLS']) && $_POST['btnLS'] == 'checked'  || $row['live_status'] == ''){
         $qryT = "UPDATE `login` SET `live_status`='false' WHERE `id` = '$id'";
       }
     if (isset($qryT)) {
         $res = mysqli_query($conn , $qryT);
     }
 
-    if ($row['asset'] == 'false' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'disable' || $row['asset'] == '') {
+    if ($row['asset'] == 'false' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'Default' || $row['asset'] == '') {
         $qryT = "UPDATE `login` SET `asset`='true' WHERE `id` = '$id'";
     }
-    else if ($row['asset'] == 'true' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'enable' || $row['asset'] == '') {
+    else if ($row['asset'] == 'true' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'checked' || $row['asset'] == '') {
         $qryT = "UPDATE `login` SET `asset`='false' WHERE `id` = '$id'";
       }
       if (isset($qryT)) {
         $res = mysqli_query($conn , $qryT);
     }
       
-    if ($row['timming'] == 'false' && isset($_POST['btntm']) && $_POST['btntm'] == 'disable' || $row['timming'] == '') {
+    if ($row['timming'] == 'false' && isset($_POST['btntm']) && $_POST['btntm'] == 'Default' || $row['timming'] == '') {
         $qryT = "UPDATE `login` SET `timming`='true' WHERE `id` = '$id'";
     }
-    elseif ($row['timming'] == 'true' && isset($_POST['btntm']) && $_POST['btntm'] == 'enable' || $row['timming'] == '') {
+    elseif ($row['timming'] == 'true' && isset($_POST['btntm']) && $_POST['btntm'] == 'checked' || $row['timming'] == '') {
         $qryT = "UPDATE `login` SET `timming`='false' WHERE `id` = '$id'";
       }
       if (isset($qryT)) {
         $res = mysqli_query($conn , $qryT);
     }
 
-    if ($row['add'] == 'false' && isset($_POST['btnad']) && $_POST['btnad'] == 'disable' || $row['add'] == '') {
+    if ($row['add'] == 'false' && isset($_POST['btnad']) && $_POST['btnad'] == 'Default' || $row['add'] == '') {
         $qryT = "UPDATE `login` SET `add`='true' WHERE `id` = '$id'";
     }
-    else if ($row['add'] == 'true' && isset($_POST['btnad']) && $_POST['btnad'] == 'enable' || $row['add'] == '') {
+    else if ($row['add'] == 'true' && isset($_POST['btnad']) && $_POST['btnad'] == 'checked' || $row['add'] == '') {
         $qryT = "UPDATE `login` SET `add`='false' WHERE `id` = '$id'";
       }
       if (isset($qryT)) {
         $res = mysqli_query($conn , $qryT);
     }
 
-    if ($row['school'] == 'false' && isset($_POST['btnsc']) && $_POST['btnsc'] == 'disable' || $row['school'] == '') {
+    if ($row['school'] == 'false' && isset($_POST['btnsc']) && $_POST['btnsc'] == 'Default' || $row['school'] == '') {
         $qryT = "UPDATE `login` SET `school`='true' WHERE `id` = '$id'";
     }
-    else if ($row['school'] == 'true' && isset($_POST['btnsc']) && $_POST['btnsc'] == 'enable' || $row['school'] == '') {
+    else if ($row['school'] == 'true' && isset($_POST['btnsc']) && $_POST['btnsc'] == 'checked' || $row['school'] == '') {
         $qryT = "UPDATE `login` SET `school`='false' WHERE `id` = '$id'";
       }
       if (isset($qryT)) {

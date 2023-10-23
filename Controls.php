@@ -6,6 +6,7 @@ include 'authentication.php';
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Admin Controls</title>
     <!-- Font Awesome -->
@@ -18,7 +19,8 @@ include 'authentication.php';
 
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
@@ -184,7 +186,7 @@ include 'authentication.php';
                                     <div class="card-body">
                                         <table class="table table-bordered">
                                             <center>
-                                            <?php
+                                                <?php
                                             echo '
                                             <thead>
                                                 <tr style="text-align:center;">
@@ -217,67 +219,73 @@ include 'authentication.php';
                                                                   <td>' . $row['roll'] . '</td>
                                                                   <td class="ColWidth">
                                                                     <center>
-                                                                      <div class="form-check form-switch">
-                                                                        <button type ="submit" name="btnLS" class="btn btn-';
-                                                                            if ($row['live_status'] == 'true') 
-                                                                            {
-                                                                              echo 'success" value="enable">Enable';
-                                                                            }
-                                                                            else echo 'danger" value="disable">Disable';
-                                                                              echo '</button> 
-                                                                      </div>
+                                                                    <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" name="btnLS" role="switch" id="flexSwitchCheckDefault"';
+                                                                    if ($row['live_status'] == 'true') 
+                                                                    {
+                                                                        echo 'checked " value="checkbox">';
+                                                                    }
+                                                                    else echo 'Default " value="Default">';
+                                                                    echo '
+                                                                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                                    </div>
+                                                                      
                                                                     </center>
                                                                   </td>
                                                                   <td class="ColWidth">
                                                                     <center>
                                                                       <div class="form-check form-switch">
-                                                                        <button type ="submit" name="btnAsset" class="btn btn-';
+                                                                      <input class="form-check-input" type="checkbox" name="btnAsset" role="switch" id="flexSwitchCheckDefault"';
                                                                             if ($row['asset'] == 'true') 
                                                                             {
-                                                                              echo 'success" value="enable">Enable';
+                                                                              echo 'checked " value="checkbox">';
                                                                             }
-                                                                            else echo 'danger" value="disable">Disable';
-                                                                                echo '</button> 
-                                                                      </div>
+                                                                            else echo 'Default " value="Default">';
+                                                                            echo '
+                                                                            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                                            </div>
                                                                     </center>
                                                               </td>
                                                               <td class="ColWidth">
                                                                   <center>
                                                                     <div class="form-check form-switch">
-                                                                      <button type ="submit" name="btntm" class="btn btn-';
+                                                                    <input class="form-check-input" type="checkbox" name="btntm" role="switch" id="flexSwitchCheckDefault"';
                                                                           if ($row['timming'] == 'true') 
                                                                           {
-                                                                            echo 'success" value="enable">Enable';
+                                                                            echo 'checked " value="checkbox">';
                                                                           }
-                                                                          else echo 'danger" value="disable">Disable';
-                                                                              echo '</button> 
-                                                                    </div>
+                                                                          else echo 'Default " value="Default">';
+                                                                          echo '
+                                                                          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                                          </div>
                                                                   </center>
                                                             </td>
                                                             <td class="ColWidth">
                                                                   <center>
                                                                     <div class="form-check form-switch">
-                                                                      <button type ="submit" name="btnad" class="btn btn-';
+                                                                    <input class="form-check-input" type="checkbox" name="btnad" role="switch" id="flexSwitchCheckDefault"';
                                                                           if ($row['add'] == 'true')
                                                                           {
-                                                                            echo 'success" value="enable">Enable';
+                                                                            echo 'checked " value="checkbox">';
                                                                           }
-                                                                          else echo 'danger" value="disable">Disable';
-                                                                              echo '</button>
-                                                                    </div>
+                                                                          else echo 'Default " value="Default">';
+                                                                          echo '
+                                                                          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                                          </div>
                                                                   </center>
                                                             </td>
                                                             <td class="ColWidth">
                                                                     <center>
                                                                       <div class="form-check form-switch">
-                                                                      <button type ="submit" name="btnsc" class="btn btn-';
+                                                                      <input class="form-check-input" type="checkbox" name="btnsc" role="switch" id="flexSwitchCheckDefault"';
                                                                       if ($row['school'] == 'true') 
                                                                       {
-                                                                        echo 'success" value="enable">Enable';
+                                                                        echo 'checked " value="checkbox">';
                                                                       }
-                                                                      else echo 'danger" value="disable">Disable';
-                                                                          echo '</button> 
-                                                                    </div>
+                                                                      else echo 'Default " value="Default">';
+                                                                      echo '
+                                                                      <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                                                                      </div>
                                                                   </center>
                                                             </td>
                                                           </tr>
@@ -319,6 +327,9 @@ include 'authentication.php';
         document.getElementById("myform").click();
 
     }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
