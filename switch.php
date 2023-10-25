@@ -16,10 +16,10 @@ if (isset($_GET['id'])) {
         $res = mysqli_query($conn , $qryT);
     }
 
-    if ($row['asset'] == 'false' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'Default' || $row['asset'] == '') {
+    if ($row['asset'] == 'false' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'disable' || $row['asset'] == '') {
         $qryT = "UPDATE `login` SET `asset`='true' WHERE `id` = '$id'";
     }
-    else if ($row['asset'] == 'true' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'checked' || $row['asset'] == '') {
+    else if ($row['asset'] == 'true' && isset($_POST['btnAsset']) && $_POST['btnAsset'] == 'enable' || $row['asset'] == '') {
         $qryT = "UPDATE `login` SET `asset`='false' WHERE `id` = '$id'";
       }
       if (isset($qryT)) {
