@@ -2,7 +2,7 @@
 // this login page for dashboard and its password in database table
 // connection file
 // require 'config.php';
-include 'authentication.php'; 
+// include 'authentication.php'; 
   
 include '_db_Connect.php';
 session_start();

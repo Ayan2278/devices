@@ -185,7 +185,7 @@ include 'authentication.php';
                                                 <a class="nav-link active" aria-current="page"
                                                     href="Controls.php">Controls</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item" >
                                                 <a class="nav-link" aria-current="page" href="Category.php">Category</a>
                                             </li>
                                         </ul>
@@ -216,7 +216,7 @@ include 'authentication.php';
                                                         // Fetching All recods
                                                         while ($row = $result->fetch_assoc()) {
                                                             echo '
-                                                  <form action="switch.php?id=' . $row['id'] . '" method="post">
+                                                  <form action="switch.php?id=' . $row['id'] . '" method="post" id="myform">
                                                             <tbody>
                                                               <tr style="text-align:center;   ">
                                                                   <td style="width:7%;">' . $count . ' </td>
@@ -226,12 +226,12 @@ include 'authentication.php';
                                                                     <center>
                                                                       <div class="form-check form-switch">
                                                                   
-                                                                        <input class="form-check-input" type="checkbox" name="btnLS" role="switch" id="flexSwitchCheckDefault"';
+                                                                        <input class="form-check-input" type="checkbox" name="btnLS" role="switch" id="flexSwitchCheckDefault" onchange="change()" ';
                                                                         
                                                                         if ($row['live_status'] == 'true') {
-                                                                            echo 'checked " value="checked">';
+                                                                            echo 'checked value="btnLSE">';
                                                                         } else
-                                                                            echo 'Default" value="Default">';
+                                                                            echo 'Default value="btnLSD">';
                                                                             echo '
                                                                         <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                                                                       
@@ -323,7 +323,7 @@ include 'authentication.php';
     </div>
     <script>
     function change() {
-        document.getElementById("myform").click();
+        document.getElementById("myform").submit();
 
     }
     </script>
