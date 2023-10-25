@@ -184,7 +184,7 @@ include 'authentication.php';
                                                     href="Controls.php">Controls</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" aria-current="page" href="Category.php">Category</a>
+                                                <a class="nav-link active"  aria-current="page" href="Category.php">Category</a>
                                             </li>
                                         </ul>
                                         <table class="table table-bordered">
