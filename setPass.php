@@ -3,7 +3,7 @@ session_start();
 //create connection
 include '_db_Connect.php';
 $alert = false;
-if (isset($_POST["submit"])) { 
+if (isset($_POST["submit"])) {
     $passd = $_POST['Password'];
     $cpassd = $_POST['cPassword'];
     $poss = $_POST['Position'];
@@ -20,14 +20,12 @@ if (isset($_POST["submit"])) {
         if ($roww['email'] != '') {
             $qry = "UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `email` = '$email'";
             $res = mysqli_query($conn, $qry);
-            if ($res)
-            {
-                $alert=true;
+            if ($res) {
+                $alert = true;
             }
         }
-        if($alert) 
-        {
-            echo'
+        if ($alert) {
+            echo '
             <div class="popup-container" id="popupp">
             <div class="popupp">
                 <h2 style="color: #6f42c1;">Successfully Inserted</h2>
@@ -35,8 +33,8 @@ if (isset($_POST["submit"])) {
                 <a href="login.php"><button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button></a>
             </div>
         </div>';
-        $alert=false;
-        // header('Location: login.php');
+            $alert = false;
+            // header('Location: login.php');
         }
         //    $tot=mysqli_num_rows($res);
     }
@@ -59,7 +57,7 @@ if (isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -98,7 +96,7 @@ if (isset($_POST["submit"])) {
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    
+
     <style>
         .focus:focus {
             border: 1px solid #6f42c1;
@@ -185,7 +183,7 @@ if (isset($_POST["submit"])) {
                 <p class="login-box-msg">Register a new membership</p>
 
                 <form action="#" method="post">
-                    
+
                     <div class="input-group mb-3">
                         <input type="password" name="Password" class="form-control" placeholder="Password">
                         <div class="input-group-append">
@@ -208,7 +206,7 @@ if (isset($_POST["submit"])) {
                             <option value="CEO" class="Black">CEO</option>
                             <option value="HOD" class="Black">HOD</option>
                             <option value="Employee" class="Black">Employee</option>
-                           
+
 
                         </select>
                         <div class="input-group-append">
@@ -249,15 +247,15 @@ if (isset($_POST["submit"])) {
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
-    
-    
+
+
     <script>
         function closePopup() {
             var popup = document.getElementById('popupp');
             popup.style.display = 'none';
-            
+
         }
-        </script>
+    </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -268,7 +266,7 @@ if (isset($_POST["submit"])) {
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
-        </script>
+    </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
@@ -296,7 +294,7 @@ if (isset($_POST["submit"])) {
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <script src="plugins/select2/js/select2.full.min.js"></script>
-    
+
     <!-- Bootstrap 4 -->
     <!-- DataTables -->
     <!-- AdminLTE App -->
@@ -304,10 +302,10 @@ if (isset($_POST["submit"])) {
     <!-- AdminLTE for demo purposes -->
     <!-- page script -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
