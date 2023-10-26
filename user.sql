@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2023 at 12:09 PM
+-- Generation Time: Oct 26, 2023 at 09:58 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,9 +25,8 @@ SET time_zone = "+00:00";
 
 --
 -- Table structure for table `user`
- --
+--
 
-  
 CREATE TABLE `user` (
   `pc_sr` varchar(20) NOT NULL,
   `district` varchar(50) NOT NULL,
@@ -42,12 +41,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-
 INSERT INTO `user` (`pc_sr`, `district`, `block`, `village`, `username`, `Password`, `school_name`) VALUES
 ('PC04', 'Rajkot', 'L', 'Theltej', 'Ankur', 'ankur', 'Ankur School'),
 ('PC05', 'Patan', 'B', 'Satelite', 'ANS', 'ans', 'Anand niketan school'),
 ('PC08', 'Gandhinagar', 'B', 'Theltej', 'Asia', 'asia', 'Asia Pacific School'),
-('PC09', 'Ahmedabad', 'B', 'Satelite', 'ayan', 'ayan', 'Anand niketan school'),
+('PC09', 'Ahmedabad', 'B', 'Satelite', 'ayan', 'arna', 'Anand niketan school'),
 ('PC09', 'Vadodara', 'D', 'Gota', 'ayarna', 'ayarna', 'Anand niketan school'),
 ('PC03', 'Bhavnagar', 'C', 'Naroda', 'bghs', 'bghs', 'Bright School'),
 ('PC07', 'Bhavnagar', 'F', 'Naroda', 'Bright', 'bright', 'Bright school'),

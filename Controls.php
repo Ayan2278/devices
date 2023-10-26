@@ -94,36 +94,7 @@ include 'authentication.php';
             background: linear-gradient(to top, #0088f5, #01378a);
         }
 
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-
-            table,
-            table * {
-                visibility: visible;
-
-            }
-
-            th {
-                font-weight: 200;
-                font-size: 14px;
-            }
-
-            td {
-
-                border-color: inherit;
-                border-style: solid;
-                border-width: 0;
-                font-size: 10px;
-            }
-
-            table {
-                position: absolute;
-                left: 0;
-                top: -500px;
-            }
-        }
+        
     </style>
     <style>
         body {
