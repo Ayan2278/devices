@@ -8,7 +8,7 @@ include '_db_Connect.php';
 $alert = false;
 
 // connection file
-$conn = mysqli_connect("localhost", "root", "", "device");
+$conn = mysqli_connect("localhost", "root", "", "system");
 if (isset($_POST["submit"])) {
     $school = $_POST["school_name"];
     $sqlS0 = "SELECT * FROM `school` WHERE `school_name`='$school';";

@@ -6,7 +6,7 @@ $alert = false;
 session_start();
 
 //connection
-$conn = mysqli_connect("localhost", "root", "", "device");
+$conn = mysqli_connect("localhost", "root", "", "system");
 if(isset($_POST['submit']))
 {
 

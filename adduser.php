@@ -8,7 +8,7 @@ include '_db_Connect.php';
 $alert = false;
 
 //create connection
-$conn = mysqli_connect("localhost", "root", "", "device");
+$conn = mysqli_connect("localhost", "root", "", "system");
 
 if (isset($_POST["submit"])) {
     $pc = $_POST["pc_sr"];

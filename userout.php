@@ -2,7 +2,7 @@
 <?php
 
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "device");
+$conn = mysqli_connect("localhost", "root", "", "system");
 if(isset($_POST['logout_btn'])){
     
     unset($_SESSION['authh']);

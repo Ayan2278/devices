@@ -6,7 +6,7 @@
   
 include '_db_Connect.php';
 session_start();
- $conn = mysqli_connect("localhost", "root", "", "device");
+ $conn = mysqli_connect("localhost", "root", "", "system");
 if(isset($_POST['login_btn']))
 {
 

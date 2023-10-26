@@ -7,7 +7,7 @@ include '_db_Connect.php';
 $alert = false;
 
 //connetion
-$conn = mysqli_connect("localhost", "root", "", "device");
+$conn = mysqli_connect("localhost", "root", "", "system");
 if (isset($_POST["submit"])) {
     $school = $_POST["school_name"];
     $district = $_POST["district"];
