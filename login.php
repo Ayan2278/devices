@@ -32,7 +32,7 @@ include 'home.php';
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg"><b>Sign in to start your session</b></p>
 
         <form action="loginuser.php" method="post">
           <div class="input-group mb-3">
@@ -63,7 +63,7 @@ include 'home.php';
         </form>
 
         <div class="social-auth-links text-center mb-3">
-          <p>- OR -</p>
+          <p><b>- OR -</b></p>
 
           <a href="<?php echo $client->createAuthUrl(); ?>" class="btn btn-block btn-danger">
             <i class="fab fa-google-plus mr-2"></i> Sign in using Google+

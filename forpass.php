@@ -3,15 +3,15 @@ session_start();
 include("_db_Connect.php");
 
 if(isset($_POST["submit"])){
-    $em=$_POST['email'];
+    $us=$_POST['username'];
     $pass=$_POST['password'];
     $cpass=$_POST['cpassword'];
-     $query="SELECT * FROM `login` WHERE `email`='$em'";
+     $query="SELECT * FROM `login` WHERE `UserName`='$us'";
      $result=mysqli_query($conn,$query);
      $total=mysqli_num_rows($result);
 
      if($total!= 0 && $pass==$cpass ){
-        $query= "UPDATE `login` SET `Password`='$pass' WHERE  `email` ='$em'";
+        $query= "UPDATE `login` SET `Password`='$pass' WHERE  `UserName` ='$us'";
         $result=mysqli_query($conn,$query);
     }
 
@@ -153,15 +153,15 @@ if(isset($_POST["submit"])){
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">You are only one step a way from your new password, recover your password now.
-                </p>
+                <p class="login-box-msg"><b>You are only one step a way from your new password, recover your password now.
+                </b></p>
 
                 <form action="#" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" name="email" class="form-control" placeholder="Email">
+                        <input type="text" name="username" class="form-control" placeholder="Username">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>

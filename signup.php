@@ -8,6 +8,7 @@ $alert = false;
 $conn = mysqli_connect("localhost", "root", "", "system");
 if (isset($_POST["submit"])) {
     $username=$_POST['username'];
+    $email=$_POST['email'];
     $pass=$_POST['Password'];
     $cpass=$_POST['cPassword'];
     $pos=$_POST['Position'];
@@ -16,7 +17,7 @@ if (isset($_POST["submit"])) {
             . $conn->connect_error);
     }
     elseif($pass==$cpass){
-       $qry="INSERT INTO `login`(`UserName`, `Password`, `roll`) VALUES ('$username','$pass','$pos')";
+       $qry="INSERT INTO `login`(`UserName`,`email`, `Password`, `roll`) VALUES ('$username','$email','$pass','$pos')";
        $res=mysqli_query($conn, $qry);
     //    $tot=mysqli_num_rows($res);
     }
@@ -54,11 +55,20 @@ $result1 = mysqli_query($conn, $sql);
         </div>
         <div class="card">
             <div class="card-body register-card-body">
-                <p class="login-box-msg">Register a new membership</p>
+                <p class="login-box-msg"><b>Register a new membership</b></p>
 
                 <form action="#" method="post">
+                   
                     <div class="input-group mb-3">
-                        <input type="text" name="username" class="form-control" placeholder="Email">
+                        <input type="text" name="username" class="form-control" placeholder="Username">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" name="email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -83,7 +93,7 @@ $result1 = mysqli_query($conn, $sql);
                     </div>
                     <div class="input-group mb-3">
                         <select class="form-control " name="Position" required>
-                            <option value="Please Select" class="Black">Please Select</option>
+                            <option value="Please Select" class="brown">Select Position</option>
                             <?php
                                             // options for School Name
                                             if ($result1) {
