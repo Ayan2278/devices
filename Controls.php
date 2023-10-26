@@ -284,6 +284,10 @@ include 'authentication.php';
         </div>
     </div>
     </div>
+    <?php
+     //include footer file
+    include  'footer.php';
+    ?>
     <script>
         function change() {
             document.getElementById("myform").click();
