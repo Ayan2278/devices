@@ -17,7 +17,7 @@ if(isset($_POST['login_btn']))
     // echo $log_query;
     $log_query->execute();
     $result=$log_query->get_result();
-
+ 
     if($result->num_rows>0)
     {
         foreach($result as $row){

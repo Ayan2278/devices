@@ -12,7 +12,7 @@ $query1="SELECT * FROM `login` WHERE `email`='$em'";
 $result=mysqli_query($conn,$query1);
 $tot=mysqli_num_rows($result);
 if($pass==$compass && $tot !=0){
-    $query= "UPDATE `login` SET `Password`='$pass' WHERE `email` ='$em'";
+    $query= "UPDATE `login` SET `Password`='$pass' WHERE `email` ='$em' or `UserName` = '$em'";
     $result=mysqli_query($conn,$query);
 
 }
