@@ -18,9 +18,7 @@ if(isset($_POST['login_btn']))
     // echo $log_query;
     $log_query->execute();
     $result=$log_query->get_result();
-    if (!$result) {
-        $alert=false;
-    }
+
     if($result->num_rows>0)
     {
         foreach($result as $row){
@@ -38,7 +36,7 @@ if(isset($_POST['login_btn']))
             header('location:index.php?UserName='.$row['UserName']);
     }
     else{
-        $_SESSION['Status']="Invalid";
+        $_SESSION['Status']="alert";
         header("Location:login.php");
         echo'
             <script>
