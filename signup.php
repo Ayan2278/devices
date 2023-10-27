@@ -141,7 +141,7 @@ if (isset($_POST["submit"])) {
         </div>
     </div>';
     }
-    elseif (isset($_POST["submit"])) {
+    elseif (isset($_POST["submit"]) && $_POST['Password'] != $_POST['cPassword']) {
         echo '<div class="popup-container" id="popupp">
         <div class="popupp">
             <h2 style="color: #D80032;">INVALID</h2>
@@ -150,7 +150,7 @@ if (isset($_POST["submit"])) {
         </div>
     </div>';
     }
-    elseif ($alert && $res) {
+    elseif ($alert) {
         echo '
     <div class="popup-container" id="popupp">
         <div class="popupp">
