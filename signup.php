@@ -20,18 +20,10 @@ if (isset($_POST["submit"])) {
        $qry="INSERT INTO `login`(`UserName`,`email`, `Password`, `roll`) VALUES ('$username','$email','$pass','$pos')";
        $res=mysqli_query($conn, $qry);
     //    $tot=mysqli_num_rows($res);
-    if($alert) {
-        echo '
-        <div class="popup-container" id="popupp">
-        <div class="popupp">
-            <h2 style="color: #6f42c1;">Successfully Register</h2>
-            <p style="color: #6f42c1;">Your data is Register successfully. Now you Login</p>
-            <a href="login.php"><button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button></a>
-        </div>
-    </div>';
-        $alert = false;
-       
-    }
+        if ($res) {
+            $alert=true;
+        }
+        
     }
 }
 $sql = "SELECT  DISTINCT `roll` FROM  `login` ORDER BY `login`.`roll` ASC";
@@ -133,6 +125,19 @@ $result1 = mysqli_query($conn, $sql);
 </head>
 
 <body class="hold-transition register-page">
+<?php 
+  if ($alert) {
+    echo '
+    <div class="popup-container" id="popupp">
+        <div class="popupp">
+            <h2 style="color: #6f42c1;">Successfully Inserted</h2>
+            <p style="color: #6f42c1;">Your data is inserted successfully.</p>
+            <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+        </div>
+    </div>';
+    
+  }
+  ?>
     <div class="register-box">
 
         <div class="login-logo">
@@ -183,8 +188,6 @@ $result1 = mysqli_query($conn, $sql);
                             <option value="CEO" class="brown">CEO</option>
                             <option value="HOD" class="brown">HOD</option>
                             <option value="Employee" class="brown">Employee</option>
-                            
-
                         </select>
                         <div class="input-group-append">
                             <div class="input-group-text">
