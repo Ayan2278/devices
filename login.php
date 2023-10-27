@@ -26,7 +26,7 @@ include 'home.php';
 
 <body class="hold-transition login-page">
   <?php 
-  if (isset($_SESSION['Status']) && $_SESSION['Status'] == "Access denied") {
+  if (isset($_SESSION['Status']) && $_SESSION['Status'] == "Invalid") {
     echo '<div class="popup-container" id="popupp">
         <div class="popupp">
             <h2 style="color: #6f42c1;">Successfully Inserted</h2>
