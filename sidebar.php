@@ -51,13 +51,13 @@ $current_url = end($url_parts);
       // $pic = $row['profile_image'];
       // echo $pic;
       echo '
-  <center><img src="Ciencias logo.png" style="width:80px;" alt="Logo" class="  my-4" style="opacity: .8"></center>
+  <center><img src="PNG/Ciencias Logo.png" style="width:80px;" alt="Logo" class="  my-4" style="opacity: .8"></center>
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
-      <img src="default.jpg" class="img-circle elevation-2" alt="User Image">
+      <img src="PNG/default.jpg" class="img-circle elevation-2" alt="User Image">
     </div>
     <div class="info">
       <a href="#" class="d-block">' . $una . '</a>
