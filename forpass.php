@@ -2,31 +2,22 @@
 session_start();
 include("_db_Connect.php");
 $alert = false;
-if(isset($_POST["submit"])){
-    $us=$_POST['username'];
-    $pass=$_POST['password'];
-    $cpass=$_POST['cpassword'];
+if (isset($_POST["submit"])) {
+    $us = $_POST['username'];
+    $pass = $_POST['password'];
+    $cpass = $_POST['cpassword'];
 
-     $query="SELECT * FROM `login` WHERE `UserName`='$us'";
-     $result=mysqli_query($conn,$query);
-     $total=mysqli_num_rows($result);
+    $query = "SELECT * FROM `login` WHERE `UserName`='$us'";
+    $result = mysqli_query($conn, $query);
+    $total = mysqli_num_rows($result);
 
-     if($total!= 0 && $pass==$cpass ){
-        $query= "UPDATE `login` SET `Password`='$pass' WHERE  `UserName` ='$us'";
-        $result=mysqli_query($conn,$query);
-    
-    if ($alert) {
-        echo '
-        <div class="popup-container" id="popupp">
-        <div class="popupp">
-            <h2 style="color: #6f42c1;">Successfully Recover </h2>
-            <p style="color: #6f42c1;">Your Password is Updated successfully.</p>
-            <a href="login.php"><button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button></a>
-        </div>
-    </div>';
-        $alert = false;
+    if ($total != 0 && $pass == $cpass) {
+        $query = "UPDATE `login` SET `Password`='$pass' WHERE  `UserName` ='$us'";
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            $alert = true;
+        }
     }
-     }
 }
 ?>
 <!DOCTYPE html>
@@ -82,82 +73,93 @@ if(isset($_POST["submit"])){
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
-    .focus:focus {
-        border: 1px solid #6f42c1;
-        color: #6f42c1;
-    }
+        .focus:focus {
+            border: 1px solid #6f42c1;
+            color: #6f42c1;
+        }
 
-    .Black {
-        color: black;
-    }
+        .Black {
+            color: black;
+        }
 
-    .popup-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
 
-        /* display: none; */
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
+            /* display: none; */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
 
-    .popupp {
-        width: 400px;
-        background: #fff;
-        border-radius: 0.4rem;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        padding: 0 30px 30px;
-        color: #333;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
+        .popupp {
+            width: 400px;
+            background: #fff;
+            border-radius: 0.4rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
 
-    .popupp img {
-        width: 100px;
-        margin-top: -50px;
-        border-radius;
-        0.4rem;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
+        .popupp img {
+            width: 100px;
+            margin-top: -50px;
+            border-radius;
+            0.4rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
 
-    .popupp h2 {
-        font-size: 38px;
-        font-weight: 500;
-        margin: 30px 0 10px;
-        color: red;
-    }
+        .popupp h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+            color: red;
+        }
 
-    .popupp button {
-        width: 100%;
-        margin-top: 50px;
-        padding: 10px 0;
-        background: #6f42c1;
-        color: #fff;
-        border: 0;
-        outline: none;
-        font-size: 18px;
-        border-radius: 0.4rem;
-        cursor: pointer;
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    }
+        .popupp button {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6f42c1;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
 
-    .close {
-        visibility: hidden;
-        display: none;
-    }
+        .close {
+            visibility: hidden;
+            display: none;
+        }
     </style>
 </head>
 
 
 <body class="hold-transition login-page">
+    <?php
+    if ($alert) {
+        echo '<div class="popup-container" id="popupp">
+        <div class="popupp">
+            <h2 style="color: #6f42c1;">Successfully Inserted</h2>
+            <p style="color: #6f42c1;">Your data is inserted successfully.</p>
+            <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+        </div>
+    </div>';
+    }
+    ?>
     <div class="login-box">
         <div class="login-logo">
             <a href=""><b>Recover</b>Password</a>
@@ -165,8 +167,9 @@ if(isset($_POST["submit"])){
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg"><b>You are only one step a way from your new password, recover your password now.
-                </b></p>
+                <p class="login-box-msg"><b>You are only one step a way from your new password, recover your password
+                        now.
+                    </b></p>
 
                 <form action="#" method="post">
                     <div class="input-group mb-3">
@@ -178,7 +181,7 @@ if(isset($_POST["submit"])){
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password"  name="password"  class="form-control" placeholder="Password" required>
+                        <input type="password" name="password" class="form-control" placeholder="Password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -186,7 +189,8 @@ if(isset($_POST["submit"])){
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="cpassword" name="cpassword" class="form-control" placeholder="Confirm Password" required>
+                        <input type="cpassword" name="cpassword" class="form-control" placeholder="Confirm Password"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -195,7 +199,8 @@ if(isset($_POST["submit"])){
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" name="submit"  style="background:#6f42c1;color:white; " class="btn btn-block">Change password</button>
+                            <button type="submit" name="submit" style="background:#6f42c1;color:white; "
+                                class="btn btn-block">Change password</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -212,10 +217,10 @@ if(isset($_POST["submit"])){
 
 
     <script>
-    function closePopup() {
-        var popup = document.getElementById('popupp');
-        popup.style.display = 'none';
-    }
+        function closePopup() {
+            var popup = document.getElementById('popupp');
+            popup.style.display = 'none';
+        }
     </script>
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -225,7 +230,7 @@ if(isset($_POST["submit"])){
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <script>
-    $.widget.bridge('uibutton', $.ui.button)
+        $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -262,7 +267,7 @@ if(isset($_POST["submit"])){
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script>
+        </script>
 
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
