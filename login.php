@@ -44,7 +44,7 @@ include 'home.php';
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="Password" placeholder="Password" required>
+            <input type="password" class="form-control" name="Password" placeholder="Password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

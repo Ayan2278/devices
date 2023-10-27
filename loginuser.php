@@ -13,7 +13,7 @@ if(isset($_POST['login_btn']))
     $EMP_NAME=$_POST['UserName'];
     $PASSWORD=$_POST['Password'];
                 
-    $log_query=$conn->prepare("SELECT * FROM `login` WHERE `UserName`='$EMP_NAME' OR `email`='$EMP_NAME' AND `Password`='$PASSWORD'");
+    $log_query=$conn->prepare("SELECT * FROM `login` WHERE `UserName`='$EMP_NAME' AND `Password`='$PASSWORD'");
     // echo $log_query;
     $log_query->execute();
     $result=$log_query->get_result();
