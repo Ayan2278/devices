@@ -1,15 +1,11 @@
 <?php
-// include authentication file 
 session_start();
+// include authentication file 
  include 'authentication.php';
-
 // connetion file
 include '_db_Connect.php';
 
 // query for Select All districts
-// $EMP_NAME=$_SESSION['username'];
-// $sql = "SELECT DISTINCT `district` FROM `asset` WHERE `username`= '$EMP_NAME'";
-
 $sql = "SELECT DISTINCT `district` FROM `asset` ";
 $result = mysqli_query($conn, $sql);
 
@@ -51,30 +47,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
     $total8 = mysqli_num_rows($result8);
   }
 
-
-
-
-
-// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC'])) {
-//     $village = $_POST['Village'];
-//     $Dis = $_POST['DIST'];
-//     $Bl = $_POST['Block'];
-//     $school = $_POST['school'];
-//     $PC = $_POST['PC'];
-//     $sql44 = "SELECT * from `asset` WHERE `village`='$village' AND `district`='$Dis' AND `block`='$Bl' ";
-//     $result44 = mysqli_query($conn, $sql44);
-//     $row = $result44->fetch_assoc();
-//     $tot44 = mysqli_num_rows($result44);
-//     if ($tot44 != 0 && $_POST['school'] != 'All') {
-//         $schl = $row['school_name'];
-//         $sql5 = "SELECT * FROM `asset` WHERE `school_name`='$schl';";
-//         $result5 = mysqli_query($conn, $sql5);
-//         $total5 = mysqli_num_rows($result5);
-//     }
-// }
-
-
-// Use function for Live Status of   Devices
+// Use function for Live Status of Devices
 function status($pcNo)
 {
     $file = "JSON PC/" . $pcNo . ".json";
@@ -91,7 +64,6 @@ function status($pcNo)
         }
     }
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -260,16 +232,10 @@ function status($pcNo)
         ?>
     <div class="wrapper">
 
-        <!-- Navbar -->
-
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
-
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -288,8 +254,6 @@ function status($pcNo)
             <!-- /.content-header -->
 
             <!-- Main content -->
-
-
             <!-- general form elements -->
             <section class="content">
                 <div class="card mx-2 shadow">
@@ -312,9 +276,7 @@ function status($pcNo)
                                         $total = mysqli_num_rows($result);
                                         if ($total != 0) {
                                             while ($row = $result->fetch_assoc()) {
-
                                                 echo "<option value='" . $row['district'] . "'";
-
                                                 echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
                                                 echo ">" . $row['district'] . "</option>";
                                             }
@@ -337,7 +299,6 @@ function status($pcNo)
                                                 echo "<option ";
                                                 echo isset($_POST["Block"]) && $_POST["Block"] == $row2["block"] ? "selected " : "";
                                                 echo "value='" . $row2["block"] . "'>" . $row2["block"] . "</option>";
-
                                             }
                                         }
                                     }
@@ -352,13 +313,11 @@ function status($pcNo)
                                     <?php
                                     // Options for Select all Villages
                                     if ($result3) {
-
                                         if ($total3 != 0) {
                                             while ($row3 = $result3->fetch_assoc()) {
                                                 echo "<option ";
                                                 echo isset($_POST["Village"]) && $_POST["Village"] == $row3["village"] ? "selected " : "";
                                                 echo "value='" . $row3["village"] . "'>" . $row3["village"] . "</option>";
-
                                             }
                                         }
                                     }
@@ -379,7 +338,6 @@ function status($pcNo)
                                                 echo "<option ";
                                                 echo isset($_POST["school"]) && $_POST["school"] == $row44["school_name"] ? "selected " : "";
                                                 echo "value='" . $row44["school_name"] . "'>" . $row44["school_name"] . "</option>";
-
                                             }
                                         }
                                     }
@@ -399,7 +357,6 @@ function status($pcNo)
                                                 echo "<option ";
                                                 echo isset($_POST["PC"]) && $_POST["PC"] == $row6["pc_sr"] ? "selected " : "";
                                                 echo "value='" . $row6["pc_sr"] . "'>" . $row6["pc_sr"] . "</option>";
-
                                             }
                                         }
                                     }
@@ -419,16 +376,6 @@ function status($pcNo)
 
                     </form>
                 </div>
-                <!-- <div class="card mx-2 shadow" style="height:590px;">
-                    <div class="card-header" style="border:0px;">
-                        <h3 class="card-title">Data</h3>
-                        <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
-                            <button type="submit" class="btn  w-100" style="background-color:#ffc167;"
-                                onclick="printTable()">
-                                <i class="fas fa-download"></i> Print PDF
-                            </button>
-                        </div>
-                    </div> -->
                 <!-- /.card-header -->
             </section>
             <section class="content">
@@ -445,32 +392,24 @@ function status($pcNo)
                                     style="top:0; width:100%;">
 
                                     <?php
-                                    echo '<thead style="height:50px;">
-                            <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
-                                   
-                                    <th>SR</th>
-                                    <th>District</th>
-                                    <th>Block</th>
-                                    <th>Village</th>
-                                    <th>School name</th>
-                                    <th>PC sr</th>
-                                    <th>Status</th>
-                                    </tr>
-                                </thead>
-                        <tbody>';
-
                                     // displaying all devices data in table
-
-                                        // $EMP_NAME=$_SESSION['username'];
+                                    echo '<thead style="height:50px;">
+                                                <tr class:"p-2" style="height:20px; font-size:16px;text-align:center;">
+                                                        <th>SR</th>
+                                                        <th>District</th>
+                                                        <th>Block</th>
+                                                        <th>Village</th>
+                                                        <th>School name</th>
+                                                        <th>PC sr</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                    </thead>
+                                            <tbody>';
                                         $count = 1;
                                         $c = 1;
                                         $pcCount = 1;
                                         $count = 1;
-                                        // If District is Please Select then display all records 
-                                    
-                                         $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
-                                            // $query1="SELECT * FROM `asset` WHERE `username`= '$EMP_NAME'";
-                                        
+                                        $query1 = "SELECT * FROM `asset` ORDER BY `asset`.`pc_sr` ASC ";
                                             if(isset($_POST['PC'])){
                                             $PC = $_POST['PC'];
                                             $school = $_POST['school'];
@@ -492,9 +431,6 @@ function status($pcNo)
                                             elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] != "All" && $_POST['PC'] == "All") {
                                                 $query1 = "SELECT  * FROM `asset`WHERE `district`='$Dis'AND `block`='$Bl' AND `village`= '$village' AND `school_name` = '$school'";
                                             } 
-                                            // elseif ($_POST['PC'] == "All" && $_POST['school'] != "All") {
-                                            //     $query1 = "SELECT  * FROM `asset`WHERE `block`='$Bl' AND `school_name`='$school' ";
-                                            // }
                                             elseif ($_POST['DIST'] != "All" && $_POST['Block'] != "All" && $_POST['Village'] != "All" && $_POST['school'] != "All" && $_POST['PC'] != "All") {
                                                 $query1 = "SELECT * FROM `asset` WHERE `district`='$Dis' AND `block`='$Bl' AND `village`= '$village' AND `school_name`= '$school' AND `pc_sr`='$PC' ORDER BY `asset`.`pc_sr` ASC";
                                             } 
@@ -503,12 +439,10 @@ function status($pcNo)
                                         if (isset($query1)) {
                                             $result1 = mysqli_query($conn, $query1);
                                             $total1 = mysqli_num_rows($result1);
-
                                         }
                                         // Fetching the data 
                                         if (isset($result1) && $result1) {
                                             while ($row = $result1->fetch_assoc()) {
-
                                                 echo '
                                                     <tr  style=" height:40px; font-size:14px;text-align:center;">
                                                         <td>' . $count . '</td>
@@ -533,7 +467,6 @@ function status($pcNo)
                                             }
                                         } else
                                             echo "<tr><td colspan='9'>No data found</td></tr>";
-                                    
                                     ?>
                                     </tbody>
                                 </table>
@@ -541,15 +474,14 @@ function status($pcNo)
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-            </section>
-            <!-- /.card -->
-            <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
+                    </section>
+                    <!-- /.card -->
+                <!-- right col -->
+            </div>
+         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-
     </div>
     <!-- /.content-wrapper -->
     <?php
@@ -649,7 +581,5 @@ function status($pcNo)
         });
     });
     </script>
-
 </body>
-
 </html>
