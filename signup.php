@@ -20,6 +20,18 @@ if (isset($_POST["submit"])) {
        $qry="INSERT INTO `login`(`UserName`,`email`, `Password`, `roll`) VALUES ('$username','$email','$pass','$pos')";
        $res=mysqli_query($conn, $qry);
     //    $tot=mysqli_num_rows($res);
+    if($alert) {
+        echo '
+        <div class="popup-container" id="popupp">
+        <div class="popupp">
+            <h2 style="color: #6f42c1;">Successfully Register</h2>
+            <p style="color: #6f42c1;">Your data is Register successfully. Now you Login</p>
+            <a href="login.php"><button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button></a>
+        </div>
+    </div>';
+        $alert = false;
+       
+    }
     }
 }
 $sql = "SELECT  DISTINCT `roll` FROM  `login` ORDER BY `login`.`roll` ASC";
@@ -45,6 +57,79 @@ $result1 = mysqli_query($conn, $sql);
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+    .focus:focus {
+        border: 1px solid #6f42c1;
+        color: #6f42c1;
+    }
+
+    .Black {
+        color: black;
+    }
+
+    .popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+
+        /* display: none; */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .popupp {
+        width: 400px;
+        background: #fff;
+        border-radius: 0.4rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .popupp img {
+        width: 100px;
+        margin-top: -50px;
+        border-radius;
+        0.4rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .popupp h2 {
+        font-size: 38px;
+        font-weight: 500;
+        margin: 30px 0 10px;
+        color: red;
+    }
+
+    .popupp button {
+        width: 100%;
+        margin-top: 50px;
+        padding: 10px 0;
+        background: #6f42c1;
+        color: #fff;
+        border: 0;
+        outline: none;
+        font-size: 18px;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        visibility: hidden;
+        display: none;
+    }
+    </style>
 </head>
 
 <body class="hold-transition register-page">
@@ -58,7 +143,7 @@ $result1 = mysqli_query($conn, $sql);
                 <p class="login-box-msg"><b>Register a new membership</b></p>
 
                 <form action="#" method="post">
-                   
+
                     <div class="input-group mb-3">
                         <input type="text" name="username" class="form-control" placeholder="Username" required>
                         <div class="input-group-append">
@@ -84,7 +169,8 @@ $result1 = mysqli_query($conn, $sql);
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="cPassword" placeholder="Retype password" required>
+                        <input type="password" class="form-control" name="cPassword" placeholder="Retype password"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -141,7 +227,13 @@ $result1 = mysqli_query($conn, $sql);
     </div><!-- /.card -->
     </div>
     <!-- /.register-box -->
+    <script>
+    function closePopup() {
+        var popup = document.getElementById('popupp');
+        popup.style.display = 'none';
 
+    }
+    </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->

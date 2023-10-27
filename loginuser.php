@@ -1,5 +1,5 @@
 <?php
-// this login page for dashboard and its password in database table
+// this login page for dashboard and its password is in database table
 // connection file
 // require 'config.php';
 // include 'authentication.php'; 

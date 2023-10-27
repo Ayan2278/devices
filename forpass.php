@@ -1,11 +1,12 @@
 <?php
 session_start();
 include("_db_Connect.php");
-
+$alert = false;
 if(isset($_POST["submit"])){
     $us=$_POST['username'];
     $pass=$_POST['password'];
     $cpass=$_POST['cpassword'];
+
      $query="SELECT * FROM `login` WHERE `UserName`='$us'";
      $result=mysqli_query($conn,$query);
      $total=mysqli_num_rows($result);
@@ -13,8 +14,19 @@ if(isset($_POST["submit"])){
      if($total!= 0 && $pass==$cpass ){
         $query= "UPDATE `login` SET `Password`='$pass' WHERE  `UserName` ='$us'";
         $result=mysqli_query($conn,$query);
+    
+    if ($alert) {
+        echo '
+        <div class="popup-container" id="popupp">
+        <div class="popupp">
+            <h2 style="color: #6f42c1;">Successfully Recover </h2>
+            <p style="color: #6f42c1;">Your Password is Updated successfully.</p>
+            <a href="login.php"><button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button></a>
+        </div>
+    </div>';
+        $alert = false;
     }
-
+     }
 }
 ?>
 <!DOCTYPE html>

@@ -2,7 +2,7 @@
 require 'config.php';
 include '_db_Connect.php';
 if (isset($_SESSION['login_id'])) {
-    header('Location: setPass.php');
+    header('Location: setpass.php');
     exit;
 }
 
@@ -49,7 +49,7 @@ if (isset($_GET['code'])):
             $_SESSION['login_id'] = $id;
             $_SESSION['name'] = $full_name;
             $_SESSION['email'] = $email;
-            header('Location: setPass.php');
+            header('Location: login.php');
             exit;
 
         } else {
@@ -62,7 +62,7 @@ if (isset($_GET['code'])):
                 $_SESSION['login_id'] = $id;
                 $_SESSION['name'] = $full_name;
                 $_SESSION['email'] = $email;
-                header('Location: setPass.php');
+                header('Location: setpass.php');
                 exit;
             } else {
                 echo "Sign up failed!(Something went wrong).";
