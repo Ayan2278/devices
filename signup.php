@@ -180,20 +180,10 @@ $result1 = mysqli_query($conn, $sql);
                     <div class="input-group mb-3">
                         <select class="form-control " name="Position" required>
                             <option value="Please Select" class="brown">Select Position</option>
-                            <?php
-                                            // options for School Name
-                                            if ($result1) {
-                                                $total1 = mysqli_num_rows($result1);
-                                                if ($total1 != 0) {
-                                                    while ($row = $result1->fetch_assoc()) {
-
-                                                        echo "<option value='" . $row['roll'] . "'  class='Black'";
-                                                        echo isset($_POST["Position"]) && $_POST["Position"] == $row['roll'] ? "selected " : "";
-                                                        echo ">" . $row['roll'] . "</option>";
-                                                    }
-                                                }
-                                            }
-                                            ?>
+                            <option value="CEO" class="brown">CEO</option>
+                            <option value="HOD" class="brown">HOD</option>
+                            <option value="Employee" class="brown">Employee</option>
+                            
 
                         </select>
                         <div class="input-group-append">

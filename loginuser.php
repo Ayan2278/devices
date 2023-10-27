@@ -6,7 +6,8 @@
   
 include '_db_Connect.php';
 session_start();
- $conn = mysqli_connect("localhost", "root", "", "system");
+$conn = mysqli_connect("localhost", "root", "", "system");
+$alert = true;
 if(isset($_POST['login_btn']))
 {
 
@@ -17,7 +18,9 @@ if(isset($_POST['login_btn']))
     // echo $log_query;
     $log_query->execute();
     $result=$log_query->get_result();
- 
+    if (!$result) {
+        $alert=false;
+    }
     if($result->num_rows>0)
     {
         foreach($result as $row){
