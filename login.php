@@ -99,16 +99,17 @@ include 'home.php';
 
 <body class="hold-transition login-page">
   <?php 
-  if (isset($_SESSION['Status']) && $_SESSION['Status'] == "alert") {
+  if (isset($_SESSION['Status']) && $_SESSION['Status'] == "alert" && $alert= true) {
     echo '<div class="popup-container" id="popupp">
         <div class="popupp">
-            <h2 style="color: #6f42c1;">Successfully Inserted</h2>
-            <p style="color: #6f42c1;">Your data is inserted successfully.</p>
-            <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+            <h2 style="color: #D80032;">INVALID</h2>
+            <p style="color: #D80032;">Invalid Username And Password.</p>
+            <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
-    
+     $alert = false;
   }
+
   ?>
   <div class="login-box">
     <div class="login-logo">
