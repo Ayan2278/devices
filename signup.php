@@ -12,6 +12,14 @@ if (isset($_POST["submit"])) {
     $pass = $_POST['Password'];
     $cpass = $_POST['cPassword'];
     $pos = $_POST['Position'];
+
+    $q="SELECT * FROM `user` WHERE `UserName`='$username' ";
+    $r=mysqli_query($conn, $q);
+    $n=mysqli_num_rows($r);
+    if($n > 0){
+            $alert="Username is Already Taken";
+    }
+    else{
     if ($conn->connect_error) {
         die("Connection failed: "
             . $conn->connect_error);
@@ -25,8 +33,7 @@ if (isset($_POST["submit"])) {
 
     }
 }
-$sql = "SELECT  DISTINCT `roll` FROM  `login` ORDER BY `login`.`roll` ASC";
-$result1 = mysqli_query($conn, $sql);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -125,14 +132,12 @@ $result1 = mysqli_query($conn, $sql);
 
 <body class="hold-transition register-page">
     <?php
-    if ($alert) {
-        echo '
-    <div class="popup-container" id="popupp">
+    if (isset($_POST["submit"]) && $n !=0) {
+        echo '<div class="popup-container" id="popupp">
         <div class="popupp">
-            <h2 style="color: #6f42c1;">Successfully Register</h2>
-            <p style="color: #6f42c1;">Your data is Registerd successfully.
-             Now You Can Login</p>
-            <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+            <h2 style="color: #D80032;">INVALID</h2>
+            <p style="color: #D80032;">Please Check Your Username. This Username Already Taken</p>
+            <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
     }
@@ -144,6 +149,19 @@ $result1 = mysqli_query($conn, $sql);
             <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
+    }
+    elseif ($alert && $res) {
+        echo '
+    <div class="popup-container" id="popupp">
+        <div class="popupp">
+            <h2 style="color: #6f42c1;">Successfully Register</h2>
+            <p style="color: #6f42c1;">Your data is Registerd successfully.
+             Now You Can Login</p>
+            <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+        </div>
+    </div>';
+    
+    
     $alert = false;
     session_destroy();
     }
