@@ -258,7 +258,7 @@ $current_url = end($url_parts);
                       </li>';
                   }
                   //for controls page
-                  if ($row['UserName'] == "Nilesh") {
+                  if ($row['roll'] == "CEO") {
                     echo '
                       <li class="nav-item has-treeview">
                       <a href="Controls.php" class="nav-link';
