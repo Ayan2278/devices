@@ -129,12 +129,23 @@ $result1 = mysqli_query($conn, $sql);
         echo '
     <div class="popup-container" id="popupp">
         <div class="popupp">
-            <h2 style="color: #6f42c1;">Successfully Inserted</h2>
-            <p style="color: #6f42c1;">Your data is inserted successfully.</p>
+            <h2 style="color: #6f42c1;">Successfully Register</h2>
+            <p style="color: #6f42c1;">Your data is Registerd successfully.
+             Now You Can Login</p>
             <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
-
+    }
+    elseif (isset($_POST["submit"])) {
+        echo '<div class="popup-container" id="popupp">
+        <div class="popupp">
+            <h2 style="color: #D80032;">INVALID</h2>
+            <p style="color: #D80032;">Please Check Your Username And Password Again .</p>
+            <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
+        </div>
+    </div>';
+    $alert = false;
+    session_destroy();
     }
     ?>
     <div class="register-box">

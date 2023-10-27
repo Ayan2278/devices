@@ -171,9 +171,9 @@ if (isset($_POST['submitP'])) {
                 // alert messages pop-up
                 echo '<div class="popup-container" id="popupp">
                     <div class="popupp">
-                        <h2 style="color: #6f42c1;">Successfully Changed</h2>
-                        <p style="color: #6f42c1;">Your password is changed successfully.</p>
-                        <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
+                        <h2 style="color: #D80032;">Successfully Changed</h2>
+                        <p style="color: #D80032;">Your password is changed successfully.</p>
+                        <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
                     </div>
                 </div>';
             }

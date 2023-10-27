@@ -150,15 +150,27 @@ if (isset($_POST["submit"])) {
 
 <body class="hold-transition login-page">
     <?php
-    if ($alert) {
+    if ($alert && isset($_POST["submit"])) {
         echo '<div class="popup-container" id="popupp">
         <div class="popupp">
-            <h2 style="color: #6f42c1;">Successfully Inserted</h2>
-            <p style="color: #6f42c1;">Your data is inserted successfully.</p>
+            <h2 style="color: #6f42c1;">Successfully Recover</h2>
+            <p style="color: #6f42c1;">Your Password is Updated successfully.</p>
             <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
     }
+    elseif (isset($_POST["submit"])) {
+        echo '<div class="popup-container" id="popupp">
+        <div class="popupp">
+            <h2 style="color: #D80032;">INVALID</h2>
+            <p style="color: #D80032;">Your Data in Invalid . Check Your Username And Password Again .</p>
+            <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
+        </div>
+    </div>';
+    $alert = false;
+     session_destroy();
+    }
+
     ?>
     <div class="login-box">
         <div class="login-logo">
@@ -189,7 +201,7 @@ if (isset($_POST["submit"])) {
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="cpassword" name="cpassword" class="form-control" placeholder="Confirm Password"
+                        <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password"
                             required>
                         <div class="input-group-append">
                             <div class="input-group-text">
