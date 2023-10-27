@@ -108,6 +108,7 @@ include 'home.php';
         </div>
     </div>';
      $alert = false;
+     session_destroy();
   }
 
   ?>
