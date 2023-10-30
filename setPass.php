@@ -14,11 +14,11 @@ if (isset($_POST["submit"])) {
         die("Connection failed: "
             . $conn->connect_error);
     } elseif ($passd == $cpassd) {
-        $qrry = "SELECT * from `login` where `UserName` = '$full_name'";
+        $qrry = "SELECT * from `login` where `email` = '$email'";
         $ress = $conn->query($qrry);
         $roww = $ress->fetch_assoc();
         if ($roww['email'] != '') {
-            $qry = "UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `UserName` = '$full_name'";
+            $qry = "UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `email` = '$email'";
             $res = mysqli_query($conn, $qry);
             if ($res) {
                 $alert = true;
