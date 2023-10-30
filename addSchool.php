@@ -5,7 +5,16 @@ include 'authentication.php';
 //include connection file
 include '_db_Connect.php';
 $alert = false;
-
+$EMP_NAME = $_SESSION['UserName'];
+$q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
+$r = mysqli_query( $conn, $q );
+$t = mysqli_num_rows($r);
+$roww = $r->fetch_assoc();
+if ($t > 0 ) {
+  if ($roww['add']=='false') {
+    header('location:index.php');
+  }
+}
 //connetion
 $conn = mysqli_connect("localhost", "root", "", "system");
 if (isset($_POST["submit"])) {

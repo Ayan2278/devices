@@ -5,7 +5,16 @@
 session_start();
 include 'authentication.php';
 include '_db_Connect.php';
-
+$EMP_NAME = $_SESSION['UserName'];
+$q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
+$r = mysqli_query( $conn, $q );
+$t = mysqli_num_rows($r);
+$roww = $r->fetch_assoc();
+if ($t > 0 ) {
+  if ($roww['timming']=='false') {
+    header('location:index.php');
+  }
+}
 // display all districts
 $sql = "SELECT DISTINCT `district` FROM `asset`;";
 $result = mysqli_query($conn, $sql);

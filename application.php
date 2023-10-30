@@ -8,7 +8,16 @@ include 'authentication.php';
 include '_db_Connect.php';
 // $sql = "SELECT DISTINCT `district` FROM `asset`;";
 // $PASSWORD=$_SESSION['Password'];
-
+$EMP_NAME = $_SESSION['UserName'];
+$q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
+$r = mysqli_query( $conn, $q );
+$t = mysqli_num_rows($r);
+$roww = $r->fetch_assoc();
+if ($t > 0 ) {
+  if ($roww['timming']=='false') {
+    header('location:index.php');
+  }
+}
 //select user-name according to login users
 $EMP_NAME=$_SESSION['username'];
 $queryy = "SELECT * FROM `user` WHERE `username`='$EMP_NAME'";

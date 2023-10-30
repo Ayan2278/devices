@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 // include 'authentication.php';
@@ -133,7 +135,7 @@ if (isset($_POST["submit"])) {
 <body class="hold-transition register-page">
     <?php
     if (isset($_POST["submit"]) && $n !=0) {
-        echo '<div class="popup-container" id="popupp">
+        echo '  <div class="popup-container" id="popupp">
         <div class="popupp">
             <h2 style="color: #D80032;">INVALID</h2>
             <p style="color: #D80032;">Please Check Your Username. This Username Already Taken</p>
@@ -144,7 +146,7 @@ if (isset($_POST["submit"])) {
     elseif (isset($_POST["submit"]) && $_POST['Password'] != $_POST['cPassword']) {
         echo '<div class="popup-container" id="popupp">
         <div class="popupp">
-            <h2 style="color: #D80032;">INVALID</h2>
+            <h2 style="color: #D80032;">INVALID</h2>                                                                                                                                                   
             <p style="color: #D80032;">Please Check Your Username And Password Again .</p>
             <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
         </div>

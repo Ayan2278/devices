@@ -7,7 +7,16 @@ include '_db_Connect.php';
 // Query for Select District
 $sql = "SELECT DISTINCT `district` FROM `asset`;";
 $result = mysqli_query($conn, $sql);
-
+$EMP_NAME = $_SESSION['UserName'];
+$q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
+$r = mysqli_query( $conn, $q );
+$t = mysqli_num_rows($r);
+$roww = $r->fetch_assoc();
+if ($t > 0 ) {
+  if ($roww['school']=='false') {
+    header('location:index.php');
+  }
+}
 // Query for Select Block
 if (isset($_POST['DIST'])) {
   $Dis = $_POST['DIST'];
