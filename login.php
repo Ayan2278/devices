@@ -123,7 +123,7 @@ include 'home.php';
 
         <form action="loginuser.php" method="post">
           <div class="input-group mb-3">
-            <input type="text" name="UserName" class="form-control" placeholder="Email or Username" required>
+            <input type="text" name="UserName" class="form-control" placeholder="Username" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span> 

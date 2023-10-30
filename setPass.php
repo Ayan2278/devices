@@ -14,14 +14,15 @@ if (isset($_POST["submit"])) {
         die("Connection failed: "
             . $conn->connect_error);
     } elseif ($passd == $cpassd) {
-        $qrry = "SELECT * from `login` where `email` = '$email' OR `UserName` = '$full_name'";
+        $qrry = "SELECT * from `login` where `UserName` = '$full_name'";
         $ress = $conn->query($qrry);
         $roww = $ress->fetch_assoc();
         if ($roww['email'] != '') {
-            $qry = "UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `email` = '$email'";
+            $qry = "UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `UserName` = '$full_name'";
             $res = mysqli_query($conn, $qry);
             if ($res) {
                 $alert = true;
+                header("location:index.php");
             }
         }
         if ($alert) {
@@ -230,8 +231,8 @@ if (isset($_POST["submit"])) {
                             class="btn btn-block">Register</button>
                     </div>
                     <!-- /.col -->
+                </form>
             </div>
-            </form>
 
 
             <a href="login.php" class="text-center" style="margin-bottom:20px;">For Login Again?</a>

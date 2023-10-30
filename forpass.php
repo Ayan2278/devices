@@ -167,6 +167,7 @@ if (isset($_POST["submit"])) {
             <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
+    
     $alert = false;
      session_destroy();
     }
