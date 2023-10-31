@@ -335,13 +335,10 @@ function status($pcNo)
                     <!-- Chart 2 -->
                     <section class="col-lg-6 ">
                         <!-- Custom tabs (Charts with tabs)-->
-                        <div class="container-fluid" style="height='450px';">
                             <?php
                                 // include map file
                                 include 'map.php';
                              ?>
-
-                        </div>
                     </section>
                 </div>
                 <!-- /.row (main row) -->
