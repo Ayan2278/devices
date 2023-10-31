@@ -36,11 +36,7 @@ $current_url = end($url_parts);
 
         <?php
     if (!isset($_SESSION['login_id'])) {
-      if (isset($_SESSION['auth'])) {
-        $_SESSION['auth_user'] = ['UserName'];
-      } else {
-        echo "Not logged in dashboard ";
-      }
+      
       $EMP_NAME = $_SESSION['UserName'];
       $queryy = "SELECT * FROM `Login` WHERE `UserName`='$EMP_NAME'";
       // echo $queryy;

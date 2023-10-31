@@ -3,6 +3,7 @@ session_start();
 //create connection
 include '_db_Connect.php';
 $alert = false;
+unset($_SESSION['login_id']);
 if (isset($_POST["submit"])) {
     $passd = $_POST['Password'];
     $cpassd = $_POST['cPassword'];
@@ -17,6 +18,7 @@ if (isset($_POST["submit"])) {
         $qrry = "SELECT * from `login` where `email` = '$email'";
         $ress = $conn->query($qrry);
         $roww = $ress->fetch_assoc();
+        $_SESSION['UserName'] = $full_name;
         if ($roww['email'] != '') {
             $qry = "UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `email` = '$email'";
             $res = mysqli_query($conn, $qry);
@@ -233,9 +235,9 @@ if (isset($_POST["submit"])) {
                     <!-- /.col -->
                 </form>
             </div>
-
-
             <a href="login.php" class="text-center" style="margin-bottom:20px;">For Login Again?</a>
+
+
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->
