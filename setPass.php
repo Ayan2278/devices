@@ -7,7 +7,6 @@ unset($_SESSION['login_id']);
 $email = $_SESSION['email'];
 $full_name = $_SESSION['name'];
 $qq = "SELECT * FROM `login` WHERE `email`='$email'";
-echo $qq;
 $rr = mysqli_query($conn,$qq);
 $tt = mysqli_num_rows($rr);
 if ($tt > 0) {
@@ -27,11 +26,11 @@ if (isset($_POST["submit"])) {
         die("Connection failed: "
             . $conn->connect_error);
     } elseif ($passd == $cpassd) {
+        $_SESSION['UserName'] = $full_name;
         $qrry = "SELECT * from `login` where `email` = '$email'";
         $ress = $conn->query($qrry);
         $roww = $ress->fetch_assoc();
-        $_SESSION['UserName'] = $full_name;
-        if ($roww['email'] != '') {
+        if ($roww['email'] != "") {
             $qry = "UPDATE `login` SET `Password` = '$passd', `roll` = '$poss' WHERE `email` = '$email'";
             $res = mysqli_query($conn, $qry);
             if ($res) {
