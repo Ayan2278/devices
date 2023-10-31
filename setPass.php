@@ -4,12 +4,24 @@ session_start();
 include '_db_Connect.php';
 $alert = false;
 unset($_SESSION['login_id']);
+$email = $_SESSION['email'];
+$full_name = $_SESSION['name'];
+$qq = "SELECT * FROM `login` WHERE `email`='$email'";
+echo $qq;
+$rr = mysqli_query($conn,$qq);
+$tt = mysqli_num_rows($rr);
+if ($tt > 0) {
+    $row1 = $rr->fetch_assoc();
+    if ($row1['Password'] != "") {
+        $_SESSION['UserName'] = $full_name;
+        header("location:index.php");
+    }
+}
 if (isset($_POST["submit"])) {
     $passd = $_POST['Password'];
     $cpassd = $_POST['cPassword'];
     $poss = $_POST['Position'];
     $full_name = $_SESSION['name'];
-    $email = $_SESSION['email'];
     // echo $email;
     if ($conn->connect_error) {
         die("Connection failed: "
