@@ -1,4 +1,5 @@
 <?php
+// map for index page in dashboard 
 // create database connection
 include '_db_Connect.php';
 

@@ -1,5 +1,6 @@
 <?php
-
+// school page in dashboard 
+// session statr 
 session_start();
 include 'authentication.php';
 // connection file

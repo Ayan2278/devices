@@ -154,7 +154,7 @@ if($pass==$compass && $tot !=0){
             <form action="#" method="POST" width="40px">
                 <div class="card col-lg-3 shadow my-5">
                     <div class="card-header" style="border:0px;">
-                        <h4 style="float:left; margin-top:10px;">Forget Password </h4>
+                        <h4 style="float:left; margin-top:10px;">Forgot Password </h4>
                     </div>
                     <div class="card-body ">
                         <div class="row">

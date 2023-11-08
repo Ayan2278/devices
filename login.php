@@ -1,5 +1,5 @@
 <?php
-
+//  login page for dashboard 
 include 'home.php';
 ?>
 <!DOCTYPE html>
@@ -143,7 +143,7 @@ include 'home.php';
             <!-- /.col -->
             <div class="col-12">
               <button type="submit" name="login_btn" value="login_btn" class="btn btn-block"
-                style="background:#6f42c1;color:white; ">Sign In</button>
+                style="background:#6f42c1;color:white; ">Log In</button>
             </div>
             <!-- /.col -->
           </div>
