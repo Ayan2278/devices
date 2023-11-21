@@ -1,5 +1,5 @@
 <?php
-
+// connection file
 // server name
 $servername = "localhost";
 $username = "root";

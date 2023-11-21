@@ -55,10 +55,10 @@ if (isset($_GET['code'])):
         } else {
 
             // if user not exists we will insert the user
-            $insert = mysqli_query($conn, "INSERT INTO `users`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
+            // $insert = mysqli_query($conn, "INSERT INTO `users`(`google_id`,`name`,`email`,`profile_image`) VALUES('$id','$full_name','$email','$profile_pic')");
             $insert2 = mysqli_query($conn, "INSERT INTO `login`(`UserName`,`profile_image`,`email`) VALUES('$full_name','$profile_pic','$email')");
             echo $insert2;
-            if ($insert) {
+            if ($insert2) {
                 $_SESSION['login_id'] = $id;
                 $_SESSION['name'] = $full_name;
                 $_SESSION['email'] = $email;

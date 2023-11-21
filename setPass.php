@@ -1,4 +1,5 @@
 <?php
+// setpass page for google signup page to set passwword
 session_start();
 //create connection
 include '_db_Connect.php';

@@ -1,4 +1,5 @@
 <?php
+// add user in dashboard add page
 // include authentication file 
 // include 'authentication.php';
 session_start();

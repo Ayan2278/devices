@@ -455,12 +455,14 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                         $count = 1;
                                   // $EMP_NAME=$_SESSION['username'];
                                   // display data according to login user
+                                  
                                   $qry6 = "SELECT * from `user` where `username` = '$EMP_NAME'";
                                   $res6 = mysqli_query($conn,$qry6);
                                   if($row5 = $res6->fetch_assoc()) {
                                     $pcsr = $row5['pc_sr'];
 
-                                    if(isset($_POST['Activity'])  && $_POST['Activity'] == "All") {
+                                    // this after comment display all data without click on application and any button
+                                     if(isset($_POST['Activity'])  && $_POST['Activity'] == "All") {
                                     // $EMP_NAME=$_SESSION['username'];
                                     $file = "JSON PC/" . $EMP_NAME . ".json";
                                    
@@ -495,7 +497,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                         }
                                       }
                                     }
-                                  }
+                                    }  
                                 // display seleceted filter data in table
                                 if(isset($_POST['Activity'])  && $_POST['Activity'] != "All") {
                                   $file = "JSON PC/" . $EMP_NAME . ".json";

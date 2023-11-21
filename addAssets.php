@@ -1,4 +1,5 @@
 <?php
+// addassets page in dashboard add page
 // include authentication file 
 session_start();
 include 'authentication.php';
