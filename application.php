@@ -451,10 +451,9 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                                   </tr>
                                                 </thead>
                                           <tbody>';
-                                  // counts the Activity serial number
-                                  $count = 1;
+                                        // counts the Activity serial number
+                                        $count = 1;
                                   // $EMP_NAME=$_SESSION['username'];
-                                  
                                   // display data according to login user
                                   $qry6 = "SELECT * from `user` where `username` = '$EMP_NAME'";
                                   $res6 = mysqli_query($conn,$qry6);

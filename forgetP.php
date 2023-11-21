@@ -171,9 +171,9 @@ if (isset($_POST['submitP'])) {
                 // alert messages pop-up
                 echo '<div class="popup-container" id="popupp">
                     <div class="popupp">
-                        <h2 style="color: #D80032;">Successfully Changed</h2>
-                        <p style="color: #D80032;">Your password is changed successfully.</p>
-                        <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
+                        <h2 style="color: #6f42c1;">Successfully Changed</h2>
+                        <p style="color: #6f42c1;">Your password is changed successfully.</p>
+                        <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
                     </div>
                 </div>';
             }
@@ -221,17 +221,21 @@ if (isset($_POST['submitP'])) {
                                 </div>
                             </div>
 
-
                             <div class="form-group col-lg-12">
                             
                                 <button class="btn " type="submit" name="submitP" value="submit"
-                                    style="background:#6f42c1;color:white; height:45px; width:96%; margin-top:20px;">Reset Password</button>
+                                    style="background:#6f42c1;color:white; height:45px; width:96%; margin-top:10px;">Reset Password</button>
                             </div>
+                            
+                            <p class="mt-3 mb-3 col-lg-4">
+                    <a href="applogin.php">Login again?</a>
+                </p>
+                            
                         </div>
                     </div>
                 </div>
             </form>
-
+           
         </center>
 
     </div>
