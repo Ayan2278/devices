@@ -7,11 +7,11 @@ include 'authentication.php';
 include '_db_Connect.php';
 $EMP_NAME = $_SESSION['UserName'];
 $q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
-$r = mysqli_query( $conn, $q );
+$r = mysqli_query($conn, $q);
 $t = mysqli_num_rows($r);
 $roww = $r->fetch_assoc();
-if ($t > 0 ) {
-  if ($roww['timming']=='false') {
+if ($t > 0) {
+  if ($roww['timming'] == 'false') {
     header('location:index.php');
   }
 }
@@ -428,7 +428,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
           <div class="row">
             <div class="col-12">
               <div class="card mx-2">
-              
+
 
                 <div class="card-body">
                   <h4 class="card-title">Data</h4>
@@ -482,26 +482,26 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                                         <td>PC0' . $c . '</td>
                                         <td>' . $row['Date'] . '</td>
                                         <td>' . $row['Start_time'] . '</td><td>';
-                                        date_default_timezone_set('Asia/Kolkata');
-                                        $date = date('h:i:s');
-                                        $datee = date("d/m/Y");
-                                        $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                                        if ($newDate < $row['End_time'] && $datee == $row['Date']) {
-                                        echo '<small class="badge badge-success">Running</small>';
-                                        } else {
-                                        echo $row['End_time'] . '</td>';
-                                        }
-                                        echo '
+                              date_default_timezone_set('Asia/Kolkata');
+                              $date = date('h:i:s');
+                              $datee = date("d/m/Y");
+                              $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                              if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+                                echo '<small class="badge badge-success">Running</small>';
+                              } else {
+                                echo $row['End_time'] . '</td>';
+                              }
+                              echo '
                                         <td>' . $row['Duration'] . '</td>
                                     </tr>
                                     ';
-                                $count += 1;
-                              }
-                           } else
+                              $count += 1;
+                            }
+                          } else
                             echo "<tr><td colspan='9'>No data found</td></tr>";
                         }
-                          $c++;
-                          $pcCount++;
+                        $c++;
+                        $pcCount++;
                       }
 
                     }
@@ -542,38 +542,38 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                           if ($data != 0) {
                             foreach ($data as $row) {
                               echo '
-                                  <tr style="text-align:center; height:41px; font-size:14px;">
+                                  <tr style="text-align:center; height:41p x; font-size:14px;">
                                           <td>' . $count . '</td>
                                           <td>' . $pcsr . '</td>
                                           <td>' . $row['Date'] . '</td>
                                           <td>' . $row['Start_time'] . '</td><td>';
-                                          date_default_timezone_set('Asia/Kolkata');
-                                          $date = date('h:i:s');
-                                          $datee = date("d/m/Y");
-                                          $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
-                                          if ($newDate < $row['End_time'] && $datee == $row['Date']) {
-                                            echo '<small class="badge badge-success">Running</small>';
-                                          } else {
-                                            echo $row['End_time'] . '</td>';
-                                          }
-                                          echo '
+                              date_default_timezone_set('Asia/Kolkata');
+                              $date = date('h:i:s');
+                              $datee = date("d/m/Y");
+                              $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                              if ($newDate < $row['End_time'] && $datee == $row['Date']) {
+                                echo '<small class="badge badge-success">Running</small>';
+                              } else {
+                                echo $row['End_time'] . '</td>';
+                              }
+                              echo '
                             
                                         <td>' . $row['Duration'] . '</td>
                                   </tr>
                                 ';
                               $count += 1;
                             }
-                            } else
-                              echo "<tr><td colspan='9'>No data found</td></tr>";
+                          } else
+                            echo "<tr><td colspan='9'>No data found</td></tr>";
                         }
                       } else if (isset($_POST['PC']) && $_POST['PC'] != 'All') {
-                          $file = "JSON/" . $_POST['PC'] . ".json";
-                          $PC = $_POST['PC'];
-                          if ($PC) {
-                            $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
-                            $result4 = mysqli_query($conn, $query4);
-                            $total4 = mysqli_num_rows($result4);
-                          }
+                        $file = "JSON/" . $_POST['PC'] . ".json";
+                        $PC = $_POST['PC'];
+                        if ($PC) {
+                          $query4 = "SELECT * from `asset` where `pc_sr`='$PC';";
+                          $result4 = mysqli_query($conn, $query4);
+                          $total4 = mysqli_num_rows($result4);
+                        }
                         $query5 = "SELECT * FROM `asset` WHERE `pc_sr`= '$PC';";
                         $result5 = mysqli_query($conn, $query5);
                         if ($_POST['PC'] != "All") {
@@ -594,15 +594,15 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                                       <td>' . $row['Duration'] . '</td>
                                     </tr>
                                   ';
-                                 $count += 1;
+                                $count += 1;
                               }
                             } else
                               echo "<tr><td colspan='9'>No data found</td></tr>";
-                            }
                           }
                         }
-
                       }
+
+                    }
 
                     ?>
                     </tbody>

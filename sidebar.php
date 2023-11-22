@@ -115,12 +115,13 @@ $current_url = end($url_parts);
             
             </li>';
       }
+      $EMP_NAME = $_SESSION['username'];
       // for Timings page showing
       if ($row['timming'] == "true") {
         echo '
           <li class="nav-item has-treeview">
             <a href="device.php" class="nav-link';
-        if ($current_url == 'device.php' || $current_url == 'application.php' || $current_url == 'applogin.php' || $current_url == 'forgetP.php') {
+        if ($current_url == 'device.php' || $current_url == 'application.php' || $current_url == 'application.php?username='.$EMP_NAME.'' || $current_url == 'applogin.php' || $current_url == 'forgetP.php') {
           echo ' active ';
         }
         echo '">
