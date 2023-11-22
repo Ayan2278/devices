@@ -542,7 +542,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                           if ($data != 0) {
                             foreach ($data as $row) {
                               echo '
-                                  <tr style="text-align:center; height:41p x; font-size:14px;">
+                                  <tr style="text-align:center; height:41px; font-size:14px;">
                                           <td>' . $count . '</td>
                                           <td>' . $pcsr . '</td>
                                           <td>' . $row['Date'] . '</td>
