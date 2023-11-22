@@ -462,7 +462,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) 
                                     $pcsr = $row5['pc_sr'];
 
                                     // this after comment display all data without click on application and any button
-                                     if(isset($_POST['Activity'])  && $_POST['Activity'] == "All") {
+                                     if(isset($_POST['Activity']) && $_POST['Activity']=="All") {
                                     // $EMP_NAME=$_SESSION['username'];
                                     $file = "JSON PC/" . $EMP_NAME . ".json";
                                    

@@ -83,7 +83,6 @@ function status($pcNo)
     }
   }
 }
-
 ?>
 
 <!DOCTYPE html>
