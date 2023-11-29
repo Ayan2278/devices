@@ -34,6 +34,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block'])) {
     $result3 = mysqli_query($conn, $sql3);
     $total3 = mysqli_num_rows($result3);
 }
+
 // Select all School-Name 
 if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
   

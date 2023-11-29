@@ -115,7 +115,7 @@ $current_url = end($url_parts);
             
             </li>';
       }
-      $EMP_NAME = $_SESSION['username'];
+      $EMP_NAME = $_SESSION['UserName'];
       // for Timings page showing
       if ($row['timming'] == "true") {
         echo '
