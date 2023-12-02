@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 // include 'authentication.php';
@@ -11,30 +9,29 @@ $conn = mysqli_connect("localhost", "root", "", "system");
 if (isset($_POST["submit"])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $pass = $_POST['Password'];
-    $cpass = $_POST['cPassword'];
+    $pass = $_POST['password'];
+    $cpass = $_POST['cpassword'];
     $pos = $_POST['Position'];
 
-    $q="SELECT * FROM `user` WHERE `UserName`='$username' ";
-    $r=mysqli_query($conn, $q);
-    $n=mysqli_num_rows($r);
-    if($n > 0){
-            $alert="Username is Already Taken";
-    }
-    else{
-    if ($conn->connect_error) {
-        die("Connection failed: "
-            . $conn->connect_error);
-    } elseif ($pass == $cpass) {
-        $qry = "INSERT INTO `login`(`UserName`,`email`, `Password`, `roll`) VALUES ('$username','$email','$pass','$pos')";
-        $res = mysqli_query($conn, $qry);
-        //    $tot=mysqli_num_rows($res);
-        if ($res) {
-            $alert = true;
-        }
+    $q = "SELECT * FROM `user` WHERE `UserName`='$username' ";
+    $r = mysqli_query($conn, $q);
+    $n = mysqli_num_rows($r);
+    if ($n > 0) {
+        $alert = "Username is Already Taken";
+    } else {
+        if ($conn->connect_error) {
+            die("Connection failed: "
+                . $conn->connect_error);
+        } elseif ($pass == $cpass) {
+            $qry = "INSERT INTO `login`(`UserName`,`email`, `Password`, `roll`) VALUES ('$username','$email','$pass','$pos')";
+            $res = mysqli_query($conn, $qry);
+            //    $tot=mysqli_num_rows($res);
+            if ($res) {
+                $alert = true;
+            }
 
+        }
     }
-}
 }
 ?>
 <!DOCTYPE html>
@@ -130,11 +127,23 @@ if (isset($_POST["submit"])) {
             display: none;
         }
     </style>
+    <!-- Adding angular js file -->
+    <script src="Angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("myapp",[]);
+
+        app.controller("myController", function($scope){
+            $scope.btn = false;
+        })
+    </script>
+    <!-- font awesome kit -->
+    <script src="https://kit.fontawesome.com/1c4021e600.js" crossorigin="anonymous"></script>
+
 </head>
 
-<body class="hold-transition register-page">
+<body class="hold-transition register-page" ng-app="">
     <?php
-    if (isset($_POST["submit"]) && $n !=0) {
+    if (isset($_POST["submit"]) && $n != 0) {
         echo '  <div class="popup-container" id="popupp">
         <div class="popupp">
             <h2 style="color: #D80032;">INVALID</h2>
@@ -142,8 +151,7 @@ if (isset($_POST["submit"])) {
             <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
-    }
-    elseif (isset($_POST["submit"]) && $_POST['Password'] != $_POST['cPassword']) {
+    } elseif (isset($_POST["submit"]) && $_POST['password'] != $_POST['cpassword']) {
         echo '<div class="popup-container" id="popupp">
         <div class="popupp">
             <h2 style="color: #D80032;">INVALID</h2>                                                                                                                                                   
@@ -151,8 +159,7 @@ if (isset($_POST["submit"])) {
             <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
-    }
-    elseif ($alert) {
+    } elseif ($alert) {
         echo '
     <div class="popup-container" id="popupp">
         <div class="popupp">
@@ -162,10 +169,10 @@ if (isset($_POST["submit"])) {
             <button style="background: #6f42c1;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
-    
-    
-    $alert = false;
-    session_destroy();
+
+
+        $alert = false;
+        session_destroy();
     }
     ?>
     <div class="register-box">
@@ -177,44 +184,84 @@ if (isset($_POST["submit"])) {
             <div class="card-body register-card-body">
                 <p class="login-box-msg"><b>Register a new membership</b></p>
 
-                <form action="#" method="post">
+                <form action="#" name="myForm" method="post" novalidate>
 
+                    <span class="mb-3" ng-show="myForm.username.$dirty" style="color:red;">
+                        <span ng-show="myForm.username.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
+                            Username required</span>
+                        <span ng-show="myForm.username.$error.pattern"><i class="fa-solid fa-circle-exclamation"></i>
+                            Number is not allowed in username</span>
+                    </span>
                     <div class="input-group mb-3">
-                        <input type="text" name="username" class="form-control" placeholder="Username" required>
+                        <input type="text" name="username" ng-model="username" pattern="[a-zA-Z]{1,}"
+                            class="form-control" placeholder="Username" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>
+
+                    <span class="mb-3" ng-show="myForm.email.$dirty" style="color:red;">
+                        <span ng-show="myForm.email.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
+                            Email required</span>
+                        <span ng-show="myForm.email.$error.email"><i class="fa-solid fa-circle-exclamation"></i> Enter
+                            valid email</span>
+                    </span>
                     <div class="input-group mb-3">
-                        <input type="text" name="email" class="form-control" placeholder="Email" required>
+                        <input type="email" ng-model="email" name="email" class="form-control" placeholder="Email"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
+
+                    <span class="mb-3" ng-show="myForm.password.$dirty" style="color:red;">
+                        <span ng-show="myForm.password.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
+                            Password required</span>
+                        <span ng-show="myForm.password.$error.pattern"><i class="fa-solid fa-circle-exclamation"></i>
+                            Password should be atleast 6 characters long and should contain one number,one character
+                            and
+                            one special character </span>
+                    </span>
                     <div class="input-group mb-3">
-                        <input type="password" name="Password" class="form-control" placeholder="Password" required>
+                        <input type="password" ng-model="password"
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$" name="password"
+                            class="form-control" placeholder="Password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+
+
+                    <span class="mb-3" ng-show="myForm.cpassword.$dirty" style="color:red;">
+                        <span ng-show="myForm.cpassword.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
+                            Password required</span>
+                        <span ng-show="password != cpassword"><i class="fa-solid fa-circle-exclamation"></i>
+                            Password doesn't match </span>
+                    </span>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="cPassword" placeholder="Retype password"
-                            required>
+                        <input type="password" class="form-control" name="cpassword" placeholder="Retype password"
+                            ng-model="cpassword" compare-to="password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+
+
+                    <span class="mb-3" ng-show="myForm.position.$dirty" style="color:red;">
+                        <span ng-show="myForm.Position.$error.required && Position!=''"><i class="fa-solid fa-circle-exclamation"></i>
+                            Position required</span>
+                    </span>
                     <div class="input-group mb-3">
-                        <select class="form-control " name="Position" required>
-                            <option value="Please Select" class="brown">Select Position</option>
+                        <select class="form-control " ng-model="Position" name="Position" aria-placeholder="Select" required>
+                            <option value="" class="brown">Select Position</option>
                             <option value="CEO" class="brown">CEO</option>
                             <option value="HOD" class="brown">HOD</option>
                             <option value="Employee" class="brown">Employee</option>
@@ -236,7 +283,7 @@ if (isset($_POST["submit"])) {
           </div> -->
                     <!-- /.col -->
                     <div class="col-14">
-                        <button type="submit" style="background:#6f42c1;color:white; " name="submit"
+                        <button type="submit" ng-show="!myForm.username.$error.required && !myForm.username.$error.pattern && !myForm.email.$error.required && !myForm.email.$error.email && !myForm.password.$error.required && !myForm.password.$error.pattern && !myForm.cpassword.$error.required && password == cpassword && !myForm.Position.$error.required && Position!=''" style="background:#6f42c1;color:white; " name="submit"
                             class="btn btn-block">Register</button>
                     </div>
                     <!-- /.col -->
@@ -264,5 +311,5 @@ if (isset($_POST["submit"])) {
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
 </body>
-
+<!-- && !myForm.email.$error.required && myForm.email.$error.email && !myForm.password.$error.required && !myForm.password.$error.pattern && !myForm.cpassword.$error.required && password == cpassword  -->
 </html>
