@@ -57,7 +57,7 @@ if (isset($_POST["submit"])) {
 }
 
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="en">
 
 <head>
@@ -111,6 +111,9 @@ if (isset($_POST["submit"])) {
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- angularJS -->
+    <script src="Angular\angular.min.js"></script>
+  <!-- <script src="Angular\angular_route.min.js"></script> -->
 
     <style>
         .focus:focus {
@@ -187,7 +190,7 @@ if (isset($_POST["submit"])) {
     </style>
 </head>
 
-<body class="hold-transition register-page">
+<body class="hold-transition register-page"  ng-app>
     <div class="register-box">
 
         <div class="login-logo">
@@ -197,18 +200,25 @@ if (isset($_POST["submit"])) {
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Register a new membership</p>
 
-                <form action="#" method="post">
-
+                <form action="#" method="post" name="myform" novalidate>
+                <span ng-show="myform.$submitted || myform.Password.$dirty" style="color:red;">
+            <span class="error" ng-show="myform.Password.$error.required"><i class="fa fa-exclamation-circle"></i> Password Required</span>
+            <span class="error" ng-show="myform.Password.$error.pattern"><i class="fa fa-exclamation-circle"></i>Password should be atleast 8 characters long and should contain one number,one character and one special character</span>
+        </span>
                     <div class="input-group mb-3">
-                        <input type="password" name="Password" class="form-control" placeholder="Password">
+                        <input type="password" name="Password" ng-model="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$" class="form-control" placeholder="Password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+                    <span ng-show="myform.$submitted || myform.cPassword.$dirty" style="color:red;">
+                        <span class="error" ng-show="myform.cPassword.$error.required"><i class="fa fa-exclamation-circle">password must be required<span>    
+                        <span class="error" ng-show="Password != cPassword"><i class="fa fa-exclamation-circle">password must be required<span>    
+                </span>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="cPassword" placeholder="Retype password">
+                        <input type="password" class="form-control" name="cPassword" ng-model="cPassword" placeholder="Retype password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
