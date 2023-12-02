@@ -71,6 +71,8 @@ if (isset($_POST["submit"])) {
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- angulur-min-JS  -->
+    <script src="Angular\angular.min.js"></script>
 
     <style>
         .focus:focus {
@@ -148,7 +150,7 @@ if (isset($_POST["submit"])) {
 </head>
 
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" ng-app>
     <?php
     if ($alert && isset($_POST["submit"])) {
         echo '<div class="popup-container" id="popupp">
@@ -184,25 +186,36 @@ if (isset($_POST["submit"])) {
                         now.
                     </b></p>
 
-                <form action="#" method="post">
+                <form action="#" method="post" name="myform" novalidate>
+                    <span ng-show="myform.$submitted || myform.username.$dirty" style="color:red;">
+                        <span class="error" ng-show="myform.username.$error.required"><i class="fa fa-exclamation-circle"></i> Name Reqiured</span><br>
+                        <span class="error" ng-show="myform.username.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
+                </span>
                     <div class="input-group mb-3">
-                        <input type="text" name="username" class="form-control" placeholder="Username" required>
+                        <input type="text" name="username" class="form-control" pattern="[a-zA-z,' ']{1,}" placeholder="Username" ng-model="username" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>
+                    <span ng-show="myform.$submitted || myform.password.$dirty" style="color:red;">
+                        <span class="error" ng-show="myform.password.$error.required"><i class="fa fa-exclamation-circle"></i> password must be reqiured</span>
+                    </span>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                        <input type="password" name="password" ng-model="password" class="form-control" placeholder="Password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+                    <span ng-show="myform.$submitted || myform.cpassword.$dirty" style="color:red;">
+                        <span class="error" ng-show="password != cpassword"><i class="fa fa-exclamation-circle"></i> password doesn't match</span>
+                        <span class="error" ng-show="myform.cpassword.$error.required"><i class="fa fa-exclamation-circle"></i> password must be reqiured</span>
+                    </span>
                     <div class="input-group mb-3">
-                        <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password"
+                        <input type="password" name="cpassword" ng-model="cpassword" class="form-control" placeholder="Confirm Password"
                             required>
                         <div class="input-group-append">
                             <div class="input-group-text">
