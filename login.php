@@ -2,7 +2,7 @@
 //  login page for dashboard 
 include 'home.php';
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html>
 
 <head>
@@ -22,6 +22,9 @@ include 'home.php';
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- angularJS -->
+  <script src="Angular\angular.min.js"></script>
+  <script src="Angular\angular_route.min.js"></script>
   <style>
     .focus:focus {
             border: 1px solid #6f42c1;
@@ -31,7 +34,7 @@ include 'home.php';
         .Black {
             color: black;
         }
-
+        
         .popup-container {
             position: fixed;
             top: 0;
@@ -97,7 +100,7 @@ include 'home.php';
   </style>
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page"  ng-app>
   <?php 
   if (isset($_SESSION['Status']) && $_SESSION['Status'] == "alert" && $alert= true) {
     echo '<div class="popup-container" id="popupp">
@@ -121,17 +124,27 @@ include 'home.php';
       <div class="card-body login-card-body">
         <p class="login-box-msg"><b>Sign in to start your session</b></p>
 
-        <form action="loginuser.php" method="post">
+        <form action="loginuser.php" method="post" name="myform" novalidate>
+        <span ng-show="myform.$submitted || myform.UserName.$dirty" style="color:red;">
+            <span class="error" ng-show="myform.UserName.$error.required"><i class="fa fa-exclamation-circle"></i> Name Required</span><br>
+            <span class="error" ng-show="myform.UserName.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
+        </span> 
           <div class="input-group mb-3">
-            <input type="text" name="UserName" class="form-control" placeholder="Username" required>
+            <input type="text" name="UserName"  ng-model="UserName" pattern="[a-zA-Z,' ']{1,}" class="form-control" placeholder="Username" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span> 
               </div>
+             
             </div>
           </div>
+
+          <span ng-show="myform.$submitted || myform.Password.$dirty" style="color:red;">
+            <span class="error" ng-show="myform.Password.$error.required"><i class="fa fa-exclamation-circle"></i> Password Required</span>
+            <!-- <span class="error" ng-show="myform.Password.$error.pattern"><i class="fa fa-exclamation-circle"></i>Password should be atleast 8 characters long and should contain one number,one character and one special character</span> -->
+        </span>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="Password" placeholder="Password">
+            <input type="password" class="form-control" ng-model="Password" name="Password" placeholder="Password" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -143,7 +156,7 @@ include 'home.php';
             <!-- /.col -->
             <div class="col-12">
               <button type="submit" name="login_btn" value="login_btn" class="btn btn-block"
-                style="background:#6f42c1;color:white; ">Log In</button>
+                style="background:#6f42c1;color:white;">Log In</button>
             </div>
             <!-- /.col -->
           </div>
@@ -174,7 +187,7 @@ include 'home.php';
             var popup = document.getElementById('popupp');
             popup.style.display = 'none';
         }
-    </script>
+    </scrip>
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
