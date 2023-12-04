@@ -1,26 +1,95 @@
 <?php
+// include authentication file 
+session_start();
+include 'authentication.php';
 
-include 'home.php';
+//include connection file
+include '_db_Connect.php';
+$tft;
+$web;
+$hp;
+
+$count=1;
+$query = mysqli_query($conn,"SELECT * FROM `user`");
+$data=array();
+while ($row = mysqli_fetch_array($query)) {
+$qry="SELECT * from `asset` where `pc_sr`='" . $row['pc_sr'] . "'";
+echo $qry;
+$reslt=mysqli_query($conn, $qry);
+$rowq=mysqli_fetch_assoc($reslt);
+$tft=$rowq['TFT_id'];
+$web=$rowq['Webcam_id'];
+$hp=$rowq['Headphone_id'];
+  $data[] = array(
+                  "Sr"=>$count,
+                  "pc_sr"=>$row['pc_sr'],
+                  "school_name"=>$row['school_name'],
+                  "username"=>$row['username'],
+                  "pc_sr"=>$row['pc_sr'],
+                  "TFT"=>$tft,
+                  "web"=>$web,
+                  "hp"=>$hp
+              );
+              $count++;
+}
+
+echo json_encode($data);
+
+
+                //   $qry = mysqli_query($conn,"SELECT * FROM `asset` where `school_name`='" . $row['school_name'] . "'");
+                //   // $qry = "SELECT * from `asset` where `school_name`='" . $row['school_name'] . "'";
+                //     // $reslt = mysqli_query($conn, $qry);
+                //     $rowq = mysqli_fetch_array($qry)
+                // echo
+                //   "TFT_id"=>$rowq['TFT_id'],
+                //   "Webcam_id"=>$rowq['Webcam_id'],
+                //   "Headphone_id"=>$rowq['Headphone_id']
+$EMP_NAME = $_SESSION['UserName'];
+$q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
+$r = mysqli_query( $conn, $q );
+$t = mysqli_num_rows($r);
+$roww = $r->fetch_assoc();
+if ($t > 0 ) {
+  if ($roww['asset']=='false') {
+    header('location:index.php');
+  }
+}
+// total school
+$sql = "SELECT  DISTINCT `school_name` FROM `user` ORDER BY `user`.`school_name` ASC";
+$result = mysqli_query($conn, $sql);
+
+if (isset($_POST['school'])) {
+  $school = $_POST['school'];
+  // select username according to School-name
+  $sql3 = "SELECT DISTINCT `username` FROM `user` WHERE `school_name`='$school';";
+  $result3 = mysqli_query($conn, $sql3);
+  $total3 = mysqli_num_rows($result3);
+}
+// select pc-sr according to username
+if (isset($_POST['school']) && isset($_POST['username'])) {
+  $username = $_POST['username'];
+  $sql2 = "SELECT * FROM `user` WHERE `username`='$username'";
+  $result2 = mysqli_query($conn, $sql2);
+  $total2 = mysqli_num_rows($result2);
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Assets</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
@@ -37,192 +106,410 @@ include 'home.php';
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- icheck bootstrap -->
     <style>
-        .focus:focus {
-            border: 1px solid #6f42c1;
-            color: #6f42c1;
-        }
-
-        .Black {
-            color: black;
-        }
-    </style>
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f7f7ff;
-            padding: 10px;
-            margin: 0;
-        }
-
-        ._container {
-            max-width: 600px;
-            background-color: #ffffff;
-            padding: 20px;
-            margin: 0 auto;
-            border: 1px solid #cccccc;
-            border-radius: 2px;
-        }
-
-        ._container.btn {
-            text-align: center;
-        }
-
-        .heading {
-            text-align: center;
-            color: #4d4d4d;
-            text-transform: uppercase;
-        }
-
-        .login-with-google-btn {
-            transition: background-color 0.3s, box-shadow 0.3s;
-            padding: 12px 16px 12px 42px;
-            border: none;
-            border-radius: 3px;
-            box-shadow: 0 -1px 0 rgb(0 0 0 / 4%), 0 1px 1px rgb(0 0 0 / 25%);
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 500;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
-            background-color: #4a4a4a;
-            background-repeat: no-repeat;
-            background-position: 12px 11px;
-            text-decoration: none;
-        }
-
-        .login-with-google-btn:hover {
-            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
-        }
-
-        .login-with-google-btn:active {
-            background-color: #000000;
-        }
-
-        .login-with-google-btn:focus {
-            outline: none;
-            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25), 0 0 0 3px #c8dafc;
-        }
-
-        .login-with-google-btn:disabled {
-            filter: grayscale(100%);
-            background-color: #ebebeb;
-            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
-            cursor: not-allowed;
-        }
-    </style>
-</head>
-
-<body class="bg">
-    <?php
-    if (isset($_SESSION['status'])) {
-        // echo $_SESSION['status'];
-        ?>
-        <div class="alert  alert-primary alert-dismissible fade show" role="alert">
-            <strong></strong>
-            <?php echo $_SESSION['status']; ?>.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php
-        unset($_SESSION['status']);
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
     }
+
+    .scrollbar {
+        height: 300px;
+        overflow-y: auto;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #ADB5BD;
+        border-radius: 5px;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+    }
+
+
+    ::-webkit-scrollbar-track {
+        background-color: #f5f5f5;
+        border-radius: 1px;
+    }
+
+    .card-title {
+        float: left;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0;
+    }
+
+
+    .bg {
+        background: linear-gradient(to bottom, #2196F3, #0D47A1);
+        border: none;
+    }
+
+    .bg:hover {
+        transition: 0.3s;
+        background: linear-gradient(to top, #0088f5, #01378a);
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        table,
+        table * {
+            visibility: visible;
+
+        }
+
+        th {
+            font-weight: 200;
+            font-size: 14px;
+        }
+
+        td {
+
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+            font-size: 10px;
+        }
+
+        table {
+            position: absolute;
+            left: 0;
+            top: -350px;
+        }
+    }
+    </style>
+    <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    ::-webkit-scrollbar {
+        max-width: 7px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #5c5c5c;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        border-radius: 10px;
+        background: #c7c7c7;
+    }
+    </style>
+    <script src="Angular\angular.min.js"></script>
+    <script>
+    var app = angular.module("myapp", []);
+    app.controller('useCtrl', function($scope) {
+        var users = <?php echo json_encode($data); ?>;
+        $scope.users = users;
+    })
+    </script>
+</head>
+<!-- Main Sidebar Container -->
+
+<body class="hold-transition sidebar-mini layout-fixed " ng-app="myapp">
+    <?php
+  include 'sidebar.php'
     ?>
-
-
-    <div class="home_content wrapper">
-
-        <center>
-
-            <div class="card col-lg-3 shadow my-5">
-                <!-- <form action="signup.php" method="POST"> -->
-                <center>
-                    <div class="card-header " style="border:0px;">
-                        <!-- </form> -->
-                        <h4 style="margin-top:10px; float:left;">Login Here</h4>
-
-                        <a href="signup.php">
-                            <button type="submit" name="" value="submit" class="btn "
-                                style="margin-top:8px; margin-left:250px; background:#6f42c1; color:white; float:right;">Sign-Up</button>
-                        </a>
-                    </div>
-                </center>
-
-                <div class="card-body ">
-                    <form action="loginuser.php" method="POST" width="40px">
-
-                        <div class="row">
-
-
-                            <div class="form-group col-lg-12">
-                                <label for="device" style="float:left; margin-left:10px;">Username</label>
-
-                                <div class="col-lg-12">
-                                    <input type="text" class="form-control focus" name="UserName"
-                                        placeholder="Enter Username" style="height:45px;" required>
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label for="device" style="float:left; margin-left:10px;">Password</label>
-
-                                <div class="col-lg-12">
-                                    <input type="password" class="form-control focus" name="Password"
-                                        placeholder="Enter Password" style="height:45px;" required>
-                                </div>
-                            </div>
-                            <!-- <div class="_container btn"> -->
-
-
-                            <!-- </div> -->
-
-                            <div class="form-group col-lg-12">
-                                <button class="btn " type="submit" name="login_btn" value="login_btn"
-                                    style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
-                            </div>
+    <!-- Wrapper class -->
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <!-- /.container-fluid -->
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Assets</h1>
                         </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item">Dashboard</li>
+                                <li class="breadcrumb-item active">Assets</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main content -->
+            <section class="content">
+                <!-- /.card-shadow -->
+                <div class="card mx-2 shadow">
+                    <!-- /.card-header -->
+                    <div class="card-header" style="border:0px;">
+                        <!-- /.card-title -->
+                        <h3 class="card-title ">Assets report</h3>
+                    </div>
+                    <!-- form start -->
+                    <form method="post" action="assets.php" role="form" id="myform">
+                        <div class="card-body row">
+                            <div class="form-group col-lg-2">
+                                <label for="device">School</label>
+                                <select class="form-control select2bs4" style="width: 100%" name="school"
+                                    onchange="change()">
+                                    <option value="All">All</option>
+                                    <?php
+                  // total school
+                  if ($result) {
+                    $total = mysqli_num_rows($result);
+                    if ($total != 0) {
+                      while ($row = $result->fetch_assoc()) {
+                        echo "<option value='" . $row['school_name'] . "'";
+                        echo isset($_POST["school"]) && $_POST["school"] == $row['school_name'] ? "selected " : "";
+                        echo ">" . $row['school_name'] . "</option>";
+                      }
+                    }
+                  }
+                  ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="device">Username</label>
+                                <select class="form-control select2bs4" style="width: 100%" name="username"
+                                    onchange="change()">
+                                    <option value="All">All</option>
+                                    <?php
+                  // username
+                  if ($result3) {
+                    $total3 = mysqli_num_rows($result3);
+                    if ($total3 != 0) {
+                      while ($row3 = $result3->fetch_assoc()) {
+                        echo "<option value='" . $row3['username'] . "'";
+                        echo isset($_POST["username"]) && $_POST["username"] == $row3['username'] ? "selected " : "";
+                        echo ">" . $row3['username'] . "</option>";
+                      }
+                    }
+                  }
+                  ?>
+                                </select>
+                            </div>
+                            <!-- general form elements -->
+                            <div class="form-group col-lg-2">
+                                <label for="exampleInputPassword1">PC Id</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='pc'>
+                                    <option value="All">All</option>
+                                    <?php
+                  //PC serial number
+                  if ($result2) {
+                    if ($total2 != 0) {
+                      while ($row2 = $result2->fetch_assoc()) {
+                        echo "<option ";
+                        echo isset($_POST["pc"]) && $_POST["pc"] == $row2["pc_sr"] ? "selected " : "";
+                        echo "value='" . $row2["pc_sr"] . "'>" . $row2["pc_sr"] . "</option>";
+                      }
+                    }
+                  }
+                  ?>
+                                </select>
+                            </div>
+                            <form action="#" method="get">
+                                <div class="form-group col-lg-1 my-4 w-100">
+                                    <button type="submit" name="Assets" value="Assets" class="btn "
+                                        style="margin-top:8px; width:100%; background:#6f42c1; color:white;">Assets</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card-body -->
+
                     </form>
                 </div>
-                <a type="button" class="login-with-google-btn col-lg-11 mx-3" style="margin-bottom:25px;"
-                    href="<?php echo $client->createAuthUrl(); ?>">
-                    Sign in with Google
-                </a>
-            </div>
-        </center>
+                <!-- <div class="card mx-2 shadow" style="height:590px;">
+          <div class="card-header" style="border:0px;">
+            <h3 class="card-title">Data</h3>
+            <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
+              <button type="submit" class="btn  w-100"  style="background-color:#ffc167;" onclick="printTable()">
+                <i class="fas fa-download"></i> Print PDF
+              </button>
+            </div> -->
+                <!-- </div> -->
+                <!-- /.card-header -->
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mx-2" style="overflow:hidden; overflow-x:scroll;">
+                            <div class="card-header" style="border:0px;">
+
+                                <h4 class="card-title">Data</h4>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example2" class="  table-striped table-bordered table-hover"
+                                    style="top:0; width:100%;">
+                                    <thead>
+                                        <tr style="height:50px; font-size:16px; text-align:center;">
+                                            <th>Sr</th>
+                                            <th>School name</th>
+                                            <th>Username</th>
+                                            <th>PC Sr</th>
+                                            <th>TFT Id</th>
+                                            <th>Webcam Id</th>
+                                            <th>Headphone Id</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-controller="useCtrl">
+                                        <tr ng-repeat="users in users"
+                                            style="height:40px; font-size:14px; text-align:center; ">
+                                            <td>{{users.Sr}}</td>
+                                            <td>{{users.school_name}}</td>
+                                            <td>{{users.username}}</td>
+                                            <td>{{users.pc_sr}}</td>
+                                            <td>{{users.TFT_id}}</td>
+                                            <td>{{users.Webcam_id}}</td>
+                                            <td>{{users.Headphone_id}}</td>
+                                        </tr>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+            </section>
+            <!-- /.card -->
+            <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
     </div>
+    <!-- /.content-wrapper -->
+    <?php
+  //include footer file
+  include 'footer.php';
+  ?>
 
-
-   
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
     <script>
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        let dark = document.querySelector("#Dark");
-        let bodi = document.querySelector(".bg");
-        let offc = document.querySelector(".ab");
-        let widthh = window.innerWidth;
-
-
-        btn.onclick = function () {
-            // sidebar.classList.toggle("active");
-            offc.classList.add("offcanvas");
-            offc.classList.add("offcanvas-start");
-        }
+    function change() {
+        document.getElementById("myform").submit();
+    }
     </script>
-</body>
+    <script>
+    function printTable() {
+        window.print();
+    }
+    </script>
+    <script>
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
+    </script>
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
+    <script src="plugins/datatables/jquery.dataTables.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+    $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <!-- <script src="dist/js/adminlte.js"></script> -->
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <script src="plugins/select2/js/select2.full.min.js"></script>
+    <script>
+    $('.select2').select2();
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        placeholder: 'Please Select'
+    });
+    </script>
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+    <script>
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
+    </script>
+
+</body>
 
 </html>
