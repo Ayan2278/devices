@@ -19,7 +19,7 @@ if ($tt > 0) {
 }
 if (isset($_POST["submit"])) {
     $passd = $_POST['Password'];
-    $cpassd = $_POST['cPassword'];
+    $cpassd = $_POST['cpassword'];
     $poss = $_POST['Position'];
     $full_name = $_SESSION['name'];
     // echo $email;
@@ -211,22 +211,23 @@ if (isset($_POST["submit"])) {
                             </div>
                         </div>
                     </div>
-                    <span class="mb-3" ng-show="myForm.cPassword.$dirty" style="color:red;">
-                        <span ng-show="myForm.cPassword.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
+                    <span class="mb-3" ng-show="myform.cpassword.$dirty" style="color:red;">
+                        <span ng-show="myform.cpassword.$error.required"><i class="fa fa-exclamation-circle"></i>
                             Password required</span>
-                        <span ng-show="Password != cPassword"><i class="fa-solid fa-circle-exclamation"></i>
+                        <span ng-show="Password != cpassword"><i class="fa fa-exclamation-circle"></i>
                             Password doesn't match </span>
                     </span>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="cPassword" ng-model="cPassword" placeholder="Retype password" required>
+                        <input type="password" class="form-control" name="cpassword" placeholder="Retype password"
+                            ng-model="cpassword" compare-to="Password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
-                    <span class="mb-3" ng-show="myForm.position.$dirty" style="color:red;">
-                        <span ng-show="myForm.Position.$error.required && Position!=''"><i class="fa-solid fa-circle-exclamation"></i>
+                    <span class="mb-3" ng-show="myform.position.$dirty" style="color:red;">
+                        <span ng-show="myform.Position.$error.required && Position!=''"><i class="fa fa-exclamation-circle"></i>
                             Position required</span>
                     </span>
                     <div class="input-group mb-3">
