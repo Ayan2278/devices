@@ -127,7 +127,7 @@ include 'home.php';
         <form action="loginuser.php" method="post" name="myform" novalidate>
           <span ng-show="myform.$submitted || myform.UserName.$dirty" style="color:red;">
             <span class="error" ng-show="myform.UserName.$error.required"><i class="fa fa-exclamation-circle"></i> Name
-              Required</span><br>
+              Required</span>
             <span class="error" ng-show="myform.UserName.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name
               cannot be a number</span>
           </span>

@@ -186,7 +186,7 @@ if (isset($_POST["submit"])) {
 
                 <form action="#" name="myForm" method="post" novalidate>
 
-                    <span class="mb-3" ng-show="myForm.username.$dirty" style="color:red;">
+                    <span class="" ng-show="myForm.username.$dirty" style="color:red;">
                         <span ng-show="myForm.username.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
                             Username required</span>
                         <span ng-show="myForm.username.$error.pattern"><i class="fa-solid fa-circle-exclamation"></i>
@@ -202,7 +202,7 @@ if (isset($_POST["submit"])) {
                         </div>
                     </div>
 
-                    <span class="mb-3" ng-show="myForm.email.$dirty" style="color:red;">
+                    <span class="" ng-show="myForm.email.$dirty" style="color:red;">
                         <span ng-show="myForm.email.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
                             Email required</span>
                         <span ng-show="myForm.email.$error.email"><i class="fa-solid fa-circle-exclamation"></i> Enter
@@ -218,7 +218,7 @@ if (isset($_POST["submit"])) {
                         </div>
                     </div>
 
-                    <span class="mb-3" ng-show="myForm.password.$dirty" style="color:red;">
+                    <span class="" ng-show="myForm.password.$dirty" style="color:red;">
                         <span ng-show="myForm.password.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
                             Password required</span>
                         <span ng-show="myForm.password.$error.pattern"><i class="fa-solid fa-circle-exclamation"></i>
@@ -241,7 +241,7 @@ if (isset($_POST["submit"])) {
                     <span class="mb-3" ng-show="myForm.cpassword.$dirty" style="color:red;">
                         <span ng-show="myForm.cpassword.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
                             Password required</span>
-                        <span ng-show="password != cpassword"><i class="fa-solid fa-circle-exclamation"></i>
+                        <span ng-show="password != cpassword && !myForm.cpassword.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
                             Password doesn't match </span>
                     </span>
                     <div class="input-group mb-3">
