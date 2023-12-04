@@ -53,7 +53,7 @@ if (isset($_POST["submit"])) {
         }
         //    $tot=mysqli_num_rows($res);
     }
-
+                
 }
 
 ?>
@@ -113,81 +113,82 @@ if (isset($_POST["submit"])) {
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
-        .focus:focus {
-            border: 1px solid #6f42c1;
-            color: #6f42c1;
-        }
+    .focus:focus {
+        border: 1px solid #6f42c1;
+        color: #6f42c1;
+    }
 
-        .Black {
-            color: black;
-        }
+    .Black {
+        color: black;
+    }
 
-        .popup-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+    .popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
 
-            /* display: none; */
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
+        /* display: none; */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
 
-        .popupp {
-            width: 400px;
-            background: #fff;
-            border-radius: 0.4rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            padding: 0 30px 30px;
-            color: #333;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
+    .popupp {
+        width: 400px;
+        background: #fff;
+        border-radius: 0.4rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
 
-        .popupp img {
-            width: 100px;
-            margin-top: -50px;
-            border-radius;
-            0.4rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
+    .popupp img {
+        width: 100px;
+        margin-top: -50px;
+        border-radius;
+        0.4rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
 
-        .popupp h2 {
-            font-size: 38px;
-            font-weight: 500;
-            margin: 30px 0 10px;
-            color: red;
-        }
+    .popupp h2 {
+        font-size: 38px;
+        font-weight: 500;
+        margin: 30px 0 10px;
+        color: red;
+    }
 
-        .popupp button {
-            width: 100%;
-            margin-top: 50px;
-            padding: 10px 0;
-            background: #6f42c1;
-            color: #fff;
-            border: 0;
-            outline: none;
-            font-size: 18px;
-            border-radius: 0.4rem;
-            cursor: pointer;
-            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-        }
+    .popupp button {
+        width: 100%;
+        margin-top: 50px;
+        padding: 10px 0;
+        background: #6f42c1;
+        color: #fff;
+        border: 0;
+        outline: none;
+        font-size: 18px;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    }
 
-        .close {
-            visibility: hidden;
-            display: none;
-        }
+    .close {
+        visibility: hidden;
+        display: none;
+    }
     </style>
+    <script src="Angular\angular.min.js"></script>
 </head>
 
-<body class="hold-transition register-page">
+<body class="hold-transition register-page" ng-app="">
     <div class="register-box">
 
         <div class="login-logo">
@@ -197,26 +198,39 @@ if (isset($_POST["submit"])) {
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Register a new membership</p>
 
-                <form action="#" method="post">
-
+                <form action="#" method="post" name="myform" novalidate>
+                    <span ng-show="myform.$submitted || myform.Password.$dirty" style="color:red;">
+                        <span class="error" ng-show="myform.Password.$error.required"><i class="fa fa-exclamation-circle"></i> password mush be Required</span><br>
+                        <span class="error" ng-show="myform.Password.$error.pattern"><i class="fa fa-exclamation-circle"></i>   Password should be atleast 6 characters long and should contain one number,one character and one special character </span>
+                    </span>
                     <div class="input-group mb-3">
-                        <input type="password" name="Password" class="form-control" placeholder="Password">
+                        <input type="password" name="Password" class="form-control" placeholder="Password" ng-model="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+                    <span class="mb-3" ng-show="myForm.cPassword.$dirty" style="color:red;">
+                        <span ng-show="myForm.cPassword.$error.required"><i class="fa-solid fa-circle-exclamation"></i>
+                            Password required</span>
+                        <span ng-show="Password != cPassword"><i class="fa-solid fa-circle-exclamation"></i>
+                            Password doesn't match </span>
+                    </span>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="cPassword" placeholder="Retype password">
+                        <input type="password" class="form-control" name="cPassword" ng-model="cPassword" placeholder="Retype password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+                    <span class="mb-3" ng-show="myForm.position.$dirty" style="color:red;">
+                        <span ng-show="myForm.Position.$error.required && Position!=''"><i class="fa-solid fa-circle-exclamation"></i>
+                            Position required</span>
+                    </span>
                     <div class="input-group mb-3">
-                        <select class="form-control " name="Position" required>
+                        <select class="form-control " ng-model="Position" name="Position" required>
                             <option value="Please Select" class="Black">Please Select</option>
                             <option value="CEO" class="Black">CEO</option>
                             <option value="HOD" class="Black">HOD</option>
@@ -265,11 +279,11 @@ if (isset($_POST["submit"])) {
 
 
     <script>
-        function closePopup() {
-            var popup = document.getElementById('popupp');
-            popup.style.display = 'none';
+    function closePopup() {
+        var popup = document.getElementById('popupp');
+        popup.style.display = 'none';
 
-        }
+    }
     </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
@@ -280,7 +294,7 @@ if (isset($_POST["submit"])) {
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -318,8 +332,8 @@ if (isset($_POST["submit"])) {
     <!-- page script -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
 
 </body>
 
