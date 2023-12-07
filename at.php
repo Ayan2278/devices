@@ -1,78 +1,85 @@
 <?php
-// school page in dashboard 
-// session statr 
+// include authentication file 
 session_start();
 include 'authentication.php';
-// connection file
+
+//include connection file
 include '_db_Connect.php';
-$pin;
+$tft;
+$web;
+$hp;
+
 $count=1;
-$query = mysqli_query($conn,"SELECT * FROM `asset`");
+$query = mysqli_query($conn,"SELECT * FROM `user`");
 $data=array();
 while ($row = mysqli_fetch_array($query)) {
-  $qry = "SELECT * from `school` where `school_name`='" . $row['school_name'] . "'";
-  $reslt = mysqli_query($conn, $qry);
-  $rowq=mysqli_fetch_assoc($reslt);
-  $pin=$rowq['pincode'];
+$qry="SELECT * from `asset` where `pc_sr`='" . $row['pc_sr'] . "'";
+$reslt=mysqli_query($conn, $qry);
+$rowq=mysqli_fetch_assoc($reslt);
+$tft=$rowq['TFT_id'];
+$web=$rowq['Webcam_id'];
+$hp=$rowq['Headphone_id'];
   $data[] = array(
-    "Sr"=>$count,
-    "school_name"=>$row['school_name'],
-    "district"=>$row['district'],
-    "block"=>$row['block'],
-    "village"=>$row['village'],
-    "pincode"=>$pin
-    
-);
-$count++;
+                  "Sr"=>$count,
+                  "pc_sr"=>$row['pc_sr'],
+                  "school_name"=>$row['school_name'],
+                  "username"=>$row['username'],
+                  "pc_sr"=>$row['pc_sr'],
+                  "TFT_id"=>$tft,
+                  "Webcam_id"=>$web,
+                  "Headphone_id"=>$hp
+              );
+              $count++;
 }
 
-// Query for Select District
-$sql = "SELECT DISTINCT `district` FROM `asset`;";
-$result = mysqli_query($conn, $sql);
+// echo json_encode($data);
+
+
+                //   $qry = mysqli_query($conn,"SELECT * FROM `asset` where `school_name`='" . $row['school_name'] . "'");
+                //   // $qry = "SELECT * from `asset` where `school_name`='" . $row['school_name'] . "'";
+                //     // $reslt = mysqli_query($conn, $qry);
+                //     $rowq = mysqli_fetch_array($qry)
+                // echo
+                //   "TFT_id"=>$rowq['TFT_id'],
+                //   "Webcam_id"=>$rowq['Webcam_id'],
+                //   "Headphone_id"=>$rowq['Headphone_id']
 $EMP_NAME = $_SESSION['UserName'];
 $q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
 $r = mysqli_query( $conn, $q );
 $t = mysqli_num_rows($r);
 $roww = $r->fetch_assoc();
 if ($t > 0 ) {
-  if ($roww['school']=='false') {
+  if ($roww['asset']=='false') {
     header('location:index.php');
   }
 }
-// Query for Select Block
-if (isset($_POST['DIST'])) {
-  $Dis = $_POST['DIST'];
-  $sql2 = "SELECT DISTINCT `block` FROM `asset` WHERE `district`='$Dis' ORDER BY `asset`.`block` ASC;";
-  $result2 = mysqli_query($conn, $sql2);
-  $total2 = mysqli_num_rows($result2);
-}
-// Query for Select Village
-if (isset($_POST['DIST']) && isset($_POST['Block'])) {
-  $Dis = $_POST['DIST'];
-  $Bl = $_POST['Block'];
-  $sql3 = "SELECT  DISTINCT `village` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
+// total school
+$sql = "SELECT  DISTINCT `school_name` FROM `user` ORDER BY `user`.`school_name` ASC";
+$result = mysqli_query($conn, $sql);
+
+if (isset($_POST['school'])) {
+  $school = $_POST['school'];
+  // select username according to School-name
+  $sql3 = "SELECT DISTINCT `username` FROM `user` WHERE `school_name`='$school';";
   $result3 = mysqli_query($conn, $sql3);
   $total3 = mysqli_num_rows($result3);
 }
-// Query for Select School
-if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
-  $village = $_POST['Village'];
-  $Dis = $_POST['DIST'];
-  $Bl = $_POST['Block'];
-  $sql4 = "SELECT  DISTINCT `school_name` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
-  $result4 = mysqli_query($conn, $sql4);
-  $total4 = mysqli_num_rows($result4);
+// select pc-sr according to username
+if (isset($_POST['school']) && isset($_POST['username'])) {
+  $username = $_POST['username'];
+  $sql2 = "SELECT * FROM `user` WHERE `username`='$username'";
+  $result2 = mysqli_query($conn, $sql2);
+  $total2 = mysqli_num_rows($result2);
 }
-
 ?>
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>School</title>
-
+    <title>Assets</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -80,10 +87,8 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
@@ -99,8 +104,12 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     <!-- Daterange picker -->
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- summernote -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -148,6 +157,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
         margin: 0;
     }
 
+
     .bg {
         background: linear-gradient(to bottom, #2196F3, #0D47A1);
         border: none;
@@ -185,7 +195,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
         table {
             position: absolute;
             left: 0;
-            top: -500px;
+            top: -350px;
         }
     }
     </style>
@@ -218,7 +228,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
         background: #c7c7c7;
     }
     </style>
-     </style>
     <script src="Angular\angular.min.js"></script>
     <script>
     var app = angular.module("myapp", []);
@@ -228,120 +237,167 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     })
     </script>
 </head>
+<!-- Main Sidebar Container -->
 
-<body class="hold-transition sidebar-mini layout-fixed " ng-app="myapp" ng-controller="useCtrl">
-
+<body class="hold-transition sidebar-mini layout-fixed " ng-app="myapp">
     <?php
-  // Include Sidebar File
   include 'sidebar.php'
     ?>
-
+    <!-- Wrapper class -->
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
+                <!-- /.container-fluid -->
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">School</h1>
-                        </div><!-- /.col -->
+                            <h1 class="m-0 text-dark">Assets</h1>
+                        </div>
+                        <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                 <li class="breadcrumb-item">Dashboard</li>
-                                <li class="breadcrumb-item active">School</li>
+                                <li class="breadcrumb-item active">Assets</li>
                             </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-            <!-- general form elements -->
-            <section class="content">
-                <div class="card mx-2 shadow">
-                    <div class="card-header" style="border:0px;">
-                        <h3 class="card-title">School report</h3>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <!-- Main content -->
+            <section class="content">
+                <!-- /.card-shadow -->
+                <div class="card mx-2 shadow">
                     <!-- /.card-header -->
+                    <div class="card-header" style="border:0px;">
+                        <!-- /.card-title -->
+                        <h3 class="card-title ">Assets report</h3>
+                    </div>
                     <!-- form start -->
-                    <form method="post" action="school.php" role="form" id="myform">
+                    <form method="post" action="assets.php" role="form" id="myform" name="myForm">
                         <div class="card-body row">
                             <div class="form-group col-lg-2">
-                                <label for="school">District</label>
-                                <select name="District" ng-model="District" style="width:100%;" class="form-control">
+                                <label for="device">School</label>
+                                <select class="form-control select2bs4" style="width: 100%" name="school_name" ng-model="myForm.school_name" ng-controller="useCtrl">
                                 <option value="">Please Select</option>
-                                    <option ng-repeat="users in users" value="{{users.district}}">{{users.district}}
-                                    </option>
+                                    <option ng-repeat="users in users" value="{{users.school_name}}">{{users.school_name}}</option>
+                                    <!-- <?php
+                  // total school
+                  // if ($result) {
+                  //   $total = mysqli_num_rows($result);
+                  //   if ($total != 0) {
+                  //     while ($row = $result->fetch_assoc()) {
+                  //       echo "<option value='" . $row['school_name'] . "'";
+                  //       echo isset($_POST["school"]) && $_POST["school"] == $row['school_name'] ? "selected " : "";
+                  //       echo ">" . $row['school_name'] . "</option>";
+                  //     }
+                  //   }
+                  // }
+                  ?> -->
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
-                                <label for="exampleInputPassword1">Block</label>
-                                <select class="form-control " style="width: 100%" name='Block' ng-model="Block">
-                                    <option value="">Please Select</option>
-                                    <option ng-repeat="users in users | filter: {district : District} " value="{{users.block}}">{{users.block}}</option>
+                                <label for="device">Username</label>
+                                <select class="form-control select2bs4" style="width: 100%" name="username"  ng-model="username" ng-controller="useCtrl">
+                                    <option value="All">All</option>
+                                    <option ng-repeat="users in users" value="{{users.school_name}}">{{users.username}}</option>
+                                    <?php 
+                  // username
+                //   if ($result3) {
+                //     $total3 = mysqli_num_rows($result3);
+                //     if ($total3 != 0) {
+                //       while ($row3 = $result3->fetch_assoc()) {
+                //         echo "<option value='" . $row3['username'] . "'";
+                //         echo isset($_POST["username"]) && $_POST["username"] == $row3['username'] ? "selected " : "";
+                //         echo ">" . $row3['username'] . "</option>";
+                //       }
+                //     }
+                //   }
+                //   ?>
                                 </select>
                             </div>
+                            <!-- general form elements  -->
                             <div class="form-group col-lg-2">
-                                <label for="exampleInputPassword1">Village</label>
-                                <select class="form-control " style="width: 100%" name='Village' ng-model="Village">
-                                    <option value="">Please Select</option>
-                                    <option ng-repeat="users in users| filter: {district : District} | filter: {block: Block} " value="{{users.village}}">{{users.village}}</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-lg-2">
-                                <label for="exampleInputPassword1">Select School </label>
-                                <select class="form-control " style="width: 100%" name='school' ng-model="school">
-                                    <option value="">Please Select </option>
-                                    <option  ng-repeat="users in users| filter: {district : District} | filter: {block: Block} | filter: {village: Village} "  value="{{users.school_name}}">{{users.school_name}}</option>
+                                <label for="exampleInputPassword1">PC Id</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='pc' ng-model="pc" ng-controller="useCtrl">
+                                <option value="All">All</option>
+                                    <option ng-repeat="users in users" value="{{users.username}}">{{users.pc_sr}}</option>
+                                    <?php
+                  //PC serial number
+                //   if ($result2) {
+                //     if ($total2 != 0) {
+                //       while ($row2 = $result2->fetch_assoc()) {
+                //         echo "<option ";
+                //         echo isset($_POST["pc"]) && $_POST["pc"] == $row2["pc_sr"] ? "selected " : "";
+                //         echo "value='" . $row2["pc_sr"] . "'>" . $row2["pc_sr"] . "</option>";
+                //       }
+                //     }
+                //   }
+                //   ?>
                                 </select>
                             </div>
                             <form action="#" method="get">
                                 <div class="form-group col-lg-1 my-4 w-100">
-                                    <button type="submit" name="Search" value="Search" class="btn "
-                                        style="margin-top:8px; width:100%; background:#6f42c1; color:white;">Search</button>
+                                    <button type="submit" name="Assets" value="Assets" class="btn "
+                                        style="margin-top:8px; width:100%; background:#6f42c1; color:white;">Assets</button>
                                 </div>
                             </form>
                         </div>
                         <!-- /.card-body -->
+
                     </form>
                 </div>
+                <!-- <div class="card mx-2 shadow" style="height:590px;">
+          <div class="card-header" style="border:0px;">
+            <h3 class="card-title">Data</h3>
+            <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
+              <button type="submit" class="btn  w-100"  style="background-color:#ffc167;" onclick="printTable()">
+                <i class="fas fa-download"></i> Print PDF
+              </button>
+            </div> -->
                 <!-- </div> -->
                 <!-- /.card-header -->
             </section>
             <section class="content">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card mx-2">
+                        <div class="card mx-2" style="overflow:hidden; overflow-x:scroll;">
+                            <div class="card-header" style="border:0px;">
 
+                                <h4 class="card-title">Data</h4>
+                            </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <h4 class="card-title">Data</h4>
-                                <table id="example2" class=" table-striped table-bordered table-hover" style="top:0; width:100%;">
-                                    <thead style="height:50px;">
-                                    <tr style="height:20px; font-size:16px;text-align:center;">
-                                    <th>SR</th>
-                                    <th>School name</th>
-                                    <th>District</th>
-                                    <th>Block</th>
-                                    <th>Village</th>
-                                    <th>Pincode</th>
-                                    </tr>
+                                <table id="example2" class="  table-striped table-bordered table-hover"
+                                    style="top:0; width:100%;">
+                                    <thead>
+                                        <tr style="height:50px; font-size:16px; text-align:center;">
+                                            <th>Sr</th>
+                                            <th>School name</th>
+                                            <th>Username</th>
+                                            <th>PC Sr</th>
+                                            <th>TFT Id</th>
+                                            <th>Webcam Id</th>
+                                            <th>Headphone Id</th>
+                                        </tr>
                                     </thead>
                                     <tbody ng-controller="useCtrl">
-                                    <tr ng-repeat="users in users | filter: {district : District} | filter: {block: Block} | filter: {village: Village} | filter:{school_name:school} " style=" height:40px; font-size:14px;text-align:center;">
-                                   <td style="margin:10px;">{{users.Sr}}</td>
-                                   <td>{{users.school_name}}</td>
-                                   <td>{{users.district}}</td>
-                                   <td>{{users.block}}</td>
-                                   <td>{{users.village}}</td>
-                                   <td>{{users.pincode}}</td>
-                                </tr>
-                                </tbody>
-                                </table>
-                     
-
+                                        <tr ng-repeat="users in users"
+                                            style="height:40px; font-size:14px; text-align:center; ">
+                                            <td>{{users.Sr}}</td>
+                                            <td>{{users.school_name}}</td>
+                                            <td>{{users.username}}</td>
+                                            <td>{{users.pc_sr}}</td>
+                                            <td>{{users.TFT_id}}</td>
+                                            <td>{{users.Webcam_id}}</td>
+                                            <td>{{users.Headphone_id}}</td>
+                                        </tr>
                                    
+
+                                    </tbody>
+                                </table>
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -361,6 +417,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
   //include footer file
   include 'footer.php';
   ?>
+
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
@@ -368,6 +425,24 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+    <!-- <script>
+
+        var app = angular.module("myapp", []);
+        app.controller('useCtrl', function($scope , $http) {
+            $scope.loadCountry=function(){
+                $http.get("sc.php")
+                .success(function(data)
+                {
+                    $scope.users=data;
+                })
+            }
+        // var users = ;
+        // $scope.users = users;
+        });
+
+    </script> -->
+
+
     <script>
     function change() {
         document.getElementById("myform").submit();
@@ -393,6 +468,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
+
     <script src="plugins/datatables/jquery.dataTables.js"></script>
     <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -403,7 +479,6 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="plugins/select2/js/select2.full.min.js"></script>
     <!-- ChartJS -->
     <script src="plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
@@ -428,6 +503,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
     <script src="dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    <script src="plugins/select2/js/select2.full.min.js"></script>
     <script>
     $('.select2').select2();
     $('.select2bs4').select2({
@@ -444,7 +520,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
         $('#example2').DataTable({
             "paging": true,
             "lengthChange": false,
-            "searching": true,
+            "searching": false,
             "ordering": false,
             "info": true,
             "autoWidth": false,

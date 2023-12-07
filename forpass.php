@@ -188,7 +188,7 @@ if (isset($_POST["submit"])) {
 
                 <form action="#" method="post" name="myform" novalidate>
                     <span ng-show="myform.$submitted || myform.username.$dirty" style="color:red;">
-                        <span class="error" ng-show="myform.username.$error.required"><i class="fa fa-exclamation-circle"></i> Name Reqiured</span>
+                        <span class="error" ng-show="myform.username.$error.required"><i class="fa fa-exclamation-circle"></i> Name Reqiured</span><br>
                         <span class="error" ng-show="myform.username.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
                 </span>
                     <div class="input-group mb-3">
@@ -199,35 +199,24 @@ if (isset($_POST["submit"])) {
                             </div>
                         </div>
                     </div>
-                    <span class="" ng-show="myform.password.$dirty" style="color:red;">
-                        <span ng-show="myform.password.$error.required"><i class="fa fa-exclamation-circle"></i>
-                            Password required</span>
-                        <span ng-show="myform.password.$error.pattern"><i class="fa fa-exclamation-circle"></i>
-                            Password should be atleast 6 characters long and should contain one number,one character
-                            and
-                            one special character </span>
+                    <span ng-show="myform.$submitted || myform.password.$dirty" style="color:red;">
+                        <span class="error" ng-show="myform.password.$error.required"><i class="fa fa-exclamation-circle"></i> password must be reqiured</span>
                     </span>
                     <div class="input-group mb-3">
-                        <input type="password" ng-model="password"
-                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$" name="password"
-                            class="form-control" placeholder="Password" required>
+                        <input type="password" name="password" ng-model="password" class="form-control" placeholder="Password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
-
-
-                    <span class="mb-3" ng-show="myform.cpassword.$dirty" style="color:red;">
-                        <span ng-show="myform.cpassword.$error.required"><i class="fa fa-exclamation-circle"></i>
-                            Password required</span>
-                        <span ng-show="password != cpassword && !myform.cpassword.$error.required"><i class="fa fa-exclamation-circle"></i>
-                            Password doesn't match </span>
+                    <span ng-show="myform.$submitted || myform.cpassword.$dirty" style="color:red;">
+                        <span class="error" ng-show="password != cpassword"><i class="fa fa-exclamation-circle"></i> password doesn't match</span>
+                        <span class="error" ng-show="myform.cpassword.$error.required"><i class="fa fa-exclamation-circle"></i> password must be reqiured</span>
                     </span>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="cpassword" placeholder="Retype password"
-                            ng-model="cpassword" compare-to="password" required>
+                        <input type="password" name="cpassword" ng-model="cpassword" class="form-control" placeholder="Confirm Password"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

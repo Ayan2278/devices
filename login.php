@@ -2,7 +2,7 @@
 //  login page for dashboard 
 include 'home.php';
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html>
 
 <head>
@@ -22,87 +22,89 @@ include 'home.php';
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <!-- angularJS -->
-  <script src="Angular\angular.min.js"></script>
-  <script src="Angular\angular_route.min.js"></script>
+ 
+ 
   <style>
-    .focus:focus {
-      border: 1px solid #6f42c1;
-      color: #6f42c1;
-    }
+        .focus:focus {
+            border: 1px solid #6f42c1;
+            color: #6f42c1;
+        }
 
-    .Black {
-      color: black;
-    }
+        .Black {
+            color: black;
+        }
 
-    .popup-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
 
-      /* display: none; */
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
+            /* display: none; */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
 
-    .popupp {
-      width: 400px;
-      background: #fff;
-      border-radius: 0.4rem;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      padding: 0 30px 30px;
-      color: #333;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
+        .popupp {
+            width: 400px;
+            background: #fff;
+            border-radius: 0.4rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 0 30px 30px;
+            color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
 
-    .popupp img {
-      width: 100px;
-      margin-top: -50px;
-      border-radius;
-      0.4rem;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
+        .popupp img {
+            width: 100px;
+            margin-top: -50px;
+            border-radius;
+            0.4rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
 
-    .popupp h2 {
-      font-size: 38px;
-      font-weight: 500;
-      margin: 30px 0 10px;
-      color: red;
-    }
+        .popupp h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+            color: red;
+        }
 
-    .popupp button {
-      width: 100%;
-      margin-top: 50px;
-      padding: 10px 0;
-      background: #6f42c1;
-      color: #fff;
-      border: 0;
-      outline: none;
-      font-size: 18px;
-      border-radius: 0.4rem;
-      cursor: pointer;
-      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    }
+        .popupp button {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6f42c1;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
 
-    .close {
-      visibility: hidden;
-      display: none;
-    }
-  </style>
+        .close {
+            visibility: hidden;
+            display: none;
+        }
+    </style>
+   <!-- angularJS -->
+   <script src="Angular\angular.min.js"></script>
+ 
 </head>
 
-<body class="hold-transition login-page" ng-app>
-  <?php
-  if (isset($_SESSION['Status']) && $_SESSION['Status'] == "alert" && $alert = true) {
+<body class="hold-transition login-page"  ng-app="">
+  <?php 
+  if (isset($_SESSION['Status']) && $_SESSION['Status'] == "alert" && $alert= true) {
     echo '<div class="popup-container" id="popupp">
         <div class="popupp">
             <h2 style="color: #D80032;">INVALID</h2>
@@ -110,8 +112,8 @@ include 'home.php';
             <button style="background: #D80032;" type="button" onClick="closePopup()">Close</button>
         </div>
     </div>';
-    $alert = false;
-    session_destroy();
+     $alert = false;
+     session_destroy();
   }
 
   ?>
@@ -125,31 +127,26 @@ include 'home.php';
         <p class="login-box-msg"><b>Sign in to start your session</b></p>
 
         <form action="loginuser.php" method="post" name="myform" novalidate>
-          <span ng-show="myform.$submitted || myform.UserName.$dirty" style="color:red;">
-            <span class="error" ng-show="myform.UserName.$error.required"><i class="fa fa-exclamation-circle"></i> Name
-              Required</span>
-            <span class="error" ng-show="myform.UserName.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name
-              cannot be a number</span>
-          </span>
+        <span ng-show="myform.$submitted || myform.UserName.$dirty" style="color:red;">
+            <span class="error" ng-show="myform.UserName.$error.required"><i class="fa fa-exclamation-circle"></i> Name Required</span>
+            <span class="error" ng-show="myform.UserName.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
+        </span> 
           <div class="input-group mb-3">
-            <input type="text" name="UserName" ng-model="UserName" pattern="[a-zA-Z,' ']{1,}" class="form-control"
-              placeholder="Username" required>
+            <input type="text" name="UserName"  ng-model="UserName" pattern="[a-zA-Z,' ']{1,}" class="form-control" placeholder="Username" required>
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
+                <span class="fas fa-envelope"></span> 
               </div>
-
+             
             </div>
           </div>
 
           <span ng-show="myform.$submitted || myform.Password.$dirty" style="color:red;">
-            <span class="error" ng-show="myform.Password.$error.required"><i class="fa fa-exclamation-circle"></i>
-              Password Required</span>
+            <span class="error" ng-show="myform.Password.$error.required"><i class="fa fa-exclamation-circle"></i> Password Required</span>
             <!-- <span class="error" ng-show="myform.Password.$error.pattern"><i class="fa fa-exclamation-circle"></i>Password should be atleast 8 characters long and should contain one number,one character and one special character</span> -->
-          </span>
+        </span>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" ng-model="Password" name="Password" placeholder="Password"
-              required>
+            <input type="password" class="form-control" ng-model="Password" name="Password" placeholder="Password" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -188,12 +185,12 @@ include 'home.php';
   </div>
   <!-- /.login-box -->
   <script>
-    function closePopup() {
-      var popup = document.getElementById('popupp');
-      popup.style.display = 'none';
+  function closePopup() {
+            var popup = document.getElementById('popupp');
+            popup.style.display = 'none';
 
-    }
-  </script>
+        }
+    </script>
   <!-- jQuery -->
   <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->

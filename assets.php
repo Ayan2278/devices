@@ -9,93 +9,39 @@ $tft;
 $web;
 $hp;
 
-// $count=1;
-// $query = mysqli_query($conn,"SELECT * FROM `user`");
-// $data=array();
-// while ($row = mysqli_fetch_array($query)) {
-// $qry="SELECT * from `asset` where `pc_sr`='" . $row['pc_sr'] . "'";
-// echo $qry;
-// $reslt=mysqli_query($conn, $qry);
-// $rowq=mysqli_fetch_assoc($reslt);
-// $tft=$rowq['TFT_id'];
-// $web=$rowq['Webcam_id'];
-// $hp=$rowq['Headphone_id'];
-//   $data[] = array(
-//                   "Sr"=>$count,
-//                   "school_name"=>$row['school_name'],
-//                   "username"=>$row['username'],
-//                   "pc_sr"=>$row['pc_sr'],
-//                   "TFT"=>$tft,
-//                   "web"=>$web,
-//                   "hp"=>$hp
-//               );
-//               $count++;
-// }
-
-include '_db_Connect.php';
-
-$sel = mysqli_query($conn, "SELECT * FROM user");
-$data = array();
-$count = 1;
-$act;
-
-while ($row = mysqli_fetch_array($sel)) {
-    // $q = "SELECT * from `asset` where `pc_sr`='" . $row['pc_sr'] . "'";
-    $q = mysqli_query($conn, "SELECT * from `asset` where `pc_sr`='" . $row['pc_sr'] . "'");
-    $row2 = mysqli_fetch_array($q);
-    $tft = $row2['TFT_id'];
-    $web = $row2['Webcam_id'];
-    $hp = $row2['Headphone_id'];
-    $data[] = array(
-        "Sr" => $count,
-        "school_name" => $row['school_name'],
-        "username" => $row['username'],
-        "pc_sr" => $row['pc_sr'],
-        "TFT" => $tft,
-        "web" => $web,
-        "hp" => $hp
-    );
-    $count++;
+$count=1;
+$query = mysqli_query($conn,"SELECT * FROM `user`");
+$data=array();
+while ($row = mysqli_fetch_array($query)) {
+$qry="SELECT * from `asset` where `pc_sr`='" . $row['pc_sr'] . "'";
+$reslt=mysqli_query($conn, $qry);
+$rowq=mysqli_fetch_assoc($reslt);
+$tft=$rowq['TFT_id'];
+$web=$rowq['Webcam_id'];
+$hp=$rowq['Headphone_id'];
+  $data[] = array(
+                  "Sr"=>$count,
+                  "pc_sr"=>$row['pc_sr'],
+                  "school_name"=>$row['school_name'],
+                  "username"=>$row['username'],
+                  "pc_sr"=>$row['pc_sr'],
+                  "TFT_id"=>$tft,
+                  "Webcam_id"=>$web,
+                  "Headphone_id"=>$hp
+              );
+              $count++;
 }
-// echo json_encode($data);
-
-
-//   $qry = mysqli_query($conn,"SELECT * FROM `asset` where `school_name`='" . $row['school_name'] . "'");
-//   // $qry = "SELECT * from `asset` where `school_name`='" . $row['school_name'] . "'";
-//     // $reslt = mysqli_query($conn, $qry);
-//     $rowq = mysqli_fetch_array($qry)
-// echo
-//   "TFT_id"=>$rowq['TFT_id'],
-//   "Webcam_id"=>$rowq['Webcam_id'],
-//   "Headphone_id"=>$rowq['Headphone_id']
 $EMP_NAME = $_SESSION['UserName'];
 $q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
-$r = mysqli_query($conn, $q);
+$r = mysqli_query( $conn, $q );
 $t = mysqli_num_rows($r);
 $roww = $r->fetch_assoc();
-if ($t > 0) {
-    if ($roww['asset'] == 'false') {
-        header('location:index.php');
-    }
+if ($t > 0 ) {
+  if ($roww['asset']=='false') {
+    header('location:index.php');
+  }
 }
-// total school
-$sql = "SELECT  DISTINCT `school_name` FROM `user` ORDER BY `user`.`school_name` ASC";
-$result = mysqli_query($conn, $sql);
 
-if (isset($_POST['school'])) {
-    $school = $_POST['school'];
-    // select username according to School-name
-    $sql3 = "SELECT DISTINCT `username` FROM `user` WHERE `school_name`='$school';";
-    $result3 = mysqli_query($conn, $sql3);
-    $total3 = mysqli_num_rows($result3);
-}
-// select pc-sr according to username
-if (isset($_POST['school']) && isset($_POST['username'])) {
-    $username = $_POST['username'];
-    $sql2 = "SELECT * FROM `user` WHERE `username`='$username'";
-    $result2 = mysqli_query($conn, $sql2);
-    $total2 = mysqli_num_rows($result2);
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -139,135 +85,135 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    .scrollbar {
+        height: 300px;
+        overflow-y: auto;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #ADB5BD;
+        border-radius: 5px;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+    }
+
+
+    ::-webkit-scrollbar-track {
+        background-color: #f5f5f5;
+        border-radius: 1px;
+    }
+
+    .card-title {
+        float: left;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0;
+    }
+
+
+    .bg {
+        background: linear-gradient(to bottom, #2196F3, #0D47A1);
+        border: none;
+    }
+
+    .bg:hover {
+        transition: 0.3s;
+        background: linear-gradient(to top, #0088f5, #01378a);
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        table,
+        table * {
+            visibility: visible;
+
+        }
+
+        th {
             font-weight: 200;
-            font-size: 16px;
+            font-size: 14px;
         }
 
-        .scrollbar {
-            height: 300px;
-            overflow-y: auto;
+        td {
+
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+            font-size: 10px;
         }
 
-
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-            background-color: #ADB5BD;
-            border-radius: 5px;
+        table {
+            position: absolute;
+            left: 0;
+            top: -350px;
         }
-
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
-        }
-
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
-        }
-
-
-        ::-webkit-scrollbar-track {
-            background-color: #f5f5f5;
-            border-radius: 1px;
-        }
-
-        .card-title {
-            float: left;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin: 0;
-        }
-
-
-        .bg {
-            background: linear-gradient(to bottom, #2196F3, #0D47A1);
-            border: none;
-        }
-
-        .bg:hover {
-            transition: 0.3s;
-            background: linear-gradient(to top, #0088f5, #01378a);
-        }
-
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-
-            table,
-            table * {
-                visibility: visible;
-
-            }
-
-            th {
-                font-weight: 200;
-                font-size: 14px;
-            }
-
-            td {
-
-                border-color: inherit;
-                border-style: solid;
-                border-width: 0;
-                font-size: 10px;
-            }
-
-            table {
-                position: absolute;
-                left: 0;
-                top: -350px;
-            }
-        }
+    }
     </style>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 200;
-            font-size: 16px;
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
 
-        ::-webkit-scrollbar {
-            max-width: 7px;
-        }
+    ::-webkit-scrollbar {
+        max-width: 7px;
+    }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
 
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #5c5c5c;
-            border-radius: 10px;
-        }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #5c5c5c;
+        border-radius: 10px;
+    }
 
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            border-radius: 10px;
-            background: #c7c7c7;
-        }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        border-radius: 10px;
+        background: #c7c7c7;
+    }
     </style>
     <script src="Angular\angular.min.js"></script>
     <script>
-        var app = angular.module("myapp", []);
-        app.controller('useCtrl', function ($scope) {
-            var users = <?php echo json_encode($data); ?>;
-            $scope.users = users;
-        })
+    var app = angular.module("myapp", []);
+    app.controller('useCtrl', function($scope) {
+        var users = <?php echo json_encode($data); ?>;
+        $scope.users = users;
+    })
     </script>
 </head>
 <!-- Main Sidebar Container -->
 
-<body class="hold-transition sidebar-mini layout-fixed " ng-app="myapp">
+<body class="hold-transition sidebar-mini layout-fixed " ng-app="myapp" ng-controller="useCtrl">
     <?php
-    include 'sidebar.php'
-        ?>
+  include 'sidebar.php'
+    ?>
     <!-- Wrapper class -->
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
@@ -301,65 +247,28 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                         <h3 class="card-title ">Assets report</h3>
                     </div>
                     <!-- form start -->
-                    <form method="post" action="assets.php" role="form" id="myform">
+                    <form method="post" action="assets.php" role="form" id="myform" name="myForm">
                         <div class="card-body row">
                             <div class="form-group col-lg-2">
                                 <label for="device">School</label>
-                                <select class="form-control select2bs4" style="width: 100%" name="school"
-                                    onchange="change()">
-                                    <option value="All">All</option>
-                                    <?php
-                                    // total school
-                                    if ($result) {
-                                        $total = mysqli_num_rows($result);
-                                        if ($total != 0) {
-                                            while ($row = $result->fetch_assoc()) {
-                                                echo "<option value='" . $row['school_name'] . "'";
-                                                echo isset($_POST["school"]) && $_POST["school"] == $row['school_name'] ? "selected " : "";
-                                                echo ">" . $row['school_name'] . "</option>";
-                                            }
-                                        }
-                                    }
-                                    ?>
+                                <select class="form-control" name="school_name" ng-model="school_name"  style="width: 100%">
+                                    <option value="">Please Select</option>
+                                    <option ng-repeat="users in users " value="{{users.school_name}}">{{users.school_name}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
                                 <label for="device">Username</label>
-                                <select class="form-control select2bs4" style="width: 100%" name="username"
-                                    onchange="change()">
-                                    <option value="All">All</option>
-                                    <?php
-                                    // username
-                                    if ($result3) {
-                                        $total3 = mysqli_num_rows($result3);
-                                        if ($total3 != 0) {
-                                            while ($row3 = $result3->fetch_assoc()) {
-                                                echo "<option value='" . $row3['username'] . "'";
-                                                echo isset($_POST["username"]) && $_POST["username"] == $row3['username'] ? "selected " : "";
-                                                echo ">" . $row3['username'] . "</option>";
-                                            }
-                                        }
-                                    }
-                                    ?>
+                                <select class="form-control " style="width: 100%" name="username"  ng-model="username">
+                                    <option value="">Please Select</option>
+                                    <option ng-repeat="users in users | filter:school_name " value="{{users.username}}">{{users.username}}</option>
                                 </select>
                             </div>
-                            <!-- general form elements -->
+                            <!-- general form elements  -->
                             <div class="form-group col-lg-2">
                                 <label for="exampleInputPassword1">PC Id</label>
-                                <select class="form-control select2bs4" style="width: 100%" name='pc'>
-                                    <option value="All">All</option>
-                                    <?php
-                                    //PC serial number
-                                    if ($result2) {
-                                        if ($total2 != 0) {
-                                            while ($row2 = $result2->fetch_assoc()) {
-                                                echo "<option ";
-                                                echo isset($_POST["pc"]) && $_POST["pc"] == $row2["pc_sr"] ? "selected " : "";
-                                                echo "value='" . $row2["pc_sr"] . "'>" . $row2["pc_sr"] . "</option>";
-                                            }
-                                        }
-                                    }
-                                    ?>
+                                <select class="form-control " style="width: 100%" name='pc' ng-model="pc">
+                                <option value="">Please Select</option>
+                                    <option ng-repeat="users in users | filter:username" value="{{users.pc_sr}}">{{users.pc_sr}}</option>
                                 </select>
                             </div>
                             <form action="#" method="get">
@@ -370,18 +279,8 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                             </form>
                         </div>
                         <!-- /.card-body -->
-
                     </form>
                 </div>
-                <!-- <div class="card mx-2 shadow" style="height:590px;">
-          <div class="card-header" style="border:0px;">
-            <h3 class="card-title">Data</h3>
-            <div class="col-lg-1 col-md-2 col-sm-2  " style="float:right;">
-              <button type="submit" class="btn  w-100"  style="background-color:#ffc167;" onclick="printTable()">
-                <i class="fas fa-download"></i> Print PDF
-              </button>
-            </div> -->
-                <!-- </div> -->
                 <!-- /.card-header -->
             </section>
             <section class="content">
@@ -408,17 +307,17 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
                                         </tr>
                                     </thead>
                                     <tbody ng-controller="useCtrl">
-                                        <tr ng-repeat="users in users"
+                                        <tr ng-repeat="users in users | filter:school_name | filter:username | filter:pc"
                                             style="height:40px; font-size:14px; text-align:center; ">
                                             <td>{{users.Sr}}</td>
                                             <td>{{users.school_name}}</td>
                                             <td>{{users.username}}</td>
                                             <td>{{users.pc_sr}}</td>
-                                            <td>{{users.TFT}}</td>
-                                            <td>{{users.web}}</td>
-                                            <td>{{users.hp}}</td>
+                                            <td>{{users.TFT_id}}</td>
+                                            <td>{{users.Webcam_id}}</td>
+                                            <td>{{users.Headphone_id}}</td>
                                         </tr>
-                                    <tbody>
+                                   
 
                                     </tbody>
                                 </table>
@@ -438,10 +337,9 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
     </div>
     <!-- /.content-wrapper -->
     <?php
-    //include footer file
-    include 'footer.php';
-    ?>
-
+  //include footer file
+  include 'footer.php';
+  ?>
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
@@ -450,27 +348,27 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
     </div>
     <!-- ./wrapper -->
     <script>
-        function change() {
-            document.getElementById("myform").submit();
-        }
+    function change() {
+        document.getElementById("myform").submit();
+    }
     </script>
     <script>
-        function printTable() {
-            window.print();
-        }
+    function printTable() {
+        window.print();
+    }
     </script>
     <script>
-        $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-            });
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
         });
+    });
     </script>
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
@@ -481,7 +379,7 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -511,27 +409,27 @@ if (isset($_POST['school']) && isset($_POST['username'])) {
     <script src="dist/js/demo.js"></script>
     <script src="plugins/select2/js/select2.full.min.js"></script>
     <script>
-        $('.select2').select2();
-        $('.select2bs4').select2({
-            theme: 'bootstrap4',
-            placeholder: 'Please Select'
-        });
+    $('.select2').select2();
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        placeholder: 'Please Select'
+    });
     </script>
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!-- page script -->
     <script>
-        $(function () {
-            $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-            });
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
         });
+    });
     </script>
 
 </body>
