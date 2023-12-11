@@ -24,7 +24,6 @@ $hp=$rowq['Headphone_id'];
                   "pc_sr"=>$row['pc_sr'],
                   "school_name"=>$row['school_name'],
                   "username"=>$row['username'],
-                  "pc_sr"=>$row['pc_sr'],
                   "TFT_id"=>$tft,
                   "Webcam_id"=>$web,
                   "Headphone_id"=>$hp
@@ -247,12 +246,12 @@ if ($t > 0 ) {
                         <h3 class="card-title ">Assets report</h3>
                     </div>
                     <!-- form start -->
-                    <form method="post" action="assets.php" role="form" id="myform" name="myForm">
+                    <form method="post" id="myForm">
                         <div class="card-body row">
                             <div class="form-group col-lg-2">
-                                <label for="device">School</label>
-                                <select class="form-control" name="school_name" ng-model="school_name"  style="width: 100%">
-                                    <option value="">Please Select</option>
+                                <label for="device">School</label>{{school_name!=''}}
+                                <select class="form-control" name="srchSchool" ng-model="srchSchool"  style="width: 100%">
+                                    <option value="">Select</option>
                                     <option ng-repeat="users in users " value="{{users.school_name}}">{{users.school_name}}</option>
                                 </select>
                             </div>
@@ -260,7 +259,7 @@ if ($t > 0 ) {
                                 <label for="device">Username</label>
                                 <select class="form-control " style="width: 100%" name="username"  ng-model="username">
                                     <option value="">Please Select</option>
-                                    <option ng-repeat="users in users | filter:school_name " value="{{users.username}}">{{users.username}}</option>
+                                    <option ng-repeat="users in users | filter:school_name " ng-show="srchSchool!=''" value="{{users.username}}">{{users.username}}</option>
                                 </select>
                             </div>
                             <!-- general form elements  -->
@@ -280,6 +279,7 @@ if ($t > 0 ) {
                         </div>
                         <!-- /.card-body -->
                     </form>
+                    
                 </div>
                 <!-- /.card-header -->
             </section>
@@ -307,7 +307,7 @@ if ($t > 0 ) {
                                         </tr>
                                     </thead>
                                     <tbody ng-controller="useCtrl">
-                                        <tr ng-repeat="users in users | filter:school_name | filter:username | filter:pc"
+                                        <tr ng-repeat="users in users | filter:srchSchool | filter:username | filter:pc"
                                             style="height:40px; font-size:14px; text-align:center; ">
                                             <td>{{users.Sr}}</td>
                                             <td>{{users.school_name}}</td>

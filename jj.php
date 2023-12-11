@@ -1,4 +1,5 @@
 <!-- send data of asset table to Angular script -->
+<!-- send data of asset table to Angular script -->
 <?php
 
 include '_db_Connect.php';
@@ -40,6 +41,48 @@ function status($pcNo)
     }
 }
 
+?>
+<?php
+// include authentication file 
+include 'authentication.php';
+
+//include connection file
+include '_db_Connect.php';
+$tft;
+$web;
+$hp;
+
+$count=1;
+$query = mysqli_query($conn,"SELECT * FROM `user`");
+$data=array();
+while ($row = mysqli_fetch_array($query)) {
+$qry="SELECT * from `asset` where `pc_sr`='" . $row['pc_sr'] . "'";
+$reslt=mysqli_query($conn, $qry);
+$rowq=mysqli_fetch_assoc($reslt);
+$tft=$rowq['TFT_id'];
+$web=$rowq['Webcam_id'];
+$hp=$rowq['Headphone_id'];
+  $data[] = array(
+                  "Sr"=>$count,
+                  "school_name"=>$row['school_name'],
+                  "username"=>$row['username'],
+                  "pc_sr"=>$row['pc_sr'],
+                  "TFT_id"=>$tft,
+                  "Webcam_id"=>$web,
+                  "Headphone_id"=>$hp
+              );
+              $count++;
+}
+$EMP_NAME = $_SESSION['UserName'];
+$q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
+$r = mysqli_query( $conn, $q );
+$t = mysqli_num_rows($r);
+$roww = $r->fetch_assoc();
+if ($t > 0 ) {
+  if ($roww['asset']=='false') {
+    header('location:index.php');
+  }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -257,6 +300,46 @@ function status($pcNo)
 
                         <div class="card-body row">
                             <div class="form-group col-lg-2">
+                                <label for="school">School</label>
+                                <select name="schoolSrch" ng-model="schoolSrch" style="width:100%;" class="form-control">
+                                <option value="">Select</option>
+                                    <option ng-repeat="user in users" value="{{user.school_name}}">{{users.school_name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="exampleInputPassword1">Username</label>
+                                <select name="srchUsername" ng-model="srchUsername" style="width:100%;" class="form-control">
+                                <option value="">Select</option>
+                                    <option ng-repeat="user in users | filter: {school_name : schoolSrch}" ng-show="schoolSrch!=''" value="{{users.username}}">{{user.username}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="exampleInputPassword1">Village</label>
+                                <select class="form-control" name="village" ng-model="village" id="">
+                                    <option value="">Select</option>
+                                    <option ng-repeat="users in users | filter: {district : srchDistrict} | filter: {block : srchBlock}" value="{{users.village}}"  ng-show="srchBlock!='' && srchDistrict!=''">{{users.village}}
+                                    </option>
+                                </select>
+                            </div>
+                            
+
+                            <form action="live_status.php" method="post">
+                                <div class="form-group col-lg-1 my-4 w-100">
+                                    <button type="submit" name="Status" value="Status" class="btn  "
+                                        style="margin-top:8px;width:100%;  background:#6f42c1; color:white;">Status</button>
+                                </div>
+                            </form>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                    </form>
+                    <form method="post" action="live_status.php" role="form" id="myform">
+
+                        <div class="card-body row">
+                            <div class="form-group col-lg-2">
                                 <label for="school">District</label>
                                 <select name="srchDistrict" ng-model="srchDistrict" style="width:100%;" class="form-control">
                                 <option value="">Select</option>
@@ -327,27 +410,24 @@ function status($pcNo)
                                     <thead style="height:50px;">
                                         <tr class="p-2" style="height:20px; font-size:16px;text-align:center;">
                                             <th>SR</th>
-                                            <th>District</th>
-                                            <th>Block</th>
-                                            <th>Village</th>
-                                            <th>School name</th>
-                                            <th>PC sr</th>
-                                            <th>Status</th>
+                                            <th>School_name</th>
+                                            <th>Username</th>
+                                            <th>PC SR</th>
+                                            <th>TFT id</th>
+                                            <th>Webcam Id</th>
+                                            <th>Headphone_id</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="user in users | filter: {district : srchDistrict} | filter: {block : srchBlock} | filter :{village : village} | filter: {school_name: school_name} | filter: {pc_sr : pc_sr}"
-                                            style=" height:40px; font-size:14px;text-align:center;">
-                                            <td>{{user.sr}}</td>
-                                            <td>{{user.district}}</td>
-                                            <td>{{user.block}}</td>
-                                            <td>{{user.village}}</td>
+                                    <!-- ng-repeat="user in users | filter: {district : srchDistrict} | filter: {block : srchBlock} | filter :{village : village} | filter: {school_name: school_name} | filter: {pc_sr : pc_sr}" -->
+                                        <tr ng-repeat="user in users" style=" height:40px; font-size:14px;text-align:center;">
+                                            <td>{{user.Sr}}</td>
                                             <td>{{user.school_name}}</td>
+                                            <td>{{user.username}}</td>
                                             <td>{{user.pc_sr}}</td>
-                                            <td>
-                                                <small class="badge badge-success" ng-show="user.status == 'Active'">{{user.status}}</small>
-                                                <small class="badge badge-danger" ng-show="user.status == 'Inactive'">{{user.status}}</small>
-                                            </td>
+                                            <td>{{user.TFT_id}}</td>
+                                            <td>{{user.Webcam_id}}</td>
+                                            <td>{{user.Headphone_id}}</td>
                                         </tr>
                                     </tbody>
                                     <?php
