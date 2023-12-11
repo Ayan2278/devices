@@ -204,6 +204,7 @@ if ($t > 0 ) {
     app.controller('useCtrl', function($scope) {
         var users = <?php echo json_encode($data); ?>;
         $scope.users = users;
+        $scope.school_name = '';
     })
     </script>
 </head>
@@ -246,18 +247,18 @@ if ($t > 0 ) {
                         <h3 class="card-title ">Assets report</h3>
                     </div>{{school_name!=''}}
                     <!-- form start -->
-                    <form method="post" action="assets.php" role="form" id="myform" name="myForm">
+                    <form method="post" action="assets.php" id="myform">
                         <div class="card-body row">
                             <div class="form-group col-lg-2">
-                                <label for="device">School</label>
-                                <select class="form-control" name="school_name" ng-model="school_name"  style="width: 100%">
+                                <label for="exampleInputPassword1">School</label>
+                                <select  name="school_name" ng-model="school_name"  style="width: 100%" class="form-control">
                                     <option value="">Please Select</option>
                                     <option ng-repeat="users in users " value="{{users.school_name}}">{{users.school_name}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
-                                <label for="device">Username</label>
-                                <select class="form-control " style="width: 100%" name="username"  ng-model="username">
+                                <label for="exampleInputPassword1">Username</label>
+                                <select style="width: 100%" name="username"  ng-model="username" class="form-control" >
                                     <option value="">Please Select</option>
                                     <option ng-repeat="users in users | filter:school_name " ng-show="school_name!=''" value="{{users.username}}">{{users.username}}</option>
                                 </select>

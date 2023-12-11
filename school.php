@@ -225,6 +225,7 @@ $count++;
     app.controller('useCtrl', function($scope) {
         var users = <?php echo json_encode($data); ?>;
         $scope.users = users;
+        $scope.District = '';
     })
     </script>
 </head>
@@ -286,14 +287,14 @@ $count++;
                                 <label for="exampleInputPassword1">Village</label>
                                 <select class="form-control " style="width: 100%" name='Village' ng-model="Village">
                                     <option value="">Please Select</option>
-                                    <option ng-repeat="users in users| filter: {district : District} | filter: {block: Block} " value="{{users.village}}">{{users.village}}</option>
+                                    <option ng-repeat="users in users| filter: {district : District} | filter: {block: Block} " ng-show="District!='' && Block!='' " value="{{users.village}}">{{users.village}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">
                                 <label for="exampleInputPassword1">Select School </label>
                                 <select class="form-control " style="width: 100%" name='school' ng-model="school">
                                     <option value="">Please Select </option>
-                                    <option  ng-repeat="users in users| filter: {district : District} | filter: {block: Block} | filter: {village: Village} "  value="{{users.school_name}}">{{users.school_name}}</option>
+                                    <option  ng-repeat="users in users| filter: {district : District} | filter: {block: Block} | filter: {village: Village} " ng-show="District!='' && Block!='' && Village!='' "  value="{{users.school_name}}">{{users.school_name}}</option>
                                 </select>
                             </div>
                             <form action="#" method="get">
