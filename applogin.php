@@ -102,7 +102,7 @@ include 'authentication.php';
                                         <input type="text" class="form-control focus" ng-model="username"  pattern="[a-zA-Z,' ']{1,}" name="username" placeholder="Enter Username"
                                             style="height:45px;" required>
                                     </div>
-                                    <span ng-show="myForm.$submitted || myForm.username.$dirty" style="color:red;">
+                                    <span ng-show="myForm.$submitted || myForm.username.$dirty" style="color:red; float:left " class="mx-2" >
                                             <span class="error" ng-show="myForm.username.$error.required"><i class="fa fa-exclamation-circle"></i> Name Required</span>
                                             <span class="error" ng-show="myForm.username.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
                                     </span>
@@ -114,7 +114,7 @@ include 'authentication.php';
                                         <input type="password" class="form-control focus" ng-model="Password" name="Password" placeholder="Enter Password"
                                             style="height:45px;" required>
                                     </div>
-                                    <span ng-show="myform.$submitted || myForm.Password.$dirty" style="color:red;">
+                                    <span ng-show="myform.$submitted || myForm.Password.$dirty" style="color:red;  float:left " class="mx-2" >
                                         <span class="error" ng-show="myForm.Password.$error.required"><i class="fa fa-exclamation-circle"></i> Password Required</span>
                                     </span>
                                 </div>

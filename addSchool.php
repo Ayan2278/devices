@@ -317,7 +317,7 @@ while ($row = mysqli_fetch_array($query)) {
                     </div>
                 </div>
             </div>
-            <form action="" method="POST" name="myform" novalidate>
+            <form action="" method="POST" name="myForm" novalidate>
                 <?php
                 // alert messages pop-up
                 if (isset($result) && $result) {
@@ -337,15 +337,16 @@ while ($row = mysqli_fetch_array($query)) {
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <span ng-show="myform.$submitted || myform.school_name.$dirty" style="color:red;">
-                                    <span class="error" ng-show="myform.school_name.$error.required"><i class="fa fa-exclamation-circle"></i> Name Required</span>
-                                    <span class="error" ng-show="myform.school_name.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
-                                </span>
+                              
                                 <div class="form-group col-lg-12">
                                     <label for="device" style="float:left; margin-left:10px;">School</label>
                                     <div class="col-lg-12">
                                         <input type="text" class="form-control focus"  ng-model="school_name" pattern="[a-zA-Z,' ']{1,}" name="school_name" placeholder="Enter School name" style="height:45px;" required>
                                     </div>
+                                    <span ng-show="myForm.$submitted || myForm.school_name.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.school_name.$error.required"><i class="fa fa-exclamation-circle"></i>School Name Required</span>
+                                    <span class="error" ng-show="myForm.school_name.$error.pattern"><i class="fa fa-exclamation-circle"></i>School Name cannot be a number</span>
+                                </span>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label for="device" style="float:left; margin-left:10px;">District</label>
@@ -357,30 +358,45 @@ while ($row = mysqli_fetch_array($query)) {
                                                 {{users.name}}</option>
                                         </select>
                                     </div>
+                                    <span ng-show="myForm.$submitted || myForm.district.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.district.$error.required"><i class="fa fa-exclamation-circle"></i> District Required</span>
+                                    </span>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="device" style="float:left; margin-left:10px;">Block</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" placeholder="Enter block"
-                                            name="block" style="height:45px;" required>
+                                        <input type="text" class="form-control focus" placeholder="Enter block" pattern="[a-zA-Z,' ']{1,}"
+                                            name="block" ng-model="block" style="height:45px;" required>
                                     </div>
+                                    <span ng-show="myForm.$submitted || myForm.block.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.block.$error.required"><i class="fa fa-exclamation-circle"></i> Block Required</span>
+                                    <span class="error" ng-show="myForm.block.$error.pattern"><i class="fa fa-exclamation-circle"></i> Block cannot be a number</span>
+                                </span>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label for="device" style="float:left; margin-left:10px;">Village</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" placeholder="Enter Village"
-                                            name="village" style="height:45px;" required>
+                                        <input type="text" class="form-control focus" placeholder="Enter Village" pattern="[a-zA-Z,' ']{1,}"
+                                            name="village" ng-model="village" style="height:45px;" required>
                                     </div>
+                                    <span ng-show="myForm.$submitted || myForm.village.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.village.$error.required"><i class="fa fa-exclamation-circle"></i> Village Required</span>
+                                    <span class="error" ng-show="myForm.village.$error.pattern"><i class="fa fa-exclamation-circle"></i> Village cannot be a number</span>
+                                </span>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label for="device" style="float:left; margin-left:10px;">Pincode</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" placeholder="Enter Pincode"
-                                            name="pincode" style="height:45px;" required>
+                                        <input type="text" class="form-control focus" placeholder="Enter Pincode" 
+                                            name="pincode" ng-model="pincode" style="height:45px;" required>
                                     </div>
+                                    <span ng-show="myForm.$submitted || myForm.pincode.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.pincode.$error.required"><i class="fa fa-exclamation-circle"></i> Pincode Required</span>
+                                    
+                                </span>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <button class="btn " type="submit" name="submit"

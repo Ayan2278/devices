@@ -64,8 +64,16 @@ if (isset($_POST["submit"])) {
 }
 }
 // automectically display all school-name
-$sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
-$result1 = mysqli_query($conn, $sql);
+$query = mysqli_query($conn,"SELECT * FROM `school` ORDER BY `school`.`school_name` ASC");
+$data=array();
+while ($row = mysqli_fetch_array($query)) {
+    $data[] = array(
+        'school_name'=>$row['school_name'],
+    );
+}
+
+// $sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
+// $result1 = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -298,11 +306,18 @@ $result1 = mysqli_query($conn, $sql);
         color: black;
     }
     </style>
-     <script src="Angular\angular.min.js"></script>
-     
+    <script src="Angular\angular.min.js"></script>
+    <script>
+    var app = angular.module("myapp", []);
+    app.controller('useCtrl', function($scope) {
+        var users = <?php echo json_encode($data); ?>;
+        $scope.users = users;
+    })
+    </script>
+
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed side">
+<body class="hold-transition sidebar-mini layout-fixed side" ng-app="myapp" ng-controller="useCtrl">
     <?php
     // include sidebar file
     include 'sidebar.php';
@@ -330,7 +345,7 @@ $result1 = mysqli_query($conn, $sql);
             </div>
             <!-- /.content-header -->
             <section class="content">
-                <form action="" method="POST">
+                <form action="" method="POST" name="myForm" novalidate>
                     <?php
                 // alert messages pop-up
                 if (isset($result) && $result) {
@@ -373,52 +388,68 @@ $result1 = mysqli_query($conn, $sql);
                                     <div class="form-group col-lg-12">
                                         <label for="device" style="float:left; margin-left:10px;">School</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control focus" name="school_name" style="height:45px;"
-                                                required>
+                                            <select class="form-control focus" name="school_name" ng-model="school_name"
+                                                style="height:45px;" required>
                                                 <option value="" class="Black">Please Select</option>
-                                                <?php
-                                            
-                                            // display all School-Name in options
-                                            if ($result1) {
-                                                $total1 = mysqli_num_rows($result1);
-                                                if ($total1 != 0) {
-                                                    while ($row = $result1->fetch_assoc()) {
-
-                                                        echo "<option value='" . $row['school_name'] . "'  class='Black'";
-                                                        echo isset($_POST["school_name"]) && $_POST["school_name"] == $row['school_name'] ? "selected " : "";
-                                                        echo ">" . $row['school_name'] . "</option>";
-                                                    }
-                                                }
-                                            }
-                                            ?>
-
+                                                <option ng-repeat="users in users" class="Black"
+                                                    value="{{users.school_name}}">
+                                                    {{users.school_name}}</option>
                                             </select>
                                         </div>
+                                        <span ng-show="myForm.$submitted || myForm.school_name.$dirty"
+                                            style="color:red; float:left " class="mx-2">
+                                            <span class="error" ng-show="myForm.school_name.$error.required"><i
+                                                    class="fa fa-exclamation-circle"></i> School Name Required</span>
+                                        </span>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="device" style="float:left; margin-left:10px;">PC ID</label>
-
                                         <div class="col-lg-12">
-                                            <input type="text" class="form-control focus" name="pc_sr"
+                                            <input type="text" class="form-control focus" name="pc_sr" ng-model="pc_sr"
                                                 placeholder="Enter PC Serial" style="height:45px;" required>
                                         </div>
-
+                                        <span ng-show="myForm.$submitted || myForm.pc_sr.$dirty"
+                                            style="color:red; float:left " class="mx-2">
+                                            <span class="error" ng-show="myForm.pc_sr.$error.required"><i
+                                                    class="fa fa-exclamation-circle"></i> PC Serial Number
+                                                Required</span>
+                                        </span>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="device" style="float:left; margin-left:10px;">UserName</label>
-
                                         <div class="col-lg-12">
                                             <input type="text" class="form-control focus" name="username"
+                                                ng-model="username" pattern="[a-zA-Z,' ']{1,}"
                                                 placeholder="Enter User Name" style="height:45px;" required>
                                         </div>
+                                        <span ng-show="myForm.$submitted || myForm.username.$dirty"
+                                            style="color:red; float:left " class="mx-2">
+                                            <span class="error" ng-show="myForm.username.$error.required"><i
+                                                    class="fa fa-exclamation-circle"></i> Name Required</span>
+                                            <span class="error" ng-show="myForm.username.$error.pattern"><i
+                                                    class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
+                                        </span>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label for="device" style="float:left; margin-left:10px;">Password</label>
 
                                         <div class="col-lg-12">
                                             <input type="Password" class="form-control focus" name="Password"
-                                                placeholder="Enter Valid Password" style="height:45px;" required>
+                                                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$"
+                                                ng-model="Password" placeholder="Enter Valid Password"
+                                                style="height:45px;" required>
                                         </div>
+                                        <span class="mx-3" ng-show="myForm.Password.$dirty" style="color:red; float:left " >
+                                            <span ng-show="myForm.Password.$error.required"><i
+                                                    class="fa-solid fa-circle-exclamation"></i>
+                                                Password required</span>
+                                            <span ng-show="myForm.Password.$error.pattern"><i
+                                                    class="fa-solid fa-circle-exclamation"></i>
+                                                Password should be atleast 6 characters long and should contain one
+                                                number,one character
+                                                and
+                                                one special character </span>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">

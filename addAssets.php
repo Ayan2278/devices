@@ -50,8 +50,17 @@ if (isset($_POST["submit"])) {
     }
 }
 // display all school name
-$sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
-$result1 = mysqli_query($conn, $sql);
+$query = mysqli_query($conn,"SELECT * FROM `school` ORDER BY `school`.`school_name` ASC");
+$data=array();
+while ($row = mysqli_fetch_array($query)) {
+    $data[] = array(
+        'school_name'=>$row['school_name'],
+    );
+}
+
+
+// $sql = "SELECT * FROM `school` ORDER BY `school`.`school_name` ASC";
+// $result1 = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -283,9 +292,17 @@ $result1 = mysqli_query($conn, $sql);
         color: black;
     }
     </style>
+     <script src="Angular\angular.min.js"></script>
+    <script>
+    var app = angular.module("myapp", []);
+    app.controller('useCtrl', function($scope) {
+        var users = <?php echo json_encode($data); ?>;
+        $scope.users = users;
+    })
+    </script>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed side">
+<body class="hold-transition sidebar-mini layout-fixed side" ng-app="myapp" ng-controller="useCtrl">
     <?php
     // include sidebar file
     include 'sidebar.php';
@@ -313,7 +330,7 @@ $result1 = mysqli_query($conn, $sql);
             </div>
             <!-- /.content-header -->
             <section class="content">
-                <form action="" method="POST">
+                <form action="" method="POST" name="myForm" novalidate>
                     <?php
                 // alert messages pop-up
                 if (isset($result) && $result) {
@@ -338,59 +355,63 @@ $result1 = mysqli_query($conn, $sql);
 
                                         <label for="device" style="float:left; margin-left:10px;">School</label>
                                         <div class="col-lg-12">
-                                            <select class="form-control focus" name="school_name" style="height:45px;"
+                                            <select class="form-control focus" name="school_name" ng-model="school_name" style="height:45px;"
                                                 required>
                                                 <option value="" class="Black">Please Select</option>
-                                                <?php
-                                            
-                                            // options for School Name
-                                            if ($result1) {
-                                                $total1 = mysqli_num_rows($result1);
-                                                if ($total1 != 0) {
-                                                    while ($row = $result1->fetch_assoc()) {
-
-                                                        echo "<option value='" . $row['school_name'] . "'  class='Black'";
-                                                        echo isset($_POST["school_name"]) && $_POST["school_name"] == $row['school_name'] ? "selected " : "";
-                                                        echo ">" . $row['school_name'] . "</option>";
-                                                    }
-                                                }
-                                            }
-                                            ?>
-
+                                            <option ng-repeat="users in users" class="Black" value="{{users.school_name}}">
+                                                {{users.school_name}}</option>
                                             </select>
                                         </div>
+                                        <span ng-show="myForm.$submitted || myForm.school_name.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.school_name.$error.required"><i class="fa fa-exclamation-circle"></i> School Name Required</span>
+                                    </span>
                                     </div>
+
                                     <div class="form-group col-lg-6">
                                         <label for="device" style="float:left; margin-left:10px;">PC sr</label>
-
                                         <div class="col-lg-12">
-                                            <input type="text" class="form-control focus" name="pc_sr"
+                                            <input type="text" class="form-control focus" name="pc_sr" ng-model="pc_sr"
                                                 placeholder="Enter PC Serial number" style="height:45px;" required>
                                         </div>
+                                        <span ng-show="myForm.$submitted || myForm.pc_sr.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.pc_sr.$error.required"><i class="fa fa-exclamation-circle"></i> PC Serial Number Required</span>
+                                    </span>
                                     </div>
+
                                     <div class="form-group col-lg-12">
                                         <label for="device" style="float:left; margin-left:10px;">TFT Id</label>
-
                                         <div class="col-lg-12">
-                                            <input type="text" class="form-control focus" name="TFT_id"
+                                            <input type="text" class="form-control focus" name="TFT_id" ng-model="TFT_id" ng-minlength="06" ng-maxlength="06"
                                                 placeholder="Enter TFT Id" style="height:45px;" required>
                                         </div>
+                                        <span ng-show="myForm.$submitted || myForm.TFT_id.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.TFT_id.$error.required"><i class="fa fa-exclamation-circle"></i> TFT Id Required</span>
+                                    <span class="error" ng-show="((myForm.TFT_id.$error.minlength || myForm.TFT_id.$error.maxlength ) && myForm.TFT_id.$dirty)"><i class="fa fa-exclamation-circle"></i> TFT Id should be 6 Digits</span>
+                                    </span>
                                     </div>
+
                                     <div class="form-group col-lg-12">
                                         <label for="device" style="float:left; margin-left:10px;">Webcam Id</label>
-
                                         <div class="col-lg-12">
-                                            <input type="text" class="form-control focus" name="Webcam_id"
+                                            <input type="text" class="form-control focus" name="Webcam_id" ng-model="Webcam_id" ng-minlength="06" ng-maxlength="06"
                                                 placeholder="Enter Webcam Id" style="height:45px;" required>
                                         </div>
+                                        <span ng-show="myForm.$submitted || myForm.Webcam_id.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.Webcam_id.$error.required"><i class="fa fa-exclamation-circle"></i> TFT Id Required</span>
+                                    <span class="error" ng-show="((myForm.Webcam_id.$error.minlength || myForm.Webcam_id.$error.maxlength ) && myForm.Webcam_id.$dirty)"><i class="fa fa-exclamation-circle"></i> Webcam Id should be 6 Digits</span>
+                                    </span>
                                     </div>
+
                                     <div class="form-group col-lg-12">
                                         <label for="device" style="float:left; margin-left:10px;">Headphone Id</label>
-
                                         <div class="col-lg-12">
-                                            <input type="text" class="form-control focus" name="Headphone_id"
+                                            <input type="text" class="form-control focus" name="Headphone_id" ng-model="Headphone_id" ng-minlength="06" ng-maxlength="06"
                                                 placeholder="Enter Headphone Id" style="height:45px;" required>
                                         </div>
+                                        <span ng-show="myForm.$submitted || myForm.Headphone_id.$dirty" style="color:red; float:left " class="mx-2" >
+                                    <span class="error" ng-show="myForm.Headphone_id.$error.required"><i class="fa fa-exclamation-circle"></i> TFT Id Required</span>
+                                    <span class="error" ng-show="((myForm.Headphone_id.$error.minlength || myForm.Headphone_id.$error.maxlength ) && myForm.Headphone_id.$dirty)"><i class="fa fa-exclamation-circle"></i> Headphone Id should be 6 Digits</span>
+                                    </span>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <button class="btn " type="submit" name="submit"
