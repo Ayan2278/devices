@@ -37,6 +37,7 @@ if (isset($_POST['DIST'])) {
   $total2 = mysqli_num_rows($result2);
 }
 
+
 //fetch village according to district
 if (isset($_POST['DIST']) && isset($_POST['Block'])) {
   $Dis = $_POST['DIST'];

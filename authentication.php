@@ -6,4 +6,5 @@
     $_SESSION['auth_status']="login for access dashboard";
     header("Location:login.php");   
  }
+ 
 ?>

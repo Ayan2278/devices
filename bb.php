@@ -8,6 +8,7 @@ $data = array();
 $districtsAll = array();
 $count = 1;
 $act;
+
 function status($pcNo)
 {
     $file = "JSON PC/" . $pcNo . ".json";

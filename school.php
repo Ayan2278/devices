@@ -25,7 +25,6 @@ while ($row = mysqli_fetch_array($query)) {
 );
 $count++;
 }
-
 // Query for Select District
 // $sql = "SELECT DISTINCT `district` FROM `asset`;";
 // $result = mysqli_query($conn, $sql);

@@ -30,6 +30,7 @@ if (isset($_POST["submit"])) {
         die("Connection failed: "
             . $conn->connect_error);
     }
+    
     if ($conn) {
         // Query for inserting value in database
         $query1 = "INSERT INTO `school`(`school_name`, `district`, `block`, `village`, `pincode`) VALUES ('$school','$district','$block','$village','$pincode')";

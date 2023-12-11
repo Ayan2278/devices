@@ -22,6 +22,7 @@ while ($row = mysqli_fetch_array($sel)) {
     $count++;
 }
 
+
 session_start();
 // Use function for Live Status of Devices
 function status($pcNo)

@@ -23,7 +23,6 @@ $client->setRedirectUri('http://localhost/Devices/devices/login.php');
 $client->addScope("email");
 $client->addScope("profile");
 
-
 if (isset($_GET['code'])):
 
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);

@@ -35,6 +35,7 @@ function city($pc)
     }
 }
 
+
 // display active or inactive device according to district device
 $query0 = "SELECT DISTINCT `district` from `asset`; ";
 $result10 = mysqli_query($conn, $query0);

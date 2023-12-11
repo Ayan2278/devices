@@ -10,7 +10,6 @@ $conn = mysqli_connect("localhost", "root", "", "system");
 $alert = true;
 if(isset($_POST['login_btn']))
 {
-
     $EMP_NAME=$_POST['UserName'];
     $PASSWORD=$_POST['Password'];
                 

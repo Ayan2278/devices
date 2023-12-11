@@ -55,4 +55,5 @@ else if (isset($_POST["SchoolD"])) {
     $res = mysqli_query($conn,$qry);
 }
 header("Location:Category.php");
+
 ?>

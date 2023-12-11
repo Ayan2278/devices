@@ -7,6 +7,7 @@ include 'authentication.php';
 <!DOCTYPE html>
 <html>
 
+
 <head>
     <title>Admin Controls</title>
     <!-- Font Awesome -->

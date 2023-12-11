@@ -15,6 +15,7 @@ $files2 = glob($directory . "*");
 if ($files2) {
     $filecount = count($files2);
 }
+
 $query = mysqli_query($conn,"SELECT * FROM `asset`");
 $data1=array();
 while ($pcsr <= $filecount) {

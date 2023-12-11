@@ -356,6 +356,7 @@ if ($t > 0 ) {
     function printTable() {
         window.print();
     }
+    
     </script>
     <script>
     $(function() {

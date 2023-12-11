@@ -38,7 +38,6 @@
 			margin: 0; 
 			padding: 10px; 
 		} 
-
 		.article-list { 
 			list-style-type: none; 
 			padding: 0; 
