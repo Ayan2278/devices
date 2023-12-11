@@ -60,7 +60,7 @@ while ($row = mysqli_fetch_array($query)) {
   );
 }
 
-echo json_encode($dataA);
+// echo json_encode($dataA);
 // // }
 // $query = mysqli_query($conn,"SELECT * FROM `asset`");
 // $data=array();
