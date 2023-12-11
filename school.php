@@ -27,42 +27,42 @@ $count++;
 }
 
 // Query for Select District
-$sql = "SELECT DISTINCT `district` FROM `asset`;";
-$result = mysqli_query($conn, $sql);
-$EMP_NAME = $_SESSION['UserName'];
-$q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
-$r = mysqli_query( $conn, $q );
-$t = mysqli_num_rows($r);
-$roww = $r->fetch_assoc();
-if ($t > 0 ) {
-  if ($roww['school']=='false') {
-    header('location:index.php');
-  }
-}
-// Query for Select Block
-if (isset($_POST['DIST'])) {
-  $Dis = $_POST['DIST'];
-  $sql2 = "SELECT DISTINCT `block` FROM `asset` WHERE `district`='$Dis' ORDER BY `asset`.`block` ASC;";
-  $result2 = mysqli_query($conn, $sql2);
-  $total2 = mysqli_num_rows($result2);
-}
-// Query for Select Village
-if (isset($_POST['DIST']) && isset($_POST['Block'])) {
-  $Dis = $_POST['DIST'];
-  $Bl = $_POST['Block'];
-  $sql3 = "SELECT  DISTINCT `village` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
-  $result3 = mysqli_query($conn, $sql3);
-  $total3 = mysqli_num_rows($result3);
-}
+// $sql = "SELECT DISTINCT `district` FROM `asset`;";
+// $result = mysqli_query($conn, $sql);
+// $EMP_NAME = $_SESSION['UserName'];
+// $q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
+// $r = mysqli_query( $conn, $q );
+// $t = mysqli_num_rows($r);
+// $roww = $r->fetch_assoc();
+// if ($t > 0 ) {
+//   if ($roww['school']=='false') {
+//     header('location:index.php');
+//   }
+// }
+// // Query for Select Block
+// if (isset($_POST['DIST'])) {
+//   $Dis = $_POST['DIST'];
+//   $sql2 = "SELECT DISTINCT `block` FROM `asset` WHERE `district`='$Dis' ORDER BY `asset`.`block` ASC;";
+//   $result2 = mysqli_query($conn, $sql2);
+//   $total2 = mysqli_num_rows($result2);
+// }
+// // Query for Select Village
+// if (isset($_POST['DIST']) && isset($_POST['Block'])) {
+//   $Dis = $_POST['DIST'];
+//   $Bl = $_POST['Block'];
+//   $sql3 = "SELECT  DISTINCT `village` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis'  ;";
+//   $result3 = mysqli_query($conn, $sql3);
+//   $total3 = mysqli_num_rows($result3);
+// }
 // Query for Select School
-if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
-  $village = $_POST['Village'];
-  $Dis = $_POST['DIST'];
-  $Bl = $_POST['Block'];
-  $sql4 = "SELECT  DISTINCT `school_name` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
-  $result4 = mysqli_query($conn, $sql4);
-  $total4 = mysqli_num_rows($result4);
-}
+// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+//   $village = $_POST['Village'];
+//   $Dis = $_POST['DIST'];
+//   $Bl = $_POST['Block'];
+//   $sql4 = "SELECT  DISTINCT `school_name` FROM `asset` WHERE `block`='$Bl' AND `district`='$Dis' AND `village`='$village';";
+//   $result4 = mysqli_query($conn, $sql4);
+//   $total4 = mysqli_num_rows($result4);
+// }
 
 ?>
 <!DOCTYPE html>
@@ -265,7 +265,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="post" action="school.php" role="form" id="myform">
+                    <form method="post" action="school.php" role="form" id="myform" name="myForm">
                         <div class="card-body row">
                             <div class="form-group col-lg-2">
                                 <label for="school">District</label>
@@ -279,7 +279,7 @@ if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']))
                                 <label for="exampleInputPassword1">Block</label>
                                 <select class="form-control " style="width: 100%" name='Block' ng-model="Block">
                                     <option value="">Please Select</option>
-                                    <option ng-repeat="users in users | filter: {district : District} " value="{{users.block}}">{{users.block}}</option>
+                                    <option ng-repeat="users in users | filter: {district : District}" ng-show="District!=''" value="{{users.block}}">{{users.block}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-2">

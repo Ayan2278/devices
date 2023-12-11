@@ -253,7 +253,7 @@ function status($pcNo)
                     </div>{{srchDistrict!=''}}
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="post" action="live_status.php" role="form" id="myform">
+                    <form method="post" id="myform">
 
                         <div class="card-body row">
                             <div class="form-group col-lg-2">
@@ -276,7 +276,7 @@ function status($pcNo)
                                 <label for="exampleInputPassword1">Village</label>
                                 <select class="form-control" name="village" ng-model="village" id="">
                                     <option value="">Select</option>
-                                    <option ng-repeat="users in users | filter: {district : srchDistrict} | filter: {block : srchBlock}" value="{{users.village}}"  ng-show="srchBlock!='' && srchDistrict!=''">{{users.village}}
+                                    <option ng-repeat="users in users | filter: {district : srchDistrict} | filter: {block : srchBlock}" ng-show="srchDistrict!='' && srchBlock!=''" value="{{users.village}}">{{users.village}}
                                     </option>
                                 </select>
                             </div>
@@ -284,7 +284,7 @@ function status($pcNo)
                                 <label for="exampleInputPassword1">Select School </label>
                                 <select class="form-control" name="school_name" ng-model="school_name" id="">
                                     <option value="">Select</option>
-                                    <option ng-repeat="users in users | filter: {district : srchDistrict} | filter: {block : srchBlock} | filter:{village:village} " value="{{users.school_name}}" ng-show="village!='' && srchBlock!='' && srchDistrict!=''">
+                                    <option ng-repeat="users in users | filter: {district : srchDistrict} | filter: {block : srchBlock} | filter:{village:village}" ng-show="srchDistrict!='' && srchBlock!='' && village!=''" value="{{users.school_name}}">
                                         {{users.school_name}}</option>
                                 </select>
                             </div>
@@ -293,13 +293,13 @@ function status($pcNo)
 
                                 <select class="form-control" name="pc_sr" ng-model="pc_sr" id="">
                                     <option value="">Select</option>
-                                    <option ng-show="school_name!='' && village!='' && srchBlock!='' && srchDistrict!=''" ng-repeat="users in users | filter: {district : srchDistrict} | filter: {block : srchBlock} | filter:{village:village} | filter:{school_name:school_name}" value="{{users.pc_sr}}">{{users.pc_sr}}</option>
+                                    <option ng-repeat="users in users | filter: {district : srchDistrict} | filter: {block : srchBlock} | filter:{village:village} | filter:{school_name:school_name}" ng-show="srchDistrict!='' && srchBlock!='' && village!='' && school_name!=''" value="{{users.pc_sr}}">{{users.pc_sr}}</option>
                                 </select>
                             </div>
 
                             <form action="live_status.php" method="post">
                                 <div class="form-group col-lg-1 my-4 w-100">
-                                    <button type="submit" name="Status" value="Status" class="btn  "
+                                    <button type="submit" name="Status" value="Status" class="btn"
                                         style="margin-top:8px;width:100%;  background:#6f42c1; color:white;">Status</button>
                                 </div>
                             </form>
@@ -344,10 +344,7 @@ function status($pcNo)
                                             <td>{{user.village}}</td>
                                             <td>{{user.school_name}}</td>
                                             <td>{{user.pc_sr}}</td>
-                                            <td>
-                                                <small class="badge badge-success" ng-show="user.status == 'Active'">{{user.status}}</small>
-                                                <small class="badge badge-danger" ng-show="user.status == 'Inactive'">{{user.status}}</small>
-                                            </td>
+                                            <td>{{user.status}}</td>
                                         </tr>
                                     </tbody>
                                     <?php

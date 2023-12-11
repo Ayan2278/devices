@@ -1,26 +1,210 @@
 <?php
+// include authenticatine file 
+// session_start();
+session_start();
+include 'authentication.php';
 
-include 'home.php';
+// includeing connection file
+include '_db_Connect.php';
+// $sql = "SELECT DISTINCT `district` FROM `asset`;";
+// $PASSWORD=$_SESSION['Password'];
+$count=1;
+$pcsr=1;
+$data1=array();
+$directory = getcwd() . "/JSON PC//";
+$files2 = glob($directory . "*");
+if ($files2) {
+    $filecount = count($files2);
+}
+$EMP_NAME = $_SESSION['UserName'];
+$qry = "SELECT * from `user` where `username` = '$EMP_NAME'";
+$res = mysqli_query($conn,$qry);
+if($row = $res->fetch_assoc()) {
+  $pcsr = $row['pc_sr'];
+  while ($pcsr <= $filecount) {
+  $file = "JSON PC/" . $EMP_NAME . ".json";
+                                   
+  $data = file_get_contents($file);
+  $data = json_decode($data, true);
+    if ($data != 0) {
+    foreach ($data as $row) {
+      date_default_timezone_set('Asia/Kolkata');
+            $date = date('H:i:s');
+            $datee = date("d/m/Y");
+            $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+            if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                    $run= 'Running';
+                }
+                else{
+                    $run=$row['End time'];
+                }
+      if ($row['username'] == $EMP_NAME) {
+        $data1[]=array(
+                    "Sr"=>$count,
+                    "pc_sr"=>$pcsr,
+                    "Activity"=>$row['Activity'],
+                    "Date"=> $row['Date'],
+                    "Start time"=> $row['Start time'],
+                    "End time"=> $run,
+                    "Duration"=> $row['Duration'],
+          
+                  );
+                  $count += 1;
+                }
+              }
+            }
+          }
+        }
+
+// $data1=array();
+// $qry = "SELECT * from `user` where `username` = '$EMP_NAME'";
+// $res = mysqli_query($conn,$qry);
+// if($row = $res->fetch_assoc()) {
+//   $pcsr = $row['pc_sr'];
+//   $file = "JSON PC/" . $EMP_NAME . ".json";
+//   $data = file_get_contents($file);
+//   $data = json_decode($data, true);
+//     if ($data != 0) {
+//     foreach ($data as $row) {
+//       date_default_timezone_set('Asia/Kolkata');
+//       $date = date('H:i:s');
+//       $datee = date("d/m/Y");
+//       $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+//       if ($newDate < $row['End time'] && $datee == $row['Date']) {
+//               $run= 'Running';
+//           }
+//           else{
+//               $run=$row['End time'];
+//           }
+//       if ($row['username'] == $EMP_NAME) {
+//         $data1[]=array(
+//           "Sr"=>$count,
+//           "pc_sr"=>$pcsr,
+//           "Activity"=>$row['Activity'],
+//           "Date"=> $row['Date'],
+//           "Start time"=> $row['Start time'],
+//           "End time"=> $run,
+//           "Duration"=> $row['Duration'],
+
+//         );
+//         $count += 1;
+//       }
+
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $q = "SELECT * from `login` where `UserName`='$EMP_NAME'";
+// $r = mysqli_query( $conn, $q );
+// $t = mysqli_num_rows($r);
+// $roww = $r->fetch_assoc();
+// if ($t > 0 ) {
+//   if ($roww['timming']=='false') {
+//     header('location:index.php');
+//   }
+// }
+// //select user-name according to login users
+// $EMP_NAME=$_SESSION['username'];
+// $queryy = "SELECT * FROM `user` WHERE `username`='$EMP_NAME'";
+// // echo $queryy;
+// $resultt = mysqli_query($conn, $queryy);
+
+// //select all districts
+// $id=$_SESSION['pc_sr'];
+// $sql = "SELECT DISTINCT `district` FROM `user` WHERE  `username`='$EMP_NAME'";
+// $result = mysqli_query($conn, $sql);
+
+// //fetch block for select box
+// if (isset($_POST['DIST'])) {
+//   $Dis = $_POST['DIST'];
+//   $sql2 = "SELECT DISTINCT `block` FROM `user` WHERE `district`='$Dis' AND `username`='$EMP_NAME' ORDER BY `user`.`block` ASC;";
+//   $result2 = mysqli_query($conn, $sql2);
+//   $total2 = mysqli_num_rows($result2);
+// }
+
+// //fetch village according to district
+// if (isset($_POST['DIST']) && isset($_POST['Block'])) {
+//   $Dis = $_POST['DIST'];
+//   $Bl = $_POST['Block'];
+//   $sql3 = "SELECT DISTINCT `village` FROM `user` WHERE `block`='$Bl' AND `district`='$Dis' AND `username`='$EMP_NAME'";
+//   $result3 = mysqli_query($conn, $sql3);
+//   $total3 = mysqli_num_rows($result3);
+// }
+
+// //fetch school-name According to the district , block and village
+// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village'])) {
+//   $village = $_POST['Village'];
+//   $Dis = $_POST['DIST'];
+//   $Bl = $_POST['Block'];
+//   $sql4 = "SELECT  DISTINCT `school_name` FROM `user` WHERE `district`='$Dis' AND `username`='$EMP_NAME'";
+//   $result4 = mysqli_query($conn, $sql4);
+//   $total4 = mysqli_num_rows($result4);
+// }
+
+// //fetch PC-Serial number According to school-name
+// if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school'])) {
+//   $village = $_POST['Village'];
+//   $Dis = $_POST['DIST'];
+//   $Bl = $_POST['Block'];
+//   $schl = $_POST['school'];
+//   $sql8 = "SELECT  DISTINCT `pc_sr` FROM `user` WHERE `district`='$Dis' AND `username`='$EMP_NAME' AND `school_name`='$schl'";
+//   $result8 = mysqli_query($conn, $sql8);
+//   $total8 = mysqli_num_rows($result8);
+// }
+
+// //fetch all Activities According to users and pc-sr
+//  if (isset($_POST['DIST']) && isset($_POST['Block']) && isset($_POST['Village']) && isset($_POST['school']) && isset($_POST['PC']) && $_POST['PC'] != "All" ) {
+//     $PC = $_POST['PC'];
+//     // $EMP_NAME=$_POST['username'];
+//     $schl = $_POST['school'];
+//     $village = $_POST['Village'];
+//     $Dis = $_POST['DIST'];
+//     $Bl = $_POST['Block'];
+//     $sql4 = "SELECT * FROM `user` WHERE `username`='$EMP_NAME'";
+//     $result5 = mysqli_query($conn, $sql4);
+//     $total5 = mysqli_num_rows($result5);
+//   if (isset($_POST['PC']) && $_POST['PC'] != "All" ) {
+
+//   //fetch data from json file
+//     $cd = 1;
+//     $file = "JSON PC/" . $EMP_NAME . ".json";
+//     $data = file_get_contents($file);
+//     $data = json_decode($data, true);
+//     $cd++;
+//   }
+// }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Assets</title>
+    <title>Application</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
@@ -36,193 +220,558 @@ include 'home.php';
     <!-- Daterange picker -->
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- icheck bootstrap -->
     <style>
-        .focus:focus {
-            border: 1px solid #6f42c1;
-            color: #6f42c1;
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    .scrollbar {
+        height: 300px;
+        overflow-y: auto;
+    }
+
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: #ADB5BD;
+        border-radius: 5px;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: linear-gradient(to bottom, #B8B8B8 0%, #8F8F8F 100%);
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, #8F8F8F 0%, #B8B8B8 100%);
+    }
+
+
+    ::-webkit-scrollbar-track {
+        background-color: #f5f5f5;
+        border-radius: 1px;
+    }
+
+    .card-title {
+        float: left;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0;
+    }
+
+
+    .bg {
+        background: linear-gradient(to bottom, #2196F3, #0D47A1);
+        border: none;
+    }
+
+    .bg:hover {
+        transition: 0.3s;
+        background: linear-gradient(to top, #0088f5, #01378a);
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
         }
 
-        .Black {
-            color: black;
-        }
-    </style>
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
+        table,
+        table * {
+            visibility: visible;
+
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f7f7ff;
-            padding: 10px;
-            margin: 0;
-        }
-
-        ._container {
-            max-width: 600px;
-            background-color: #ffffff;
-            padding: 20px;
-            margin: 0 auto;
-            border: 1px solid #cccccc;
-            border-radius: 2px;
-        }
-
-        ._container.btn {
-            text-align: center;
-        }
-
-        .heading {
-            text-align: center;
-            color: #4d4d4d;
-            text-transform: uppercase;
-        }
-
-        .login-with-google-btn {
-            transition: background-color 0.3s, box-shadow 0.3s;
-            padding: 12px 16px 12px 42px;
-            border: none;
-            border-radius: 3px;
-            box-shadow: 0 -1px 0 rgb(0 0 0 / 4%), 0 1px 1px rgb(0 0 0 / 25%);
-            color: #ffffff;
+        th {
+            font-weight: 200;
             font-size: 14px;
-            font-weight: 500;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
-            background-color: #4a4a4a;
-            background-repeat: no-repeat;
-            background-position: 12px 11px;
-            text-decoration: none;
         }
 
-        .login-with-google-btn:hover {
-            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+        td {
+
+            border-color: inherit;
+            border-style: solid;
+            border-width: 0;
+            font-size: 10px;
         }
 
-        .login-with-google-btn:active {
-            background-color: #000000;
+        table {
+            position: absolute;
+            left: 0;
+            top: -650px;
         }
-
-        .login-with-google-btn:focus {
-            outline: none;
-            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25), 0 0 0 3px #c8dafc;
-        }
-
-        .login-with-google-btn:disabled {
-            filter: grayscale(100%);
-            background-color: #ebebeb;
-            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
-            cursor: not-allowed;
-        }
+    }
     </style>
+    <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    ::-webkit-scrollbar {
+        max-width: 7px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #5c5c5c;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        border-radius: 10px;
+        background: #c7c7c7;
+    }
+    </style>
+    <script src="Angular\angular.min.js"></script>
+    <script>
+    var app = angular.module("myapp", []);
+    app.controller('useCtrl', function($scope) {
+        var users = <?php echo json_encode($data1); ?>;
+        $scope.users = users;
+    })
+    </script>
 </head>
 
-<body class="bg">
+<body class="hold-transition sidebar-mini layout-fixed " ng-app="myapp" ng-controller="useCtrl">
+
     <?php
-    if (isset($_SESSION['status'])) {
-        // echo $_SESSION['status'];
-        ?>
-        <div class="alert  alert-primary alert-dismissible fade show" role="alert">
-            <strong></strong>
-            <?php echo $_SESSION['status']; ?>.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php
-        unset($_SESSION['status']);
-    }
+  include 'sidebar.php';
+ 
     ?>
+    <!-- Main Sidebar Container -->
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
 
-
-    <div class="home_content wrapper">
-
-        <center>
-
-            <div class="card col-lg-3 shadow my-5">
-                <!-- <form action="signup.php" method="POST"> -->
-                <center>
-                    <div class="card-header " style="border:0px;">
-                        <!-- </form> -->
-                        <h4 style="margin-top:10px; float:left;">Login Here</h4>
-
-                        <a href="signup.php">
-                            <button type="submit" name="" value="submit" class="btn "
-                                style="margin-top:8px; margin-left:250px; background:#6f42c1; color:white; float:right;">Sign-Up</button>
-                        </a>
-                    </div>
-                </center>
-
-                <div class="card-body ">
-                    <form action="loginuser.php" method="POST" width="40px">
-
-                        <div class="row">
-
-
-                            <div class="form-group col-lg-12">
-                                <label for="device" style="float:left; margin-left:10px;">Username</label>
-
-                                <div class="col-lg-12">
-                                    <input type="text" class="form-control focus" name="UserName"
-                                        placeholder="Enter Username" style="height:45px;" required>
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label for="device" style="float:left; margin-left:10px;">Password</label>
-
-                                <div class="col-lg-12">
-                                    <input type="password" class="form-control focus" name="Password"
-                                        placeholder="Enter Password" style="height:45px;" required>
-                                </div>
-                            </div>
-                            <!-- <div class="_container btn"> -->
-
-
-                            <!-- </div> -->
-
-                            <div class="form-group col-lg-12">
-                                <button class="btn " type="submit" name="login_btn" value="login_btn"
-                                    style="background:#6f42c1;color:white; height:45px; width:98%; margin-top:30px;">Submit</button>
-                            </div>
+                <div class="container-fluid">
+                    <div class="row ">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Application Timing</h1>
                         </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <!-- <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item">Dashboard</li>
+                                <li class="breadcrumb-item active">Application</li> -->
+
+                                <div class="info">
+                                    <form action="userout.php" method="POST">
+                                        <button type="submit" name="logout_btn" style="font-size:20px;color:#6f42c1;"
+                                            class="btn ">
+                                            Logout user
+                                            <i class="fa-solid fa-right-from-bracket"
+                                                style="font-size:23px;color:#6f42c1;"></i></button>
+                                    </form>
+                                </div>
+
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <section class="content">
+                <div class="card mx-2" style="top:0;">
+                    <!---card-header -->
+                    <div class="card-header" style="border:0px;">
+                        <h3 class="card-title"><?php $EMP_NAME = $_SESSION['username'];echo $EMP_NAME,"'s Data"; ?></h3>
+                    </div>
+                    <!-- form start -->
+                    <form method="POST" action="application.php" role="form" id="myform" name="myForm" >
+                        <div class="card-body row">
+
+                            <div class="form-group col-lg-2">
+                                <label for="device">District</label>
+                                <select class="form-control select2bs4" style="width: 100%" name="DIST"
+                                    onchange="change()">
+                                    <option value="All">All</option>
+                                    <?php
+                                            if ($result) {
+                                              // options for district
+                                              $total = mysqli_num_rows($result);
+                                              if ($total != 0) {
+                                                while ($row = $result->fetch_assoc()) {
+
+                                                  echo "<option value='" . $row['district'] . "' ";
+                                                  echo isset($_POST["DIST"]) && $_POST["DIST"] == $row['district'] ? "selected " : "";
+                                                  echo ">" . $row['district'] . "</option>";
+                                                }
+                                              }
+                                            }
+                                     ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="exampleInputPassword1">Block</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='Block'
+                                    onchange="change()">
+                                    <option value="All">All</option>
+                                    <?php
+                                            if ($result2) {
+                                              // options for Block
+                                              if ($total2 != 0) {
+                                                while ($row2 = $result2->fetch_assoc()) {
+                                                  echo "<option ";
+                                                  echo isset($_POST["Block"]) && $_POST["Block"] == $row2["block"] ? "selected " : "";
+                                                  echo "value='" . $row2["block"] . "'>" . $row2["block"] . "</option>";
+                                                }
+                                              }
+                                            }
+                                        ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="exampleInputPassword1">Village</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='Village'
+                                    onchange="change()">
+                                    <option value="All">All</option>
+                                    <?php
+                                          if ($result3) {
+                                            // options for Village
+                                            if ($total3 != 0) {
+                                              while ($row3 = $result3->fetch_assoc()) {
+                                                echo "<option ";
+                                                echo isset($_POST["Village"]) && $_POST["Village"] == $row3["village"] ? "selected " : "";
+                                                echo "value='" . $row3["village"] . "'>" . $row3["village"] . "</option>";
+                                              }
+                                            }
+                                          }
+                                        ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="exampleInputPassword1">School name</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='school'
+                                    onchange="change()">
+                                    <option value="All">All</option>
+                                    <?php
+                                          if ($result3) {
+                                            // options for school Name
+                                            if ($total4 != 0) {
+                                              while ($row4 = $result4->fetch_assoc()) {
+                                                echo "<option ";
+                                                echo isset($_POST["school"]) && $_POST["school"] == $row4["school_name"] ? "selected " : "";
+                                                echo "value='" . $row4["school_name"] . "'>" . $row4["school_name"] . "</option>";
+                                              }
+                                            }
+                                          }
+                                        ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="exampleInputPassword1">PC serial no.</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='PC'
+                                    onchange="change()">
+                                    <option value="All">All</option>
+                                    <?php
+                                          // select pc serial number
+                                          if ($result8) {
+
+                                            while ($row8 = $result8->fetch_assoc()) {
+                                              echo "<option ";
+                                              echo isset($_POST["PC"]) && $_POST["PC"] == $row8["pc_sr"] ? "selected " : "";
+                                              echo "value='" . $row8["pc_sr"] . "'>" . $row8["pc_sr"] . "</option>";
+                                            }
+                                          }
+                                        ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-lg-1">
+                                <label for="exampleInputPassword1">Activity</label>
+                                <select class="form-control select2bs4" style="width: 100%" name='Activity'>
+                                    <option value="All">All</option>
+                                    <?php
+                                          if ($result5) {
+
+                                          // options for Activity Name
+                                          foreach ($data as $row) {
+                                            $arr[] = $row['Activity'];
+                                            echo "<option ";
+                                            echo isset($_POST["Activity"]) && $_POST["Activity"] == $row["Activity"] ? "selected " : "";
+                                            echo "value='" . $row["Activity"] . "'>" . $row["Activity"] . "</option>";
+                                          }
+                                      }
+                                      ?>
+                                </select>
+                            </div>
+                            <form action="application.php" method="POST">
+                                <div class="form-group col-lg-1 w-100 my-4">
+                                    <button type="submit" name="Application" value="Application" class="btn"
+                                        style="margin-top:8px;width:100%; background:#6f42c1; color:white;">Application</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.form end -->
                     </form>
                 </div>
-                <a type="button" class="login-with-google-btn col-lg-11 mx-3" style="margin-bottom:25px;"
-                    href="<?php echo $client->createAuthUrl(); ?>">
-                    Sign in with Google
-                </a>
-            </div>
-        </center>
+                <!--- section end ---->
+            </section>
+            <!--- section start ---->
+            <section class="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mx-2">
+                            <!---card-body -->
+                            <div class="card-body">
+                                <!---card-title -->
+                                <h4 class="card-title">Data</h4>
+                                <table id="example2" class=" table-striped table-bordered table-hover"
+                                    style="top:0; width:100%;">
+                                    <thead style="height:50px;">
+                                        <tr style="height:20px; font-size:15px;text-align:center;">
+                                            <th>SR</th>
+                                            <th>PC</th>
+                                            <th>Application</th>
+                                            <th>Date</th>
+                                            <th>Start time</th>
+                                            <th>End time</th>
+                                            <th>Duration</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-controller="useCtrl">
+                                        <tr ng-repeat="user in users"
+                                            style=" height:40px; font-size:14px;text-align:center;">
+                                            <td>{{user.Sr}}</td>
+                                            <td>{{user.pc_sr}}</td>
+                                            <td>{{user.Activity}}</td>
+                                            <td>{{user.Date}}</td>
+                                            <td>{{user.Start time}}</td>
+                                            <td>{{user.End time}}</td>
+                                            <td>{{user.Duration}}</td>
+                                        </tr>
+
+                                        <?php
+                                        // counts the Activity serial number
+                                //         $count = 1;
+                                //   // $EMP_NAME=$_SESSION['username'];
+                                //   // display data according to login user
+                                  
+                                //   $qry6 = "SELECT * from `user` where `username` = '$EMP_NAME'";
+                                //   $res6 = mysqli_query($conn,$qry6);
+                                //   if($row5 = $res6->fetch_assoc()) {
+                                //     $pcsr = $row5['pc_sr'];
+
+                                //     // this after comment display all data without click on application and any button
+                                //      if(isset($_POST['Activity']) && $_POST['Activity']=="All") {
+                                //     // $EMP_NAME=$_SESSION['username'];
+                                //     $file = "JSON PC/" . $EMP_NAME . ".json";
+                                   
+                                //       $data = file_get_contents($file);
+                                //       $data = json_decode($data, true);
+                                //         if ($data != 0) {
+                                //         foreach ($data as $row) {
+                                //           if ($row['username'] == $EMP_NAME) {
+                                //             # code... 
+                                //             // fetch data from json file 
+                                //             echo '
+                                //                 <tr style=" height:40px; font-size:14px;text-align:center;">
+                                //                         <td style="margin:10px;">' . $count . '</td>
+                                //                         <td>' . $pcsr . '</td>
+                                //                         <td>' . $row['Activity'] . '</td>
+                                //                         <td>' . $row['Date'] . '</td>
+                                //                         <td>' . $row['Start time'] . '</td><td>';
+                                //                         date_default_timezone_set('Asia/Kolkata');
+                                //                         $date = date('H:i:s');
+                                //                         $datee = date("d/m/Y");
+                                //                         $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                                //                         if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                                //                         echo '<small class="badge badge-success">Running</small>';
+                                //                         } else {
+                                //                         echo $row['End time'] . '</td>';
+                                //                         }
+                                //                         echo '
+                                //                         <td>' . $row['Duration'] . '</td>
+                                                
+                                //                 </tr>';
+                                //             $count += 1;
+                                //         }
+                                //       }
+                                //     }
+                                //     }  
+                                // // display seleceted filter data in table
+                                // if(isset($_POST['Activity'])  && $_POST['Activity'] != "All") {
+                                //   $file = "JSON PC/" . $EMP_NAME . ".json";
+                                //    $data = file_get_contents($file);
+                                //    $data = json_decode($data, true);
+                                //       $count = 1;
+                                //       if ($data != 0) {
+                                //         foreach ($data as $row) {
+                                //           if ($_POST['Activity'] == $row['Activity']) {
+                                //             if ($row['username'] == $EMP_NAME) {
+                                //            // display Activity data from json file 
+                                //                 echo '
+                                //                     <tr style=" height:40px; font-size:14px;text-align:center;">
+                                //                         <td>' . $count . '</td>
+                                //                         <td>' . $pcsr . '</td>
+                                //                         <td>' . $row['Activity'] . '</td>
+                                //                         <td>' . $row['Date'] . '</td>
+                                //                         <td>' . $row['Start time'] . '</td><td>';
+                                //                         date_default_timezone_set('Asia/Kolkata');
+                                //                         $date = date('H:i:s');
+                                //                         $datee = date("d/m/Y");
+                                //                         $newDate = date('H:i:s', strtotime($date . ' -5 minutes'));
+                                //                         if ($newDate < $row['End time'] && $datee == $row['Date']) {
+                                //                         echo '<small class="badge badge-success">Running</small>';
+                                //                         } else {
+                                //                         echo $row['End time'] . '</td>';
+                                //                         }
+                                //                         echo '
+                                //                         <td>' . $row['Duration'] . '</td>
+                                                     
+                                //                     </tr>';
+                                //                     $count += 1;
+                                //                   }
+                                //                 }
+                                //                 }
+                                //               }
+                                //             }
+                                //            }
+                                        // }
+                                      ?>
+                                        <!-- /.table-body-->
+                                    </tbody>
+                                    <!-- /.table -->
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <!--/section end-->
+            </section>
+            <!-- /.card -->
+            <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div> <!-- /.content-wrapper -->
+    <?php
+  //include footer file
+  include 'footer.php';
+  ?>
+    <!-- /.control-sidebar -->
     </div>
-
-
-   
+    <!-- ./wrapper -->
     <script>
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
-        let dark = document.querySelector("#Dark");
-        let bodi = document.querySelector(".bg");
-        let offc = document.querySelector(".ab");
-        let widthh = window.innerWidth;
-
-
-        btn.onclick = function () {
-            // sidebar.classList.toggle("active");
-            offc.classList.add("offcanvas");
-            offc.classList.add("offcanvas-start");
-        }
+    function change() {
+        document.getElementById("myform").submit();
+    }
     </script>
-</body>
+    <script>
+    function printTable() {
+        window.print();
+    }
+    </script>
+    <script>
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
+    </script>
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="plugins/datatables/jquery.dataTables.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+    $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <!-- <script src="dist/js/adminlte.js"></script> -->
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <script src="plugins/select2/js/select2.full.min.js"></script>
+    <script>
+    $('.select2').select2();
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        placeholder: 'Please Select'
+    });
+    </script>
+    <!-- Bootstrap 4 -->
+    <!-- DataTables -->
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+    <script>
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+        });
+    });
+    </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
+</body>
 
 </html>

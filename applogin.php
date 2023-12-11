@@ -49,9 +49,10 @@ include 'authentication.php';
             color:black;
         }
 </style>
+<script src="Angular\angular.min.js"></script>
 </head>
 
-<body class="sidebar-mini layout-fixed">
+<body class="sidebar-mini layout-fixed" ng-app=""   >
 <?php
     // include sidebar file
     include 'sidebar.php'
@@ -72,20 +73,20 @@ include 'authentication.php';
     <div class="home_content wrapper">
 
         <center>
-<!-- <?php
-//  if(isset( $_SESSION['status'])){
-//                 if($alert){
+<?php
+ if(isset( $_SESSION['status'])){
+                if($alert){
                    
-//                     echo '
+                    echo '
 
-//                     <div class="alert alert-danger col-lg-3" role="alert" id="alert">
-//                     Incorrect Username or Password....!
-//                   </div>';
-//                 }
-//             }
-                ?> -->
+                    <div class="alert alert-danger col-lg-3" role="alert" id="alert">
+                    Incorrect Username or Password....!
+                  </div>';
+                }
+            }
+                ?>
             
-                        <form action="applogincode.php" method="POST" width="40px" >
+                        <form action="applogincode.php" method="POST" width="40px" name="myForm" novalidate>
                         <div class="card col-lg-3 shadow my-5">
                         <div class="card-header" style="border:0px;">
                             <h4 style="float:left; margin-top:10px;">Login Here for Application</h4>
@@ -98,17 +99,24 @@ include 'authentication.php';
                                     <label for="device" style="float:left; margin-left:10px;">Username</label>
 
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="username"placeholder="Enter Username"
+                                        <input type="text" class="form-control focus" ng-model="username"  pattern="[a-zA-Z,' ']{1,}" name="username" placeholder="Enter Username"
                                             style="height:45px;" required>
                                     </div>
+                                    <span ng-show="myForm.$submitted || myForm.username.$dirty" style="color:red;">
+                                            <span class="error" ng-show="myForm.username.$error.required"><i class="fa fa-exclamation-circle"></i> Name Required</span>
+                                            <span class="error" ng-show="myForm.username.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
+                                    </span>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label for="device" style="float:left; margin-left:10px;">Password</label>
 
                                     <div class="col-lg-12">
-                                        <input type="password" class="form-control focus" name="Password" placeholder="Enter Password"
+                                        <input type="password" class="form-control focus" ng-model="Password" name="Password" placeholder="Enter Password"
                                             style="height:45px;" required>
                                     </div>
+                                    <span ng-show="myform.$submitted || myForm.Password.$dirty" style="color:red;">
+                                        <span class="error" ng-show="myForm.Password.$error.required"><i class="fa fa-exclamation-circle"></i> Password Required</span>
+                                    </span>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class='mx-2' style="float:right; margin-left:10px;color:#026ee0;"><u><a href='forgetP.php'>Forget password?</a></u></label>

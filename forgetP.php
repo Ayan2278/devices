@@ -59,81 +59,83 @@ if (isset($_POST['submitP'])) {
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
-        .focus:focus {
-            border: 1px solid #6f42c1;
-            color: #6f42c1;
-        }
+    .focus:focus {
+        border: 1px solid #6f42c1;
+        color: #6f42c1;
+    }
 
-        .Black {
-            color: black;
-        }
+    .Black {
+        color: black;
+    }
 
-        .popup-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+    .popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
 
-            /* display: none; */
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
+        /* display: none; */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
 
-        .popupp {
-            width: 400px;
-            background: #fff;
-            border-radius: 0.4rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            padding: 0 30px 30px;
-            color: #333;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
+    .popupp {
+        width: 400px;
+        background: #fff;
+        border-radius: 0.4rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
 
-        .popupp img {
-            width: 100px;
-            margin-top: -50px;
-            border-radius;
-            0.4rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
+    .popupp img {
+        width: 100px;
+        margin-top: -50px;
+        border-radius;
+        0.4rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
 
-        .popupp h2 {
-            font-size: 38px;
-            font-weight: 500;
-            margin: 30px 0 10px;
-            color: red;
-        }
+    .popupp h2 {
+        font-size: 38px;
+        font-weight: 500;
+        margin: 30px 0 10px;
+        color: red;
+    }
 
-        .popupp button {
-            width: 100%;
-            margin-top: 50px;
-            padding: 10px 0;
-            background: #6f42c1;
-            color: #fff;
-            border: 0;
-            outline: none;
-            font-size: 18px;
-            border-radius: 0.4rem;
-            cursor: pointer;
-            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-        }
+    .popupp button {
+        width: 100%;
+        margin-top: 50px;
+        padding: 10px 0;
+        background: #6f42c1;
+        color: #fff;
+        border: 0;
+        outline: none;
+        font-size: 18px;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    }
 
-        .close {
-            visibility: hidden;
-            display: none;
-        }
+    .close {
+        visibility: hidden;
+        display: none;
+    }
     </style>
+    <!-- angulur-min-JS  -->
+    <script src="Angular\angular.min.js"></script>
 </head>
 
-<body class="sidebar-mini layout-fixed">
+<body class="sidebar-mini layout-fixed" ng-app="">
     <?php
     // include sidebar file
     include 'sidebar.php'
@@ -142,12 +144,12 @@ if (isset($_POST['submitP'])) {
     if (isset($_SESSION['status'])) {
         // echo $_SESSION['status'];
         ?>
-        <div class="alert  alert-primary alert-dismissible fade show" role="alert">
-            <strong></strong>
-            <?php echo $_SESSION['status']; ?>.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php
+    <div class="alert  alert-primary alert-dismissible fade show" role="alert">
+        <strong></strong>
+        <?php echo $_SESSION['status']; ?>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
         unset($_SESSION['status']);
     }
     ?>
@@ -187,7 +189,7 @@ if (isset($_POST['submitP'])) {
                 </div>';
             }
             ?>
-            <form action="#" method="POST" width="40px">
+            <form action="#" method="POST" width="40px" name="myForm" novalidate>
                 <div class="card col-lg-3 shadow my-5">
                     <div class="card-header" style="border:0px;">
                         <h4 style="float:left; margin-top:10px;">Forget Password </h4>
@@ -200,42 +202,58 @@ if (isset($_POST['submitP'])) {
                                 <label for="device" style="float:left; margin-left:10px;">Username</label>
 
                                 <div class="col-lg-12">
-                                    <input type="text" class="form-control focus" name="username"
+                                    <input type="text" class="form-control focus" pattern="[a-zA-z,' ']{1,}"
+                                         ng-model="username" name="username"
                                         placeholder="Enter Username" style="height:45px;" required>
                                 </div>
+                                <span ng-show="myForm.$submitted || myForm.username.$dirty" style="color:red;">
+                                    <span class="error" ng-show="myForm.username.$error.required"><i
+                                            class="fa fa-exclamation-circle"></i> Name Required</span>
+                                    <span class="error" ng-show="myForm.username.$error.pattern"><i
+                                            class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
+                                </span>
                             </div>
+
                             <div class="form-group col-lg-12">
                                 <label for="device" style="float:left; margin-left:10px;">New Password</label>
 
                                 <div class="col-lg-12">
-                                    <input type="password" class="form-control focus" name="Password"
+                                    <input type="password" class="form-control focus" name="Password" ng-model="Password"
                                         placeholder="Enter Password" style="height:45px;" required>
                                 </div>
+                                <span ng-show="myForm.$submitted || myForm.Password.$dirty" style="color:red;">
+                                    <span class="error" ng-show="myForm.Password.$error.required"><i class="fa fa-exclamation-circle"></i> Password must be required</span>
+                                </span>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label for="device" style="float:left; margin-left:10px;">Confirm Password</label>
 
                                 <div class="col-lg-12">
-                                    <input type="password" class="form-control focus" name="CPassword"
+                                    <input type="password" class="form-control focus" name="CPassword" ng-model="CPassword"
                                         placeholder="Enter Password" style="height:45px;" required>
                                 </div>
+                                <span ng-show="myForm.$submitted || myForm.CPassword.$dirty" style="color:red;">
+                                    <span class="error" ng-show="Password != CPassword"><i class="fa fa-exclamation-circle"></i> Password doesn't match</span>
+                                    <span class="error" ng-show="myForm.CPassword.$error.required"><i class="fa fa-exclamation-circle"></i> password must be required</span>
+                                </span>
                             </div>
 
                             <div class="form-group col-lg-12">
-                            
+
                                 <button class="btn " type="submit" name="submitP" value="submit"
-                                    style="background:#6f42c1;color:white; height:45px; width:96%; margin-top:10px;">Reset Password</button>
+                                    style="background:#6f42c1;color:white; height:45px; width:96%; margin-top:10px;">Reset
+                                    Password</button>
                             </div>
-                            
+
                             <p class="mt-3 mb-3 col-lg-4">
-                    <a href="applogin.php">Login again?</a>
-                </p>
-                            
+                                <a href="applogin.php">Login again?</a>
+                            </p>
+
                         </div>
                     </div>
                 </div>
             </form>
-           
+
         </center>
 
     </div>
@@ -258,7 +276,7 @@ if (isset($_POST['submitP'])) {
     <!-- jQuery UI 1.11.4 -->
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -295,7 +313,7 @@ if (isset($_POST['submitP'])) {
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+</script>
 
 </html>

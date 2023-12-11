@@ -298,6 +298,8 @@ $result1 = mysqli_query($conn, $sql);
         color: black;
     }
     </style>
+     <script src="Angular\angular.min.js"></script>
+     
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed side">

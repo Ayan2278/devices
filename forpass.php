@@ -188,7 +188,7 @@ if (isset($_POST["submit"])) {
 
                 <form action="#" method="post" name="myform" novalidate>
                     <span ng-show="myform.$submitted || myform.username.$dirty" style="color:red;">
-                        <span class="error" ng-show="myform.username.$error.required"><i class="fa fa-exclamation-circle"></i> Name Reqiured</span><br>
+                        <span class="error" ng-show="myform.username.$error.required"><i class="fa fa-exclamation-circle"></i> Name required</span>
                         <span class="error" ng-show="myform.username.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
                 </span>
                     <div class="input-group mb-3">
@@ -200,7 +200,7 @@ if (isset($_POST["submit"])) {
                         </div>
                     </div>
                     <span ng-show="myform.$submitted || myform.password.$dirty" style="color:red;">
-                        <span class="error" ng-show="myform.password.$error.required"><i class="fa fa-exclamation-circle"></i> password must be reqiured</span>
+                        <span class="error" ng-show="myform.password.$error.required"><i class="fa fa-exclamation-circle"></i> password must be required</span>
                     </span>
                     <div class="input-group mb-3">
                         <input type="password" name="password" ng-model="password" class="form-control" placeholder="Password" required>
@@ -212,7 +212,7 @@ if (isset($_POST["submit"])) {
                     </div>
                     <span ng-show="myform.$submitted || myform.cpassword.$dirty" style="color:red;">
                         <span class="error" ng-show="password != cpassword"><i class="fa fa-exclamation-circle"></i> password doesn't match</span>
-                        <span class="error" ng-show="myform.cpassword.$error.required"><i class="fa fa-exclamation-circle"></i> password must be reqiured</span>
+                        <span class="error" ng-show="myform.cpassword.$error.required"><i class="fa fa-exclamation-circle"></i> password must be required</span>
                     </span>
                     <div class="input-group mb-3">
                         <input type="password" name="cpassword" ng-model="cpassword" class="form-control" placeholder="Confirm Password"

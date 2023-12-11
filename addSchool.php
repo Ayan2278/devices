@@ -41,8 +41,15 @@ if (isset($_POST["submit"])) {
 }
 
 // display District Names in accending order
-$sql = "SELECT * FROM `district` ORDER BY `district`.`name` ASC";
-$result1 = mysqli_query($conn, $sql);
+$query = mysqli_query($conn,"SELECT * FROM `district` ORDER BY `district`.`name` ASC");
+$data=array();
+while ($row = mysqli_fetch_array($query)) {
+    $data[] = array(
+        'name'=>$row['name'],
+    );
+}
+// $sql = "SELECT * FROM `district` ORDER BY `district`.`name` ASC";
+// $result1 = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -271,11 +278,20 @@ $result1 = mysqli_query($conn, $sql);
         color: #6f42c1;
     }
     </style>
+    <script src="Angular\angular.min.js"></script>
+    <script>
+    var app = angular.module("myapp", []);
+    app.controller('useCtrl', function($scope) {
+        var users = <?php echo json_encode($data); ?>;
+        $scope.users = users;
+    })
+    </script>
 </head>
 
 
 <!-- Main Sidebar Container -->
-<body class="hold-transition sidebar-mini layout-fixed ">
+
+<body class="hold-transition sidebar-mini layout-fixed" ng-app="myapp" ng-controller="useCtrl">
     <?php
     // include sidebar file
     include 'sidebar.php'
@@ -301,7 +317,7 @@ $result1 = mysqli_query($conn, $sql);
                     </div>
                 </div>
             </div>
-            <form action="" method="POST">
+            <form action="" method="POST" name="myform" novalidate>
                 <?php
                 // alert messages pop-up
                 if (isset($result) && $result) {
@@ -321,35 +337,24 @@ $result1 = mysqli_query($conn, $sql);
                         </div>
                         <div class="card-body ">
                             <div class="row">
+                                <span ng-show="myform.$submitted || myform.school_name.$dirty" style="color:red;">
+                                    <span class="error" ng-show="myform.school_name.$error.required"><i class="fa fa-exclamation-circle"></i> Name Required</span>
+                                    <span class="error" ng-show="myform.school_name.$error.pattern"><i class="fa fa-exclamation-circle"></i> Name cannot be a number</span>
+                                </span>
                                 <div class="form-group col-lg-12">
                                     <label for="device" style="float:left; margin-left:10px;">School</label>
                                     <div class="col-lg-12">
-                                        <input type="text" class="form-control focus" name="school_name"
-                                            placeholder="Enter School name" style="height:45px;" required>
+                                        <input type="text" class="form-control focus"  ng-model="school_name" pattern="[a-zA-Z,' ']{1,}" name="school_name" placeholder="Enter School name" style="height:45px;" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label for="device" style="float:left; margin-left:10px;">District</label>
                                     <div class="col-lg-12">
-                                        <select class="form-control focus" name="district" style="height:45px;"
-                                            required>
+                                        <select class="form-control focus" name="district" ng-model="district"
+                                            style="height:45px;" required>
                                             <option value="" class="Black">Please Select</option>
-                                            <?php
-                                           // display all School-Name 
-                                            if ($result1) {
-                                                $total1 = mysqli_num_rows($result1);
-                                                if ($total1 != 0) {
-                                                    while ($row = $result1->fetch_assoc()) {
-
-                                                        echo "<option value='" . $row['name'] . "'  class='Black'";
-
-                                                        echo isset($_POST["district"]) && $_POST["district"] == $row['name'] ? "selected " : "";
-                                                        echo ">" . $row['name'] . "</option>";
-                                                    }
-
-                                                }
-                                            }
-                                        ?>
+                                            <option ng-repeat="users in users" class="Black" value="{{users.name}}">
+                                                {{users.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -390,7 +395,7 @@ $result1 = mysqli_query($conn, $sql);
             <!-- /.content -->
             <button class="btn swalDefaultSuccess" id='alert' type="submit" name="submit"></button>
         </div>
-<?php
+        <?php
     //include footer file
     include  'footer.php';
 ?>
@@ -467,4 +472,5 @@ $result1 = mysqli_query($conn, $sql);
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
 </body>
+
 </html>
