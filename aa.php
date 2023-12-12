@@ -16,7 +16,6 @@ $files2 = glob($directory . "*");
 if ($files2) {
     $filecount = count($files2);
 }
-
 $EMP_NAME = $_SESSION['UserName'];
 $qry = "SELECT * from `user` where `username` = '$EMP_NAME'";
 $res = mysqli_query($conn,$qry);

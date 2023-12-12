@@ -43,8 +43,8 @@ function status($pcNo)
 ?>
 <!DOCTYPE html>
 <html>
-<head>
 
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Live-Status</title>
@@ -250,7 +250,7 @@ function status($pcNo)
                 <div class="card mx-2 shadow">
                     <div class="card-header" style="border:0px;">
                         <h3 class="card-title">Device Status</h3>
-                    </div>{{srchDistrict!=''}}
+                    </div>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form method="post" id="myform">
@@ -297,12 +297,12 @@ function status($pcNo)
                                 </select>
                             </div>
 
-                            <form action="live_status.php" method="post">
+                            <!-- <form action="live_status.php" method="post">
                                 <div class="form-group col-lg-1 my-4 w-100">
                                     <button type="submit" name="Status" value="Status" class="btn"
                                         style="margin-top:8px;width:100%;  background:#6f42c1; color:white;">Status</button>
                                 </div>
-                            </form>
+                            </form> -->
 
                         </div>
                         <!-- /.card-body -->

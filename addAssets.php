@@ -378,7 +378,6 @@ while ($row = mysqli_fetch_array($query)) {
                                     </span>
                                     </div>
 
-                                    
                                     <div class="form-group col-lg-12">
                                         <label for="device" style="float:left; margin-left:10px;">TFT Id</label>
                                         <div class="col-lg-12">

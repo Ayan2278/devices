@@ -11,5 +11,7 @@ if(isset($_POST['logout_btn'])){
      $_SESSION['Status']="log-out successfully";
      header('Location:applogin.php');
      exit(0);
+                
+    
 }
 ?>  

@@ -39,7 +39,6 @@ if (isset($_POST["submit"])) {
                 header("location:index.php");
             }
         }
-        
         if ($alert) {
             echo '
             <div class="popup-container" id="popupp">

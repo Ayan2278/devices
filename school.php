@@ -25,6 +25,7 @@ while ($row = mysqli_fetch_array($query)) {
 );
 $count++;
 }
+
 // Query for Select District
 // $sql = "SELECT DISTINCT `district` FROM `asset`;";
 // $result = mysqli_query($conn, $sql);
@@ -267,7 +268,7 @@ $count++;
                     <!-- form start -->
                     <form method="post" action="school.php" role="form" id="myform" name="myForm">
                         <div class="card-body row">
-                            <div class="form-group col-lg-2">
+                            <div class="form-group col-lg-3">
                                 <label for="school">District</label>
                                 <select name="District" ng-model="District" style="width:100%;" class="form-control">
                                 <option value="">Please Select</option>
@@ -275,33 +276,33 @@ $count++;
                                     </option>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-2">
+                            <div class="form-group col-lg-3">
                                 <label for="exampleInputPassword1">Block</label>
                                 <select class="form-control " style="width: 100%" name='Block' ng-model="Block">
                                     <option value="">Please Select</option>
                                     <option ng-repeat="users in users | filter: {district : District}" ng-show="District!=''" value="{{users.block}}">{{users.block}}</option>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-2">
+                            <div class="form-group col-lg-3">
                                 <label for="exampleInputPassword1">Village</label>
                                 <select class="form-control " style="width: 100%" name='Village' ng-model="Village">
                                     <option value="">Please Select</option>
                                     <option ng-repeat="users in users| filter: {district : District} | filter: {block: Block} " ng-show="District!='' && Block!='' " value="{{users.village}}">{{users.village}}</option>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-2">
+                            <div class="form-group col-lg-3">
                                 <label for="exampleInputPassword1">Select School </label>
                                 <select class="form-control " style="width: 100%" name='school' ng-model="school">
                                     <option value="">Please Select </option>
                                     <option  ng-repeat="users in users| filter: {district : District} | filter: {block: Block} | filter: {village: Village} " ng-show="District!='' && Block!='' && Village!='' "  value="{{users.school_name}}">{{users.school_name}}</option>
                                 </select>
                             </div>
-                            <form action="#" method="get">
+                            <!-- <form action="#" method="get">
                                 <div class="form-group col-lg-1 my-4 w-100">
                                     <button type="submit" name="Search" value="Search" class="btn "
                                         style="margin-top:8px; width:100%; background:#6f42c1; color:white;">Search</button>
                                 </div>
-                            </form>
+                            </form> -->
                         </div>
                         <!-- /.card-body -->
                     </form>

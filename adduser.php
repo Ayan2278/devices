@@ -32,7 +32,6 @@ if (isset($_POST["submit"])) {
     $block = $row['block'];
     $village = $row['village'];
     
-    
     // continue to inserting data in table
     $username=$_POST["username"];
     $pass=$_POST["Password"];

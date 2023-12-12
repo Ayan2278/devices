@@ -41,7 +41,6 @@ include 'authentication.php';
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <style>
-    
     .focus:focus {
             border: 1px solid #6f42c1;
             color: #6f42c1;

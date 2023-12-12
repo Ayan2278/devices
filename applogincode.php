@@ -18,7 +18,6 @@ if(isset($_POST['submit']))
     $log_query->execute();
     $result=$log_query->get_result();
 
-    
     if($result->num_rows>0)
     {
         // fetch the username from database table
