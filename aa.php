@@ -1,3 +1,227 @@
+
+
+<?php
+session_start();
+
+if (!isset($_SESSION['ict'])) {
+    header("Location: login.php"); // replace with the URL of your dashboard page
+    exit;
+}
+
+
+include 'apis/dbcred.php';
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Initialize Variables 
+// $count = 1;
+// // Query To fetch Schools Related Data From the Database
+// $query = mysqli_query($conn, "SELECT d.*, s.school_name FROM devices d INNER JOIN schools s ON d.dise_code = s.dise_code WHERE d.type='DESKTOP'");
+// $data = array();
+// while ($asset = mysqli_fetch_array($query)) {
+//     // Prepare data to be added to the array
+//     $data[] = array(
+//         "Sr" => $count,
+//         "dise_code" => $asset['dise_code'],
+//         "school_name" => $asset['school_name'],
+//         "lab" => $asset['lab'],
+//         "pc" => $asset['pc'],
+//         "serial_number" => $asset['serial_number'],
+//         "TFT" => $asset['TFT'],
+//         "WEBCAM" => $asset['WEBCAM'],
+//         "HEADPHONE" => $asset['HEADPHONE'],
+//         "SWITCH" => $asset['SWITCH'],
+
+//     );
+//     $count++; // Increment count
+// }
+
+// echo json_encode($data);
+
+
+// $stmt = $conn->prepare("SELECT district FROM `schools` GROUP BY district");
+// $stmt->execute();
+// $result = $stmt->get_result();
+
+// $all_districts = array();
+
+// if ($result->num_rows > 0) {
+//     while ($row = $result->fetch_assoc()) {
+//         array_push($all_districts, $row['district']);
+//     }
+// }
+
+// if (isset($_POST["district"]) && $_POST["district"] != "") {
+//     $stmt = $conn->prepare("SELECT block FROM `schools` WHERE district=? GROUP BY block");
+//     $stmt->bind_param('s', $_POST["district"]);
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+
+//     $all_blocks = array();
+
+//     if ($result->num_rows > 0) {
+//         while ($row = $result->fetch_assoc()) {
+//             array_push($all_blocks, $row['block']);
+//         }
+//     }
+// }
+
+// if (isset($_POST["block"]) && $_POST["block"] != "") {
+//     $stmt = $conn->prepare("SELECT village FROM `schools` WHERE block=? GROUP BY village");
+//     $stmt->bind_param('s', $_POST["block"]);
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+
+//     $all_villages = array();
+
+//     if ($result->num_rows > 0) {
+//         while ($row = $result->fetch_assoc()) {
+//             array_push($all_villages, $row['village']);
+//         }
+//     }
+// }
+
+// if (isset($_POST["village"]) && $_POST["village"] != "") {
+//     $stmt = $conn->prepare("SELECT dise_code, school_name FROM `schools` WHERE village=? GROUP BY school_name");
+//     $stmt->bind_param('s', $_POST["village"]);
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+
+//     $all_schools = array();
+
+//     if ($result->num_rows > 0) {
+//         while ($row = $result->fetch_assoc()) {
+//             array_push($all_schools, $row['dise_code'] . ' ' . $row['school_name']);
+//         }
+//     }
+// }
+
+// if (isset($_POST['generate'])) {
+//     if (isset($_POST['school']) && $_POST['school'] != "Please Select" && $_POST['school'] != "") {
+//         $sql = "SELECT d.*, s.school_name FROM devices d INNER JOIN schools s ON d.dise_code = s.dise_code WHERE d.type='DESKTOP' AND d.dise_code=?";
+//         $stmt = $conn->prepare($sql);
+//         $stmt->bind_param('s', explode(" ", $_POST["school"])[0]);
+//     } else if (isset($_POST['village']) && $_POST['village'] != "Please Select" && $_POST['village'] != "") {
+//         $sql = "SELECT d.*, s.school_name FROM devices d INNER JOIN schools s ON d.dise_code = s.dise_code WHERE d.type='DESKTOP' AND s.village='" . $_POST["village"] . "'";
+//         $stmt = $conn->prepare($sql);
+//     } else if (isset($_POST['block']) && $_POST['block'] != "Please Select" && $_POST['block'] != "") {
+//         $sql = "SELECT d.*, s.school_name FROM devices d INNER JOIN schools s ON d.dise_code = s.dise_code WHERE d.type='DESKTOP' AND s.block='" . $_POST["block"] . "'";
+//         $stmt = $conn->prepare($sql);
+//     } else if (isset($_POST['district']) && $_POST['district'] != "Please Select" && $_POST['district'] != "") {
+//         $sql = "SELECT d.*, s.school_name FROM devices d INNER JOIN schools s ON d.dise_code = s.dise_code WHERE d.type='DESKTOP' AND s.district='" . $_POST["district"] . "'";
+//         $stmt = $conn->prepare($sql);
+//     } else {
+//         $sql = "SELECT d.*, s.school_name FROM devices d INNER JOIN schools s ON d.dise_code = s.dise_code WHERE d.type='DESKTOP'";
+//         $stmt = $conn->prepare($sql);
+//     }
+
+//     echo explode(" ", $_POST["school"])[0];
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+
+//     $assetListt = array();
+//     $count = 1;
+//     if ($result->num_rows > 0) {
+//         while ($row = $result->fetch_assoc()) {
+
+//             $sql1 = "SELECT serial_number, type FROM devices WHERE relatedPC = '" . $row['serial_number'] . "'";
+//             $stmt1 = $conn->prepare($sql1);
+//             $stmt1->execute();
+//             $result1 = $stmt1->get_result();
+
+//             if ($result1->num_rows > 0) {
+//                 while ($row1 = $result1->fetch_assoc()) {
+//                     $row[$row1['type']] = $row1['serial_number'];
+//                 }
+//             }
+
+//             // array_push($assetList, $row);
+//             foreach ($assetList as $asset) {
+//                 $assetListt[] = array(
+//                     "Sr" => $count,
+//                     "dise_code" => $asset['dise_code'],
+//                     "school_name" => $asset['school_name'],
+//                     "lab" => $asset['lab'],
+//                     "pc" => $asset['pc'],
+//                     "serial_number" => $asset['serial_number'],
+//                     "TFT" => $asset['TFT'],
+//                     "WEBCAM" => $asset['WEBCAM'],
+//                     "HEADPHONE" => $asset['HEADPHONE'],
+//                     "SWITCH" => $asset['SWITCH'],
+
+//                 );
+//                 $count++; // Increment count
+//                             }
+
+//         }
+//     }
+// } else {
+$sql = "SELECT d.*, s.school_name FROM devices d INNER JOIN schools s ON d.dise_code = s.dise_code WHERE d.type='DESKTOP'";
+$stmt = $conn->prepare($sql);
+$dist;
+$stmt->execute();
+$result = $stmt->get_result();
+
+$assetList = array();
+$count = 1;
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+
+        while($count!=50){
+            $sql1 = "SELECT serial_number, type FROM devices WHERE relatedPC = '" . $row['serial_number'] . "'";
+        $stmt1 = $conn->prepare($sql1);
+        $stmt1->execute();
+        $result1 = $stmt1->get_result();
+
+        $sql2 = "SELECT distinct `district`,`block`,`village` FROM ict75k_dtd.schools WHERE `dise_code`=". $row['dise_code'] .";";
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->execute();
+        $result2 = $stmt2->get_result();
+        $row2 = $result2->fetch_assoc();
+        if ($result1->num_rows > 0) {
+            while ($row1 = $result1->fetch_assoc()) {
+                $row[$row1['type']] = $row1['serial_number'];
+            }
+        }
+        $assetList[] = array(
+            "Sr" => $count,
+            "dise_code" => $row['dise_code'],
+            "school_name" => $row['school_name'],
+            "lab" => $row['lab'],
+            "pc" => $row['pc'],
+            "serial_number" => $row['serial_number'],
+            "TFT" => $row['TFT'],
+            "WEBCAM" => $row['WEBCAM'],
+            "HEADPHONE" => $row['HEADPHONE'],
+            "SWITCH" => $row['SWITCH'],
+            "district" => $row2['district'],
+            "block" => $row2['block'],
+            "village" => $row2['village'],
+        );
+        $count++;
+        }
+        // array_push($assetList, $row);
+    }
+}
+
+$qyD = mysqli_query($conn, "SELECT DISTINCT district FROM schools");
+$dataD = array();
+while ($row = mysqli_fetch_array($qyD)) {
+    $dataD[] = array(
+        "district" => $row['district'],
+    );
+}
+
+
+
+$conn->close();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
