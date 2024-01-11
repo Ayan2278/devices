@@ -167,22 +167,22 @@
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <i class="cil-screen-desktop mx-2" style="height: 100%; width: 32px;"></i> Assets</a>
           <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="asset.html"><span class="nav-icon"></span>
+            <li class="nav-item"><a class="nav-link" href="assets.html"><span class="nav-icon"></span>
                 Asset List</a></li>
-            <li class="nav-item"><a class="nav-link" href="base/breadcrumb.html"><span class="nav-icon"></span>
+            <li class="nav-item"><a class="nav-link" href="regInfo.html"><span class="nav-icon"></span>
                 Reg. Info</a></li>
           </ul>
         </li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <i class="cil-window-restore  mx-2" style="height: 100%; width: 32px;"></i> Activity</a>
           <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="device.html"><span class="nav-icon"></span>
+            <li class="nav-item"><a class="nav-link" href="duration.html"><span class="nav-icon"></span>
                 Device timing</a></li>
-            <li class="nav-item"><a class="nav-link" href="application.html"><span class="nav-icon"></span>
+            <li class="nav-item"><a class="nav-link" href="activity.html"><span class="nav-icon"></span>
                 Application Timing</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link" href="report.html">
+        <li class="nav-item"><a class="nav-link" href="reports.html">
             <i class="cil-touch-app  mx-2" style="height: 100%; width: 32px;"></i> Reports</a></li>
       </ul>
       <button class="logOut cil-account-logout" type="button"></button>
@@ -207,7 +207,7 @@
         <div class="content-header">
           <div class="container-fluid">
             <div class="row mb-2">
-              <h2 class="my-4" style="color: #1f203f;">Application Timing</h2>
+              <h2 class="my-4" style="color: #1f203f;">Report</h2>
             </div>
           </div>
         </div>
@@ -272,6 +272,15 @@
                   </select>
                 </div>
                 <div class="col-lg-2 col-12">
+                  <label class="my-2"><b>Lab</b></label>
+                  <select class="form-control select2bs4" style="width: 100%" name="district" onchange="change()">
+                    <option value="">Please Select</option>
+                    <option value="A">1</option>
+                    <option value="B">2</option>
+                    
+                  </select>
+                </div>
+                <div class="col-lg-2 col-12">
                   <label class="my-2"><b>Device Serial Number</b></label>
                   <select class="form-control select2bs4" style="width: 100%" name="district" onchange="change()">
                     <option value="">Please Select</option>
@@ -285,8 +294,22 @@
                     <option value="H">H</option>
                   </select>
                 </div>
+                <div class="col-md-10"></div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <button type="button" class="btn bg rounded-1 btn-primary btn-md w-100" style="margin-top: 20px;"
+                            name="generate">Device</button>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <button type="button" class="btn bg rounded-1 btn-primary btn-md w-100"  style="margin-top: 20px;"
+                            name="generate" >Aplication</button>
+                    </div>
+                </div>
                 
               </div>
+            
             </div>
           </div>
   
@@ -300,7 +323,7 @@
                   <thead class="fixed-header" style="color: #1f203f;">
                     <tr>
                       <th class="text-center">Sr</th>
-                      <th class="text-center">Application</th>
+                      <th class="text-center">Device Serial Number</th>
                       <th class="text-center">Date</th>
                       <th class="text-center">On Time</th>
                       <th class="text-center">Off Time</th>
@@ -311,7 +334,7 @@
                   <tbody class="card-body">
                     <tr>
                       <td class="text-center">1</td>
-                      <td class="text-center">Chrome</td>
+                      <td class="text-center">2512422121</td>
                       <td class="text-center">11-01-2024</td>
                       <td class="text-center">05:04</td>
                       <td class="text-center">07:10</td>
@@ -320,7 +343,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -328,7 +351,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -336,7 +359,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -344,7 +367,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -352,7 +375,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -360,7 +383,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -368,7 +391,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -376,7 +399,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -384,7 +407,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -392,7 +415,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -400,7 +423,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -408,7 +431,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -416,7 +439,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -424,7 +447,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -432,7 +455,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -440,7 +463,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -448,7 +471,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -456,7 +479,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -464,7 +487,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -472,7 +495,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
@@ -480,7 +503,7 @@
                     </tr>
                     <tr>
                         <td class="text-center">1</td>
-                        <td class="text-center">Chrome</td>
+                        <td class="text-center">2512422121</td>
                         <td class="text-center">11-01-2024</td>
                         <td class="text-center">05:04</td>
                         <td class="text-center">07:10</td>
