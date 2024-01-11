@@ -48,7 +48,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Semantic-UI-CSS-master/semantic.min.css">
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  
 
   <style>
     body {
@@ -130,12 +132,18 @@
     th {
       font-size: 13.9px;
     }
+
     .fixed-header th {
-            position: sticky;
-            top: 0;
-            background-color: #f1f1f1;
-            z-index: 1;
-        }
+      position: sticky;
+      top: 0;
+      background-color: #f1f1f1;
+      z-index: 1;
+    }
+    .card-header{
+      background-color: #faf8fc;
+      color: #1f203f; font-size: 20px;
+    }
+ 
   </style>
 
 </head>
@@ -154,7 +162,7 @@
           </svg> Dashboard</a></li>
       <li class="nav-item"><a class="nav-link" href="liveStatus.html">
           <i class="cil-layers mx-2" style="height: 100%; width: 32px;"></i> Live Status</a></li>
-      <li class="nav-item"><a class="nav-link" href="typography.html">
+      <li class="nav-item"><a class="nav-link" href="school.html">
           <i class="cil-institution mx-2" style="height: 100%; width: 32px;"></i> Schools</a></li>
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <i class="cil-screen-desktop mx-2" style="height: 100%; width: 32px;"></i> Assets</a>
@@ -193,25 +201,7 @@
       </div>
 
     </header>
-    <div class="ui container">
-      <select class="ui search dropdown" id="genderDropdown">
-        <option value="">Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-    </div>
-  
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  
-  <!-- Include the Semantic UI JavaScript from your local folder -->
-  <script src="Semantic-UI-CSS-master/semantic.min.js"></script>
 
-  <!-- Initialize the dropdown -->
-  <script>
-    $(document).ready(function(){
-      $('.ui.dropdown').dropdown();
-    });
-  </script>
     <div class="body flex-grow-1 px-3" style="background-color: #f0f0f9;">
       <!-- <div class="container-lg"> -->
       <div class="content-header">
@@ -222,39 +212,89 @@
         </div>
       </div>
       <div class="content">
-          <div class="card card-default shadow" style="border: 0; background-color: #faf8fc;;">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-2 col-12">
-                  <label for=""><b>District</b></label>
-                  <select name="" style="width: 100%;" class="my-2" id=""></select>
-                </div>
-                <div class="col-lg-2 col-12">
-                  <label for=""><b>Block</b></label>
-                  <select name="" style="width: 100%;" class="my-2" id=""></select>
-                </div>
-                <div class="col-lg-2 col-12">
-                  <label for=""><b>Village</b></label>
-                  <select name="" style="width: 100%;" class="my-2" id=""></select>
-                </div>
-                <div class="col-lg-2 col-12">
-                  <label for=""><b>School Name</b></label>
-                  <select name="" style="width: 100%;" class="my-2" id=""></select>
-                </div>
-                <div class="col-lg-2 col-12">
-                  <label for=""><b>Status</b></label>
-                  <select name="" style="width: 100%;" class="my-2" id=""></select>
-                </div>
+        <div class="card card-default shadow" style="border: 0; background-color: #faf8fc;;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-2 col-12">
+                <label class="my-2"><b>District</b></label>
+                <select class="form-control select2bs4" style="width: 100%" name="district" onchange="change()">
+                  <option value="">Please Select</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="G">G</option>
+                  <option value="H">H</option>
+                </select>
+              </div>
+              <div class="col-lg-2 col-12">
+                <label class="my-2"><b>Block</b></label>
+                <select class="form-control select2bs4" style="width: 100%" name="district" onchange="change()">
+                  <option value="">Please Select</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="G">G</option>
+                  <option value="H">H</option>
+                </select>
+              </div>
+              <div class="col-lg-2 col-12">
+                <label class="my-2"><b>Village</b></label>
+                <select class="form-control select2bs4" style="width: 100%" name="district" onchange="change()">
+                  <option value="">Please Select</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="G">G</option>
+                  <option value="H">H</option>
+                </select>
+              </div>
+              <div class="col-lg-2 col-12">
+                <label class="my-2"><b>School Name</b></label>
+                <select class="form-control select2bs4" style="width: 100%" name="district" onchange="change()">
+                  <option value="">Please Select</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="G">G</option>
+                  <option value="H">H</option>
+                </select>
+              </div>
+              <div class="col-lg-2 col-12">
+                <label class="my-2"><b>Status</b></label>
+                <select class="form-control select2bs4" style="width: 100%" name="district" onchange="change()">
+                  <option value="">Please Select</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                  <option value="F">F</option>
+                  <option value="G">G</option>
+                  <option value="H">H</option>
+                </select>
               </div>
             </div>
           </div>
-        
+        </div>
+
         <div class="col-lg-12 my-3">
           <div class="card shadow" style="border: 0;">
-            <div class="card-header" style="background-color: #faf8fc;color: #1f203f; font-size: 20px; ">
+            <div class="card-header">
               List of Desktops
             </div>
-            <div class="" style="height: 500px; overflow: scroll;">
+            <div class="" style="height: 500px; overflow-y: scroll;">
               <table class="table table-bordered table-striped text-nowrap">
                 <thead class="fixed-header" style="color: #1f203f;">
                   <tr>
@@ -489,7 +529,7 @@
                     <td>AHMEDABAD</td>
                     <td class="text-center">Active</td>
                   </tr>
-                  
+
                 </tbody>
               </table>
             </div>
@@ -498,17 +538,34 @@
       </div>
       <!-- </div> -->
     </div>
-    <footer class="footer">
+    <footer class="footer" style="background-color: #faf8fc;">
       <div>Copyright © 2023-2025 <a href="https://coreui.io">Ciencias IN VR</a>. All rights reserved.</div>
 
     </footer>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
+  <script src="plugins/select2/js/select2.full.min.js"></script>
+  <script>
+    //Initialize Select2 Elements
+    $('.select2').select2();
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4',
+      placeholder: 'Please Select'
+    });
+    $(document).ready(function () {
+            $('.select2bs4').select2({
+                theme: 'bootstrap4',
+                placeholder: 'Please Select',
+                allowClear: true,
+            });
+        });
+  </script>
 
   <!-- Initialize the dropdown -->
   <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
       $('#genderDropdown').dropdown({
         fullTextSearch: true, // Enable full-text search
       });
