@@ -207,7 +207,7 @@
         <div class="content-header">
           <div class="container-fluid">
             <div class="row mb-2">
-              <h2 class="my-4" style="color: #1f203f;">Assets</h2>
+              <h2 class="my-4" style="color: #1f203f;">Report</h2>
             </div>
           </div>
         </div>
@@ -271,8 +271,45 @@
                     <option value="H">H</option>
                   </select>
                 </div>
+                <div class="col-lg-2 col-12">
+                  <label class="my-2"><b>Lab</b></label>
+                  <select class="form-control select2bs4" style="width: 100%" name="district" onchange="change()">
+                    <option value="">Please Select</option>
+                    <option value="A">1</option>
+                    <option value="B">2</option>
+                    
+                  </select>
+                </div>
+                <div class="col-lg-2 col-12">
+                  <label class="my-2"><b>Device Serial Number</b></label>
+                  <select class="form-control select2bs4" style="width: 100%" name="district" onchange="change()">
+                    <option value="">Please Select</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                  </select>
+                </div>
+                <div class="col-md-10"></div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <button type="button" class="btn bg rounded-1 btn-primary btn-md w-100" style="margin-top: 20px;"
+                            name="generate">Device</button>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <button type="button" class="btn bg rounded-1 btn-primary btn-md w-100"  style="margin-top: 20px;"
+                            name="generate" >Aplication</button>
+                    </div>
+                </div>
                 
               </div>
+            
             </div>
           </div>
   
@@ -286,281 +323,191 @@
                   <thead class="fixed-header" style="color: #1f203f;">
                     <tr>
                       <th class="text-center">Sr</th>
-                      <th class="text-center">Dise Code</th>
-                      <th class="text-center">School Name</th>
-                      <th class="text-center">Lab</th>
-                      <th class="text-center">Computer Number</th>
-                      <th class="text-center">Desktop Serial</th>
-                      <th class="text-center">TFT Serial</th>
-                      <th class="text-center">Webcam Serial</th>
-                      <th class="text-center">Headphone Serial</th>
-                      <th class="text-center">Switch  Serial</th>
+                      <th class="text-center">Device Serial Number</th>
+                      <th class="text-center">Date</th>
+                      <th class="text-center">On Time</th>
+                      <th class="text-center">Off Time</th>
+                      <th class="text-center">Duration</th>
+                     
                     </tr>
                   </thead>
                   <tbody class="card-body">
                     <tr>
                       <td class="text-center">1</td>
                       <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td class="text-center">Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                      <td class="text-center">11-01-2024</td>
+                      <td class="text-center">05:04</td>
+                      <td class="text-center">07:10</td>
+                      <td class="text-center">02:14:00</td>
+                      
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
                     <tr>
-                      <td class="text-center">1</td>
-                      <td class="text-center">2512422121</td>
-                      <td>SCHOOL OF _______</td>
-                      <td>Lab 1</td>
-                      <td class="text-center">USX8966892087764</td>
-                      <td>UVWXYZ</td>
-                      <td>ABCDEF</td>
-                      <td>AHMEDABAD</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
-                      <td class="text-center">UR1470102133803E9F9F00</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2512422121</td>
+                        <td class="text-center">11-01-2024</td>
+                        <td class="text-center">05:04</td>
+                        <td class="text-center">07:10</td>
+                        <td class="text-center">02:14:00</td>
                     </tr>
   
                   </tbody>
