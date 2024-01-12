@@ -15,7 +15,7 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Dashboard</title>
+    <title>Reports</title>
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -73,7 +73,7 @@
       .logOut {
         background-color: #191a36;
         color: #8a93a2;
-        height: 60px;
+        height: 50px;
         border: 0;
       }
   
@@ -143,6 +143,31 @@
         background-color: #faf8fc;
         color: #1f203f; font-size: 20px;
       }
+      .btn-clr{
+      background-color: #5f4279 ;
+      color: #ffffff;
+      /* border: 0.1px solid #a7a7a7; */
+      }
+      .btn-clr:hover{
+        background-color: rgb(140, 109, 168);
+        color: white;
+      }
+      .select2-container--bootstrap4 .select2-selection--single {
+    border: 1px solid #ced4da; /* Set your desired border color */
+    color: #495057; /* Set your desired text color */
+  }
+
+  .select2-container--bootstrap4 .select2-selection--single:focus {
+    border-color: #80bdff; /* Set your desired focus border color */
+  }
+
+  .select2-container--bootstrap4 .select2-selection--single .select2-selection__arrow {
+    border-color: #495057 transparent transparent transparent; /* Set your desired arrow color */
+  }
+
+  .select2-container--bootstrap4 .select2-selection--single .select2-selection__clear {
+    color: #495057; /* Set your desired clear button color */
+  }
    
     </style>
   
@@ -207,7 +232,7 @@
         <div class="content-header">
           <div class="container-fluid">
             <div class="row mb-2">
-              <h2 class="my-4" style="color: #1f203f;">Report</h2>
+              <h2 class="my-3" style="color: #1f203f;">Report</h2>
             </div>
           </div>
         </div>
@@ -297,13 +322,13 @@
                 <div class="col-md-10"></div>
                 <div class="col-md-1">
                     <div class="form-group">
-                        <button type="button" class="btn bg rounded-1 btn-primary btn-md w-100" style="margin-top: 20px;"
+                        <button type="button" class="btn bg rounded-1 btn-clr btn-md w-100" style="margin-top: 20px;"
                             name="generate">Device</button>
                     </div>
                 </div>
                 <div class="col-md-1">
                     <div class="form-group">
-                        <button type="button" class="btn bg rounded-1 btn-primary btn-md w-100"  style="margin-top: 20px;"
+                        <button type="button" class="btn bg rounded-1 btn-clr btn-md w-100"  style="margin-top: 20px;"
                             name="generate" >Aplication</button>
                     </div>
                 </div>
