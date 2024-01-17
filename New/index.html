@@ -144,7 +144,7 @@
     </a>
     <hr style="margin:0px;height:0.1px;border-width:3px;color:#28a745;border-color:#0d6690">
     <!-- ===========Sidebar========== -->
-    <div class="sidebar" style="background-color: #1f203f; width: 100%;">
+    <div class="sidebar" style="background-color: #1f203f; overflow-y: auto;">
       <!-- Sidebar user panel (optional) -->
       <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
@@ -159,28 +159,28 @@
           
           <li class="nav-item">
             <a href="index.html" id="myButton" class="nav-link ">
-              <svg class="nav-icon" style="margin-right: 13px;">
+              <svg class="nav-icon" >
                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
               </svg>
-              Dashboard
+              <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="liveStatus.html">
-              <i class="cil-layers mx-2" style="height: 100%; width: 32px;"></i>
+              <i class="cil-layers mx-2" style="height: 100%;"></i>
               <p style="margin-left: 13px; margin-bottom: 0;">Live Status</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="school.html" id="myButton" class="nav-link ">
-              <i class="cil-institution mx-2" style="height: 100%; width: 32px;"></i>
+              <i class="cil-institution mx-2" style="height: 100%;"></i>
               <p style="margin-left: 13px; margin-bottom: 0;">Schools</p>
 
             </a>
           </li>
 
           <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-              <i class="cil-screen-desktop mx-2" style="height: 100%; width: 32px;"></i>
+              <i class="cil-screen-desktop mx-2" style="height: 100%;"></i>
               <p style="margin-left: 13px; margin-bottom: 0;">Assets</p>
             </a>
             <ul class="nav-group-items">
@@ -191,7 +191,7 @@
             </ul>
           </li>
           <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-              <i class="cil-window-restore  mx-2" style="height: 100%; width: 32px;"></i>
+              <i class="cil-window-restore  mx-2" style="height: 100%;"></i>
               <p style="margin-left: 13px; margin-bottom: 0;">Activity</p>
             </a>
             <ul class="nav-group-items">
@@ -203,7 +203,7 @@
           </li>
 
           <li class="nav-item"><a class="nav-link" href="reports.html">
-              <i class="cil-touch-app  mx-2" style="height: 100%; width: 32px;"></i>
+              <i class="cil-touch-app  mx-2" style="height: 100%;"></i>
               <p style="margin-left: 13px; margin-bottom: 0;">Reports</p>
             </a></li>
         </ul>
@@ -216,7 +216,7 @@
 
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="min-height: 100%; background-color: #f0f0f9;">
       <!-- <div class="wrapper d-flex flex-column min-vh-100 bg-light m-0"> -->
 
       <!-- <div class="body flex-grow-1 px-3" style="background-color: #f0f0f9;"> -->
@@ -229,7 +229,7 @@
         </div>
       </div>
       <!-- <div class="content"> -->
-        <div class="col-lg-12 row " style="width: 100%;">
+        <div class="col-lg-12 row " style="min-width: 100%;padding-left: 25px;">
           <div class="col-lg-9">
 
             <!-- /.col-->
