@@ -79,17 +79,23 @@
     }
 
     .logOut {
-      background-color: #191a36;
-      color: #8a93a2;
-      height: 50px;
-      border: 0;
-      width: 100%;
-      margin-top: 470px;
-    }
+    position: absolute;
+    bottom: 0;
+    background-color: #191a36;
+    color: #8a93a2;
+    height: 50px;
+    border: 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .logOut:hover {
-      background-color: #2a2b49;
-    }
+  .logOut:hover {
+    background-color: #2a2b49;
+  }
+
 
 
     .increase {
@@ -253,7 +259,7 @@
             
           </ul>
           <a href="login.html">
-            <button class="logOut cil-account-logout" type="button"></button></a>
+            <button class="logOut cil-account-logout float-bottom" type="button"></button></a>
         </nav>
 
       </div>
