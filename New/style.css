@@ -57,7 +57,7 @@
       font-size: 35px;
     }
 
-    .increase :hover  {
+    .card.mb-4.text-white :hover .increase  {
       font-size: 40px;
       transition: font-size 0.3s ease;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
