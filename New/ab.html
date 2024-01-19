@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* POPPINS FONT */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color:#f0f0f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+}
+.container{
+    background: url("Cvrlogo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    min-height: 400px;
+    min-width: 370px;
+    box-shadow: 0 4px 8px 0 rgba(115, 85, 121, 0.2),
+                0 2px 20px 0 rgba(145, 97, 155, 0.2);
+}
+.header{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    font-weight: 950;
+    font-size: 25px;
+    transition: .3s ease-in-out;
+    color:#2a2b49;
+    
+}
+.input-container{
+    margin: 30px 30px 10px 30px;
+}
+label{
+    color: #251414;
+    margin: 0 0 5px 15px;
+}
+.input-field{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 15px 0;
+    font-weight: 550;
+    color:#2a2b49;
+}
+input{
+    outline: none;
+    padding: 0 20px 0 20px;
+    border: 2px solid rgba(255,255,255, 0.015);
+    background: rgba(255,255,255,0.35);
+    height: 38px;
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,0.085),
+                0 2px 30px 0 rgba(0,0,0,0.2);
+    border-radius: 50px;
+    font-size: 16px;
+    color: #0a0a0a;
+}
+input:focus,input:valid{
+    border: 2px solid rgba(26, 25, 25, 0.65);
+    background: transparent;
+    box-shadow: none;
+    border-radius: 30px;
+}
+.submit{
+    background: transparent;
+    height: 40px;
+    border: 2px solid rgba(17, 17, 17, 0.65);
+    box-shadow: none;
+    transition: .3s ease-in-out;
+    margin-top: 10px;
+    font-weight: 550;
+    color:#2a2b49;
+}
+.submit:hover{
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.016);
+    background: rgba(255,255,255,0.35);
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,0.085),
+                0 2px 30px 0 rgba(0,0,0,0.2);
+
+}
+span{
+    display: flex;
+    justify-content: right;
+}
+span a{
+    color: #a19f9f;
+    font-size: 12px;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <header>Login</header>
+        </div>
+        <div class="input-container">
+            <div class="input-field">
+                <label for="user">Username</label>
+                <input type="text" name="username" id="user" required>  
+            </div>
+
+            <div class="input-field">
+                <label for="pass">Password</label>
+                <input type="password" name="password" id="pass" required>  
+            </div>
+
+            <div class="input-field">
+                
+                <input type="submit" class="submit"  name="submit" value="Login">  
+            </div>
+            <!-- <span><a href="#">Forgot password?</a></span> -->
+        </div>
+    </div>
+
+</body>
+</html>
