@@ -62,6 +62,11 @@
       transition: font-size 0.3s ease;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
+    input[type="text"].form-control:focus, .form-control:focus {
+      border-color: rgb(176, 148, 255);
+      -webkit-box-shadow: 0 0 0 .2rem rgba(0, 123, 255, 0.25);
+      box-shadow: 0 0 0 0.2rem rgb(118 72 255 / 25%);
+    }
     
 @media (max-width: 1382px) {
   .d-flex.flex-column.text-center.mx-3,
