@@ -84,6 +84,13 @@
     font-size: 14px;
     margin-top: -12px;
   }
+   /* Hover effect for responsive view */
+   .d-flex.flex-column.text-center.mx-3 :hover .increase
+   {
+     font-size: 40px;
+     transition: font-size 0.3s ease;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+   }
 }
 
     .card.mb-4.text-white.bg-warning {
