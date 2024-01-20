@@ -62,6 +62,24 @@
       transition: font-size 0.3s ease;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
+    
+@media (max-width: 1382px) {
+  .d-flex.flex-column.text-center.mx-3,
+  .d-flex.flex-column.text-center {
+    width: 100%;
+  }
+
+  .d-flex.flex-column.text-center.mx-3 .increase,
+  .d-flex.flex-column.text-center .increase {
+    font-size: 30px; /* Set font size for smaller screens */
+  }
+
+  .d-flex.flex-column.text-center.mx-3 .fs-6.f,
+  .d-flex.flex-column.text-center .fs-6.f {
+    font-size: 14px;
+    margin-top: -12px;
+  }
+}
 
     .card.mb-4.text-white.bg-warning {
       cursor: pointer;
