@@ -1,127 +1,99 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DTS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
   <link rel="icon" type="image/png" href="./cvrlogo.ico" />
   <!-- Google Font: Source Sans Pro -->
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700&display=swap" /> -->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css" />
   <!-- Apex chart -->
   <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
-  <!-- <link rel="stylesheet" href="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.css"> -->
-  <!-- <link rel="stylesheet" href="https://unpkg.com/tippy.js@6.3.3/dist/tippy.css"> -->
-  <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
-  <!-- <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png"> -->
-  <link rel="manifest" href="assets/favicon/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png" />
+  <link rel="manifest" href="assets/favicon/manifest.json" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png" />
+  <meta name="theme-color" content="#ffffff" />
   <!-- Vendors styles-->
-  <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
-  <link rel="stylesheet" href="css/vendors/simplebar.css">
+  <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css" />
+  <link rel="stylesheet" href="css/vendors/simplebar.css" />
   <!-- Main styles for this application-->
   <!-- <link href="css/style.css" rel="stylesheet"> -->
   <!-- We use those styles to show code examples, you should remove them in your application.-->
-  <link href="css/examples.css" rel="stylesheet">
-  <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/free.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/brand.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/flag.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
+  <link href="css/examples.css" rel="stylesheet" />
+  <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/free.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/brand.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/flag.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
-<body ng-app="myApp" class="hold-transition sidebar-mini layout-fixed">
-  <style>
-    /* [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link {
-        color: #c2c7d0;
-        margin-left: 2rem;
-    } */
-  </style>
+<body class="hold-transition sidebar-mini layout-fixed">
   <!-- =========Navbar======= -->
   <div class="wrapper">
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="height: 60px;">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="height: 60px">
       <!-- Left navbar links -->
       <ul class="navbar-nav mx-3">
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="" role="button"><i class="fas fa-bars"></i></a>
         </li>
       </ul>
-
       <!-- Right navbar links -->
-
     </nav>
     <!-- /.navbar -->
-
     <!-- ==========Main Sidebar Container========= -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <!-- <a href=" " class="brand-link">
-        <img src="./cienciaslogo (2).png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 1" />
-       <span class="brand-text font-weight-light"></span>
-    </a> -->
       <a href="https://www.cienciasvr.com" target="_blank">
         <img src="./loogo.png" class="" width="250" height="140" alt="Logo" />
       </a>
-      <hr style="margin:0px;height:0.1px;border-width:3px;color:#28a745;border-color:#3c3d68">
+      <hr style="
+            margin: 0px;
+            height: 0.1px;
+            border-width: 3px;
+            color: #28a745;
+            border-color: #3c3d68;
+          " />
       <!-- ===========Sidebar========== -->
-      <div class="sidebar p-0" style="background-color: #1f203f;">
-        <!-- Sidebar user panel (optional) -->
-        <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" />  
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">Admin</a>
-            </div>
-        </div> -->
-
+      <div class="sidebar p-0" style="background-color: #1f203f">
         <nav class="mt-2">
           <ul class="sidebar-nav nav nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-              <a class="nav-link active" href="index.html" style="display: flex; align-items: center;height: 50px;">
-                <i class="cil-speedometer mx-2" style="font-size: 22px;"></i>
-                <p style=" margin-left: 10px;">Dashboard</p>
+              <a class="nav-link active" href="index.html" style="display: flex; align-items: center; height: 50px">
+                <i class="cil-speedometer mx-2" style="font-size: 22px"></i>
+                <p style="margin-left: 10px">Dashboard</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="liveStatus.html" style="display: flex; align-items: center;height: 50px;">
-                <i class="cil-layers mx-2" style="font-size: 22px;"></i>
-                <p style=" margin-left: 10px;">Live Status</p>
+              <a class="nav-link" href="liveStatus.html" style="display: flex; align-items: center; height: 50px">
+                <i class="cil-layers mx-2" style="font-size: 22px"></i>
+                <p style="margin-left: 10px">Live Status</p>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="school.html" style="display: flex; align-items: center;height: 50px;">
-                <i class="cil-institution mx-2" style="font-size: 22px;"></i>
-                <p style=" margin-left: 10px;">Schools</p>
+              <a class="nav-link" href="school.html" style="display: flex; align-items: center; height: 50px">
+                <i class="cil-institution mx-2" style="font-size: 22px"></i>
+                <p style="margin-left: 10px">Schools</p>
               </a>
             </li>
             <!-- Assets Link -->
             <li class="nav-item">
-              <a href class="nav-link" style="display: flex; align-items: center;height: 50px;">
-                <i class="cil-screen-desktop mx-2" style="font-size: 22px;"></i>
-                <p style=" margin-left: 10px;">
+              <a href class="nav-link" style="display: flex; align-items: center; height: 50px">
+                <i class="cil-screen-desktop mx-2" style="font-size: 22px"></i>
+                <p style="margin-left: 10px">
                   Assets
                   <i class="fas fa-angle-left right my-1"></i>
                 </p>
@@ -129,27 +101,25 @@
               <ul class="nav nav-treeview">
                 <!-- Assets List Link -->
                 <li class="nav-item">
-                  <a href="assets.html" class="nav-link" style="display: flex; align-items: center;height: 50px;">
-                    <i class="cil-chevron-circle-right-alt mx-2" style="font-size: 18px;"></i>
-                    <p style=" margin-left: 10px;">Assets List</p>
+                  <a href="assets.html" class="nav-link" style="display: flex; align-items: center; height: 50px">
+                    <i class="cil-chevron-circle-right-alt mx-2" style="font-size: 18px"></i>
+                    <p style="margin-left: 10px">Assets List</p>
                   </a>
                 </li>
                 <!-- Reg. Info Link -->
                 <li class="nav-item">
-                  <a href="regInfo.html" class="nav-link" style="display: flex; align-items: center;height: 50px;">
-                    <i class="cil-chevron-circle-right-alt mx-2" style="font-size: 18px;"></i>
-                    <p style=" margin-left: 10px;">Reg. Info</p>
+                  <a href="regInfo.html" class="nav-link" style="display: flex; align-items: center; height: 50px">
+                    <i class="cil-chevron-circle-right-alt mx-2" style="font-size: 18px"></i>
+                    <p style="margin-left: 10px">Reg. Info</p>
                   </a>
                 </li>
-
               </ul>
             </li>
-
             <!-- Activity Link -->
             <li class="nav-item">
-              <a href class="nav-link" style="display: flex; align-items: center;height: 50px;">
-                <i class="cil-window-restore  mx-2" style="font-size: 22px;"></i>
-                <p style=" margin-left: 10px;">
+              <a href class="nav-link" style="display: flex; align-items: center; height: 50px">
+                <i class="cil-window-restore mx-2" style="font-size: 22px"></i>
+                <p style="margin-left: 10px">
                   Activity
                   <i class="fas fa-angle-left right my-1"></i>
                 </p>
@@ -157,116 +127,113 @@
               <ul class="nav nav-treeview">
                 <!-- Device Timing Link -->
                 <li class="nav-item">
-                  <a href="duration.html" class="nav-link" style="display: flex; align-items: center;height: 50px;">
-                    <i class="cil-chevron-circle-right-alt mx-2" style="font-size: 18px;"></i>
-                    <p style=" margin-left: 10px;">Device Timing</p>
+                  <a href="duration.html" class="nav-link" style="display: flex; align-items: center; height: 50px">
+                    <i class="cil-chevron-circle-right-alt mx-2" style="font-size: 18px"></i>
+                    <p style="margin-left: 10px">Device Timing</p>
                   </a>
                 </li>
                 <!-- Application Timing Link -->
                 <li class="nav-item">
-                  <a href="activity.html" class="nav-link" style="display: flex; align-items: center;height: 50px;">
-                    <i class="cil-chevron-circle-right-alt mx-2" style="font-size: 18px;"></i>
-                    <p style=" margin-left: 10px;">Application Timing</p>
+                  <a href="activity.html" class="nav-link" style="display: flex; align-items: center; height: 50px">
+                    <i class="cil-chevron-circle-right-alt mx-2" style="font-size: 18px"></i>
+                    <p style="margin-left: 10px">Application Timing</p>
                   </a>
                 </li>
               </ul>
             </li>
-
             <!-- Reports Link -->
             <li class="nav-item">
-              <a href="reports.html" class="nav-link " style="display: flex; align-items: center;height: 50px;">
-                <i class="cil-touch-app  mx-2" style="font-size: 22px;"></i>
-                <p style=" margin-left: 10px;">Reports</p>
+              <a href="reports.html" class="nav-link" style="display: flex; align-items: center; height: 50px">
+                <i class="cil-touch-app mx-2" style="font-size: 22px"></i>
+                <p style="margin-left: 10px">Reports</p>
               </a>
             </li>
-
           </ul>
         </nav>
-
       </div>
     </aside>
-
-
-    <div class="content-wrapper" style="background-color: #f0f0f9;">
+    <div class="content-wrapper" style="background-color: #f0f0f9">
       <div class="content-header mx-3">
         <div class="container-fluid">
           <div class="row mb-2">
-            <h2 style="color: #1f203f;" class="my-2"><b>Dashboard</b></h2>
+            <h2 style="color: #1f203f" class="my-2"><b>Dashboard</b></h2>
           </div>
         </div>
       </div>
       <!-- <div class="content"> -->
-      <section class="content" style="display: flex;flex-direction: column; align-items: center;">
+      <section class="content" style="display: flex; flex-direction: column; align-items: center">
         <div class="col-lg-12 row">
           <div class="col-lg-9">
-
             <!-- /.col-->
             <div class="row">
               <div class="col-sm-12 col-lg-5">
-                <div class="card mb-4 text-white " style="height: 140px;background-color: #3399ff;">
+                <div class="card mb-4 text-white" style="height: 140px; background-color: #3399ff">
                   <div class="card-body pb-0 d-flex justify-content-center align-items-start">
-
-                    <div class="d-flex flex-column text-center mx-3" style="width: 50%;">
+                    <div class="d-flex flex-column text-center mx-3" style="width: 50%">
                       <div class="increase"><b>000</b></div>
-                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px;"><br><b>Total Desktop</b></div>
-                    </div>
-
-                    <div class="vertical-divider mx-3"></div>
-
-                    <div class="d-flex flex-column text-center mx-3" style="width: 50%;">
-                      <div class="increase"><b>000</b></div>
-                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px;"><br><b>Total Active Desktop</b>
+                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px">
+                        <br /><b>Total Desktop</b>
                       </div>
                     </div>
-
+                    <div class="vertical-divider mx-3"></div>
+                    <div class="d-flex flex-column text-center mx-3" style="width: 50%">
+                      <div class="increase"><b>000</b></div>
+                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px">
+                        <br /><b>Total Active Desktop</b>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-
               <!-- /.col-->
               <div class="col-sm-12 col-lg-5">
-                <div class="card mb-4 text-white" style="height: 140px;background-color: #f9b115;">
+                <div class="card mb-4 text-white" style="height: 140px; background-color: #f9b115">
                   <div class="card-body pb-0 d-flex justify-content-center align-items-start">
-
-                    <div class="d-flex flex-column text-center mx-3" style="width: 50%;">
+                    <div class="d-flex flex-column text-center mx-3" style="width: 50%">
                       <div class="increase"><b>000</b></div>
-                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px;"><br><b>Total Android</b></div>
-                    </div>
-
-                    <div class="vertical-divider mx-3"></div>
-
-                    <div class="d-flex flex-column text-center mx-3" style="width: 50%;">
-                      <div class="increase"><b>000</b></div>
-                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px;"><br><b>Total Active Android</b>
+                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px">
+                        <br /><b>Total Android</b>
                       </div>
                     </div>
-
+                    <div class="vertical-divider mx-3"></div>
+                    <div class="d-flex flex-column text-center mx-3" style="width: 50%">
+                      <div class="increase"><b>000</b></div>
+                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px">
+                        <br /><b>Total Active Android</b>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <!-- /.col-->
               <div class="col-sm-12 col-lg-2">
-                <div class="card mb-4 text-white" style="height: 140px; background-color: #e55353;">
+                <div class="card mb-4 text-white" style="height: 140px; background-color: #e55353">
                   <div class="card-body pb-0 d-flex justify-content-center align-items-start">
                     <div class="d-flex flex-column text-center">
-                      <div class=" increase"><b>000</b></div>
-                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px;"><br><b>Total Schools</b></div>
+                      <div class="increase"><b>000</b></div>
+                      <div class="fs-6 f" style="font-size: 16px; margin-top: -18px">
+                        <br /><b>Total Schools</b>
+                      </div>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
             <div class="col-lg-12 p-0">
               <div class="card round shadow my-2">
-                <div class="card-header round-header"><strong>Desktop </strong><span class="small ms-1"
-                    style="font-size: 16px;"> count based on
-                    districts</span></div>
-                <div class="card-body d-flex align-items-center" style="justify-content: center;">
-                  <svg viewBox="0 0 501 392.8" xmlns="http://www.w3.org/2000/svg"
-                    style="min-height: 538px; height: 521px; max-height: 650px; max-width: 100%;">
+                <div class="card-header round-header">
+                  <strong>Desktop </strong><span class="small ms-1" style="font-size: 16px">
+                    count based on districts</span>
+                </div>
+                <div class="card-body d-flex align-items-center" style="justify-content: center">
+                  <svg viewBox="0 0 501 392.8" xmlns="http://www.w3.org/2000/svg" style="
+                        min-height: 538px;
+                        height: 521px;
+                        max-height: 650px;
+                        max-width: 100%;
+                      ">
                     <g fill="#9CBCDA" stroke="#646464" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                      id="g-1" style="display:inline"
+                      id="g-1" style="display: inline"
                       transform="matrix(0.239675, 0, 0, 0.239675, -10.362949, -12.204528)">
                       <polygon points="1947.6,1197.1 1947.9,1197.2 1947.6,1196.9 " id="polygon-1" />
                       <polygon
@@ -403,11 +370,12 @@
           </div>
           <div class="col col-lg-3">
             <div class="card round mb-2 shadow">
-              <div class="card-header round-header"><strong>Desktop</strong><span class="small ms-1"
-                  style="font-size: 16px;"> Status</span></div>
+              <div class="card-header round-header">
+                <strong>Desktop</strong><span class="small ms-1" style="font-size: 16px">
+                  Status</span>
+              </div>
               <div class="card-body">
                 <div class="example">
-
                   <div class="tab-content rounded-bottom">
                     <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1002">
                       <div>
@@ -419,11 +387,12 @@
               </div>
             </div>
             <div class="card round mb-2 shadow">
-              <div class="card-header round-header"><strong>Android</strong><span class="small ms-1"
-                  style="font-size: 16px;"> Status</span></div>
+              <div class="card-header round-header">
+                <strong>Android</strong><span class="small ms-1" style="font-size: 16px">
+                  Status</span>
+              </div>
               <div class="card-body">
                 <div class="example">
-
                   <div class="tab-content rounded-bottom">
                     <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1002">
                       <div>
@@ -441,61 +410,59 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <script>
     // Get the canvas element
-    var ctx = document.getElementById('myDoughnutChart1').getContext('2d');
-
+    var ctx = document.getElementById("myDoughnutChart1").getContext("2d");
     // Doughnut chart data
     var data = {
-      labels: ['On', 'Off'],
-      datasets: [{
-        data: [30, 40],
-        backgroundColor: ['#4388cc', '#90c6fc', '#ffce56'],
-        hoverBackgroundColor: ['#85c2ff', '#c7e3ff', '#ffce56']
-      }]
+      labels: ["On", "Off"],
+      datasets: [
+        {
+          data: [30, 40],
+          backgroundColor: ["#4388cc", "#90c6fc", "#ffce56"],
+          hoverBackgroundColor: ["#85c2ff", "#c7e3ff", "#ffce56"],
+        },
+      ],
     };
-
     // Doughnut chart options
     var options = {
       cutoutPercentage: 50, // Adjust the size of the center hole (0 for a pie chart, 50 for a doughnut chart)
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     };
-
     // Create the doughnut chart
     var myDoughnutChart = new Chart(ctx, {
-      type: 'doughnut',
+      type: "doughnut",
       data: data,
-      options: options
+      options: options,
     });
   </script>
   <script>
     // Get the canvas element
-    var ctx = document.getElementById('myDoughnutChart2').getContext('2d');
+    var ctx = document.getElementById("myDoughnutChart2").getContext("2d");
 
     // Doughnut chart data
     var data = {
-      labels: ['On', 'Off'],
-      datasets: [{
-        data: [30, 40],
-        backgroundColor: ['#f2b32c', '#ffd170', '#ffce56'],
-        hoverBackgroundColor: ['#ffcf69', '#ffd887', '#ffce56']
-      }]
+      labels: ["On", "Off"],
+      datasets: [
+        {
+          data: [30, 40],
+          backgroundColor: ["#f2b32c", "#ffd170", "#ffce56"],
+          hoverBackgroundColor: ["#ffcf69", "#ffd887", "#ffce56"],
+        },
+      ],
     };
-
     // Doughnut chart options
     var options = {
       cutoutPercentage: 50, // Adjust the size of the center hole (0 for a pie chart, 50 for a doughnut chart)
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
     };
-
     // Create the doughnut chart
     var myDoughnutChart = new Chart(ctx, {
-      type: 'doughnut',
+      type: "doughnut",
       data: data,
-      options: options
+      options: options,
     });
   </script>
   <!-- CoreUI and necessary plugins-->
@@ -516,8 +483,5 @@
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
 </body>
-
 </html>
