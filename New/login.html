@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="MDB5-STANDARD-UI-KIT-Free-7.1.0/css/mdb.min.css" />
     <style>
         /* POPPINS FONT */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
@@ -115,37 +124,37 @@
             /* Apply a 50% border radius to make it rounded */
             justify-content: center;
             margin-top: 20px;
-            margin-left: 110px;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container col-11 col-lg-2 text-center" style="align-items: center;">
+
         <img src="./Cvrlogo.jpg" class="rounded-image" alt="user icon" />
+    
         <div class="header">
             <header>Admin Login</header>
         </div>
-        <div class="input-container">
-            <div class="input-field">
-                <label for="user">Username</label>
-                <input type="text" name="username" id="user" required>
+    
+        <div class="input-container" style=" display: flex; flex-direction: column; align-items: center; margin-left: 18px;">
+            <div class="form-outline my-2" style="width: 100%;" data-mdb-input-init>
+                <input type="text" id="formControlDefault1" class="form-control" />
+                <label class="form-label" for="formControlDefault1">Username</label>
             </div>
-
-            <div class="input-field">
-                <label for="pass">Password</label>
-                <input type="password" name="password" id="pass" required>
+    
+            <div class="form-outline my-2" style="width: 100%;" data-mdb-input-init>
+                <input type="text" id="formControlDefault2" class="form-control" />
+                <label class="form-label" for="formControlDefault2">Password</label>
             </div>
-
-            <!-- <div class="input-field" > -->
-            <a class="input-field" href="index.html">
-                <button type="submit" class="submit" name="submit" value="Login">Login</button>
-            </a>
-            <!-- </div> -->
-            <!-- <span><a href="#">Forgot password?</a></span> -->
+    
+            <a class="btn btn-primary my-2" style="width: 100%;" href="index.html" role="button">Login</a>
         </div>
     </div>
+    
 
 </body>
-
+<script type="text/javascript" src="MDB5-STANDARD-UI-KIT-Free-7.1.0/js/mdb.umd.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
 </html>

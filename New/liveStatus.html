@@ -109,7 +109,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active " href="liveStatus.html"
+              <a class="nav-link active" href="liveStatus.html"
                 style="display: flex; align-items: center;height: 50px;">
                 <i class="cil-layers mx-2" style="font-size: 22px;"></i>
                 <p style=" margin-left: 10px;">Live Status</p>
@@ -536,12 +536,12 @@
       </section>
       <!-- </div> -->
     </div>
-    <footer class="main-footer">
+    <footer class="main-footer" style="color: #1f203f;">
       Copyright &copy; 2023-2025
       <a href="https://cienciasvr.com/" target="_blank">Ciencias IN VR</a>.
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 0.0.1
+        <b>Version</b> 0.0.2
       </div>
     </footer>
 
@@ -626,7 +626,21 @@
 
   <script src="plugins/datatables/jquery.dataTables.js"></script>
   <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-
+  <!-- <script>
+    function openMenu(pos)
+    {
+      elem = document.getElementsByClassName("nav-item");
+      elem2 = document.getElementsByClassName("nav-treeview");
+      if (pos == 4) {
+        elem[7].classList.remove("menu-open");
+        elem2[1].style.display = "none";
+      }
+      if (pos == 7) {
+        elem[4].classList.remove("menu-open");
+        elem2[0].style.display = "none";
+      }
+    }
+  </script> -->
 
 </body>
 

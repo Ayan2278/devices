@@ -5382,6 +5382,9 @@ input[type=submit].btn-block {
     background-color: #3a3b8e;
     border-color: #3a3b8e
 }
+.page-item.active .page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgb(118 72 255 / 25%);
+}
 
 .page-item.disabled .page-link {
     color: #6c757d;
